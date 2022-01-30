@@ -1,10 +1,9 @@
 # Sevy's bastardization of https://github.com/python/cpython/blob/main/Lib/shutil.py
 
 import os
-from shutil import copy2, ignore_patterns
+from shutil import copy2, ignore_patterns, rmtree
 import fnmatch
 import time
-
 
 def hardcopy_patterns(*patterns):
     def _hardcopy_patterns(path, names):
@@ -13,7 +12,6 @@ def hardcopy_patterns(*patterns):
             matched_names.extend(fnmatch.filter(names, pattern))
         return set(matched_names)
     return _hardcopy_patterns
-
 
 # start by copying a directory but ignoring the .git
 def copytree_sym(src, dst, ignore=None, hardcopy=None, symlinks=False):
@@ -46,7 +44,13 @@ def copytree_sym(src, dst, ignore=None, hardcopy=None, symlinks=False):
                 linkto = os.readlink(srcname)
                 os.symlink(linkto, dstname)
             elif os.path.isdir(srcname):
-                copytree_sym(srcname, dstname, symlinks=symlinks, ignore=ignore, hardcopy=hardcopy)
+                copytree_sym(
+                    srcname, 
+                    dstname, 
+                    symlinks=symlinks, 
+                    ignore=ignore, 
+                    hardcopy=hardcopy
+                    )
             else:
                 # if srcname in hardcopy:
                 if name in hardcopy_names:
@@ -55,23 +59,26 @@ def copytree_sym(src, dst, ignore=None, hardcopy=None, symlinks=False):
                     os.symlink(srcname, dstname)
         except OSError as why:
             errors.append((srcname, dstname, str(why)))
+
         # catch the Error from the recursive copytree so that we can
         # continue with other files
         except Exception as err:
             errors.extend(err.args[0])
 
-# database_src = "/home/moon/rmg/RMG-database/"
-database_src = "/scratch/westgroup/methanol/perturb_5000_correllated/RMG-database/"
+database_src = os.path.abspath("../RMG-database/")
 if not os.path.exists(database_src):
     raise OSError(f'Could not find source database {database_src}')
 
 start_time = time.time()
-N = 50
+N = 10
 for i in range(0, N):
-    database_dest = "/scratch/westgroup/methanol/perturb_5000_correllated/db_" + str(i).zfill(4)
+    database_dest = os.path.abspath(
+        "../uncertainty_output_folder/")+ "/db_" + str(i).zfill(4
+        )
     if os.path.exists(database_dest):
-        print(f"skipping {database_dest}")
-        continue
+        print(f"removing {database_dest} and replacing with new one")
+        rmtree(database_dest)
+        # continue
         # raise OSError(f'Destination already exists: {database_dest}')
 
     copytree_sym(
@@ -90,20 +97,16 @@ for i in range(0, N):
             'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
             'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
         ),
-        # TODO see if you can delete this hardcopy option - I think it may be unnecessary
+        # TODO see if you can delete this hardcopy option
         # only hard copy one of these 
         hardcopy=hardcopy_patterns(
             'rules.py',
             'reactions.py',
             'surfaceThermoPt111.py',
-            'adsorptionPt111.py'
-            #'rules_0000.py',
-            #'reactions_0000.py',
-            #'surfaceThermoPt111_0000.py',
+            'adsorptionPt111.py',
         )
     )
     print(f"done with copy {i}")
 stop_time = time.time()
 elapsed_time = stop_time - start_time
 print(f"Copied {N} databases in {elapsed_time} seconds")
-
