@@ -4,8 +4,8 @@ import glob
 import os
 
 
-working_dir = "/scratch/westgroup/methanol/perturb_5000_correllated/rmg_run_scripts/"
-
+# working_dir = os.path.join(os.getcwd(),"uncertainty_output_folder/rmg_run_scripts/")
+working_dir = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/rmg_run_scripts/"
 print("Collecting SLURM scripts")
 slurm_scripts = glob.glob(os.path.join(working_dir, "rmg_runs_*.sh"))
 

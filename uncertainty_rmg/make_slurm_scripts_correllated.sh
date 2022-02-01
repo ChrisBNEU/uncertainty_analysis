@@ -10,8 +10,10 @@
 #SBATCH --cpus-per-task=4
 
 
+# activate environment 
+source activate ../conda
 # Copy the files from the full database to the mostly symbolic one
-python /scratch/westgroup/methanol/meOH-synthesis/perturbed_runs/make_slurm_scripts_correllated.py
+python /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_rmg/make_slurm_scripts_correllated.py
 
 
 

@@ -8,22 +8,20 @@ import glob
 
 
 # WARNING - this will fail if M%N != 0
-
-
 skip_completed_runs = False # set to false to overwrite RMG runs that completed
-
-working_dir = "/scratch/westgroup/methanol/perturb_5000_correllated/"
-# working_dir = "/home/moon/rmg/fake_rmg_runs/"
+wrk_dir = os.getcwd()
+working_dir = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
 if not os.path.exists(working_dir):
     os.mkdir(working_dir)
 
 
 # reference_db = "/home/moon/rmg/RMG-database/"
-reference_db = "/scratch/westgroup/methanol/perturb_5000_correllated/RMG-database/"
+reference_db = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/RMG-database/"
+reference_py = os.path.abspath("../RMG-Py")
 if not os.path.exists(reference_db):
     raise OSError(f"Reference database does not exist {reference_db}")
 
-reference_input = "/scratch/westgroup/methanol/meOH-synthesis/perturbed_runs/input.py"
+reference_input = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_rmg/input.py"
 if not os.path.exists(reference_input):
     raise OSError(f"Cannot find reference rmg input.py file {reference_input}")
 
@@ -34,8 +32,8 @@ perturbed_kinetics_libs = glob.glob(os.path.join(reference_db, 'input', 'kinetic
 perturbed_thermo_groups = glob.glob(os.path.join(reference_db, 'input', 'thermo', 'groups', '*_0000.py'))
 
 
-M = 5000  # total number of times to run RMG
-N = 50  # number of jobs to run at a time
+M = 10  # total number of times to run RMG
+N = 10  # number of jobs to run at a time
 for i in range(0, M, N):
     sbatch_index = int(i / N)
     range_max = np.amin([i + N, M])
@@ -48,6 +46,10 @@ for i in range(0, M, N):
     
     # Write the job file
     fname = f'rmg_runs_{i}-{last_index}.sh'
+
+    if not os.path.exists(os.path.join(working_dir, "rmg_run_scripts")):
+        os.mkdir(os.path.join(working_dir, "rmg_run_scripts",))
+
     jobfile = job_manager.SlurmJobFile(full_path=os.path.join(working_dir, "rmg_run_scripts", fname))
     jobfile.settings['--array'] = f'{i - task_id_offset}-{last_index - task_id_offset}'
     jobfile.settings['--job-name'] = fname
@@ -142,9 +144,12 @@ for i in range(0, M, N):
     content.append(f'cd {rmg_run_dir} \n')
     # content.append(f'if RMG_RUN COMPLETED {rmg_run_dir} \n')
 
-   
+    # set path and pythonpath
+    content.append(f'export PYTHONPATH="{reference_py}:$PYTHONPATH"\n') 
+    content.append(f'export PATH="{reference_py}:$PATH"\n') 
+    content.append(f'export RMG="{reference_py}/rmg.py"\n') 
     # activate conda env
-    content.append(f'source activate rmg_julia_env\n')
+    content.append(f'source activate ../../conda\n')
     # adding in environment variable for $RMG to the RMG-Py/rmg.py in bashrc so we don't have to change path
     content.append(f'python-jl $RMG input.py\n')
     #content.append(f'python /scratch/westgroup/methanol/perturb_5000_correllated/RMG-Py/rmg.py {rmg_run_dir}/input.py\n')

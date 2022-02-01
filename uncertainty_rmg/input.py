@@ -25,7 +25,7 @@ database(
         ],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
-    kineticsFamilies =[('surface',False),'default'],
+    kineticsFamilies =[('surface',True),'default'],
     kineticsEstimator = 'rate rules',
 )
 

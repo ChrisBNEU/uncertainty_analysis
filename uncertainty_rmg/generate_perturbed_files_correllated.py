@@ -32,13 +32,13 @@ DELTA_E0_MAX_J_MOL_VDW = 20000
 # this will need to be appropriate units, and I have no idea what is default for RMG
 # a solution is just to put the max power that we want to raise the value to, 
 # then it will be perturbed by e4, e-4
-DELTA_A_MAX_EXP = 4  #
+DELTA_A_MAX_EXP = 4
 
 # delta n? maybe -1 to 1 for now? this is basically
 # only here to fudge the numbers. might be useful for 
 # vdw  reactions (e.g. negative temperature dependence
 # on adsorption) 
-# DELTA_n_MAX_J_MOL = 1  # 
+# DELTA_n_MAX_J_MOL = 1  
 
 # Define the number of perturbations to run
 # testing currently, use 10
@@ -158,15 +158,15 @@ if len(kinetics_families) > 0:
         for entry_key in family.rules.entries.keys():
             # label BEP scaling parameter column
             label = family_key + '/' + entry_key + '/alpha'
-            sobol_map[label] = sobol_col_index
+            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
             sobol_col_index += 1
             # label pre-exponential column
             label = family_key + '/' + entry_key + '/A'
-            sobol_map[label] = sobol_col_index
+            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
             sobol_col_index += 1
             # label activation energy column
             label = family_key + '/' + entry_key + '/E0'
-            sobol_map[label] = sobol_col_index
+            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
             sobol_col_index += 1
 
 all_library_entries = {}
@@ -180,12 +180,12 @@ if len(kinetics_libraries) > 0:
                 
                 # label activation energy column
                 label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/Ea'
-                sobol_map[label] = sobol_col_index
+                sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
                 sobol_col_index += 1
 
                 # label A-factor column
                 label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/A'
-                sobol_map[label] = sobol_col_index
+                sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
                 sobol_col_index += 1
 
                 # if we have selected "all", then make a list of all 
@@ -208,7 +208,7 @@ scaling_groups = [
 ]
 
 for label in scaling_groups:
-    sobol_map[label] = sobol_col_index
+    sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
     sobol_col_index += 1
 
 
@@ -239,21 +239,25 @@ if len(kinetics_libraries) > 0:
                         # will need to account for units later
                         A_ref = kinetics_lib_ref.entries[klib_entry_key].data.A.value_si
                         sobol_key = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/A'
-                        sobol_col_index = sobol_map[sobol_key]
+                        sobol_col_index = sobol_map[sobol_key][0]
                         delta_A0 = (DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP)
                         A_perturbed = A_ref*10**delta_A0
                         
                         kinetics_lib_entry.data.A.value_si = A_perturbed
 
+                        # write perturbed value to sobol key
+                        sobol_map[sobol_key][1][i] = delta_A0
+
                         # perturb Ea
                         Ea_ref = kinetics_lib_ref.entries[klib_entry_key].data.Ea.value_si
                         sobol_key = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/Ea'
-                        sobol_col_index = sobol_map[sobol_key]
-                        # print units 
-                        print(kinetics_lib_entry.data.Ea.units)
+                        sobol_col_index = sobol_map[sobol_key][0]
                         delta_E0 = (DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_col_index] * DELTA_E0_MAX_J_MOL)
                         Ea_perturbed = Ea_ref + delta_E0
                         kinetics_lib_entry.data.Ea.value_si = Ea_perturbed
+
+                        # write perturbed value to sobol key
+                        sobol_map[sobol_key][1][i] = delta_E0
 
             kinetics_lib.save(os.path.join(kinetic_libraries_dir, klib_key, 'reactions_' + str(i).zfill(4) + '.py'))
 
@@ -271,28 +275,37 @@ if len(kinetics_families) > 0:
                 # perturb A-factor
                 A_ref = family_ref.rules.entries[entry_key][0].data.A.value
                 sobol_key = family_key + '/' + entry_key + '/A'
-                sobol_col_index = sobol_map[sobol_key]
+                sobol_col_index = sobol_map[sobol_key][0]
                 delta_A= DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP
 
                 # raise A to the perturbed power.
                 A_perturbed = A_ref*10**delta_A
                 entry[0].data.A.value = A_perturbed
 
+                # write perturbed value to sobol key
+                sobol_map[sobol_key][1][i] = delta_A                
+
                 # Perturb the alpha value
                 alpha_ref = family_ref.rules.entries[entry_key][0].data.alpha.value
                 sobol_key = family_key + '/' + entry_key + '/alpha'
-                sobol_col_index = sobol_map[sobol_key]
+                sobol_col_index = sobol_map[sobol_key][0]
                 delta_alpha = DELTA_ALPHA_MAX - 2.0 * x_sobol[i, sobol_col_index] * DELTA_ALPHA_MAX
                 alpha_perturbed = alpha_ref + delta_alpha
                 entry[0].data.alpha.value = alpha_perturbed
 
+                # write perturbed value to sobol key
+                sobol_map[sobol_key][1][i] = delta_alpha
+
                 # Perturb the E0 value
                 E0_ref = family_ref.rules.entries[entry_key][0].data.E0.value_si
                 sobol_key = family_key + '/' + entry_key + '/E0'
-                sobol_col_index = sobol_map[sobol_key]
+                sobol_col_index = sobol_map[sobol_key][0]
                 delta_E0 = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_col_index] * DELTA_E0_MAX_J_MOL
                 E0_perturbed = E0_ref + delta_E0
-                entry[0].data.E0.value_si = E0_perturbed
+                entry[0].data.E0.value_si = delta_E0
+
+                # write perturbed value to sobol key
+                sobol_map[sobol_key][1][i] = delta_E0
 
 
             family.rules.save(os.path.join(families_dir, family_key, 'rules_' + str(i).zfill(4) + '.py'))
@@ -304,6 +317,21 @@ if len(thermo_libraries) > 0:
         thermo_lib = thermo_database.libraries[library_key]
         thermo_lib_ref = copy.deepcopy(thermo_lib)
         for i in tqdm(range(0, N)):
+
+            # Get perturbations and record
+            delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
+            delta_E0_O = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_MAX_J_MOL
+            delta_E0_H = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_MAX_J_MOL
+            delta_E0_N = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_MAX_J_MOL
+            delta_E0_vdw = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_MAX_J_MOL_VDW 
+
+            # replace sobol map value with the actual perturbation 
+            sobol_map["C_BE"][1][i] = delta_E0_C
+            sobol_map["O_BE"][1][i] = delta_E0_O
+            sobol_map["H_BE"][1][i] = delta_E0_H
+            sobol_map["N_BE"][1][i] = delta_E0_N
+            sobol_map["vdw_BE"][1][i] = delta_E0_vdw
+
             for entry_key in thermo_lib.entries.keys():
                 delta_E0 = 0
                 entry = thermo_lib.entries[entry_key]
@@ -324,18 +352,18 @@ if len(thermo_libraries) > 0:
                         bonded_atom = list(site.bonds.keys())[0]
                         
                         if bonded_atom.is_carbon():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_C
                         elif bonded_atom.is_oxygen():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_O
                         elif bonded_atom.is_hydrogen():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"]] * DELTA_E0_MAX_J_MOL
-                    
+                            delta_E0 += delta_E0_H
+                        elif bonded_atom.is_nitrogen():
+                            delta_E0 += delta_E0_N                    
                     # there are no instances where we have vdw and 
                     # a normal bond, so no +=
                     else: 
-                        delta_E0 = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"]] * DELTA_E0_MAX_J_MOL_VDW 
+                        delta_E0 = delta_E0_vdw
 
-                
                 # Perturb the E0 value, which is a5 in the NASA polymial
                 if entry.data.poly1 is not None:
                     E0_ref = thermo_lib_ref.entries[entry_key].data.poly1.c5
@@ -356,12 +384,7 @@ if len(thermo_groups_to_perturb) > 0:
     print("generating thermo group files")
     for i in tqdm(range(0, N)):
         for group_name in thermo_groups_to_perturb:
-            # thermo_database = ThermoDatabase()
-            # thermo_database.load(
-            #     library_path,
-            #     libraries=thermo_libraries,
-            #     depository=False,
-            #     surface=True)
+
             for group_entry_name in thermo_database.groups[group_name].entries:
                 delta_E0 = 0
                 if not thermo_database.groups[group_name].entries[group_entry_name].data:
@@ -382,24 +405,23 @@ if len(thermo_groups_to_perturb) > 0:
                         # currently we do not have one surface atom 
                         # bound to multiple adsorbate atoms
                         bonded_atom = list(site.bonds.keys())[0]
-                        
                         if bonded_atom.is_carbon():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_C
                         elif bonded_atom.is_oxygen():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_O
                         elif bonded_atom.is_nitrogen():
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["N_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_N
                         elif bonded_atom.atomtype[0].label == "H": # no "is_hydrogen" method for groups :(
-                            delta_E0 += DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"]] * DELTA_E0_MAX_J_MOL
+                            delta_E0 += delta_E0_H
                         elif "R" == bonded_atom.atomtype[0].label:
                             # average sobol perturbations for R*single_chemisorbed, since it is an averaged node. 
                             # this may need to be reevaluated for other wildcard nodes but currently 
                             # this is the only one. 
                             # averaged from C, O, and N nodes
                             sobol_avg = np.average([
-                                x_sobol[i, sobol_map["C_BE"]], 
-                                x_sobol[i, sobol_map["O_BE"]], 
-                                x_sobol[i, sobol_map["N_BE"]]]) # we are not doing nitrogen, use extra space in sobol
+                                x_sobol[i, sobol_map["C_BE"][0]], 
+                                x_sobol[i, sobol_map["O_BE"][0]], 
+                                x_sobol[i, sobol_map["N_BE"][0]]]) # we are not doing nitrogen, use extra space in sobol
                             delta_E0+= DELTA_E0_MAX_J_MOL - 2.0 * sobol_avg * DELTA_E0_MAX_J_MOL
 
                         elif "R!H" == bonded_atom.atomtype[0].label:
@@ -408,16 +430,16 @@ if len(thermo_groups_to_perturb) > 0:
                             # this is the only one. 
                             # averaged from 3 C bidentate nodes and 1 N bidentate node. 
                             sobol_avg = np.average([
-                                x_sobol[i, sobol_map["C_BE"]], 
-                                x_sobol[i, sobol_map["C_BE"]], 
-                                x_sobol[i, sobol_map["C_BE"]],
-                                x_sobol[i, sobol_map["N_BE"]],]) # we are not doing nitrogen, use extra space in sobol
+                                x_sobol[i, sobol_map["C_BE"][0]], 
+                                x_sobol[i, sobol_map["C_BE"][0]], 
+                                x_sobol[i, sobol_map["C_BE"][0]],
+                                x_sobol[i, sobol_map["N_BE"][0]],]) # we are not doing nitrogen, use extra space in sobol
                             delta_E0+= DELTA_E0_MAX_J_MOL - 2.0 * sobol_avg * DELTA_E0_MAX_J_MOL
                     
                     # there are no instances where we have vdw and 
                     # a normal bond, so no +=
                     else: 
-                        delta_E0 = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"]] * DELTA_E0_MAX_J_MOL_VDW 
+                        delta_E0 = delta_E0_vdw
                 
                 H298_ref = thermo_group_entry_ref.data.H298.value_si
                 H298_perturbed = H298_ref + delta_E0

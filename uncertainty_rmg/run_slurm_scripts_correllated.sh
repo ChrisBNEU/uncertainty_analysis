@@ -12,6 +12,6 @@
 #SBATCH --mail-user=$USER@northeastern.edu 
 #SBATCH --mail-type=FAIL,END
 
-source activate rmg_julia_env
-python /scratch/westgroup/methanol/meOH-synthesis/perturbed_runs/run_slurm_scripts_correllated.py
+source activate ../conda
+python ./run_slurm_scripts_correllated.py
 
