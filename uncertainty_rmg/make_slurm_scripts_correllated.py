@@ -28,7 +28,7 @@ if not os.path.exists(reference_input):
 # Find all of the files that have been copied 5000 times
 perturbed_kinetics_rules = glob.glob(os.path.join(reference_db, 'input', 'kinetics', 'families', '*/rules_0000.py'))
 perturbed_thermo = glob.glob(os.path.join(reference_db, 'input', 'thermo', 'libraries', '*_0000.py'))
-perturbed_kinetics_libs = glob.glob(os.path.join(reference_db, 'input', 'kinetics', 'libraries', '*_0000.py'))
+perturbed_kinetics_libs = glob.glob(os.path.join(reference_db, 'input', 'kinetics', 'libraries', 'Surface', '**', '*0000.py'), recursive=True)
 perturbed_thermo_groups = glob.glob(os.path.join(reference_db, 'input', 'thermo', 'groups', '*_0000.py'))
 
 
@@ -113,6 +113,17 @@ for i in range(0, M, N):
             content.append(f'rm "{lib_file_dest}"\n')
             content.append(f'cp "{lib_file_src}" "{lib_file_dest}"\n')
             # break
+    
+    # write 
+    for lib_file in perturbed_kinetics_libs:
+        lib_file_src = lib_file.replace('reactions_0000.py', 'reactions_${RUN_i}.py')
+        file_name_parts = lib_file.split('RMG-database/')
+        if len(file_name_parts) != 2:
+            raise OSError(f'Bad source reactions.py file path {lib_file}')
+        lib_file_dest = os.path.join(dest_db_dir, file_name_parts[1].replace('reactions_0000.py', 'reactions.py'))
+        content.append(f'rm "{lib_file_dest}"\n')
+        content.append(f'cp "{lib_file_src}" "{lib_file_dest}"\n')
+        # break
 
         # # for some reason, have to remove the original file for it to copy correctly. 
         # elif "Cu111" in lib_file:

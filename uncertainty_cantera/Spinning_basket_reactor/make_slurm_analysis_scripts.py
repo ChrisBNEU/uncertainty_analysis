@@ -8,8 +8,6 @@ import glob
 
 
 # WARNING - this will fail if M%N != 0
-
-
 skip_completed_runs = False  # set to false to overwrite RMG runs that completed
 working_dir = "/scratch/westgroup/methanol/perturb_5000_correllated/"
 # working_dir = "/scratch/westgroup/methanol/perturb_5000/"

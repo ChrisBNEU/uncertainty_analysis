@@ -8,17 +8,13 @@ import glob
 
 
 # WARNING - this will fail if M%N != 0
-
-
 skip_completed_runs = False  # set to false to overwrite RMG runs that completed
 
-working_dir = "/scratch/westgroup/methanol/perturb_5000/"
-# working_dir = "/home/moon/rmg/fake_rmg_runs/"
-if not os.path.exists(working_dir):
-    os.mkdir(working_dir)
+working_dir = "../Uncertainty_output_folder/"
+perturb_sims_dir = "../Uncertainty_output_folder/"
 
-M = 5000  # total number of times to run RMG
-N = 50  # number of jobs to run at a time
+M = 10  # total number of times to run RMG
+N = 10 # number of jobs to run at a time
 
 for i in range(0, M, N):
     sbatch_index = int(i / N)

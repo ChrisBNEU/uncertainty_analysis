@@ -1,3 +1,10 @@
 *ipynb_checkpoints*
 *__pycache__*
 *.vscode*
+*conda/*
+*uncertainty_output_folder/*
+error*.log
+output*.log
+*RMG-Py/*
+*RMG-database/*
+*.out*

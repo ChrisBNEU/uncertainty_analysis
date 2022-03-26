@@ -13,7 +13,7 @@
 # activate environment 
 source activate ../conda
 # Copy the files from the full database to the mostly symbolic one
-python /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_rmg/make_slurm_scripts_correllated.py
+python ./make_slurm_scripts_correllated.py
 
 
 

@@ -3,28 +3,27 @@ import sys
 import numpy as np
 import pandas as pd
 import itertools
+import yaml
 from multiprocessing import Pool
-from min_sbr import MinSBR
+from sbr import MinSBR
 # import time
 
+# if len(sys.argv) < 2:
+#     raise ValueError("Incorrect usage. Must pass the cantera model file as an argument to this analysis script")
 
-if len(sys.argv) < 2:
-    raise ValueError("Incorrect usage. Must pass the cantera model file as an argument to this analysis script")
-
-if not os.path.exists(sys.argv[1]):
-    raise OSError(f"Path to the cantera model file does not exist: {sys.argv[1]}")
+# if not os.path.exists(sys.argv[1]):
+#     raise OSError(f"Path to the cantera model file does not exist: {sys.argv[1]}")
 
 # start = time.time()
-
 # rmg_model_folder = "/home/moon/methanol/perturb_5000/run_0000/"
 # rmg_model_folder = "/home/sevy/methanol/perturb_5000/run_0000/"
 # rmg_model_folder = "/scratch/westgroup/methanol/perturb_5000/run_0000/"
 
 # cti_file_path = "/home/moon/methanol/perturb_5000/run_0000/cantera/chem_annotated.cti"
 # cti_file_path = "/home/sevy/methanol/perturb_5000/run_0000/cantera/chem_annotated.cti"
-# cti_file_path = "/scratch/westgroup/methanol/perturb_5000/run_0000/cantera/chem_annotated.cti"
+cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/run_0001/cantera/chem_annotated.cti"
 
-cti_file_path = sys.argv[1]
+# cti_file_path = sys.argv[1]
 rmg_model_folder = os.path.dirname(cti_file_path)
 csv_path = os.path.join(rmg_model_folder, "ct_analysis.csv")
 
@@ -42,25 +41,18 @@ settings = list(
         volume_flows,
     )
 )
+settings_yaml = '../all_experiments_reorg_sbr.yaml'
+with open(settings_yaml, 'r') as f:
+    settings = yaml.safe_load(f)
 
-
-def run_reactor(setting):
+def run_reactor(condts):
 
     # initialize reactor
     sbr_ss = MinSBR(
         cti_file_path,
-        rmg_model_folder,
-        temperature=setting[0],
-        pressure=setting[1],
-        volume_flow=setting[2],
-        x_H2=0.5,
-        x_CO2=0.25,
-        x_CO=0.25,
+        reac_config = condts,
         rtol=1.0e-11,
         atol=1.0e-22,
-        reactor_type=1,
-        energy="off",
-        reactime=1e5,
     )
 
     results = sbr_ss.run_reactor_ss_memory()

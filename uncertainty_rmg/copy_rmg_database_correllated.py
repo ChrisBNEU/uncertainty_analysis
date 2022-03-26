@@ -5,6 +5,11 @@ from shutil import copy2, ignore_patterns, rmtree
 import fnmatch
 import time
 
+
+# directories to write to
+database_path = "../RMG-database/"
+results_path = "../uncertainty_output_folder/"
+
 def hardcopy_patterns(*patterns):
     def _hardcopy_patterns(path, names):
         matched_names = []
@@ -65,7 +70,7 @@ def copytree_sym(src, dst, ignore=None, hardcopy=None, symlinks=False):
         except Exception as err:
             errors.extend(err.args[0])
 
-database_src = os.path.abspath("../RMG-database/")
+database_src = os.path.abspath(data)
 if not os.path.exists(database_src):
     raise OSError(f'Could not find source database {database_src}')
 

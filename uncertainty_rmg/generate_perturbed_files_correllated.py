@@ -17,17 +17,19 @@ import numpy as np
 
 import pickle
 
-# WARNING - right now you need to copy this to /scratch/westgroup/methanol/perturb_5000_correllated/RMG-Py and run from there
+
+###############################################################################
+# inputs
+###############################################################################
+
+# directories to write to
 database_path = "../RMG-database/"
+results_path = "../uncertainty_output_folder/"
 
-# Define the uncertainty ranges based on the paper
+# Perturbation ranges (reference value +/- value below)
 DELTA_ALPHA_MAX = 0.15
-
-# DELTA_E0_MAX = 30  # 3 eV is about 30 kJ/mol
 DELTA_E0_MAX_J_MOL = 30000  # 3 eV is about 30000 J/mol
-
-# only perturb vdw by +/- 0.2 eV
-DELTA_E0_MAX_J_MOL_VDW = 20000
+DELTA_E0_MAX_J_MOL_VDW = 20000 # only perturb vdw species by +/- 0.2 eV
 
 # this will need to be appropriate units, and I have no idea what is default for RMG
 # a solution is just to put the max power that we want to raise the value to, 
@@ -44,31 +46,21 @@ DELTA_A_MAX_EXP = 4
 # testing currently, use 10
 N = 10
 
-# Create the pseudo randoms
-sobol = SobolEngine(dimension=300, scramble=True, seed=100)
-x_sobol = sobol.draw(N)
+thermo_libraries = [
+    'surfaceThermoPt111',
+]
 
-# make the map of sobol columns
-sobol_map = {}
-sobol_col_index = 0
+# groups as in the group files (adsorptionpt111, ni111, etc.)
+thermo_groups_to_perturb = [
+    'adsorptionPt111',
+]
 
-# make the map of sobol columns
-# make the map of sobol columns
-# Specify the path to the families
-families_dir = database_path + "input/kinetics/families/"
-if not os.path.exists(families_dir):
-    raise OSError(f'Path to rules does not exist:\n{families_dir}')
-
-# Specify the path to the libraries
-kinetic_libraries_dir = database_path + "input/kinetics/libraries/Surface/"
-# kinetic_libraries_dir = "/home/moon/rmg/RMG-database/input/kinetics/libraries/Surface/"
-if not os.path.exists(kinetic_libraries_dir):
-    raise OSError(f'Path to kinetic libraries does not exist:\n{kinetic_libraries_dir}')
-
-# Specify the path to the thermo library
-library_path = database_path + "input/thermo/"
-if not os.path.exists(library_path):
-    raise OSError(f'Path to rules does not exist:\n{library_path}')
+# pick which entries to perturb in the kinetics library
+# WARNING: does not handle overlap of entries in different libraries
+# if 'all', perturb all entries
+lib_entries_to_perturb = [
+    'all'
+]
 
 # Load the databases
 kinetics_families = [  # list the families to perturb
@@ -100,28 +92,47 @@ kinetics_families = [  # list the families to perturb
         "Surface_vdW_to_Bidentate",
 ]
 
+###############################################################################
+# Create Perturbed system
+###############################################################################
+
+# Create the pseudo randoms
+sobol = SobolEngine(dimension=300, scramble=True, seed=100)
+x_sobol = sobol.draw(N)
+
+# make the map of sobol columns
+sobol_map = {}
+sobol_col_index = 0
+
+# make the map of sobol columns
+# make the map of sobol columns
+# Specify the path to the families
+families_dir = database_path + "input/kinetics/families/"
+if not os.path.exists(families_dir):
+    raise OSError(f'Path to rules does not exist:\n{families_dir}')
+
+# Specify the path to the libraries
+kinetic_libraries_dir = database_path + "input/kinetics/libraries/Surface/"
+if not os.path.exists(kinetic_libraries_dir):
+    raise OSError(f'Path to kinetic libraries does not exist:\n{kinetic_libraries_dir}')
+
+# Specify the path to the thermo library
+library_path = database_path + "input/thermo/"
+if not os.path.exists(library_path):
+    raise OSError(f'Path to rules does not exist:\n{library_path}')
+
 kinetics_database = KineticsDatabase()
 kinetics_database.load_families(
     path=families_dir,
     families=kinetics_families,
 )
 
-kinetics_libraries = [
-    # 'Example',  # just checking if this connects
-    # 'Ni111',
-    'CPOX_Pt/Deutschmann2006_adjusted',
-]
+
 kinetics_database.load_libraries(
     kinetic_libraries_dir,
     libraries=kinetics_libraries
 )
 
-
-# thermo_database.groups['adsorptionPt111']
-
-thermo_libraries = [
-    'surfaceThermoPt111',
-]
 thermo_database = ThermoDatabase()
 thermo_database.load(
     library_path,
@@ -136,18 +147,6 @@ thermo_database_ref.load(
     depository=False,
     surface=True)
 
-# pick which entries to perturb in the kinetics library
-# WARNING: does not handle overlap of entries in different libraries
-# if 'all', perturb all entries
-lib_entries_to_perturb = [
-    'all'
-]
-
-# groups as in the group files (adsorptionpt111, ni111, etc.)
-thermo_groups_to_perturb = [
-    'adsorptionPt111',
-]
-
 # make a map of the perturbations to pickle later
 sobol_perturb_map = {}
 
@@ -158,15 +157,15 @@ if len(kinetics_families) > 0:
         for entry_key in family.rules.entries.keys():
             # label BEP scaling parameter column
             label = family_key + '/' + entry_key + '/alpha'
-            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+            sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
             sobol_col_index += 1
             # label pre-exponential column
             label = family_key + '/' + entry_key + '/A'
-            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+            sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
             sobol_col_index += 1
             # label activation energy column
             label = family_key + '/' + entry_key + '/E0'
-            sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+            sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
             sobol_col_index += 1
 
 all_library_entries = {}
@@ -180,12 +179,12 @@ if len(kinetics_libraries) > 0:
                 
                 # label activation energy column
                 label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/Ea'
-                sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+                sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
                 sobol_col_index += 1
 
                 # label A-factor column
                 label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/A'
-                sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+                sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
                 sobol_col_index += 1
 
                 # if we have selected "all", then make a list of all 
@@ -208,7 +207,7 @@ scaling_groups = [
 ]
 
 for label in scaling_groups:
-    sobol_map[label] = (sobol_col_index,x_sobol[:,sobol_col_index])
+    sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
     sobol_col_index += 1
 
 
@@ -302,15 +301,14 @@ if len(kinetics_families) > 0:
                 sobol_col_index = sobol_map[sobol_key][0]
                 delta_E0 = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_col_index] * DELTA_E0_MAX_J_MOL
                 E0_perturbed = E0_ref + delta_E0
-                entry[0].data.E0.value_si = delta_E0
+                entry[0].data.E0.value_si = E0_perturbed
 
                 # write perturbed value to sobol key
                 sobol_map[sobol_key][1][i] = delta_E0
-
-
+                
             family.rules.save(os.path.join(families_dir, family_key, 'rules_' + str(i).zfill(4) + '.py'))
 
-# Create the thermo files
+# perturb the values in the Thermo library
 if len(thermo_libraries) > 0:
     print("generating thermo library files")
     for library_key in thermo_database.libraries:
@@ -380,9 +378,17 @@ if len(thermo_libraries) > 0:
                     entry.data.poly3.c5 = E0_perturbed
             thermo_lib.save(os.path.join(library_path, 'libraries', library_key + '_' + str(i).zfill(4) + '.py'))
 
+# perturb the values in the Thermo groups
 if len(thermo_groups_to_perturb) > 0: 
     print("generating thermo group files")
     for i in tqdm(range(0, N)):
+        # Get perturbations and record
+        delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
+        delta_E0_O = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_MAX_J_MOL
+        delta_E0_H = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_MAX_J_MOL
+        delta_E0_N = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_MAX_J_MOL
+        delta_E0_vdw = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_MAX_J_MOL_VDW 
+
         for group_name in thermo_groups_to_perturb:
 
             for group_entry_name in thermo_database.groups[group_name].entries:
@@ -448,6 +454,6 @@ if len(thermo_groups_to_perturb) > 0:
             thermo_database.groups[group_name].save(os.path.join(library_path, 'groups', group_name + '_' + str(i).zfill(4) + '.py'))
 
 # save the sobol map: 
-sobol_map_file = open("../uncertainty_output_folder/sobol_map.pickle", "wb")
+sobol_map_file = open(results_path + "sobol_map.pickle", "wb")
 pickle.dump(sobol_map, sobol_map_file)
 sobol_map_file.close()
