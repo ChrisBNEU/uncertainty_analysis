@@ -1,8 +1,7 @@
 rule process:
     input:
-        "data/genome.fa",
-        "data/samples/{sample}.fastq"
+        "run_test_inp.sh",
     output:
-        "mapped_reads/{sample}.bam"
+        ""
     shell:
-        "bwa mem {input} | samtools view -Sb - > {output}"
+        "sbatch {input} {output}"

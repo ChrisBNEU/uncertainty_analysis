@@ -199,9 +199,9 @@ class MinSBR:
         results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof
         results['RMG MeOH TOF 1/s'] = self.surf.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
         results['RMG H2O TOF 1/s'] = self.surf.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
-        results['error squared MeOH TOF'] = (results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])**2
-        results['error squared H2O TOF'] = (results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])**2
-        
+        results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
+        results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
+        results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
         for i in range(0, len(self.gas.X)):
             results[self.gas.species_names[i]] = self.gas.X[i]
         for i in range(0, len(self.surf.X)):

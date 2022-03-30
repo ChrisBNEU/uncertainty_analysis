@@ -14,33 +14,15 @@ from sbr import MinSBR
 # if not os.path.exists(sys.argv[1]):
 #     raise OSError(f"Path to the cantera model file does not exist: {sys.argv[1]}")
 
-# start = time.time()
-# rmg_model_folder = "/home/moon/methanol/perturb_5000/run_0000/"
-# rmg_model_folder = "/home/sevy/methanol/perturb_5000/run_0000/"
-# rmg_model_folder = "/scratch/westgroup/methanol/perturb_5000/run_0000/"
 
-# cti_file_path = "/home/moon/methanol/perturb_5000/run_0000/cantera/chem_annotated.cti"
-# cti_file_path = "/home/sevy/methanol/perturb_5000/run_0000/cantera/chem_annotated.cti"
-cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/run_0001/cantera/chem_annotated.cti"
-
+# cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/run_0001/cantera/chem_annotated.cti"
+cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/meOH-synthesis/base/cantera/chem_annotated.cti"
 # cti_file_path = sys.argv[1]
 rmg_model_folder = os.path.dirname(cti_file_path)
 csv_path = os.path.join(rmg_model_folder, "ct_analysis.csv")
 
-temperatures = np.linspace(400.0, 700.0, 20)
-pressures = np.linspace(30.0, 75.0, 1)
-# pressures = [75.0]
-volume_flows = [3.32416e-5] # updated to duplicate grabow's space velocity of 7.84e-3 m^3/kg/s
-
 
 # generate settings array
-settings = list(
-    itertools.product(
-        temperatures,
-        pressures,
-        volume_flows,
-    )
-)
 settings_yaml = '../all_experiments_reorg_sbr.yaml'
 with open(settings_yaml, 'r') as f:
     settings = yaml.safe_load(f)
@@ -68,3 +50,16 @@ df.to_csv(csv_path)
 
 # end = time.time()
 # print(f"Completed {len(settings)} processes in {end-start} seconds")
+
+# post process results after pool is finished running
+# we will only use runs where intraparticle diffusion limitations
+# are not an issue, i.e. T < 518K
+df_graaf = df[(df['T (K)'] < 518) & (df['experiment'] == 'graaf_1988')]
+obj_func = df_graaf['obj_func'].sum()
+print("objective function: ", obj_func)
+
+# this is naive, but currently saving the objective function to a text file 
+# so we can parse all of them after. 
+obj_func_file = csv_path = os.path.join(rmg_model_folder, "objective_function.txt")
+with open(obj_func_file, "w") as f:
+    f.write(cti_file_path + ":" + str(obj_func))
