@@ -15,7 +15,7 @@
 import cantera as ct
 import math
 import yaml
-
+import numpy as np
 
 class MinSBR:
     """
@@ -202,6 +202,12 @@ class MinSBR:
         results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
         results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
         results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
+
+        # adding alternative objective function using avg of log(rate_rmg/rate_exp)
+        results['log10(RMG/graaf) MeOH TOF'] = np.log10(max(1e-9, results['RMG MeOH TOF 1/s']/results['graaf MeOH TOF 1/s']))
+        results['log10(RMG/graaf) H2O TOF'] = np.log10(max(1e-9, results['RMG H2O TOF 1/s']/results['graaf H2O TOF 1/s']))
+        results['log10(RMG/graaf) TOF'] = 0.5 * ( results['log10(RMG/graaf) MeOH TOF'] + results['log10(RMG/graaf) H2O TOF'])
+        
         for i in range(0, len(self.gas.X)):
             results[self.gas.species_names[i]] = self.gas.X[i]
         for i in range(0, len(self.surf.X)):

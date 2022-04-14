@@ -4,26 +4,27 @@ import numpy as np
 import pandas as pd
 import itertools
 import yaml
+import cantera as ct
 from multiprocessing import Pool
 from sbr import MinSBR
 # import time
 
-# if len(sys.argv) < 2:
-#     raise ValueError("Incorrect usage. Must pass the cantera model file as an argument to this analysis script")
+if len(sys.argv) < 2:
+    raise ValueError("Incorrect usage. Must pass the cantera model file as an argument to this analysis script")
 
-# if not os.path.exists(sys.argv[1]):
-#     raise OSError(f"Path to the cantera model file does not exist: {sys.argv[1]}")
+if not os.path.exists(sys.argv[1]):
+    raise OSError(f"Path to the cantera model file does not exist: {sys.argv[1]}")
 
 
 # cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/run_0001/cantera/chem_annotated.cti"
-cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/meOH-synthesis/base/cantera/chem_annotated.cti"
-# cti_file_path = sys.argv[1]
+# cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/meOH-synthesis/base/cantera/chem_annotated.cti"
+cti_file_path = sys.argv[1]
 rmg_model_folder = os.path.dirname(cti_file_path)
 csv_path = os.path.join(rmg_model_folder, "ct_analysis.csv")
 
 
 # generate settings array
-settings_yaml = '../all_experiments_reorg_sbr.yaml'
+settings_yaml = '/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_cantera/Spinning_basket_reactor/all_experiments_reorg_sbr.yaml'
 with open(settings_yaml, 'r') as f:
     settings = yaml.safe_load(f)
 
@@ -60,6 +61,6 @@ print("objective function: ", obj_func)
 
 # this is naive, but currently saving the objective function to a text file 
 # so we can parse all of them after. 
-obj_func_file = csv_path = os.path.join(rmg_model_folder, "objective_function.txt")
+obj_func_file = os.path.join(rmg_model_folder, "objective_function.txt")
 with open(obj_func_file, "w") as f:
     f.write(cti_file_path + ":" + str(obj_func))

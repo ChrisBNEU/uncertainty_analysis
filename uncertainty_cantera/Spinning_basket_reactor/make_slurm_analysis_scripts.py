@@ -6,12 +6,34 @@ import job_manager
 import os
 import glob
 
-def make_slurm_analysis_scripts(unc_folder, working_dir, M=10, N=50): 
+def make_slurm_analysis_scripts(
+    unc_folder, 
+    working_dir, 
+    conda_path,
+    M=10, 
+    N=50,
+    ): 
     # WARNING - this will fail if M%N != 0
     skip_completed_runs = False  # set to false to overwrite RMG runs that completed
-    # working_dir = "/scratch/westgroup/methanol/perturb_5000_correllated/"
-    # working_dir = "/scratch/westgroup/methanol/perturb_5000/"
-    # working_dir = "/home/moon/rmg/fake_rmg_runs/"
+    remove_old_slurm_scripts = True
+
+    # check if "ct_run_scripts" folder exists
+    slurm_script_dir = os.path.join(working_dir, "ct_run_scripts")
+    if not os.path.exists(slurm_script_dir):
+        os.mkdir(slurm_script_dir)
+
+
+
+    # if remove old slurm scripts is true, will clear directory before 
+    # proceeding
+    if remove_old_slurm_scripts:
+        rm_ct_files = glob.glob(os.path.join(working_dir, "ct_run_scripts/ct_runs_*.sh"))
+        for file in rm_ct_files:
+            try:
+                os.remove(file)
+            except OSError:
+                print(f"file doesn't exist at {file}")
+    
     if not os.path.exists(working_dir):
         os.mkdir(working_dir)
 
@@ -37,8 +59,10 @@ def make_slurm_analysis_scripts(unc_folder, working_dir, M=10, N=50):
         jobfile.settings['--mem'] = f'20Gb'
         jobfile.settings['--cpus-per-task'] = '4'
         
-        content = ['# Define useful bash variables\n']
-
+        
+        content = ['# activate conda environment\n']
+        content.append(f'source activate {conda_path}\n')
+        content.append('# Define useful bash variables\n')
         
         content.append(f'SLURM_TASK_ID_OFFSET={task_id_offset}\n')
         content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)))\n')

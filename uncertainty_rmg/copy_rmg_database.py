@@ -4,15 +4,13 @@ import os
 from shutil import copy2, ignore_patterns, rmtree
 import fnmatch
 import time
+from multiprocessing import Pool
 
-def copy_rmg_database_correllated(
+def copy_rmg_database(
     RMG_db_folder, 
     output_path,
     N,
     ):
-
-    # directories to write to
-    database_path = "../RMG-database/"
 
     def hardcopy_patterns(*patterns):
         def _hardcopy_patterns(path, names):
@@ -74,15 +72,56 @@ def copy_rmg_database_correllated(
             except Exception as err:
                 errors.extend(err.args[0])
 
-    database_src = os.path.abspath(data)
+    # # make a function for copying so we can do multiprocessing
+    # def copy_db(N):
+
+    #     # how to multiprocess? 
+    #     database_dest = os.path.abspath(
+    #         output_path)+ "/db_" + str(N).zfill(4
+    #         )
+    #     if os.path.exists(database_dest):
+    #         print(f"removing {database_dest} and replacing with new one")
+    #         rmtree(database_dest)
+    #         # continue
+    #         # raise OSError(f'Destination already exists: {database_dest}')
+
+    #     copytree_sym(
+    #         database_src,
+    #         database_dest,
+    #         symlinks=True,
+    #         ignore=ignore_patterns(
+    #             '.conda',
+    #             '.git',
+    #             '.github',
+    #             '.gitignore',
+    #             '.travis.yml',
+    #             '.vscode',
+    #             'rules_[0-9][0-9][0-9][0-9].py',
+    #             'reactions_[0-9][0-9][0-9][0-9].py',
+    #             'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
+    #             'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
+    #         ),
+    #         # TODO see if you can delete this hardcopy option
+    #         # only hard copy one of these 
+    #         hardcopy=hardcopy_patterns(
+    #             'rules.py',
+    #             'reactions.py',
+    #             'surfaceThermoPt111.py',
+    #             'adsorptionPt111.py',
+    #         )
+    #     )
+    #     print(f"done with copy {N}")
+
+    database_src = os.path.abspath(RMG_db_folder)
     if not os.path.exists(database_src):
         raise OSError(f'Could not find source database {database_src}')
 
     start_time = time.time()
-    N = 10
     for i in range(0, N):
+        # # how to multiprocess? 
+
         database_dest = os.path.abspath(
-            "../uncertainty_output_folder/")+ "/db_" + str(i).zfill(4
+            output_path)+ "/db_" + str(i).zfill(4
             )
         if os.path.exists(database_dest):
             print(f"removing {database_dest} and replacing with new one")

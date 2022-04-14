@@ -17,10 +17,10 @@ import numpy as np
 
 import pickle
 
-def generate_perturbed_files_correllated(
+def generate_perturbed_files(
     RMG_db_folder, 
     output_path,
-    N
+    M
     ):
     ###############################################################################
     # inputs
@@ -48,8 +48,7 @@ def generate_perturbed_files_correllated(
 
     # Define the number of perturbations to run
     # testing currently, use 10
-    N = 10
-
+    
     thermo_libraries = [
         'surfaceThermoPt111',
     ]
@@ -65,6 +64,11 @@ def generate_perturbed_files_correllated(
     lib_entries_to_perturb = [
         'all'
     ]
+    # pick which kinetics libraries to perturb
+    kinetics_libraries = [
+        'CPOX_Pt/Deutschmann2006_adjusted'
+    ]
+
 
     # Load the databases
     kinetics_families = [  # list the families to perturb
@@ -102,7 +106,7 @@ def generate_perturbed_files_correllated(
 
     # Create the pseudo randoms
     sobol = SobolEngine(dimension=300, scramble=True, seed=100)
-    x_sobol = sobol.draw(N)
+    x_sobol = sobol.draw(M)
 
     # make the map of sobol columns
     sobol_map = {}
@@ -229,7 +233,7 @@ def generate_perturbed_files_correllated(
             else: 
                 entries_to_perturb = lib_entries_to_perturb
 
-            for i in tqdm(range(0, N)):
+            for i in tqdm(range(0, M)):
                 for klib_entry_key in kinetics_lib.entries.keys():
                     kinetics_lib_entry = kinetics_lib.entries[klib_entry_key]
 
@@ -271,7 +275,7 @@ def generate_perturbed_files_correllated(
             print(family_key)
             family = kinetics_database.families[family_key]
             family_ref = copy.deepcopy(family)
-            for i in tqdm(range(0, N)):
+            for i in tqdm(range(M)):
                 for entry_key in family.rules.entries.keys():
                     entry = family.rules.entries[entry_key]
 
@@ -318,7 +322,7 @@ def generate_perturbed_files_correllated(
         for library_key in thermo_database.libraries:
             thermo_lib = thermo_database.libraries[library_key]
             thermo_lib_ref = copy.deepcopy(thermo_lib)
-            for i in tqdm(range(0, N)):
+            for i in tqdm(range(0, M)):
 
                 # Get perturbations and record
                 delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
@@ -385,7 +389,7 @@ def generate_perturbed_files_correllated(
     # perturb the values in the Thermo groups
     if len(thermo_groups_to_perturb) > 0: 
         print("generating thermo group files")
-        for i in tqdm(range(0, N)):
+        for i in tqdm(range(0, M)):
             # Get perturbations and record
             delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
             delta_E0_O = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_MAX_J_MOL
