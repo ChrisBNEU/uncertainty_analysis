@@ -55,9 +55,23 @@ df.to_csv(csv_path)
 # post process results after pool is finished running
 # we will only use runs where intraparticle diffusion limitations
 # are not an issue, i.e. T < 518K
-df_graaf = df[(df['T (K)'] < 518) & (df['experiment'] == 'graaf_1988')]
+df_graaf = df[(df['T (K)'] < 518) & (df['experiment'] == 'graaf_1988') & (df['use_for_opt'] == True)]
 obj_func = df_graaf['obj_func'].sum()
 print("objective function: ", obj_func)
+
+obj_func_log = df_graaf['log10(RMG/graaf) TOF'].sum()
+print("objective function log: ", obj_func_log)
+
+# this is naive, but currently saving the objective function to a text file 
+# so we can parse all of them after. 
+obj_func_file = os.path.join(rmg_model_folder, "objective_function.txt")
+with open(obj_func_file, "w") as f:
+    f.write(cti_file_path + ":" + str(obj_func))
+
+# make log_obj_func file
+obj_func_file_log = os.path.join(rmg_model_folder, "objective_function_log.txt")
+with open(obj_func_file_log, "w") as f:
+    f.write(cti_file_path + ":" + str(obj_func_log))
 
 # this is naive, but currently saving the objective function to a text file 
 # so we can parse all of them after. 

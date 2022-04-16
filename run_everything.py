@@ -2,7 +2,7 @@ import job_manager
 import time
 import glob
 import os
-# import from rmg uncertainty folder
+
 from uncertainty_rmg.generate_perturbed_files import generate_perturbed_files
 from uncertainty_rmg.copy_rmg_database import copy_rmg_database
 from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
@@ -65,9 +65,9 @@ for i, script in enumerate(slurm_scripts):
     print(i)
 
 
-# ###############################################################################
-# # run all cantera scripts
-# ###############################################################################
+###############################################################################
+# run all cantera scripts
+###############################################################################
 
 # make all of the cantera slurm analysis scripts
 working_dir = output_path
@@ -79,8 +79,6 @@ make_slurm_analysis_scripts(
     M=M, 
     N=N,
     )
-
-
 
 print("Collecting SLURM scripts")
 slurm_scripts = glob.glob(os.path.join(working_dir, "ct_run_scripts/ct_runs_*.sh"))

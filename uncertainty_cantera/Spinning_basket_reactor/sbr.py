@@ -41,13 +41,17 @@ class MinSBR:
         self.temperature = reac_config['temperature']
         self.pressure = reac_config['pressure']
         self.volume_flow = reac_config['volume_flowrate']
+        self.use_for_opt = reac_config['use_for_opt']
 
         # can probably generalize with isomorphism
         # do that later
         self.x_H2 = reac_config['species']['H2']
         self.x_CO2 = reac_config['species']['CO2']
         self.x_CO = reac_config['species']['CO']
-        self.x_H2O = reac_config['species']['H2O']
+        if 'H2O' in reac_config['species'].keys():
+            self.x_H2O = reac_config['species']['H2O']
+        else: 
+            self.x_H2O = 0.0
         
         # load the experimental TOFs
         self.graaf_meoh_tof = reac_config['output']['CH3OH']
@@ -179,6 +183,7 @@ class MinSBR:
         self.sim.advance_to_steady_state()
         results = {}
         results['experiment'] = self.expt_id
+        results['use_for_opt'] = self.use_for_opt
         results['time (s)'] = self.sim.time
         results['T (K)'] = self.temperature
         results['P (Pa)'] = self.gas.P
