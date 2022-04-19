@@ -4,11 +4,12 @@ import os
 from shutil import copy2, ignore_patterns, rmtree
 import fnmatch
 import time
-from multiprocessing import Pool
+import sys
 
 def copy_rmg_database(
     RMG_db_folder, 
     output_path,
+    perturb_dict,
     N,
     ):
 
@@ -60,7 +61,11 @@ def copy_rmg_database(
                         )
                 else:
                     # if srcname in hardcopy:
-                    if name in hardcopy_names:
+                    # the training reactions.py files are getting copied by mistake. 
+                    # showing up because they have the same name as the reaction
+                    # library files
+                    if any perturb_dict[""]
+                    if name in hardcopy_names and "/training" not in name:
                         copy2(srcname, dstname)
                     else:
                         os.symlink(srcname, dstname)
@@ -72,89 +77,58 @@ def copy_rmg_database(
             except Exception as err:
                 errors.extend(err.args[0])
 
-    # # make a function for copying so we can do multiprocessing
-    # def copy_db(N):
-
-    #     # how to multiprocess? 
-    #     database_dest = os.path.abspath(
-    #         output_path)+ "/db_" + str(N).zfill(4
-    #         )
-    #     if os.path.exists(database_dest):
-    #         print(f"removing {database_dest} and replacing with new one")
-    #         rmtree(database_dest)
-    #         # continue
-    #         # raise OSError(f'Destination already exists: {database_dest}')
-
-    #     copytree_sym(
-    #         database_src,
-    #         database_dest,
-    #         symlinks=True,
-    #         ignore=ignore_patterns(
-    #             '.conda',
-    #             '.git',
-    #             '.github',
-    #             '.gitignore',
-    #             '.travis.yml',
-    #             '.vscode',
-    #             'rules_[0-9][0-9][0-9][0-9].py',
-    #             'reactions_[0-9][0-9][0-9][0-9].py',
-    #             'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
-    #             'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
-    #         ),
-    #         # TODO see if you can delete this hardcopy option
-    #         # only hard copy one of these 
-    #         hardcopy=hardcopy_patterns(
-    #             'rules.py',
-    #             'reactions.py',
-    #             'surfaceThermoPt111.py',
-    #             'adsorptionPt111.py',
-    #         )
-    #     )
-    #     print(f"done with copy {N}")
-
     database_src = os.path.abspath(RMG_db_folder)
     if not os.path.exists(database_src):
         raise OSError(f'Could not find source database {database_src}')
 
     start_time = time.time()
-    for i in range(0, N):
-        # # how to multiprocess? 
+    database_dest = os.path.abspath(
+        output_path)+ "/db_" + str(N).zfill(4)
+    if os.path.exists(database_dest):
+        print(f"removing {database_dest} and replacing with new one")
+        rmtree(database_dest)
+        # continue
+        # raise OSError(f'Destination already exists: {database_dest}')
 
-        database_dest = os.path.abspath(
-            output_path)+ "/db_" + str(i).zfill(4
-            )
-        if os.path.exists(database_dest):
-            print(f"removing {database_dest} and replacing with new one")
-            rmtree(database_dest)
-            # continue
-            # raise OSError(f'Destination already exists: {database_dest}')
-
-        copytree_sym(
-            database_src,
-            database_dest,
-            symlinks=True,
-            ignore=ignore_patterns(
-                '.conda',
-                '.git',
-                '.github',
-                '.gitignore',
-                '.travis.yml',
-                '.vscode',
-                'rules_[0-9][0-9][0-9][0-9].py',
-                'reactions_[0-9][0-9][0-9][0-9].py',
-                'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
-                'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
-            ),
-            # TODO see if you can delete this hardcopy option
-            # only hard copy one of these 
-            hardcopy=hardcopy_patterns(
-                'rules.py',
-                'reactions.py',
-                'surfaceThermoPt111.py',
-                'adsorptionPt111.py',
-            )
+    copytree_sym(
+        database_src,
+        database_dest,
+        symlinks=True,
+        ignore=ignore_patterns(
+            '.conda',
+            '.git',
+            '.github',
+            '.gitignore',
+            '.travis.yml',
+            '.vscode',
+            'rules_[0-9][0-9][0-9][0-9].py',
+            'reactions_[0-9][0-9][0-9][0-9].py',
+            'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
+            'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
+        ),
+        # TODO see if you can delete this hardcopy option
+        # only hard copy one of these 
+        hardcopy=hardcopy_patterns(
+            'rules.py',
+            'reactions.py',
+            'surfaceThermoPt111.py',
+            'adsorptionPt111.py',
         )
-        print(f"done with copy {i}")
+    )
     stop_time = time.time()
     elapsed_time = stop_time - start_time
-    print(f"Copied {N} databases in {elapsed_time} seconds")
+    print(f"Copied database in {elapsed_time} seconds")
+
+if __name__ == "__main__":
+
+    RMG_db_folder = sys.argv[1] 
+    output_path = sys.argv[2]
+    N = sys.argv[3]
+
+    copy_rmg_database(
+    RMG_db_folder, 
+    output_path,
+    N,
+    )
+
+

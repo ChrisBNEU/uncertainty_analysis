@@ -38,7 +38,8 @@ def generate_perturbed_files(
     # this will need to be appropriate units, and I have no idea what is default for RMG
     # a solution is just to put the max power that we want to raise the value to, 
     # then it will be perturbed by e4, e-4
-    DELTA_A_MAX_EXP = 4
+    # after talking with Bjarne about this I think 1e1 is appropriate
+    DELTA_A_MAX_EXP = 1
 
     # delta n? maybe -1 to 1 for now? this is basically
     # only here to fudge the numbers. might be useful for 

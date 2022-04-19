@@ -12,8 +12,9 @@ def make_slurm_scripts(
     RMG_db_folder,
     output_path,
     conda_path,
-    N=10,
-    M=10,
+    rmg_unc_scripts_folder,
+    N=10, #number of runs to do at once
+    M=10, # number of runs to do total
     ):
 
     # WARNING - this will fail if M%N != 0
@@ -52,25 +53,27 @@ def make_slurm_scripts(
 
 
     # M = 10  # total number of times to run RMG
-    # N = 10  # number of jobs to run at a time
-    for i in range(0, M, N):
-        sbatch_index = int(i / N)
-        range_max = np.amin([i + N, M])
-        last_index = range_max - 1
-        job_indices = [a for a in range(i, range_max)]
+    # make the array the total number of times to run RMG and see if that 
+    # breaks it
+    for i in range(0, M):
+        sbatch_index = i
+        # range_max = np.amin([i + N, M])
+        # last_index = range_max - 1
+        # job_indices = [a for a in range(i, range_max)]
         # print(f'{sbatch_index}: running jobs {job_indices}')
 
         # max slurm array index is 1000, so after that, subtract multiples of 1000
-        task_id_offset = int(i/1000) * 1000
+        # task_id_offset = int(i/1000) * 1000
         
         # Write the job file
-        fname = f'rmg_runs_{i}-{last_index}.sh'
+        fname = 'rmg_runs_all.sh'
 
         if not os.path.exists(os.path.join(working_dir, "rmg_run_scripts")):
             os.mkdir(os.path.join(working_dir, "rmg_run_scripts",))
 
         jobfile = job_manager.SlurmJobFile(full_path=os.path.join(working_dir, "rmg_run_scripts", fname))
-        jobfile.settings['--array'] = f'{i - task_id_offset}-{last_index - task_id_offset}'
+        # set the array size to M-1 since it starts at 0
+        jobfile.settings['--array'] = f'0-{M-1}%{N}'
         jobfile.settings['--job-name'] = fname
         jobfile.settings['--error'] = os.path.join(working_dir, f'error{sbatch_index}.log')
         jobfile.settings['--output'] = os.path.join(working_dir, f'output{sbatch_index}.log')
@@ -78,13 +81,15 @@ def make_slurm_scripts(
 
         content = ['# Define useful bash variables\n']
 
-        
-        content.append(f'SLURM_TASK_ID_OFFSET={task_id_offset}\n')
-        content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)))\n')
+        content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID)))\n')
         rmg_run_dir = os.path.join(working_dir, "run_${RUN_i}")
         
-        content.append(f'DATABASE_n=$(printf "%04.0f" $(($(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)) % {N})))\n')
+        content.append(f'DATABASE_n=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID)))\n')
         
+        # the database is copied to the new directory for each array job
+        # for now, don't delete the copy. it's symbolic and won't take up too 
+        # much space
+        content.append(f'python {rmg_unc_scripts_folder + "copy_rmg_database.py"} {RMG_db_folder} {output_path} $SLURM_ARRAY_TASK_ID\n')
         # skip if RMG already ran and not the force option
         if skip_completed_runs:
             content.append('match_str="MODEL GENERATION COMPLETED"\n')
@@ -177,10 +182,12 @@ def make_slurm_scripts(
         # set path and pythonpath
         content.append(f'export PYTHONPATH="{reference_py}:$PYTHONPATH"\n') 
         content.append(f'export PATH="{reference_py}:$PATH"\n') 
-        content.append(f'export RMG="{reference_py}/rmg.py"\n') 
+        content.append(f'export RMG="{reference_py}rmg.py"\n') 
+        
         # activate conda env
         content.append(f'source activate {conda_path}\n')
         # adding in environment variable for $RMG to the RMG-Py/rmg.py in bashrc so we don't have to change path
+
         content.append(f'python-jl $RMG input.py\n')
         #content.append(f'python /scratch/westgroup/methanol/perturb_5000_correllated/RMG-Py/rmg.py {rmg_run_dir}/input.py\n')
 
