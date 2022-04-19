@@ -6,8 +6,11 @@ import numpy as np
 
 
 from uncertainty_rmg.generate_perturbed_files import generate_perturbed_files
-from uncertainty_rmg.copy_rmg_database import copy_rmg_database
-from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
+# from uncertainty_rmg.copy_rmg_database import copy_rmg_database
+# from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
+
+# replacing the old method with a way to run a single run at one time
+from uncertainty_rmg.run_single import run_single
 
 # import from cantera uncertainty folder
 from uncertainty_cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
@@ -99,22 +102,33 @@ generate_perturbed_files(
     M=M,
 )
 
-copy_rmg_database(
-    RMG_db_folder,
-    output_path,
-    N=N,
-)
+# copy_rmg_database(
+#     RMG_db_folder,
+#     output_path,
+#     N=N,
+# )
 
-
-make_slurm_scripts(
+# make a loop to do this later, but run one to test
+run_single(
     RMG_base_folder, 
     RMG_db_folder,
     output_path,
     conda_path,
     rmg_unc_scripts_folder,
-    N=N,
-    M=M,
+    perturb_dict,
+    N=10, #number of runs to do at once
+    M=10, # number of runs to do total
 )
+
+# make_slurm_scripts(
+#     RMG_base_folder, 
+#     RMG_db_folder,
+#     output_path,
+#     conda_path,
+#     rmg_unc_scripts_folder,
+#     N=N,
+#     M=M,
+# )
 
 # # working_dir = os.path.join(os.getcwd(),"uncertainty_output_folder/rmg_run_scripts/")
 # working_dir = output_path + "rmg_run_scripts/"
