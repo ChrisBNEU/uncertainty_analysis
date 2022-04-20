@@ -22,7 +22,7 @@ def copy_rmg_database(
         return _hardcopy_patterns
 
     # start by copying a directory but ignoring the .git
-    def copytree_sym(src, dst, ignore=None, hardcopy=None, symlinks=False):
+    def copytree_sym(src, dst, perturb_dict, ignore=None, hardcopy=None, symlinks=False):
         """
         Copies a tree mostly symbolically. It will make a physical copy of the
         files specified, and not copy any of the files on the ignore list.
@@ -55,18 +55,31 @@ def copy_rmg_database(
                     copytree_sym(
                         srcname, 
                         dstname, 
+                        perturb_dict,
                         symlinks=symlinks, 
                         ignore=ignore, 
                         hardcopy=hardcopy
                         )
                 else:
                     # if srcname in hardcopy:
-                    # the training reactions.py files are getting copied by mistake. 
+                    # the training reactions.py files are getting copied by mistake
+                    # for families we are nor perturbing 
                     # showing up because they have the same name as the reaction
-                    # library files
-                    if any perturb_dict[""]
-                    if name in hardcopy_names and "/training" not in name:
-                        copy2(srcname, dstname)
+                    # library files. same is happening for the rules.py files
+
+                    if name in hardcopy_names:
+                        if "reactions.py" in name:
+                            if any(i in srcname for i in perturb_dict["kinetic_libraries"]):
+                                copy2(srcname, dstname)
+                            else:
+                                os.symlink(srcname, dstname) 
+                        if "rules.py" in name:
+                            if any(i in srcname for i in perturb_dict["kinetics_families"]):
+                                copy2(srcname, dstname)
+                            else:
+                                os.symlink(srcname, dstname) 
+                        else:       
+                            copy2(srcname, dstname)
                     else:
                         os.symlink(srcname, dstname)
             except OSError as why:
@@ -76,6 +89,7 @@ def copy_rmg_database(
             # continue with other files
             except Exception as err:
                 errors.extend(err.args[0])
+                print(err)
 
     database_src = os.path.abspath(RMG_db_folder)
     if not os.path.exists(database_src):
@@ -93,6 +107,7 @@ def copy_rmg_database(
     copytree_sym(
         database_src,
         database_dest,
+        perturb_dict,
         symlinks=True,
         ignore=ignore_patterns(
             '.conda',
@@ -119,16 +134,16 @@ def copy_rmg_database(
     elapsed_time = stop_time - start_time
     print(f"Copied database in {elapsed_time} seconds")
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    RMG_db_folder = sys.argv[1] 
-    output_path = sys.argv[2]
-    N = sys.argv[3]
+#     RMG_db_folder = sys.argv[1] 
+#     output_path = sys.argv[2]
+#     N = sys.argv[3]
 
-    copy_rmg_database(
-    RMG_db_folder, 
-    output_path,
-    N,
-    )
+#     copy_rmg_database(
+#     RMG_db_folder, 
+#     output_path,
+#     N,
+#     )
 
 

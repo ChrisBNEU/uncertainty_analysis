@@ -1,5 +1,6 @@
-from make_slurm_scripts import make_slurm_scripts
-from copy_rmg_database import copy_rmg_database
+# from make_slurm_scripts 
+from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
+from uncertainty_rmg.copy_rmg_database import copy_rmg_database
 
 def run_single(
     RMG_base_folder, 
@@ -10,8 +11,8 @@ def run_single(
     perturb_dict,
     N=10, #number of runs to do at once
     M=10, # number of runs to do total
+    ):
 
-)
     make_slurm_scripts(
         RMG_base_folder, 
         RMG_db_folder,

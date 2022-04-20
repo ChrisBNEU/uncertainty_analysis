@@ -89,18 +89,18 @@ perturb_dict = {
     "thermo_groups" : thermo_libraries,
     "lib_entries_to_perturb" : lib_entries_to_perturb,
     "kinetic_libraries" : kinetics_libraries,
-    "kinetic_families" : kinetic_families,
+    "kinetics_families" : kinetics_families,
 }
 
 ##############################################################################
 # run all RMG scripts
 ##############################################################################
 
-generate_perturbed_files(
-    RMG_db_folder,
-    unc_folder,
-    M=M,
-)
+# generate_perturbed_files(
+#     RMG_db_folder,
+#     unc_folder,
+#     M=M,
+# )
 
 # copy_rmg_database(
 #     RMG_db_folder,
