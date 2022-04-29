@@ -5,11 +5,12 @@ from shutil import copy2, ignore_patterns, rmtree
 import fnmatch
 import time
 import sys
+import yaml
 
 def copy_rmg_database(
     RMG_db_folder, 
     output_path,
-    perturb_dict,
+    unc_folder,
     N,
     ):
 
@@ -95,6 +96,12 @@ def copy_rmg_database(
     if not os.path.exists(database_src):
         raise OSError(f'Could not find source database {database_src}')
 
+    # load the yaml containing the perturbed groups
+    # i am hardcoding this now because it is too hard to pipe
+    perturb_dict_path = os.path.join(unc_folder, "perturb_groups.yaml")
+    with open(perturb_dict_path, "r") as f:
+        perturb_dict = yaml.safe_load(f)
+
     start_time = time.time()
     database_dest = os.path.abspath(
         output_path)+ "/db_" + str(N).zfill(4)
@@ -134,16 +141,18 @@ def copy_rmg_database(
     elapsed_time = stop_time - start_time
     print(f"Copied database in {elapsed_time} seconds")
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     RMG_db_folder = sys.argv[1] 
-#     output_path = sys.argv[2]
-#     N = sys.argv[3]
+    RMG_db_folder = sys.argv[1] 
+    output_path = sys.argv[2]
+    unc_folder = sys.argv[3]
+    N = sys.argv[4]
 
-#     copy_rmg_database(
-#     RMG_db_folder, 
-#     output_path,
-#     N,
-#     )
+    copy_rmg_database(
+    RMG_db_folder,
+    output_path,
+    unc_folder,
+    N,
+    )
 
 

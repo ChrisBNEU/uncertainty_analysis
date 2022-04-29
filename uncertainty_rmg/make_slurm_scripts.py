@@ -10,6 +10,7 @@ import glob
 def make_slurm_scripts(
     RMG_base_folder, 
     RMG_db_folder,
+    unc_folder,
     output_path,
     conda_path,
     rmg_unc_scripts_folder,
@@ -55,25 +56,24 @@ def make_slurm_scripts(
     # M = 10  # total number of times to run RMG
     # make the array the total number of times to run RMG and see if that 
     # breaks it
-    for i in range(0, M):
-        sbatch_index = i
-        # range_max = np.amin([i + N, M])
-        # last_index = range_max - 1
-        # job_indices = [a for a in range(i, range_max)]
-        # print(f'{sbatch_index}: running jobs {job_indices}')
+    for i in range(0, M, N):
+        sbatch_index = i # the "chunk" that we are running (1 = 0-999, 2 = 999-1999, etc.)
+        range_max = np.amin([i + N, M])
+        last_index = range_max - 1
+        job_indices = [a for a in range(i, range_max)]
+        print(f'{sbatch_index}: running jobs {job_indices}')
 
         # max slurm array index is 1000, so after that, subtract multiples of 1000
-        # task_id_offset = int(i/1000) * 1000
+        task_id_offset = int(i/1000) * 1000
         
-        # Write the job file
-        fname = 'rmg_runs_all.sh'
+                # Write the job file
+        fname = f'rmg_runs_{i}-{last_index}.sh'
 
         if not os.path.exists(os.path.join(working_dir, "rmg_run_scripts")):
             os.mkdir(os.path.join(working_dir, "rmg_run_scripts",))
 
         jobfile = job_manager.SlurmJobFile(full_path=os.path.join(working_dir, "rmg_run_scripts", fname))
-        # set the array size to M-1 since it starts at 0
-        jobfile.settings['--array'] = f'0-{M-1}%{N}'
+        jobfile.settings['--array'] = f'{i - task_id_offset}-{last_index - task_id_offset}%100'
         jobfile.settings['--job-name'] = fname
         jobfile.settings['--error'] = os.path.join(working_dir, f'error{sbatch_index}.log')
         jobfile.settings['--output'] = os.path.join(working_dir, f'output{sbatch_index}.log')
@@ -81,15 +81,16 @@ def make_slurm_scripts(
 
         content = ['# Define useful bash variables\n']
 
-        content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID)))\n')
+        content.append(f'SLURM_TASK_ID_OFFSET={task_id_offset}\n')
+        content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)))\n')
         rmg_run_dir = os.path.join(working_dir, "run_${RUN_i}")
         
-        content.append(f'DATABASE_n=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID)))\n')
+        content.append(f'DATABASE_n=$(printf "%04.0f" $(($(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)) % {N})))\n')
         
         # the database is copied to the new directory for each array job
         # for now, don't delete the copy. it's symbolic and won't take up too 
         # much space
-        content.append(f'python {rmg_unc_scripts_folder + "copy_rmg_database.py"} {RMG_db_folder} {output_path} $SLURM_ARRAY_TASK_ID\n')
+        content.append(f'python {rmg_unc_scripts_folder + "copy_rmg_database.py"} {RMG_db_folder} {output_path} {unc_folder} $DATABASE_n\n')
         # skip if RMG already ran and not the force option
         if skip_completed_runs:
             content.append('match_str="MODEL GENERATION COMPLETED"\n')
@@ -190,6 +191,26 @@ def make_slurm_scripts(
 
         content.append(f'python-jl $RMG input.py\n')
         #content.append(f'python /scratch/westgroup/methanol/perturb_5000_correllated/RMG-Py/rmg.py {rmg_run_dir}/input.py\n')
+
+        # adding in the cantera analysis because why not
+        content.append(f'CSV_FILE="{rmg_run_dir}/cantera/ct_analysis.csv"\n')
+        content.append(f'CT_FILE="{rmg_run_dir}/cantera/chem_annotated.cti"\n')
+        
+        # skip if csv file already exists
+        if skip_completed_runs:
+            content.append('if test -f "$CSV_FILE"; then\n')
+            content.append('echo "skipping completed run ${RUN_i}"; exit 0\n')
+            content.append('fi\n\n')
+        else: 
+            # run the analysis script
+            content.append('# remove the old CSV file\n')
+            content.append('rm -f $CSV_FILE\n') 
+            
+        
+
+        content.append('# Run the Cantera analysis\n')    
+        content.append(f'python {unc_folder + "uncertainty_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE\n')
+
 
         jobfile.content = content
         jobfile.write_file()

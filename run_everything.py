@@ -7,7 +7,7 @@ import numpy as np
 
 from uncertainty_rmg.generate_perturbed_files import generate_perturbed_files
 # from uncertainty_rmg.copy_rmg_database import copy_rmg_database
-# from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
+from uncertainty_rmg.make_slurm_scripts import make_slurm_scripts
 
 # replacing the old method with a way to run a single run at one time
 from uncertainty_rmg.run_single import run_single
@@ -16,17 +16,17 @@ from uncertainty_rmg.run_single import run_single
 from uncertainty_cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
 
 # specify inputs 
-M = 20 # number of runs of RMG to do
-N = 10 # number of slurm jobs to run at once
+M = 5000 # number of runs of RMG to do
+N = 1000 # number of slurm jobs to run at once
 unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
 conda_path = unc_folder + "conda/"
 RMG_base_folder = unc_folder + "RMG-Py/"
 RMG_db_folder = unc_folder + "RMG-database/"
 conda_path = unc_folder + "conda/"
 expt_yaml_file = ""
-output_path  = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
+# output_path  = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
 rmg_unc_scripts_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_rmg/"
-# output_path = "/scratch/blais.ch/methanol_results_2022_04_06/"
+output_path = "/scratch/blais.ch/methanol_results_2022_04_21/"
 
 # define the stuff we want to perturb
 # Define the number of perturbations to run
@@ -86,68 +86,72 @@ kinetics_families = [  # list the families to perturb
 # pass in values as a dictionary to make it easier
 perturb_dict = {
     "thermo_libraries" : thermo_libraries,
-    "thermo_groups" : thermo_libraries,
+    "thermo_groups" : thermo_groups_to_perturb,
     "lib_entries_to_perturb" : lib_entries_to_perturb,
     "kinetic_libraries" : kinetics_libraries,
     "kinetics_families" : kinetics_families,
 }
 
+
 ##############################################################################
 # run all RMG scripts
 ##############################################################################
 
-# generate_perturbed_files(
-#     RMG_db_folder,
-#     unc_folder,
-#     M=M,
-# )
+generate_perturbed_files(
+    RMG_db_folder,
+    unc_folder,
+    M=M,
+)
 
+# now in a slurm script
 # copy_rmg_database(
 #     RMG_db_folder,
-#     output_path,
+#     output_path,    
+#     unc_folder, 
 #     N=N,
 # )
 
-# make a loop to do this later, but run one to test
-run_single(
-    RMG_base_folder, 
-    RMG_db_folder,
-    output_path,
-    conda_path,
-    rmg_unc_scripts_folder,
-    perturb_dict,
-    N=10, #number of runs to do at once
-    M=10, # number of runs to do total
-)
-
-# make_slurm_scripts(
+# not necessary because we have each one running independently in an array
+# run_single(
 #     RMG_base_folder, 
 #     RMG_db_folder,
 #     output_path,
 #     conda_path,
 #     rmg_unc_scripts_folder,
-#     N=N,
-#     M=M,
+#     perturb_dict,
+#     N=10, #number of runs to do at once
+#     M=10, # number of runs to do total
 # )
 
-# # working_dir = os.path.join(os.getcwd(),"uncertainty_output_folder/rmg_run_scripts/")
-# working_dir = output_path + "rmg_run_scripts/"
-# print("Collecting SLURM scripts")
-# slurm_scripts = glob.glob(os.path.join(working_dir, "rmg_runs_*.sh"))
+make_slurm_scripts(
+    RMG_base_folder, 
+    RMG_db_folder,
+    unc_folder,
+    output_path,
+    conda_path,
+    rmg_unc_scripts_folder,
+    N=N,
+    M=M,
+)
 
-# slurm_scripts.sort()
+# working_dir = os.path.join(os.getcwd(),"uncertainty_output_folder/rmg_run_scripts/")
+working_dir = output_path + "rmg_run_scripts/"
+print("Collecting SLURM scripts")
+slurm_scripts = glob.glob(os.path.join(working_dir, "rmg_runs_*.sh"))
 
-# for i, script in enumerate(slurm_scripts):
-#     print(f"{i}/{len(slurm_scripts)}\tRunning job {script}")
+slurm_scripts.sort()
 
-#     rmg_job = job_manager.SlurmJob()
-#     my_cmd = f'sbatch {script}'
-#     print(my_cmd)
-#     rmg_job.submit(my_cmd)
+for i, script in enumerate(slurm_scripts):
+    print(f"{i}/{len(slurm_scripts)}\tRunning job {script}")
 
-#     # wait for job
-#     rmg_job.wait_all()
-#     print(i)
+    rmg_job = job_manager.SlurmJob()
+    my_cmd = f'sbatch {script}'
+    print(my_cmd)
+    rmg_job.submit(my_cmd)
+
+    # wait for job
+    rmg_job.wait_all()
+    print(i)
 
 
 # ###############################################################################

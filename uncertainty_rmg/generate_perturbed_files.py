@@ -15,7 +15,9 @@ from rmgpy import constants
 from tqdm import tqdm  # this is for the progress bar cause copying stuff takes a while
 import numpy as np
 
+# import stuff for easily writing config files
 import pickle
+import yaml
 
 def generate_perturbed_files(
     RMG_db_folder, 
@@ -466,3 +468,16 @@ def generate_perturbed_files(
     sobol_map_file = open(output_path + "sobol_map.pickle", "wb")
     pickle.dump(sobol_map, sobol_map_file)
     sobol_map_file.close()
+
+    # for convenience, save the list of perturbed families as a yaml
+    perturb_dict = {
+        "thermo_libraries" : thermo_libraries,
+        "thermo_groups" : thermo_groups_to_perturb,
+        "lib_entries_to_perturb" : lib_entries_to_perturb,
+        "kinetic_libraries" : kinetics_libraries,
+        "kinetics_families" : kinetics_families,
+    }
+    perturb_yaml = output_path + "perturb_groups.yaml"
+    with open(perturb_yaml, 'w') as f:
+        # use safe_load instead of load
+        yaml.safe_dump(perturb_dict, f)
