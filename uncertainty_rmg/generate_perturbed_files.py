@@ -19,6 +19,9 @@ import numpy as np
 import pickle
 import yaml
 
+# needed for checking type
+from rmgpy.kinetics import  StickingCoefficient, StickingCoefficientBEP
+
 def generate_perturbed_files(
     RMG_db_folder, 
     output_path,
@@ -32,25 +35,26 @@ def generate_perturbed_files(
     # database_path = "../RMG-database/"
     # results_path = "../uncertainty_output_folder/"
 
-    # Perturbation ranges (reference value +/- value below)
-    DELTA_ALPHA_MAX = 0.15
-    DELTA_E0_MAX_J_MOL = 30000  # 3 eV is about 30000 J/mol
-    DELTA_E0_MAX_J_MOL_VDW = 20000 # only perturb vdw species by +/- 0.2 eV
+    # Perturbation ranges FOR values (reference value +/- value below)
+    DELTA_ALPHA_MAX_KN = 0.15
+    DELTA_E0_MAX_J_MOL_KN = 30000  # 3 eV is about 30000 J/mol
+    DELTA_A_MAX_EXP_KN = 1
+    DELTA_STICK_MAX_KN = 0.5 # for sticking coefficient, perturb from 0-1 but by exponent.
+    DELTA_N_MAX_J_MOL_KN  = 1 
 
-    # this will need to be appropriate units, and I have no idea what is default for RMG
-    # a solution is just to put the max power that we want to raise the value to, 
-    # then it will be perturbed by e4, e-4
-    # after talking with Bjarne about this I think 1e1 is appropriate
-    DELTA_A_MAX_EXP = 1
+    # Perturbation ranges for unknown values (reference value +/- value below)
+    DELTA_ALPHA_MAX_UNK = 0.5 #start value at 0.5 and perturb from 0-1
+    DELTA_E0_MAX_J_MOL_UNK = 100000  # 1 eV is about 100,000 J/mol. make sure eV is never 0.
+    DELTA_A_MAX_EXP_UNK = 4 # for sticking coefficient, perturb from 0-1 but by exponent. 
+    DELTA_STICK_MAX_UNK = 0.5 # for sticking coefficient
+    DELTA_N_MAX_J_MOL_UNK  = 1  
 
-    # delta n? maybe -1 to 1 for now? this is basically
-    # only here to fudge the numbers. might be useful for 
-    # vdw  reactions (e.g. negative temperature dependence
-    # on adsorption) 
-    # DELTA_n_MAX_J_MOL = 1  
-
-    # Define the number of perturbations to run
-    # testing currently, use 10
+    # Thermo Perturbations
+    DELTA_E0_H = 30000
+    DELTA_E0_C = 30000
+    DELTA_E0_O = 30000
+    DELTA_E0_N = 30000
+    DELTA_E0_VDW = 20000
     
     thermo_libraries = [
         'surfaceThermoPt111',
@@ -74,34 +78,39 @@ def generate_perturbed_files(
 
 
     # Load the databases
-    kinetics_families = [  # list the families to perturb
-            "Surface_Abstraction",
-            "Surface_Abstraction_Beta",
-            "Surface_Abstraction_Beta_double_vdW",
-            "Surface_Abstraction_Beta_vdW",
-            "Surface_Abstraction_Single_vdW",
-            "Surface_Abstraction_vdW",
-            "Surface_Addition_Single_vdW",
-            "Surface_Adsorption_Abstraction_vdW",
-            "Surface_Adsorption_Bidentate",
-            "Surface_Adsorption_Dissociative",
-            "Surface_Adsorption_Dissociative_Double",
-            "Surface_Adsorption_Double",
-            "Surface_Adsorption_Single",
-            "Surface_Adsorption_vdW",
-            "Surface_Bidentate_Dissociation",
-            "Surface_Dissociation",
-            "Surface_Dissociation_Beta",
-            "Surface_Dissociation_Beta_vdW",
-            "Surface_Dissociation_Double",
-            "Surface_Dissociation_Double_vdW",
-            "Surface_Dissociation_vdW",
-            "Surface_DoubleBond_to_Bidentate",
-            "Surface_Dual_Adsorption_vdW",
-            "Surface_EleyRideal_Addition_Multiple_Bond",
-            "Surface_Migration",
-            "Surface_vdW_to_Bidentate",
-    ]
+    # for made up nodes that are receiving a wider perturbation, flag the index 
+    # of the node that needs the wider range. 
+    kinetics_families_dict = { # list the families to perturb
+            "Surface_Abstraction":[],
+            "Surface_Abstraction_Beta":[],
+            "Surface_Abstraction_Beta_double_vdW":[],
+            "Surface_Abstraction_Beta_vdW":[],
+            "Surface_Abstraction_Single_vdW":[1,],
+            "Surface_Abstraction_vdW":[1,],
+            "Surface_Addition_Single_vdW":[1,],
+            "Surface_Adsorption_Abstraction_vdW":[1,],
+            "Surface_Adsorption_Bidentate":[1, ],
+            "Surface_Adsorption_Dissociative":[1, ], # top level node is a guess, but subnodes are slightly better
+            "Surface_Adsorption_Dissociative_Double":[1, ],
+            "Surface_Adsorption_Double":[1,],
+            "Surface_Adsorption_Single":[1,],
+            "Surface_Adsorption_vdW":[1,],
+            "Surface_Bidentate_Dissociation":[],
+            "Surface_Dissociation":[],
+            "Surface_Dissociation_Beta":[],
+            "Surface_Dissociation_Beta_vdW":[],
+            "Surface_Dissociation_Double":[],
+            "Surface_Dissociation_Double_vdW":[1, ],
+            "Surface_Dissociation_vdW":[],
+            "Surface_DoubleBond_to_Bidentate":[],
+            "Surface_Dual_Adsorption_vdW":[1,],
+            "Surface_EleyRideal_Addition_Multiple_Bond":[1,],
+            "Surface_Migration":[1,],
+            "Surface_vdW_to_Bidentate":[1,],
+    }
+
+    # make a list of just kinetics families for convenience
+    kinetics_families = list(kinetics_families_dict.keys())
 
     ###############################################################################
     # Create Perturbed system
@@ -115,7 +124,6 @@ def generate_perturbed_files(
     sobol_map = {}
     sobol_col_index = 0
 
-    # make the map of sobol columns
     # make the map of sobol columns
     # Specify the path to the families
     families_dir = RMG_db_folder + "input/kinetics/families/"
@@ -160,23 +168,33 @@ def generate_perturbed_files(
 
     # make a map of the perturbations to pickle later
     sobol_perturb_map = {}
+    sobol_range_map = {}
 
     # Kinetic family entry mapping
+    # append the range as well. this info will be stored in the pickle file. 
+    # for each sobol map entry: 
+    #    [0] column index
+    #    [1] perturbed value 
+    #    [2] range of perturbations 
     if len(kinetics_families) > 0:
         for family_key in kinetics_database.families:
             family = kinetics_database.families[family_key]
+
             for entry_key in family.rules.entries.keys():
                 # label BEP scaling parameter column
                 label = family_key + '/' + entry_key + '/alpha'
                 sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+                sobol_range_map[label] = []
                 sobol_col_index += 1
                 # label pre-exponential column
                 label = family_key + '/' + entry_key + '/A'
                 sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+                sobol_range_map[label] = []
                 sobol_col_index += 1
                 # label activation energy column
                 label = family_key + '/' + entry_key + '/E0'
                 sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+                sobol_range_map[label] = []
                 sobol_col_index += 1
 
     all_library_entries = {}
@@ -191,11 +209,13 @@ def generate_perturbed_files(
                     # label activation energy column
                     label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/Ea'
                     sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+                    sobol_range_map[label] = []
                     sobol_col_index += 1
 
                     # label A-factor column
                     label = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/A'
                     sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+                    sobol_range_map[label] = []
                     sobol_col_index += 1
 
                     # if we have selected "all", then make a list of all 
@@ -219,6 +239,7 @@ def generate_perturbed_files(
 
     for label in scaling_groups:
         sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
+        sobol_range_map[label] = []
         sobol_col_index += 1
 
 
@@ -229,7 +250,7 @@ def generate_perturbed_files(
             kinetics_lib = kinetics_database.libraries[klib_key]
             kinetics_lib_ref = copy.deepcopy(kinetics_lib)
 
-            #  if all entries selected, unload list of all entries to 
+            # if all entries selected, unload list of all entries to 
             # entries to perturb list
             if "all" in lib_entries_to_perturb:
                 entries_to_perturb = all_library_entries[klib_key]
@@ -242,21 +263,43 @@ def generate_perturbed_files(
 
                     for label in entries_to_perturb:
                         if kinetics_lib_entry.label == label:
-
+                            
+                            # use known value perturbations for library
+                            DELTA_ALPHA_MAX = DELTA_ALPHA_MAX_KN
+                            DELTA_E0_MAX_J_MOL = DELTA_E0_MAX_J_MOL_KN
+                            DELTA_A_MAX_EXP = DELTA_A_MAX_EXP_KN
+                            DELTA_STICK_MAX = DELTA_STICK_MAX_KN
+                            DELTA_N_MAX_J_MOL = DELTA_N_MAX_J_MOL_KN
                             # perturb A-factor
                             # will need logic for sticking coefficient.
                             # for a=factor, stick coeff, perturb by a multiplier
                             # will need to account for units later
-                            A_ref = kinetics_lib_ref.entries[klib_entry_key].data.A.value_si
+
                             sobol_key = klib_key + '/' + str(klib_entry_key) + '/' + kinetics_lib_entry.label + '/A'
                             sobol_col_index = sobol_map[sobol_key][0]
-                            delta_A0 = (DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP)
-                            A_perturbed = A_ref*10**delta_A0
-                            
-                            kinetics_lib_entry.data.A.value_si = A_perturbed
+                            is_stick = isinstance(kinetics_lib_entry.data, StickingCoefficient)
 
+                            # we perturb A from 0<0.5<1 no matter what
+                            if is_stick:
+                                A_ref = 0.5
+                                # for now, perturb all sticking coefficients from 0 to 1
+                                delta_A = DELTA_STICK_MAX - 2.0 * x_sobol[i, sobol_col_index] * DELTA_STICK_MAX
+                                # raise A to the perturbed power.
+                                A_perturbed = A_ref+delta_A
+                                sobol_range_map[sobol_key].append((A_ref-DELTA_STICK_MAX, A_ref+DELTA_STICK_MAX))
+
+                            else: 
+                                A_ref = kinetics_lib_ref.entries[klib_entry_key].data.A.value_si
+                                delta_A = DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP
+                                # raise A to the perturbed power.
+                                A_perturbed = A_ref*10**delta_A
+                                sobol_range_map[sobol_key].append((A_ref*10**-DELTA_A_MAX_EXP, A_ref*10**DELTA_A_MAX_EXP))
+
+
+                            kinetics_lib_entry.data.A.value_si = A_perturbed
                             # write perturbed value to sobol key
-                            sobol_map[sobol_key][1][i] = delta_A0
+                            sobol_map[sobol_key][1][i] = A_perturbed
+
 
                             # perturb Ea
                             Ea_ref = kinetics_lib_ref.entries[klib_entry_key].data.Ea.value_si
@@ -267,11 +310,15 @@ def generate_perturbed_files(
                             kinetics_lib_entry.data.Ea.value_si = Ea_perturbed
 
                             # write perturbed value to sobol key
-                            sobol_map[sobol_key][1][i] = delta_E0
+                            sobol_map[sobol_key][1][i] = Ea_perturbed
+
+                            # write parameter range to sobol key
+                            sobol_range_map[sobol_key].append((Ea_ref-DELTA_E0_MAX_J_MOL, Ea_ref+DELTA_E0_MAX_J_MOL))
 
                 kinetics_lib.save(os.path.join(kinetic_libraries_dir, klib_key, 'reactions_' + str(i).zfill(4) + '.py'))
 
     # Perturb the values in the kinetics families
+    # check if index is listed to use a 
     if len(kinetics_families) > 0:
         print("Generating kinetics family files")
         for family_key in kinetics_database.families:
@@ -281,22 +328,65 @@ def generate_perturbed_files(
             for i in tqdm(range(M)):
                 for entry_key in family.rules.entries.keys():
                     entry = family.rules.entries[entry_key]
+                    
+                    is_stick = isinstance(family.rules.entries[entry_key], StickingCoefficientBEP)
 
+                    # this is a good place for changes when I refactor, I 
+                    # currently have added a list to determine if the index is 
+                    # a node that should be perturbed more
+                    entry_index = family.rules.entries[entry_key].index
+                    if entry_index in kinetics_families_dict[family_key]:
+                        DELTA_ALPHA_MAX = DELTA_ALPHA_MAX_UNK
+                        DELTA_E0_MAX_J_MOL = DELTA_E0_MAX_J_MOL_UNK
+                        DELTA_A_MAX_EXP = DELTA_A_MAX_EXP_UNK
+                        DELTA_STICK_MAX = DELTA_STICK_MAX_UNK 
+                        DELTA_N_MAX_J_MOL = DELTA_N_MAX_J_MOL_UNK
+
+                        E0_ref = 100
+                        alpha_ref = 0.5
+                        # if it is a sticking coefficient reaction, set A to 0.5
+
+                    else: 
+                        DELTA_ALPHA_MAX = DELTA_ALPHA_MAX_KN
+                        DELTA_E0_MAX_J_MOL = DELTA_E0_MAX_J_MOL_KN
+                        DELTA_A_MAX_EXP = DELTA_A_MAX_EXP_KN
+                        DELTA_STICK_MAX = DELTA_STICK_MAX_KN
+                        DELTA_N_MAX_J_MOL = DELTA_N_MAX_J_MOL_KN
+
+                        E0_ref = family_ref.rules.entries[entry_key][0].data.E0.value_si
+                        alpha_ref = family_ref.rules.entries[entry_key][0].data.alpha.value
+
+
+                    ###########################################################
                     # perturb A-factor
-                    A_ref = family_ref.rules.entries[entry_key][0].data.A.value
+                    ###########################################################
                     sobol_key = family_key + '/' + entry_key + '/A'
                     sobol_col_index = sobol_map[sobol_key][0]
-                    delta_A= DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP
 
-                    # raise A to the perturbed power.
-                    A_perturbed = A_ref*10**delta_A
+                    # we perturb A from 0<0.5<1 no matter what
+                    if is_stick:
+                        A_ref = 0.5
+                        # for now, perturb all sticking coefficients from 0 to 1
+                        delta_A = DELTA_STICK_MAX - 2.0 * x_sobol[i, sobol_col_index] * DELTA_STICK_MAX
+                        # raise A to the perturbed power.
+                        A_perturbed = A_ref+delta_A
+                        sobol_range_map[sobol_key].append((A_ref-DELTA_STICK_MAX, A_ref+DELTA_STICK_MAX))
+
+                    else: 
+                        A_ref = family_ref.rules.entries[entry_key][0].data.A.value
+                        delta_A = DELTA_A_MAX_EXP - 2.0 * x_sobol[i, sobol_col_index] * DELTA_A_MAX_EXP
+                        # raise A to the perturbed power.
+                        A_perturbed = A_ref*10**delta_A
+                        sobol_range_map[sobol_key].append((A_ref*10**-DELTA_A_MAX_EXP, A_ref*10**DELTA_A_MAX_EXP))
+
                     entry[0].data.A.value = A_perturbed
 
                     # write perturbed value to sobol key
-                    sobol_map[sobol_key][1][i] = delta_A                
+                    sobol_map[sobol_key][1][i] = A_perturbed  
 
+                    ###########################################################
                     # Perturb the alpha value
-                    alpha_ref = family_ref.rules.entries[entry_key][0].data.alpha.value
+                    ###########################################################
                     sobol_key = family_key + '/' + entry_key + '/alpha'
                     sobol_col_index = sobol_map[sobol_key][0]
                     delta_alpha = DELTA_ALPHA_MAX - 2.0 * x_sobol[i, sobol_col_index] * DELTA_ALPHA_MAX
@@ -304,10 +394,14 @@ def generate_perturbed_files(
                     entry[0].data.alpha.value = alpha_perturbed
 
                     # write perturbed value to sobol key
-                    sobol_map[sobol_key][1][i] = delta_alpha
+                    sobol_map[sobol_key][1][i] = alpha_perturbed
 
+                    # write parameter range to sobol key
+                    sobol_range_map[sobol_key].append((alpha_ref-DELTA_ALPHA_MAX, alpha_ref+DELTA_ALPHA_MAX))
+
+                    ###########################################################
                     # Perturb the E0 value
-                    E0_ref = family_ref.rules.entries[entry_key][0].data.E0.value_si
+                    ###########################################################
                     sobol_key = family_key + '/' + entry_key + '/E0'
                     sobol_col_index = sobol_map[sobol_key][0]
                     delta_E0 = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_col_index] * DELTA_E0_MAX_J_MOL
@@ -316,6 +410,9 @@ def generate_perturbed_files(
 
                     # write perturbed value to sobol key
                     sobol_map[sobol_key][1][i] = delta_E0
+
+                    # write parameter range to sobol key
+                    sobol_range_map[sobol_key].append((E0_ref-DELTA_E0_MAX_J_MOL, E0_ref+DELTA_E0_MAX_J_MOL))
                     
                 family.rules.save(os.path.join(families_dir, family_key, 'rules_' + str(i).zfill(4) + '.py'))
 
@@ -328,11 +425,11 @@ def generate_perturbed_files(
             for i in tqdm(range(0, M)):
 
                 # Get perturbations and record
-                delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
-                delta_E0_O = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_MAX_J_MOL
-                delta_E0_H = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_MAX_J_MOL
-                delta_E0_N = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_MAX_J_MOL
-                delta_E0_vdw = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_MAX_J_MOL_VDW 
+                delta_E0_C = DELTA_E0_C - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_C
+                delta_E0_O = DELTA_E0_0 - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_0
+                delta_E0_H = DELTA_E0_H- 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_H
+                delta_E0_N = DELTA_E0_N - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_N
+                delta_E0_vdw = DELTA_E0_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_VDW 
 
                 # replace sobol map value with the actual perturbation 
                 sobol_map["C_BE"][1][i] = delta_E0_C
@@ -340,6 +437,12 @@ def generate_perturbed_files(
                 sobol_map["H_BE"][1][i] = delta_E0_H
                 sobol_map["N_BE"][1][i] = delta_E0_N
                 sobol_map["vdw_BE"][1][i] = delta_E0_vdw
+
+                sobol_range_map["C_BE"].append((-delta_E0_C, delta_E0_C))
+                sobol_range_map["O_BE"].append((-delta_E0_O, delta_E0_O))
+                sobol_range_map["H_BE"].append((-delta_E0_H, delta_E0_H))
+                sobol_range_map["N_BE"].append((-delta_E0_N, delta_E0_N))
+                sobol_range_map["vdw_BE"].append((-delta_E0_vdw, delta_E0_vdw))
 
                 for entry_key in thermo_lib.entries.keys():
                     delta_E0 = 0
@@ -376,7 +479,6 @@ def generate_perturbed_files(
                     # Perturb the E0 value, which is a5 in the NASA polymial
                     if entry.data.poly1 is not None:
                         E0_ref = thermo_lib_ref.entries[entry_key].data.poly1.c5
-                        # E0_perturbed = E0_ref + delta_E0 / (constants.R / 1000.0)  # 8.314e-3
                         E0_perturbed = E0_ref + delta_E0 / constants.R  # 8.314
                         entry.data.poly1.c5 = E0_perturbed
                     if entry.data.poly2 is not None:
@@ -394,11 +496,11 @@ def generate_perturbed_files(
         print("generating thermo group files")
         for i in tqdm(range(0, M)):
             # Get perturbations and record
-            delta_E0_C = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_MAX_J_MOL
-            delta_E0_O = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_MAX_J_MOL
-            delta_E0_H = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_MAX_J_MOL
-            delta_E0_N = DELTA_E0_MAX_J_MOL - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_MAX_J_MOL
-            delta_E0_vdw = DELTA_E0_MAX_J_MOL_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_MAX_J_MOL_VDW 
+            delta_E0_C = DELTA_E0_C - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_C
+            delta_E0_O = DELTA_E0_O - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_O
+            delta_E0_H = DELTA_E0_H - 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_H
+            delta_E0_N = DELTA_E0_N - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_N
+            delta_E0_vdw = DELTA_E0_VDW - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_VDW 
 
             for group_name in thermo_groups_to_perturb:
 
@@ -468,6 +570,13 @@ def generate_perturbed_files(
     sobol_map_file = open(output_path + "sobol_map.pickle", "wb")
     pickle.dump(sobol_map, sobol_map_file)
     sobol_map_file.close()
+
+
+    # for global uncertainty, it is advantageous to have the ranges saved as 
+    # well. 
+    sobol_range_file = open(output_path + "sobol_range_map.pickle", "wb")
+    pickle.dump(sobol_range_map, sobol_range_file)
+    sobol_range_file.close()
 
     # for convenience, save the list of perturbed families as a yaml
     perturb_dict = {
