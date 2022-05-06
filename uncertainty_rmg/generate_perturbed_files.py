@@ -329,12 +329,12 @@ def generate_perturbed_files(
                 for entry_key in family.rules.entries.keys():
                     entry = family.rules.entries[entry_key]
                     
-                    is_stick = isinstance(family.rules.entries[entry_key], StickingCoefficientBEP)
+                    is_stick = isinstance(family.rules.entries[entry_key][0].data, StickingCoefficientBEP)
 
                     # this is a good place for changes when I refactor, I 
                     # currently have added a list to determine if the index is 
                     # a node that should be perturbed more
-                    entry_index = family.rules.entries[entry_key].index
+                    entry_index = family.rules.entries[entry_key][0].index
                     if entry_index in kinetics_families_dict[family_key]:
                         DELTA_ALPHA_MAX = DELTA_ALPHA_MAX_UNK
                         DELTA_E0_MAX_J_MOL = DELTA_E0_MAX_J_MOL_UNK
@@ -342,7 +342,7 @@ def generate_perturbed_files(
                         DELTA_STICK_MAX = DELTA_STICK_MAX_UNK 
                         DELTA_N_MAX_J_MOL = DELTA_N_MAX_J_MOL_UNK
 
-                        E0_ref = 100
+                        E0_ref = 100000
                         alpha_ref = 0.5
                         # if it is a sticking coefficient reaction, set A to 0.5
 
@@ -409,7 +409,7 @@ def generate_perturbed_files(
                     entry[0].data.E0.value_si = E0_perturbed
 
                     # write perturbed value to sobol key
-                    sobol_map[sobol_key][1][i] = delta_E0
+                    sobol_map[sobol_key][1][i] = E0_perturbed
 
                     # write parameter range to sobol key
                     sobol_range_map[sobol_key].append((E0_ref-DELTA_E0_MAX_J_MOL, E0_ref+DELTA_E0_MAX_J_MOL))
@@ -426,7 +426,7 @@ def generate_perturbed_files(
 
                 # Get perturbations and record
                 delta_E0_C = DELTA_E0_C - 2.0 * x_sobol[i, sobol_map["C_BE"][0]] * DELTA_E0_C
-                delta_E0_O = DELTA_E0_0 - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_0
+                delta_E0_O = DELTA_E0_O - 2.0 * x_sobol[i, sobol_map["O_BE"][0]] * DELTA_E0_O
                 delta_E0_H = DELTA_E0_H- 2.0 * x_sobol[i, sobol_map["H_BE"][0]] * DELTA_E0_H
                 delta_E0_N = DELTA_E0_N - 2.0 * x_sobol[i, sobol_map["N_BE"][0]] * DELTA_E0_N
                 delta_E0_vdw = DELTA_E0_VDW  - 2.0 * x_sobol[i, sobol_map["vdw_BE"][0]] * DELTA_E0_VDW 
@@ -590,3 +590,18 @@ def generate_perturbed_files(
     with open(perturb_yaml, 'w') as f:
         # use safe_load instead of load
         yaml.safe_dump(perturb_dict, f)
+
+if __name__ == "__main__":
+
+    # for testing
+    unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
+    conda_path = unc_folder + "conda/"
+    RMG_db_folder = unc_folder + "RMG-database/"
+    output_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
+    M = 10
+
+    generate_perturbed_files(
+    RMG_db_folder, 
+    output_path,
+    M
+    )
