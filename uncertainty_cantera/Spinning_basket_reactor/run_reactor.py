@@ -18,13 +18,14 @@ if not os.path.exists(sys.argv[1]):
 
 # cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/run_0001/cantera/chem_annotated.cti"
 # cti_file_path = "/work/westgroup/ChrisB/_01_MeOH_repos/meOH-synthesis/base/cantera/chem_annotated.cti"
+output_file_name = sys.argv[2]
 cti_file_path = sys.argv[1]
 rmg_model_folder = os.path.dirname(cti_file_path)
-csv_path = os.path.join(rmg_model_folder, "ct_analysis.csv")
+csv_path = os.path.join(rmg_model_folder, output_file_name)
 
 
 # generate settings array
-settings_yaml = '/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_cantera/Spinning_basket_reactor/all_experiments_reorg_sbr.yaml'
+settings_yaml = '/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_cantera/all_experiments_reorg_sbr.yaml'
 with open(settings_yaml, 'r') as f:
     settings = yaml.safe_load(f)
 
@@ -34,8 +35,8 @@ def run_reactor(condts):
     sbr_ss = MinSBR(
         cti_file_path,
         reac_config = condts,
-        rtol=1.0e-11,
-        atol=1.0e-22,
+        rtol=1.0e-13,
+        atol=1.0e-25,
     )
 
     results = sbr_ss.run_reactor_ss_memory()

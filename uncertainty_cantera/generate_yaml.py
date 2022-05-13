@@ -48,7 +48,7 @@ Vin_m3_sec = Vin_cm3_min/(60*10**6)
 volume_flow = Vin_m3_sec
 
 temp = 528 # K
-pressure = 75 # atm
+pressure = 75*101325 # atm
 expt_name = 'grabow2011'
 expt_type = 'sbr'
 

@@ -22,6 +22,9 @@ expt_yaml_file = ""
 rmg_unc_scripts_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_rmg/"
 output_path = "/scratch/blais.ch/methanol_results_2022_05_09/"
 
+# output_csv_name = "ct_analysis.csv"
+output_csv_name = "ct_analysis_artol.csv"
+
 # define the stuff we want to perturb
 # Define the number of perturbations to run
 # testing currently, use 10
@@ -85,35 +88,25 @@ perturb_dict = {
     "kinetics_families" : kinetics_families,
 }
 
+###############################################################################
+# run all cantera scripts
+###############################################################################
 
-##############################################################################
-# run all RMG scripts
-##############################################################################
+# make all of the cantera slurm analysis scripts
+working_dir = output_path
 
-generate_perturbed_files(
-    RMG_db_folder,
-    unc_folder,
-    M=M,
-)
-
-make_slurm_scripts(
-    RMG_base_folder, 
-    RMG_db_folder,
-    unc_folder,
-    output_path,
+make_slurm_analysis_scripts(
+    unc_folder, 
+    working_dir, 
     conda_path,
-    rmg_unc_scripts_folder,
+    output_csv_name, 
+    M=M, 
     N=N,
-    M=M,
-)
+    )
 
-# working_dir = os.path.join(os.getcwd(),"uncertainty_output_folder/rmg_run_scripts/")
-working_dir = output_path + "rmg_run_scripts/"
 print("Collecting SLURM scripts")
-slurm_scripts = glob.glob(os.path.join(working_dir, "rmg_runs_*.sh"))
-
-slurm_scripts.sort()
-
+slurm_scripts = glob.glob(os.path.join(working_dir, "ct_run_scripts/ct_runs_*.sh"))
+print(working_dir)
 for i, script in enumerate(slurm_scripts):
     print(f"{i}/{len(slurm_scripts)}\tRunning job {script}")
 
@@ -124,34 +117,3 @@ for i, script in enumerate(slurm_scripts):
 
     # wait for job
     rmg_job.wait_all()
-    print(i)
-
-
-# ###############################################################################
-# # run all cantera scripts
-# ###############################################################################
-
-# # make all of the cantera slurm analysis scripts
-# working_dir = output_path
-
-# make_slurm_analysis_scripts(
-#     unc_folder, 
-#     working_dir, 
-#     conda_path,
-#     M=M, 
-#     N=N,
-#     )
-
-# print("Collecting SLURM scripts")
-# slurm_scripts = glob.glob(os.path.join(working_dir, "ct_run_scripts/ct_runs_*.sh"))
-# print(working_dir)
-# for i, script in enumerate(slurm_scripts):
-#     print(f"{i}/{len(slurm_scripts)}\tRunning job {script}")
-
-#     rmg_job = job_manager.SlurmJob()
-#     my_cmd = f'sbatch {script}'
-#     print(my_cmd)
-#     rmg_job.submit(my_cmd)
-
-#     # wait for job
-#     rmg_job.wait_all()

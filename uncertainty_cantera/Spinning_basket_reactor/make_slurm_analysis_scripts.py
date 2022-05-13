@@ -10,6 +10,7 @@ def make_slurm_analysis_scripts(
     unc_folder, 
     working_dir, 
     conda_path,
+    output_name, 
     M=10, 
     N=50,
     ): 
@@ -67,7 +68,7 @@ def make_slurm_analysis_scripts(
         content.append(f'SLURM_TASK_ID_OFFSET={task_id_offset}\n')
         content.append('RUN_i=$(printf "%04.0f" $(($SLURM_ARRAY_TASK_ID + $SLURM_TASK_ID_OFFSET)))\n')
         rmg_run_dir = os.path.join(working_dir, "run_${RUN_i}")
-        content.append(f'CSV_FILE="{rmg_run_dir}/cantera/ct_analysis.csv"\n')
+        content.append(f'CSV_FILE="{rmg_run_dir}/cantera/{output_name}"\n')
         content.append(f'CT_FILE="{rmg_run_dir}/cantera/chem_annotated.cti"\n')
         
         # skip if csv file already exists
@@ -83,7 +84,7 @@ def make_slurm_analysis_scripts(
         
 
         content.append('# Run the Cantera analysis\n')    
-        content.append(f'python {unc_folder + "uncertainty_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE\n')
+        content.append(f'python {unc_folder + "uncertainty_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE $CSV_FILE\n')
         jobfile.content = content
         jobfile.write_file()
     

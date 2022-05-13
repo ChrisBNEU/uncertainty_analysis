@@ -32,14 +32,15 @@ def postprocess_cantera_results(
         df_graaf['log10(RMG/graaf) H2O TOF'] = np.log10((df_graaf['RMG H2O TOF 1/s'].div(df_graaf['graaf H2O TOF 1/s'])).replace(0, 1e-9))
         df_graaf['log10(RMG/graaf) TOF'] = 0.5 * ( df_graaf['log10(RMG/graaf) MeOH TOF'] + df_graaf['log10(RMG/graaf) H2O TOF'])
 
-        obj_func = df_graaf['log10(RMG/graaf) TOF'].sum()
+        # obj_func = df_graaf['log10(RMG/graaf) TOF'].sum()
+        obj_func = np.sqrt(0.5 * ( df_graaf['log10(RMG/graaf) MeOH TOF']**2 + df_graaf['log10(RMG/graaf) H2O TOF']**2)).sum()
         print("objective function: ", obj_func)
 
         # this is naive, but currently saving the objective function to a text file 
         # so we can parse all of them after. 
-        obj_func_file = csv_path = os.path.join(rmg_model_folder, "objective_function_log.txt")
+        obj_func_file = csv_path = os.path.join(rmg_model_folder, "objective_function_log2.txt")
         with open(obj_func_file, "w") as f:
             f.write(cti_file_path + ":" + str(obj_func))
 
-output_path  = "/scratch/blais.ch/methanol_results_2022_04_06/"
+output_path  = "/scratch/blais.ch/methanol_results_2022_05_09/"
 postprocess_cantera_results(output_path)

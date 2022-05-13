@@ -13,7 +13,7 @@ import logging
 
 
 '''
-arguements to script: 
+arguments to script: 
 # python preprocess.py <yaml_file> <expt_type>
 # yaml_file = yaml file containing experimental conditions
 # expt_type: either "sbr" or "batch" for whether it is a single crystal batch 
