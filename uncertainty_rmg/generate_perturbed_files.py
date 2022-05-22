@@ -22,6 +22,11 @@ import yaml
 # needed for checking type
 from rmgpy.kinetics import  StickingCoefficient, StickingCoefficientBEP
 
+# future improvement: 
+# ideally, load an input file, have this selectively go through and find what 
+# should be perturbed, get atomic BE values initially and use those to generate 
+# perturbation range
+
 def generate_perturbed_files(
     RMG_db_folder, 
     output_path,

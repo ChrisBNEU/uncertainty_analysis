@@ -19,7 +19,7 @@ arguments to script:
 # expt_type: either "sbr" or "batch" for whether it is a single crystal batch 
 # reactor or a spinning basket reactor.
 '''
-yaml_expt_file = 'all_experiments.yaml' #sys.argv[0]
+yaml_expt_file = 'all_experiments_temp_study.yaml' #sys.argv[0]
 expt_type = 'sbr' #sys.argv[1]
 
 def zip_dict(**kwargs):

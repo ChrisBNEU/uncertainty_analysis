@@ -10,7 +10,7 @@ def make_slurm_analysis_scripts(
     unc_folder, 
     working_dir, 
     conda_path,
-    output_name, 
+    output_name="ct_analysis.csv", 
     M=10, 
     N=50,
     ): 
@@ -72,6 +72,8 @@ def make_slurm_analysis_scripts(
         content.append(f'CT_FILE="{rmg_run_dir}/cantera/chem_annotated.cti"\n')
         
         # skip if csv file already exists
+        # this will not work properly if there is a file with a new name, revise
+        # to remove any results file? 
         if skip_completed_runs:
             content.append('if test -f "$CSV_FILE"; then\n')
             content.append('echo "skipping completed run ${RUN_i}"; exit 0\n')
@@ -84,7 +86,7 @@ def make_slurm_analysis_scripts(
         
 
         content.append('# Run the Cantera analysis\n')    
-        content.append(f'python {unc_folder + "uncertainty_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE $CSV_FILE\n')
+        content.append(f'python {unc_folder + "uncertainty_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE {output_name} \n')
         jobfile.content = content
         jobfile.write_file()
     

@@ -23,7 +23,7 @@ rmg_unc_scripts_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_anal
 output_path = "/scratch/blais.ch/methanol_results_2022_05_09/"
 
 # output_csv_name = "ct_analysis.csv"
-output_csv_name = "ct_analysis_artol.csv"
+output_csv_name = "ct_analysis.csv"
 
 # define the stuff we want to perturb
 # Define the number of perturbations to run

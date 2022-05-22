@@ -35,8 +35,8 @@ def run_reactor(condts):
     sbr_ss = MinSBR(
         cti_file_path,
         reac_config = condts,
-        rtol=1.0e-13,
-        atol=1.0e-25,
+        rtol=1.0e-11,
+        atol=1.0e-22,
     )
 
     results = sbr_ss.run_reactor_ss_memory()
@@ -63,19 +63,18 @@ print("objective function: ", obj_func)
 obj_func_log = df_graaf['log10(RMG/graaf) TOF'].sum()
 print("objective function log: ", obj_func_log)
 
+
+# make objective function title have cantera file name for easier id
+ct_run_str = output_file_name.replace(".csv", "")
+
 # this is naive, but currently saving the objective function to a text file 
-# so we can parse all of them after. 
-obj_func_file = os.path.join(rmg_model_folder, "objective_function.txt")
+# so we can parse all of them after.
+obj_func_file = os.path.join(rmg_model_folder, f"objective_function_{ct_run_str}.txt")
 with open(obj_func_file, "w") as f:
     f.write(cti_file_path + ":" + str(obj_func))
 
 # make log_obj_func file
-obj_func_file_log = os.path.join(rmg_model_folder, "objective_function_log.txt")
+obj_func_file_log = os.path.join(rmg_model_folder, f"objective_function_log_{ct_run_str}.txt")
 with open(obj_func_file_log, "w") as f:
     f.write(cti_file_path + ":" + str(obj_func_log))
 
-# this is naive, but currently saving the objective function to a text file 
-# so we can parse all of them after. 
-obj_func_file = os.path.join(rmg_model_folder, "objective_function.txt")
-with open(obj_func_file, "w") as f:
-    f.write(cti_file_path + ":" + str(obj_func))

@@ -17,7 +17,7 @@ RMG_base_folder = unc_folder + "RMG-Py/"
 RMG_db_folder = unc_folder + "RMG-database/"
 conda_path = unc_folder + "conda/"
 expt_yaml_file = ""
-output_path  = "/scratch/blais.ch/methanol_results_2022_04_21/"
+output_path  = "/scratch/blais.ch/methanol_results_2022_05_09/"
 
 # make pdf pages obj
 pp = PdfPages('report.pdf')
@@ -258,10 +258,10 @@ for i,col in enumerate(df):
 
 
 # get the values that are closest to the desired obj function value (0)
-closest_linear = min(obj_func_dict, key=obj_func_dict.get)
+closest_linear = min(obj_func_dict, key=lambda y: abs(obj_func_dict[y]))
 print("closest linear obj func : {} : {closest_linear}")
 # may not be the closest, we currently don't have any + values though
-closest_log = max(obj_func_dict_log, key=obj_func_dict_log.get)
+closest_log = min(obj_func_dict_log, key=lambda y: abs(obj_func_dict_log[y]))
 
 
 # # Analyze the model that fits best

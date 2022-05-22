@@ -1,0 +1,60 @@
+digraph reaction_paths {
+center=1;
+s3 -> s20[fontname="Helvetica", penwidth=5.65, arrowsize=2.83, color="1.0, 1.32, 0.7*1.32"
+];
+s20 -> s4[fontname="Helvetica", penwidth=4.97, arrowsize=2.48, color="1.0, 1.05, 0.7*1.05"
+];
+s20 -> s22[fontname="Helvetica", penwidth=4.66, arrowsize=2.33, color="1.0, 0.964, 0.7*0.964"
+];
+s24 -> s20[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+];
+s20 -> s35[fontname="Helvetica", penwidth=4.81, arrowsize=2.4, color="1.0, 1, 0.7*1"
+];
+s4 -> s21[fontname="Helvetica", penwidth=5.37, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+];
+s21 -> s24[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+];
+s22 -> s26[fontname="Helvetica", penwidth=4.65, arrowsize=2.33, color="1.0, 0.96, 0.7*0.96"
+];
+s26 -> s32[fontname="Helvetica", penwidth=4.64, arrowsize=2.32, color="1.0, 0.956, 0.7*0.956"
+];
+s32 -> s29[fontname="Helvetica", penwidth=4.52, arrowsize=2.26, color="1.0, 0.928, 0.7*0.928"
+];
+s29 -> s30[fontname="Helvetica", penwidth=4.55, arrowsize=2.27, color="1.0, 0.933, 0.7*0.933"
+];
+s35 -> s38[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+];
+s35 -> s37[fontname="Helvetica", penwidth=5.73, arrowsize=2.87, color="1.0, 1.36, 0.7*1.36"
+];
+s38 -> s39[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+];
+s30 -> s10[fontname="Helvetica", penwidth=5.92, arrowsize=2.96, color="1.0, 1.45, 0.7*1.45"
+];
+s44 -> s30[fontname="Helvetica", penwidth=4.81, arrowsize=2.41, color="1.0, 1, 0.7*1"
+];
+s39 -> s37[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+];
+s37 -> s40[fontname="Helvetica", penwidth=6, arrowsize=3, color="1.0, 1.5, 0.7*1.5"
+];
+s40 -> s44[fontname="Helvetica", penwidth=6, arrowsize=3, color="1.0, 1.5, 0.7*1.5"
+];
+s3 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO(3).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s4 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO2(4).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s10 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH4(24).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s20 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO*(14).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s21 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO2*(15).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s22 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/HCO*(16).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s24 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/COOH*(18).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s26 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH2O*(20).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s29 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH3OH*(23).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s30 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH3X(35).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s32 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/OC[Pt](49).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s35 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(=O)[Pt](99).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s37 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC=O.[Pt](107).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s38 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(=O)O.[Pt](112).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s39 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(O)O[Pt](113).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s40 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CCO[Pt](114).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s44 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC.[Pt](141).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+ label = "Scale = 2e-09\l Reaction path diagram following C";
+ fontname = "Helvetica";
+}

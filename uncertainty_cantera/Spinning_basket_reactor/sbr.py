@@ -171,7 +171,7 @@ class MinSBR:
         # how to sort out gas and surface such that we can attach units?
         gas_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.species_names]
 
-        # Okay, this is weird. surf.net_production_rates includes both gas and 
+        # Okay, this is weird. rsurf.kinetics.net_production_rates includes both gas and 
         # surface rates, but surf.species_names only has surface species
         all_surf_rop_specs = self.gas.species_names + self.surf.species_names
         surf_ROP_str = [i + " ROP [kmol/m^2 s]" for i in all_surf_rop_specs]
@@ -202,8 +202,8 @@ class MinSBR:
         results['catalyst area'] = self.cat_area
         results['graaf MeOH TOF 1/s'] = self.graaf_meoh_tof 
         results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof
-        results['RMG MeOH TOF 1/s'] = self.surf.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
-        results['RMG H2O TOF 1/s'] = self.surf.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
+        results['RMG MeOH TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
+        results['RMG H2O TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
         results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
         results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
         results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
@@ -219,18 +219,18 @@ class MinSBR:
             results[self.surf.species_names[i]] = self.surf.X[i]
         
         # Enter the ROP's
-        for i in range(0, len(self.gas.net_production_rates)):
-            results[gas_ROP_str[i]] = self.gas.net_production_rates[i]
+        for i in range(0, len(self.r.kinetics.net_production_rates)):
+            results[gas_ROP_str[i]] = self.r.kinetics.net_production_rates[i]
 
-        for i in range(0, len(self.surf.net_production_rates)):
-            results[surf_ROP_str[i]] = self.surf.net_production_rates[i]
+        for i in range(0, len(self.rsurf.kinetics.net_production_rates)):
+            results[surf_ROP_str[i]] = self.rsurf.kinetics.net_production_rates[i]
 
-        for i in range(0, len(self.surf.net_rates_of_progress)):
-            results[surfrxn_ROP_str[i]] = self.surf.net_rates_of_progress[i]
+        for i in range(0, len(self.rsurf.kinetics.net_rates_of_progress)):
+            results[surfrxn_ROP_str[i]] = self.rsurf.kinetics.net_rates_of_progress[i]
 
         if gasrxn_ROP_str:
-            for i in range(0, len(self.gas.net_rates_of_progress)):
-                results[gasrxn_ROP_str[i]] = self.gas.net_rates_of_progress[i]
+            for i in range(0, len(self.r.kinetics.net_rates_of_progress)):
+                results[gasrxn_ROP_str[i]] = self.r.kinetics.net_rates_of_progress[i]
 
         return results
 

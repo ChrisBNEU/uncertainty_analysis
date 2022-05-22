@@ -1,0 +1,51 @@
+! Species         Shape    LJ-depth  LJ-diam   DiplMom   Polzblty  RotRelaxNum Data     
+! Name            Index    epsilon/k_B sigma     mu        alpha     Zrot      Source   
+N2                  1      97.530     3.621     0.000     1.760     4.000    ! GRI-Mech
+Ne                  0     148.600     3.758     0.000     0.000     0.000    ! Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the fallback method! Try improving transport databases!
+! X(1)                None
+H2(2)               1      38.000     2.920     0.000     0.790   280.000    ! GRI-Mech
+CO(3)               1      98.100     3.650     0.000     1.950     1.800    ! GRI-Mech
+CO2(4)              1     244.001     3.763     0.000     2.650     2.100    ! GRI-Mech
+H2O(5)              2     572.402     2.605     1.844     0.000     4.000    ! GRI-Mech
+CH2O(6)             2     498.002     3.590     0.000     0.000     2.000    ! GRI-Mech
+HCOOH(7)            2     481.800     3.626     1.700     0.000     1.000    ! NOx2018
+CH3OH(8)            2     481.802     3.626     0.000     0.000     1.000    ! GRI-Mech
+HCOOCH3(9)          2     377.356     5.234     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=490.07 K, Pc=49.66 bar (from Joback method)
+! H*(10)              None
+! O*(11)              None
+! OH*(12)             None
+! H2O*(13)            None
+! CO*(14)             None
+! CO2*(15)            None
+! HCO*(16)            None
+! HCOO*(17)           None
+! COOH*(18)           None
+! HCOOH*(19)          None
+! CH2O*(20)           None
+! CH3O*(21)           None
+! CH3O2*(22)          None
+! CH3OH*(23)          None
+CH4(24)             2     141.400     3.746     0.000     2.600    13.000    ! GRI-Mech
+! CH3OX(49)           None
+! C2H3OX(99)          None
+! SX(112)             None
+! CH3X(35)            None
+! SX(107)             None
+! C2H6X(141)          None
+CC(144)             2     252.301     4.302     0.000     0.000     1.500    ! GRI-Mech
+! SX(123)             None
+C2H4O2(73)          2     452.392     5.643     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=587.52 K, Pc=47.5 bar (from Joback method)
+! SX(104)             None
+! SX(148)             None
+! C2H5X(150)          None
+! SX(113)             None
+! SX(114)             None
+! SX(156)             None
+! C2H4X(145)          None
+C2H4O(72)           2     436.001     3.970     0.000     0.000     2.000    ! GRI-Mech
+CCO(143)            2     362.600     4.530     0.000     0.000     1.500    ! NOx2018
+! SX(136)             None
+! SX(115)             None
+! CH4O2X(84)          None
+! SX(59)              None
+! CH2X(36)            None

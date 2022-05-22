@@ -17,15 +17,16 @@ def postprocess_cantera_results(
     output_path
     ):
     
-    results = glob.glob(os.path.join(output_path, "run_*/cantera/ct_analysis.csv"))
+    results_filename = "ct_analysis.csv"
+    results = glob.glob(os.path.join(output_path, f"run_*/cantera/{results_filename}"))
 
     for file in results:
 
-        rmg_model_folder = file.replace('cantera/ct_analysis.csv', '')
-        cti_file_path = rmg_model_folder = file.replace('ct_analysis.csv', '')
+        rmg_model_folder = file.replace(f'cantera/{results_filename}', '')
+        cti_file_path = file.replace(results_filename, '')
         df = pd.read_csv(file)
 
-        df_graaf = df[(df['T (K)'] < 518) & (df['experiment'] == 'graaf_1988')]
+        df_graaf = df[df['use_for_opt'] == True]
         
         # df['log10(RMG/graaf) MeOH TOF'] = np.log10(max(1e-9, df['RMG MeOH TOF 1/s'] / df_graaf['graaf MeOH TOF 1/s']))
         df_graaf['log10(RMG/graaf) MeOH TOF'] = np.log10((df_graaf['RMG MeOH TOF 1/s'].div(df_graaf['graaf MeOH TOF 1/s']).replace(0, 1e-9)))
@@ -38,7 +39,7 @@ def postprocess_cantera_results(
 
         # this is naive, but currently saving the objective function to a text file 
         # so we can parse all of them after. 
-        obj_func_file = csv_path = os.path.join(rmg_model_folder, "objective_function_log2.txt")
+        obj_func_file = os.path.join(cti_file_path, "objective_function_log2.txt")
         with open(obj_func_file, "w") as f:
             f.write(cti_file_path + ":" + str(obj_func))
 
