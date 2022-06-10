@@ -8,3 +8,4 @@ output*.log
 *RMG-Py/*
 *RMG-database/*
 *.out*
+*ReactionMechanismSimulator.jl/*
