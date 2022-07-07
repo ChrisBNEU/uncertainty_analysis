@@ -16,6 +16,7 @@ from rmgpy.data.surface import MetalDatabase
 from rmgpy import constants
 from tqdm import tqdm  # this is for the progress bar cause copying stuff takes a while
 import numpy as np
+import logging
 
 # import stuff for easily writing config files
 import pickle
@@ -29,6 +30,80 @@ from rmgpy.kinetics import  StickingCoefficient, StickingCoefficientBEP
 # should be perturbed, get atomic BE values initially and use those to generate 
 # perturbation range
 
+
+def get_range(orig, pert, type):
+    """
+    get the max and min value for a given input +/-pert value 
+    orig - original value of parameter (a-factor, Ea, etc)
+    pert - the maximum perturbation that can be applied (+/- 0.15 for 
+           alpha perturbation, for example)
+    type - whether it is a:
+           stick - sticking coefficient
+           A     - arrhenius
+           Ea    - activation energy (for library or family E0 value)
+           alpha - BEP alpha value 
+           BE_J  - Binding energy value in J/mol
+           BE_eV - Binding energy value in eV
+    
+    returns a tuple with the midpoint, min and max values for the range 
+    """
+    max = orig+pert
+    min = orig-pert
+
+    if type is "stick":
+        max_allow = 1.0
+        min_allow = 0.0
+        
+    # A is perturbed exponentially, so max and min are the exponent 
+    if type is "A":
+        max_allow = 10.0
+        min_allow = -10.0
+
+    elif type is "Ea":
+        max_allow = 1.0e3
+        min_allow = 0.0
+    
+    elif type is "alpha":
+        max_allow = 1.0
+        min_allow = 0.0
+
+    elif type is "alpha":
+        max_allow = 1.0
+        min_allow = 0.0
+
+    # check if above max or min allowable values
+    if stick: 
+        if max > max_allow: 
+            max = max_allow
+        if min < min_allow: 
+            min = min_allow
+
+    mid = min + (max - min)/2
+
+    if not np.isclose(mid, orig, 1e-3, 1e-3): 
+        logging.warning(f"{type} value midpoint was changed from {orig} to {mid}")
+
+    return (mid, min, max)
+
+def perturb_value(mid, pert, range):
+    """
+    orig  - original value for A, Ea, alpha, BE
+    pert  - perturbation to be applied (0 to 1, from sobol sequence)
+    range - min and max value that can be applied. 0 is min, 1, is max
+
+    returns the perturbed value
+    """
+    sobolmin = 0
+    sobolmax = 1.0
+    sobolspan = sobolmax-sobolmax
+
+    min = range[0]
+    max = range[1]
+    span = max - min 
+    pert_val = (((pert - sobolmin) * span) / sobolspan) + newmin
+
+    return pert_value
+
 def generate_perturbed_files(
     RMG_db_folder, 
     output_path,
@@ -38,16 +113,16 @@ def generate_perturbed_files(
     """
     generates M perturbed files for global uncertainty analysis
     RMG_db_folder - path to rmg database
-    output_path - where the output files will be saved (such as the sobol map)
-    M - number of perturbed files to generate. each set will be labelled with
-    "XXXX" where XXXX is the perturbation from 1-M 
+    output_path   - where the output files will be saved (such as the sobol map)
+    M             - number of perturbed files to generate. each set will be labelled with
+                    "XXXX" where XXXX is the perturbation from 1-M 
 
-    creates 
-    sobol_map.pickle - a pickle file for the sobol map in the output_path directory
+    creates:
+    sobol_map.pickle       - a pickle file for the sobol map in the output_path directory
     sobol_range_map.pickle - the ranges of the perturbations applied to each parameter
-    perturbed files - for each kinetic family, kinetic library, thermo group, and 
-    thermo library, the values within are perturbed appropriately and given a 
-    perturbation number, e.g. surfaceThermoPt111_0001.py 
+    perturbed files        - for each kinetic family, kinetic library, thermo group, and 
+                             thermo library, the values within are perturbed appropriately and given a 
+                             perturbation number, e.g. surfaceThermoPt111_0001.py 
     """
     # Perturbation ranges for values (reference value +/- value below)
     DELTA_ALPHA_MAX_KN = 0.15
@@ -111,7 +186,7 @@ def generate_perturbed_files(
     if not os.path.exists(thermo_library_path):
         raise OSError(f'Path to rules does not exist:\n{thermo_library_path}')
 
-    # Specify the path to the thermo library
+    # Specify the path to the metal binding energy library
     metal_path = os.path.join(RMG_db_folder,"input","surface")
     if not os.path.exists(metal_path):
         raise OSError(f'Path to rules does not exist:\n{metal_path}')
@@ -122,8 +197,6 @@ def generate_perturbed_files(
         path=families_dir,
         families=kinetics_families,
     )
-
-
     kinetics_database.load_libraries(
         kinetic_libraries_dir,
         libraries=kinetics_libraries
@@ -141,7 +214,7 @@ def generate_perturbed_files(
 
     # requires a reference database for the groups because deepcopy doesn't 
     # work for some reason. 
-    thermo_database_ref = ThermoDatabase() # don't mess with this one
+    thermo_database_ref = ThermoDatabase() 
     thermo_database_ref.load(
         thermo_library_path,
         libraries=thermo_libraries,
@@ -168,7 +241,10 @@ def generate_perturbed_files(
                 # label BEP scaling parameter column
                 label = family_key + '/' + entry_key + '/alpha'
                 sobol_map[label] = (sobol_col_index,copy.deepcopy(x_sobol[:,sobol_col_index]))
-                sobol_range_map[label] = []
+                sobol_range_map[label] = get_range(orig, pert, type)
+
+
+
                 sobol_col_index += 1
                 # label pre-exponential column
                 label = family_key + '/' + entry_key + '/A'
