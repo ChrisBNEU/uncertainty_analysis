@@ -180,7 +180,7 @@ class MinSBR:
         surfrxn_ROP_str = [i + " ROP [kmol/m^2 s]" for i in self.surf.reaction_equations()]
 
         # run the simulation
-        self.sim.advance_to_steady_state()
+        self.sim.advance(3600)
         results = {}
         results['experiment'] = self.expt_id
         results['use_for_opt'] = self.use_for_opt
