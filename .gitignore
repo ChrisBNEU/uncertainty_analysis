@@ -9,3 +9,4 @@ output*.log
 *RMG-database/*
 *.out*
 *ReactionMechanismSimulator.jl/*
+*/baseline/*
