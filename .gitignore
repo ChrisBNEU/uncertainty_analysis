@@ -10,3 +10,5 @@ output*.log
 *.out*
 *ReactionMechanismSimulator.jl/*
 */baseline/*
+*/global/*.log
+*.inp
