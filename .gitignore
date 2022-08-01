@@ -15,4 +15,4 @@ output*.log
 */global/*.png
 */global/*.eps
 *.inp
-
+*/rms/*
