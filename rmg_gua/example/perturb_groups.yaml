@@ -48,3 +48,24 @@ thermo_groups:
 - adsorptionPt111
 thermo_libraries:
 - surfaceThermoPt111
+metal: Cu111
+# Perturbation ranges for values (reference value +/- value below)
+DELTA_ALPHA_MAX_KN: 0.15
+DELTA_E0_MAX_J_MOL_KN: 30000.0  # 3 eV is about 30000 J/mol
+DELTA_A_MAX_EXP_KN: 1.0
+DELTA_STICK_MAX_KN: 0.5 # for sticking coefficient, perturb from 0-1 
+DELTA_N_MAX_KN: 1.0 
+# Perturbation ranges for unknown values (reference value +/- value below)
+DELTA_ALPHA_MAX_UNK: 0.5 #start value at 0.5 and perturb from 0-1
+DELTA_E0_MAX_J_MOL_UNK: 100000.0  # 1 eV is about 100,000 J/mol. make sure eV is never 0.
+DELTA_A_MAX_EXP_UNK: 4.0 # for sticking coefficient, perturb from 0-1 but by exponent. 
+DELTA_STICK_MAX_UNK: 0.5 # for sticking coefficient
+DELTA_N_MAX_UNK: 1.0  
+# Thermo Perturbations
+# BEs that are in the metal database are in eV. vdw (in thermo db) is in
+# J/mol
+DELTA_E0_H: 0.3
+DELTA_E0_C: 0.3
+DELTA_E0_O: 0.3
+DELTA_E0_N: 0.3
+DELTA_E0_VDW: 20000.0
