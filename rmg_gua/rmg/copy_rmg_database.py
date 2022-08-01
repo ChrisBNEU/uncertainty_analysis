@@ -127,7 +127,7 @@ def copy_rmg_database(
             'reactions_[0-9][0-9][0-9][0-9].py',
             'surfaceThermoPt111_[0-9][0-9][0-9][0-9].py',
             'adsorptionPt111_[0-9][0-9][0-9][0-9].py',
-            'metals_[0-9][0-9][0-9][0-9].py',
+            'metal_[0-9][0-9][0-9][0-9].py',
         ),
         # TODO see if you can delete this hardcopy option
         # only hard copy one of these 
@@ -136,7 +136,7 @@ def copy_rmg_database(
             'reactions.py',
             'surfaceThermoPt111.py',
             'adsorptionPt111.py',
-            'metals.py',
+            'metal.py',
         )
     )
     stop_time = time.time()
@@ -145,16 +145,32 @@ def copy_rmg_database(
 
 if __name__ == "__main__":
 
-    RMG_db_folder = sys.argv[1] 
-    output_path = sys.argv[2]
-    unc_folder = sys.argv[3]
-    N = sys.argv[4]
+    if len(sys.argv) != 1: 
+        RMG_db_folder = sys.argv[1] 
+        output_path = sys.argv[2]
+        unc_folder = sys.argv[3]
+        N = sys.argv[4]
 
-    copy_rmg_database(
-    RMG_db_folder,
-    output_path,
-    unc_folder,
-    N,
-    )
+        copy_rmg_database(
+            RMG_db_folder,
+            output_path,
+            unc_folder,
+            N,
+            )
+    # for testing
+    else: 
+        unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
+        RMG_db_folder = unc_folder + "RMG-database/"
+        output_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
+        N = 1
+        
+        for db in range(N):
+            copy_rmg_database(
+                RMG_db_folder,
+                output_path,
+                unc_folder,
+                db,
+                )
+
 
 
