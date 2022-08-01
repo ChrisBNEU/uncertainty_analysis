@@ -20,24 +20,32 @@ database(
         'thermo_DFT_CCSDTF12_BAC',
         'DFT_QCI_thermo'
         ],
-    reactionLibraries = ['BurkeH2O2inArHe','BurkeH2O2inN2','Surface/Methane/Deutschmann_Ni', 'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
+    reactionLibraries = [
+        'BurkeH2O2inArHe',
+        'BurkeH2O2inN2', 
+        'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
     kineticsFamilies =[('surface', True),('default', False)],
     kineticsEstimator = 'rate rules',
 )
 
-catalystProperties( # default values for Cu(111) calculated by Katrin Blondal and Bjarne Kreitz at Brown University
-    bindingEnergies = {
-                       'C':(-4.96033553, 'eV/molecule'),
-                       'O':(-4.20763879, 'eV/molecule'),
-                       'N':(-3.58446699, 'eV/molecule'),
-                       'H':(-2.58383235, 'eV/molecule'),
-                       },
-    surfaceSiteDensity=(2.943e-9, 'mol/cm^2'),  # from Katrin
-    coverageDependence=True,
 
+catalystProperties(
+    metal='Cu111'
 )
+
+# catalystProperties( # default values for Cu(111) calculated by Katrin Blondal and Bjarne Kreitz at Brown University
+#     bindingEnergies = {
+#                        'C':(-4.96033553, 'eV/molecule'),
+#                        'O':(-4.20763879, 'eV/molecule'),
+#                        'N':(-3.58446699, 'eV/molecule'),
+#                        'H':(-2.58383235, 'eV/molecule'),
+#                        },
+#     surfaceSiteDensity=(2.943e-9, 'mol/cm^2'),  # from Katrin
+#     coverageDependence=True,
+
+# )
 # catalystProperties( # Rh111
 #     bindingEnergies = {
 #                        'C':(-6.568, 'eV/molecule'),
