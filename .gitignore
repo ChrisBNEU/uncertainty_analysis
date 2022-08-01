@@ -14,5 +14,7 @@ output*.log
 */global/*.dat
 */global/*.png
 */global/*.eps
+*/global/*.txt
 *.inp
 */rms/*
+*/testing/*.png
