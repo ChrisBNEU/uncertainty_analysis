@@ -11,4 +11,8 @@ output*.log
 *ReactionMechanismSimulator.jl/*
 */baseline/*
 */global/*.log
+*/global/*.dat
+*/global/*.png
+*/global/*.eps
 *.inp
+
