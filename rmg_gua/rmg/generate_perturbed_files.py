@@ -55,13 +55,13 @@ def get_range(orig, pert, type):
         
     # A is perturbed exponentially, so max and min are the exponent. 
     # original value is changes to exp
-    if type is "A":
-        max_allow = 10.0
-        min_allow = -10.0
+    elif type is "A":
+        max_allow = 30.0
+        min_allow = -30.0
         orig = np.log10(orig)
 
     elif type is "Ea":
-        max_allow = 1.0e3
+        max_allow = 1.0e6
         min_allow = 0.0
     
     elif type is "alpha":
@@ -77,23 +77,26 @@ def get_range(orig, pert, type):
         min_allow = -10
 
     else: 
-        logging.error("type not specified when determining perturbation range")
+        logging.error(f"{type} type not specified when determining perturbation range")
 
     max = orig+pert
     min = orig-pert
 
     # check if above max or min allowable values
     if max > max_allow: 
-        logging.warning(f"maximum changed from {max} to {max_allow}")
+        logging.warning(f"{type} maximum changed from {max} to {max_allow}")
         max = max_allow
     if min < min_allow: 
-        logging.warning(f"minimum changed from {min} to {min_allow}")
+        logging.warning(f"{type} minimum changed from {min} to {min_allow}")
         min = min_allow
 
     mid = min + (max - min)/2
 
     if not np.isclose(mid, orig, 1e-3, 1e-3): 
         logging.warning(f"{type} value midpoint was changed from {orig} to {mid}")
+
+    if max <= min: 
+        logging.error(f"max {max} is less than that min {min}")
 
     return (mid, min, max)
 
@@ -107,7 +110,7 @@ def perturb_value(mid, pert, range_val):
     """
     sobolmin = 0
     sobolmax = 1.0
-    sobolspan = sobolmax-sobolmax
+    sobolspan = sobolmax-sobolmin
 
     min = range_val[0]
     max = range_val[1]
@@ -276,13 +279,13 @@ def generate_perturbed_files(
                     DELTA_N_MAX = DELTA_N_MAX_KN
 
                     E0_ref = family.rules.entries[entry_key][0].data.E0.value_si
-                    alpha_ref = family.rules.entries[entry_key][0].data.alpha.value
+                    alpha_ref = family.rules.entries[entry_key][0].data.alpha.value_si
 
                 # label alpha column
                 label = family_key + '/' + entry_key + '/alpha'
                 # create array of nans for sobol map, so if one is unassigned we'll get an error
                 sobol_map[label] = (sobol_col_index, np.empty((sobol_size))*np.nan)
-                orig = family.rules.entries[entry_key][0].data.alpha.value_si
+                orig = alpha_ref 
                 pert = DELTA_ALPHA_MAX
                 type = "alpha"
                 sobol_range_map[label] = get_range(orig, pert, type)
@@ -310,7 +313,7 @@ def generate_perturbed_files(
                 label = family_key + '/' + entry_key + '/E0'
                 # create array of nans for sobol map, so if one is unassigned we'll get an error
                 sobol_map[label] = (sobol_col_index, np.empty((sobol_size))*np.nan)
-                orig = family.rules.entries[entry_key][0].data.E0.value_si
+                orig = E0_ref
                 pert = DELTA_E0_MAX_J_MOL
                 type = "Ea"
                 sobol_range_map[label] = get_range(orig, pert, type)
@@ -371,9 +374,9 @@ def generate_perturbed_files(
     # dEh, dEo, dEc, and dEvdw, so we will have one column for each. 
     # added N_BE for the averaged nodes. but will likely not be an issue
     scaling_groups = [
-        "H", 
+        "C", 
         "O", 
-        "C",
+        "H",
         "N",
         "Vdw",
     ]
@@ -525,6 +528,7 @@ def generate_perturbed_files(
                     range_val = sobol_range_map[sobol_key][1:]
 
                     E0_perturbed = perturb_value(mid, pert, range_val)
+                    entry[0].data.E0.value_si = E0_perturbed
 
                     # write perturbed value to sobol key
                     sobol_map[sobol_key][1][i] = E0_perturbed
@@ -535,9 +539,9 @@ def generate_perturbed_files(
     # for vdw, we need to do every value 
     if len(scaling_groups) > 0:
         scaling_atoms = [
-            "H", 
+            "C", 
             "O", 
-            "C",
+            "H",
             "N",
         ]
         print("generating binding energy perturbation files")
@@ -568,9 +572,10 @@ def generate_perturbed_files(
 
                 mid = sobol_range_map["Vdw"][0] 
                 pert = x_sobol[i, sobol_map["Vdw"][0]]
-                range_val = sobol_range_map[sobol_key][1:]
+                range_val = sobol_range_map["Vdw"][1:]
 
                 delta_E0_vdw = perturb_value(mid, pert, range_val)
+                sobol_map["Vdw"][1][i] = delta_E0_vdw
 
                 for entry_key in thermo_lib.entries.keys():
                     delta_E0 = 0

@@ -11,6 +11,7 @@ def copy_rmg_database(
     RMG_db_folder, 
     output_path,
     unc_folder,
+    pert_yaml,
     N,
     ):
 
@@ -98,8 +99,7 @@ def copy_rmg_database(
 
     # load the yaml containing the perturbed groups
     # i am hardcoding this now because it is too hard to pipe
-    perturb_dict_path = os.path.join(unc_folder, "perturb_groups.yaml")
-    with open(perturb_dict_path, "r") as f:
+    with open(pert_yaml, "r") as f:
         perturb_dict = yaml.safe_load(f)
 
     start_time = time.time()
@@ -149,12 +149,14 @@ if __name__ == "__main__":
         RMG_db_folder = sys.argv[1] 
         output_path = sys.argv[2]
         unc_folder = sys.argv[3]
-        N = sys.argv[4]
+        pert_yaml = sys.argv[4]
+        N = sys.argv[5]
 
         copy_rmg_database(
             RMG_db_folder,
             output_path,
             unc_folder,
+            pert_yaml,
             N,
             )
     # for testing
@@ -162,6 +164,7 @@ if __name__ == "__main__":
         unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
         RMG_db_folder = unc_folder + "RMG-database/"
         output_path = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_output_folder/"
+        pert_yaml = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/example/perturb_groups.yaml"
         N = 1
         
         for db in range(N):
@@ -169,6 +172,7 @@ if __name__ == "__main__":
                 RMG_db_folder,
                 output_path,
                 unc_folder,
+                pert_yaml,
                 db,
                 )
 
