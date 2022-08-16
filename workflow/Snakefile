@@ -1,7 +1,0 @@
-rule process:
-    input:
-        "run_test_inp.sh",
-    output:
-        ""
-    shell:
-        "sbatch {input} {output}"

@@ -8,3 +8,14 @@ output*.log
 *RMG-Py/*
 *RMG-database/*
 *.out*
+*ReactionMechanismSimulator.jl/*
+*/baseline/*
+*/global/*.log
+*/global/*.dat
+*/global/*.png
+*/global/*.eps
+*/global/*.txt
+*/global/*.pk
+*.inp
+*/rms/*
+*/testing/*.png
