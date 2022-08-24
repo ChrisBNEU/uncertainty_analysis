@@ -617,7 +617,7 @@ def generate_perturbed_files(
             # Get perturbations and record
             mid = sobol_range_map["Vdw"][0] 
             pert = x_sobol[i, sobol_map["Vdw"][0]]
-            range_val = sobol_range_map[sobol_key][1:]
+            range_val = sobol_range_map["Vdw"][1:]
 
             delta_E0_vdw = perturb_value(mid, pert, range_val)
 
