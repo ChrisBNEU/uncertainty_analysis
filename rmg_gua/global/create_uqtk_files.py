@@ -30,7 +30,7 @@ RMG_base_folder = unc_folder + "RMG-Py/"
 RMG_db_folder = unc_folder + "RMG-database/"
 conda_path = unc_folder + "conda/"
 expt_yaml_file = ""
-output_path  = "/scratch/blais.ch/methanol_results_2022_07_19/"
+output_path  = "/scratch/blais.ch/methanol_results_2022_08_21_reduced/"
 
 # we need to know which runs failed. use script from the postprocessing notebook that 
 # checks for the objective function file
@@ -78,19 +78,14 @@ all_runs = list(range(0,len(total_run_folders)))
 passed_runs = list(obj_func_dict.keys())
 passed_runs.sort()
 
+print("number of passed runs: ", len(passed_runs))
 
 # use a set to get the difference between passed and failed runs 
 failed_runs_set = set(all_runs).difference(passed_runs)
 failed_runs = list(failed_runs_set)
 
 closest = min(obj_func_dict, key=lambda y: abs(obj_func_dict[y]))
-print(closest,obj_func_dict[closest])
-
-num_passed = len(passed_runs)
-num_train = round(0.75*len(passed_runs))
-num_val = num_passed-num_train
-print("Training: ", num_train,"\nValidation: ", num_val)
-
+print("run with closest match: ", closest, obj_func_dict[closest])
 
 # # sanitize inputs
 # first, load in the perturbed values  
@@ -159,6 +154,9 @@ data_keys = [
     "RMG H2O TOF 1/s",
 ]
 
+# we have a number of completed runs, but we really need the number 
+# of runs where meoh/h2o rop are greaterthan 0. 
+
 for file in ct_data_files:
     # find the string for the run number 
     pattern = re.compile('run_\d{4}')
@@ -175,12 +173,11 @@ for file in ct_data_files:
         else: 
             output_value = math.log(output_value, 10)
         data_dict[key] = output_value
-        print(run_num,key,output_value,data_dict[key])
+
     
     ct_data_dict[run_num]= data_dict
     
 # sort by run
-# ct_data_dict.sort(key=lambda y: y["run"])
 
 # make dict of passed runs with their perturbed values
 pert_val_san_dict_passed = {}
@@ -194,11 +191,10 @@ ct_data_dict_copy = ct_data_dict.copy()
 for run, data in ct_data_dict.items():
     
     for key, value in ct_data_dict_copy[run].items():
-        print(key,value)
         if value == 0:
             del pert_val_san_dict_passed_copy[run]
             del ct_data_dict_copy[run]
-            print(run)
+            print("deleted run: ", run, " because it has TOF of 0")
             break
 
 # now just make a text file. 
@@ -214,6 +210,9 @@ with open(output_file, "w") as f:
 # make the input file now that we know which runs to keep
 csv_file = "Input_meoh.txt"
 csv_columns = list(perturb_values.keys())
+
+
+
 try:
     with open(csv_file, 'w') as f:
         writer = csv.writer(f, delimiter=" ")
@@ -229,3 +228,23 @@ try:
 except IOError:
     print("I/O error")
 
+    
+# update workflow.x file with training and valudation numbers
+num_passed = len(pert_val_san_dict_passed)
+num_train = round(0.75*len(passed_runs))
+num_val = num_passed-num_train
+print("Training: ", num_train,"\nValidation: ", num_val)
+
+
+with open('workflow_meoh.x', 'r') as f:
+    # read a list of lines into data
+    data = f.readlines()
+
+for line, datum in enumerate(data): 
+    if "TRAIN=" in datum:
+        data[line] = f"TRAIN={num_train}\n"
+    if ("VAL=" in datum) and not ("NVAL=" in datum):
+        data[line] = f"VAL={num_val}\n"      
+
+with open('workflow_meoh.x', 'w') as f:
+    f.writelines(data)

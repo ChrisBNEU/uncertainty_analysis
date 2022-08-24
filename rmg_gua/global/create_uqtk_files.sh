@@ -4,7 +4,7 @@
 #SBATCH --error=uq_error.log
 #SBATCH --output=uq_output.log
 #SBATCH --nodes=1
-#SBATCH --partition=short
+#SBATCH --partition=west
 #SBATCH --mem=20Gb
 #SBATCH --cpus-per-task=4
 #SBATCH --ntasks=1
@@ -13,5 +13,4 @@
 
 # load in the initialization script
 source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda
-python-jl create_uqtk_files.py
-
+python-jl -u create_uqtk_files.py
