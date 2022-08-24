@@ -7,11 +7,12 @@ import yaml
 
 from rmg_gua.rmg.generate_perturbed_files import generate_perturbed_files
 from rmg_gua.rmg.make_slurm_scripts import make_slurm_scripts
+from rmg_gua.rmg.clean_rmg_db import clean_rmg_db
 from rmg_gua.cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
 
 # specify inputs 
-M = 10000 # number of runs of RMG to do
-N = 500 # number of slurm jobs to run at once
+M = 500 # number of runs of RMG to do
+N = 100 # number of slurm jobs to run at once
 unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
 conda_path = os.path.join(unc_folder, "conda")
 RMG_base_folder = os.path.join(unc_folder, "RMG-Py")
@@ -19,7 +20,7 @@ RMG_db_folder = os.path.join(unc_folder,"RMG-database")
 expt_yaml_file = os.path.join(unc_folder, "rmg_gua", "cantera" "all_experiments_reorg.yaml")
 
 rmg_unc_scripts_folder = os.path.join(unc_folder,"rmg_gua","rmg")
-output_path = "/scratch/blais.ch/methanol_results_2022_08_16_small/"
+output_path = "/scratch/blais.ch/methanol_results_2022_08_24_just_thermo_500/"
 pert_yaml = os.path.join(unc_folder, "rmg_gua", "example", "perturb_groups.yaml")
 reference_input = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rmg/input.py"
 
@@ -34,6 +35,9 @@ with open(pert_yaml, 'r') as file:
 ##############################################################################
 # run all RMG scripts
 ##############################################################################
+
+# remove files from previous executions
+clean_rmg_db()
 
 generate_perturbed_files(
     RMG_db_folder,
