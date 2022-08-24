@@ -77,6 +77,7 @@ def make_slurm_scripts(
         jobfile.settings['--error'] = os.path.join(working_dir, f'error{sbatch_index}.log')
         jobfile.settings['--output'] = os.path.join(working_dir, f'output{sbatch_index}.log')
         jobfile.settings['--mem'] = f'20Gb'
+        jobfile.settings['--partition'] = 'short'
 
         content = ['# Define useful bash variables\n']
 
