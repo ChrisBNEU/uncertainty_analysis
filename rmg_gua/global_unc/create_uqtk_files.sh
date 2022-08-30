@@ -13,4 +13,4 @@
 
 # load in the initialization script
 source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda
-python-jl -u create_uqtk_files.py
+python -u create_uqtk_files.py

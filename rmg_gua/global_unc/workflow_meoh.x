@@ -19,12 +19,15 @@ source activate uqtk
 
 cp parameter_names_meoh.txt pnames.txt
 
-# this needs to be extensible, so it just takes 10% of the runs for training
-head -n5000 Input_meoh.txt > ptrain.dat
-tail -n1692 Input_meoh.txt > pval.dat
+TRAIN=1182
+VAL=394
 
-head -n5000 outputs_meoh.txt > ytrain.dat
-tail -n1692 outputs_meoh.txt > yval.dat
+# this needs to be extensible, so it just takes 10% of the runs for training
+head -n$TRAIN Input_meoh.txt > ptrain.dat
+tail -n$VAL Input_meoh.txt > pval.dat
+
+head -n$TRAIN outputs_meoh.txt > ytrain.dat
+tail -n$VAL outputs_meoh.txt > yval.dat
 
 # Scale the inputs
 ${UQPC}/scale.x ptrain.dat from parameter_ranges_meoh.txt qtrain.dat
@@ -38,7 +41,7 @@ echo $NSAM
 echo $NVAL
 
 # Build surrogates
-${UQPC}/uq_pc.py -r offline_post -p parameter_ranges_meoh.txt -m bcs -s rand -n $NSAM -v $NVAL -t 2 -e 1.e-7
+${UQPC}/uq_pc.py -r offline_post -p parameter_ranges_meoh.txt -m bcs -s rand -n $NSAM -v $NVAL -t 4 -e 1.e-7
 
 # Plot model-vs-surrogate
 ${UQPC}/plot.py dm training validation

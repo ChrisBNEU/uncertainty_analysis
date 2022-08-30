@@ -16,6 +16,9 @@ output*.log
 */global_unc/*.eps
 */global_unc/*.txt
 */global_unc/*.pk
+*/global_unc/tmp*
+*/global_unc/*.ipynb
 *.inp
 */rms/*
 */testing/*.png
+*pynta/*
