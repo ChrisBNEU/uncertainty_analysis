@@ -15,6 +15,7 @@ def make_slurm_scripts(
     conda_path,
     rmg_unc_scripts_folder,
     reference_input,
+    pert_yaml,
     N=10, #number of runs to do at once
     M=10, # number of runs to do total
     ):
@@ -76,6 +77,7 @@ def make_slurm_scripts(
         jobfile.settings['--error'] = os.path.join(working_dir, f'error{sbatch_index}.log')
         jobfile.settings['--output'] = os.path.join(working_dir, f'output{sbatch_index}.log')
         jobfile.settings['--mem'] = f'20Gb'
+        jobfile.settings['--partition'] = 'short'
 
         content = ['# Define useful bash variables\n']
 
@@ -88,7 +90,7 @@ def make_slurm_scripts(
         # the database is copied to the new directory for each array job
         # for now, don't delete the copy. it's symbolic and won't take up too 
         # much space
-        content.append(f'python {rmg_unc_scripts_folder + "/copy_rmg_database.py"} {RMG_db_folder} {output_path} {unc_folder} $DATABASE_n\n')
+        content.append(f'python {rmg_unc_scripts_folder + "/copy_rmg_database.py"} {RMG_db_folder} {output_path} {unc_folder} {pert_yaml} $DATABASE_n\n')
         # skip if RMG already ran and not the force option
         if skip_completed_runs:
             content.append('match_str="MODEL GENERATION COMPLETED"\n')
