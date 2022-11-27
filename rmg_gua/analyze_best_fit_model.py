@@ -405,3 +405,9 @@ pp.savefig(fig_rmg_cov)
 pp.savefig(fig_meoh_parity)
 pp.savefig(fig_h2o_parity)
 pp.close()
+
+
+# %%
+
+print("hello World")
+# %%

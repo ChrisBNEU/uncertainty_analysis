@@ -1,48 +1,50 @@
-kinetic_libraries:
-- CPOX_Pt/Deutschmann2006_adjusted
-kinetics_families:
+kinetic_libraries: []
+# - CPOX_Pt/Deutschmann2006_adjusted
+kinetics_families: #{}
+  Surface_Association_Beta: [] # new family from Bjarne, maybe don't need
+  Surface_Dissociation_to_Bidentate: [] # new family from Bjarne, maybe don't need
   Surface_Abstraction: []
   Surface_Abstraction_Beta: []
   Surface_Abstraction_Beta_double_vdW: []
   Surface_Abstraction_Beta_vdW: []
-  Surface_Abstraction_Single_vdW:
-  - 1
-  Surface_Abstraction_vdW:
-  - 1
-  Surface_Addition_Single_vdW:
-  - 1
-  Surface_Adsorption_Abstraction_vdW:
-  - 1
-  Surface_Adsorption_Bidentate:
-  - 1
-  Surface_Adsorption_Dissociative:
-  - 1
-  Surface_Adsorption_Dissociative_Double:
-  - 1
-  Surface_Adsorption_Double:
-  - 1
-  Surface_Adsorption_Single:
-  - 1
-  Surface_Adsorption_vdW:
-  - 1
+  Surface_Abstraction_Single_vdW: []
+  #- 1
+  Surface_Abstraction_vdW: []
+  #- 1
+  Surface_Addition_Single_vdW: []
+  #- 1
+  Surface_Adsorption_Abstraction_vdW: []
+  #- 1
+  Surface_Adsorption_Bidentate: []
+  #- 1
+  Surface_Adsorption_Dissociative: []
+  #- 1
+  Surface_Adsorption_Dissociative_Double: []
+  #- 1
+  Surface_Adsorption_Double: []
+  #- 1
+  Surface_Adsorption_Single: []
+  #- 1
+  Surface_Adsorption_vdW: []
+  #- 1
   Surface_Bidentate_Dissociation: []
   Surface_Dissociation: []
   Surface_Dissociation_Beta: []
   Surface_Dissociation_Beta_vdW: []
   Surface_Dissociation_Double: []
-  Surface_Dissociation_Double_vdW:
-  - 1
+  Surface_Dissociation_Double_vdW: []
+  #- 1
   Surface_Dissociation_vdW: []
   Surface_DoubleBond_to_Bidentate: []
-  Surface_Dual_Adsorption_vdW:
-  - 1
-  Surface_EleyRideal_Addition_Multiple_Bond:
-  - 1
-  Surface_Migration:
-  - 1
-  Surface_vdW_to_Bidentate:
-  - 1
-lib_entries_to_perturb:
+  Surface_Dual_Adsorption_vdW: []
+  #- 1
+  Surface_EleyRideal_Addition_Multiple_Bond: []
+  #- 1
+  Surface_Migration: []
+  #- 1
+  Surface_vdW_to_Bidentate: []
+  #- 1
+lib_entries_to_perturb: 
 - all
 thermo_groups:
 - adsorptionPt111
@@ -57,15 +59,15 @@ DELTA_STICK_MAX_KN: 0.5 # for sticking coefficient, perturb from 0-1
 DELTA_N_MAX_KN: 1.0 
 # Perturbation ranges for unknown values (reference value +/- value below)
 DELTA_ALPHA_MAX_UNK: 0.5 #start value at 0.5 and perturb from 0-1
-DELTA_E0_MAX_J_MOL_UNK: 50000.0  # 5 eV is about 100,000 J/mol. make sure eV is never 0.
+DELTA_E0_MAX_J_MOL_UNK: 50000.0  # 5 eV is about 50,000 J/mol. make sure eV is never 0.
 DELTA_A_MAX_EXP_UNK: 1.0 # for sticking coefficient, perturb from 0-1 but by exponent. 
 DELTA_STICK_MAX_UNK: 0.5 # for sticking coefficient
 DELTA_N_MAX_UNK: 1.0  
 # Thermo Perturbations
 # BEs that are in the metal database are in eV. vdw (in thermo db) is in
 # J/mol
-DELTA_E0_H: 0.3
-DELTA_E0_C: 0.3
-DELTA_E0_O: 0.3
-DELTA_E0_N: 0.3
-DELTA_E0_VDW: 20000.0
+DELTA_E0_H: 0.3 # 0.3 change for 
+DELTA_E0_C: 0.3 # 0.3
+DELTA_E0_O: 0.3 # 0.3
+DELTA_E0_N: 0.3 # 0.3
+DELTA_E0_VDW: 20000.0 # 20000.0

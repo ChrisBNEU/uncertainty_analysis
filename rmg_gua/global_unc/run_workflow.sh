@@ -10,6 +10,7 @@
 #SBATCH --mail-user=$USER@northeastern.edu 
 #SBATCH --mail-type=FAIL,END
 
+cd ./rmg_gua/global_unc
 source activate uqtk
 source activate_uqtk.sh 
 sh workflow_meoh.x

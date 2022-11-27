@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# activate environment
+source activate uqtk
 # load in the initialization script
 source /work/westgroup/ChrisB/_01_MeOH_repos/UQTK_repos/path_config.sh
 

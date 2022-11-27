@@ -1,60 +1,139 @@
 digraph reaction_paths {
 center=1;
-s3 -> s20[fontname="Helvetica", penwidth=5.65, arrowsize=2.83, color="1.0, 1.32, 0.7*1.32"
+s18 -> s4[fontname="Helvetica", penwidth=5.44, arrowsize=2.72, color="1.0, 0.775, 0.7*0.775"
 ];
-s20 -> s4[fontname="Helvetica", penwidth=4.97, arrowsize=2.48, color="1.0, 1.05, 0.7*1.05"
+s18 -> s19[fontname="Helvetica", penwidth=2.7, arrowsize=1.35, color="1.0, 0.501, 0.7*0.501"
 ];
-s20 -> s22[fontname="Helvetica", penwidth=4.66, arrowsize=2.33, color="1.0, 0.964, 0.7*0.964"
+s22 -> s18[fontname="Helvetica", penwidth=5.38, arrowsize=2.69, color="1.0, 0.741, 0.7*0.741"
 ];
-s24 -> s20[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+s20 -> s18[fontname="Helvetica", penwidth=4.76, arrowsize=2.38, color="1.0, 0.558, 0.7*0.558"
 ];
-s20 -> s35[fontname="Helvetica", penwidth=4.81, arrowsize=2.4, color="1.0, 1, 0.7*1"
+s29 -> s18[fontname="Helvetica", penwidth=3.77, arrowsize=1.88, color="1.0, 0.506, 0.7*0.506"
 ];
-s4 -> s21[fontname="Helvetica", penwidth=5.37, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+s18 -> s31[fontname="Helvetica", penwidth=4.47, arrowsize=2.24, color="1.0, 0.53, 0.7*0.53"
 ];
-s21 -> s24[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="1.0, 1.19, 0.7*1.19"
+s4 -> s19[fontname="Helvetica", penwidth=5.97, arrowsize=2.99, color="1.0, 1.44, 0.7*1.44"
 ];
-s22 -> s26[fontname="Helvetica", penwidth=4.65, arrowsize=2.33, color="1.0, 0.96, 0.7*0.96"
+s19 -> s21[fontname="Helvetica", penwidth=5.29, arrowsize=2.65, color="1.0, 0.697, 0.7*0.697"
 ];
-s26 -> s32[fontname="Helvetica", penwidth=4.64, arrowsize=2.32, color="1.0, 0.956, 0.7*0.956"
+s19 -> s22[fontname="Helvetica", penwidth=5.44, arrowsize=2.72, color="1.0, 0.773, 0.7*0.773"
 ];
-s32 -> s29[fontname="Helvetica", penwidth=4.52, arrowsize=2.26, color="1.0, 0.928, 0.7*0.928"
+s32 -> s19[fontname="Helvetica", penwidth=3.1, arrowsize=1.55, color="1.0, 0.501, 0.7*0.501"
 ];
-s29 -> s30[fontname="Helvetica", penwidth=4.55, arrowsize=2.27, color="1.0, 0.933, 0.7*0.933"
+s21 -> s24[fontname="Helvetica", penwidth=5.3, arrowsize=2.65, color="1.0, 0.7, 0.7*0.7"
 ];
-s35 -> s38[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+s21 -> s20[fontname="Helvetica", penwidth=2.68, arrowsize=1.34, color="1.0, 0.5, 0.7*0.5"
 ];
-s35 -> s37[fontname="Helvetica", penwidth=5.73, arrowsize=2.87, color="1.0, 1.36, 0.7*1.36"
+s33 -> s21[fontname="Helvetica", penwidth=3.59, arrowsize=1.79, color="1.0, 0.504, 0.7*0.504"
 ];
-s38 -> s39[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+s22 -> s34[fontname="Helvetica", penwidth=4.5, arrowsize=2.25, color="1.0, 0.532, 0.7*0.532"
 ];
-s30 -> s10[fontname="Helvetica", penwidth=5.92, arrowsize=2.96, color="1.0, 1.45, 0.7*1.45"
+s24 -> s23[fontname="Helvetica", penwidth=2.48, arrowsize=1.24, color="1.0, 0.5, 0.7*0.5"
 ];
-s44 -> s30[fontname="Helvetica", penwidth=4.81, arrowsize=2.41, color="1.0, 1, 0.7*1"
+s23 -> s20[fontname="Helvetica", penwidth=2.52, arrowsize=1.26, color="1.0, 0.5, 0.7*0.5"
 ];
-s39 -> s37[fontname="Helvetica", penwidth=2.51, arrowsize=1.26, color="1.0, 0.634, 0.7*0.634"
+s24 -> s25[fontname="Helvetica", penwidth=3.99, arrowsize=2, color="1.0, 0.51, 0.7*0.51"
 ];
-s37 -> s40[fontname="Helvetica", penwidth=6, arrowsize=3, color="1.0, 1.5, 0.7*1.5"
+s24 -> s20[fontname="Helvetica", penwidth=4.8, arrowsize=2.4, color="1.0, 0.563, 0.7*0.563"
 ];
-s40 -> s44[fontname="Helvetica", penwidth=6, arrowsize=3, color="1.0, 1.5, 0.7*1.5"
+s24 -> s29[fontname="Helvetica", penwidth=5.11, arrowsize=2.55, color="1.0, 0.627, 0.7*0.627"
 ];
-s3 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO(3).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s4 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO2(4).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s10 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH4(24).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s20 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO*(14).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s21 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CO2*(15).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s22 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/HCO*(16).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s24 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/COOH*(18).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s26 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH2O*(20).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s29 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH3OH*(23).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s30 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CH3X(35).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s32 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/OC[Pt](49).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s35 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(=O)[Pt](99).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s37 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC=O.[Pt](107).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s38 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(=O)O.[Pt](112).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s39 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC(O)O[Pt](113).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s40 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CCO[Pt](114).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
-s44 [ image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/uncertainty_baseline/species/CC.[Pt](141).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
- label = "Scale = 2e-09\l Reaction path diagram following C";
+s30 -> s24[fontname="Helvetica", penwidth=2.93, arrowsize=1.46, color="1.0, 0.501, 0.7*0.501"
+];
+s33 -> s24[fontname="Helvetica", penwidth=2.25, arrowsize=1.12, color="1.0, 0.5, 0.7*0.5"
+];
+s24 -> s36[fontname="Helvetica", penwidth=2.34, arrowsize=1.17, color="1.0, 0.5, 0.7*0.5"
+];
+s25 -> s27[fontname="Helvetica", penwidth=3.49, arrowsize=1.74, color="1.0, 0.503, 0.7*0.503"
+];
+s25 -> s33[fontname="Helvetica", penwidth=3.83, arrowsize=1.92, color="1.0, 0.507, 0.7*0.507"
+];
+s8 -> s27[fontname="Helvetica", penwidth=2.09, arrowsize=1.04, color="1.0, 0.5, 0.7*0.5"
+];
+s29 -> s27[fontname="Helvetica", penwidth=5.08, arrowsize=2.54, color="1.0, 0.62, 0.7*0.62"
+];
+s27 -> s28[fontname="Helvetica", penwidth=5.09, arrowsize=2.55, color="1.0, 0.624, 0.7*0.624"
+];
+s37 -> s27[fontname="Helvetica", penwidth=2.04, arrowsize=1.02, color="1.0, 0.5, 0.7*0.5"
+];
+s29 -> s20[fontname="Helvetica", penwidth=2.93, arrowsize=1.47, color="1.0, 0.501, 0.7*0.501"
+];
+s20 -> s30[fontname="Helvetica", penwidth=2.65, arrowsize=1.33, color="1.0, 0.5, 0.7*0.5"
+];
+s20 -> s33[fontname="Helvetica", penwidth=3.84, arrowsize=1.92, color="1.0, 0.507, 0.7*0.507"
+];
+s29 -> s28[fontname="Helvetica", penwidth=2.24, arrowsize=1.12, color="1.0, 0.5, 0.7*0.5"
+];
+s28 -> s10[fontname="Helvetica", penwidth=5.28, arrowsize=2.64, color="1.0, 0.692, 0.7*0.692"
+];
+s33 -> s28[fontname="Helvetica", penwidth=3.65, arrowsize=1.82, color="1.0, 0.504, 0.7*0.504"
+];
+s38 -> s28[fontname="Helvetica", penwidth=4.79, arrowsize=2.4, color="1.0, 0.562, 0.7*0.562"
+];
+s37 -> s28[fontname="Helvetica", penwidth=2.11, arrowsize=1.05, color="1.0, 0.5, 0.7*0.5"
+];
+s32 -> s28[fontname="Helvetica", penwidth=3.12, arrowsize=1.56, color="1.0, 0.501, 0.7*0.501"
+];
+s31 -> s33[fontname="Helvetica", penwidth=3.9, arrowsize=1.95, color="1.0, 0.508, 0.7*0.508"
+];
+s33 -> s39[fontname="Helvetica", penwidth=3.59, arrowsize=1.8, color="1.0, 0.504, 0.7*0.504"
+];
+s33 -> s36[fontname="Helvetica", penwidth=5.03, arrowsize=2.52, color="1.0, 0.608, 0.7*0.608"
+];
+s35 -> s33[fontname="Helvetica", penwidth=5.02, arrowsize=2.51, color="1.0, 0.604, 0.7*0.604"
+];
+s33 -> s37[fontname="Helvetica", penwidth=3.23, arrowsize=1.62, color="1.0, 0.502, 0.7*0.502"
+];
+s33 -> s32[fontname="Helvetica", penwidth=3.52, arrowsize=1.76, color="1.0, 0.503, 0.7*0.503"
+];
+s31 -> s34[fontname="Helvetica", penwidth=4.6, arrowsize=2.3, color="1.0, 0.54, 0.7*0.54"
+];
+s31 -> s37[fontname="Helvetica", penwidth=4.07, arrowsize=2.03, color="1.0, 0.512, 0.7*0.512"
+];
+s34 -> s35[fontname="Helvetica", penwidth=5.02, arrowsize=2.51, color="1.0, 0.604, 0.7*0.604"
+];
+s32 -> s34[fontname="Helvetica", penwidth=2.89, arrowsize=1.45, color="1.0, 0.501, 0.7*0.501"
+];
+s39 -> s36[fontname="Helvetica", penwidth=2.67, arrowsize=1.34, color="1.0, 0.5, 0.7*0.5"
+];
+s39 -> s37[fontname="Helvetica", penwidth=3.54, arrowsize=1.77, color="1.0, 0.503, 0.7*0.503"
+];
+s36 -> s38[fontname="Helvetica", penwidth=5.04, arrowsize=2.52, color="1.0, 0.609, 0.7*0.609"
+];
+s38 -> s12[fontname="Helvetica", penwidth=6, arrowsize=3, color="1.0, 1.5, 0.7*1.5"
+];
+s41 -> s38[fontname="Helvetica", penwidth=3.92, arrowsize=1.96, color="1.0, 0.508, 0.7*0.508"
+];
+s37 -> s38[fontname="Helvetica", penwidth=3.92, arrowsize=1.96, color="1.0, 0.508, 0.7*0.508"
+];
+s37 -> s41[fontname="Helvetica", penwidth=3.92, arrowsize=1.96, color="1.0, 0.508, 0.7*0.508"
+];
+s4 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CO2(4).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s8 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH3OH(8).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s10 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH4(24).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s12 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(132).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s18 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CO*(14).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s19 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CO2*(15).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s20 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/HCO*(16).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s21 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/HCOO*(17).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s22 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/COOH*(18).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s23 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/HCOOH*(19).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s24 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH2O*(20).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s25 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH3O*(21).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s27 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH3OH*(23).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s28 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CH3X(33).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s29 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/OC[Pt](49).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s30 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/O=COC[Pt](59).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s31 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(=O)[Pt](99).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s32 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(=O)O[Pt](104).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s33 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC=O.[Pt](107).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s34 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(=O)O.[Pt](112).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s35 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(O)O[Pt](113).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s36 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CCO[Pt](114).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s37 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CCO.[Pt](123).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s38 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC.[Pt](129).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s39 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC(O)[Pt](137).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+s41 [ image="/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/run_1780/species/CC[Pt](157).png" label="" width="0.1" height="0.1" imagescale=false fixedsize=false color="none" ];
+ label = "Scale = 8.5e-09\l Reaction path diagram following C";
  fontname = "Helvetica";
 }

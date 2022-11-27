@@ -1,0 +1,252 @@
+Units: {}
+Interfaces:
+- {}
+Phases:
+  - name: "gas"
+    Species:
+      - name: DME
+        radicalelectrons: 0
+        smiles: COC
+        thermo:
+          polys:
+            - Tmax: 1035.7425850090947
+              Tmin: 100.0
+              coefs:
+                - 3.88833992E+00 
+                - 1.97267987E-02
+                - -8.07486997E-06 
+                - 1.47700965E-09
+                - -1.01103260E-13
+                - -2.44479497E+04 
+                - 3.63022473E+00 
+              type: NASApolynomial
+            - Tmax: 5000.0
+              Tmin: 1035.7425850090947
+              coefs:
+                - 3.24109471E+00 
+                - 1.38083987E-02 
+                - 9.93078481E-06
+                - -1.47149915E-08 
+                - 4.62551633E-12
+                - -2.37395984E+04 
+                - 9.23356563E+00
+              type: NASApolynomial
+          type: NASA
+        type: Species
+      - name: CH3OH
+        radicalelectrons: 0
+        smiles: CO
+        thermo:
+          polys:
+            - Tmax: 1035.7425850090947
+              Tmin: 100.0
+              coefs:
+                - 3.8400676696782305
+                - 0.0013823548848373123
+                - 1.9166944903261225e-05
+                - -2.0157154009697928e-08
+                - 6.391142525295841e-12
+                - -25608.308948039794
+                - 5.909761533363065
+              type: NASApolynomial
+            - Tmax: 5000.0
+              Tmin: 1035.7425850090947
+              coefs:
+                - 2.791816716630974
+                - 0.011582829207059215
+                - -4.515544386586562e-06
+                - 8.212125909415399e-10
+                - -5.670681017794367e-14
+                - -25721.156107284933
+                - 9.41076412901899
+              type: NASApolynomial
+          type: NASA
+        type: Species
+      - name: H2O
+        radicalelectrons: 0
+        smiles: O
+        thermo:
+          polys:
+            - Tmax: 1130.2385808112142
+              Tmin: 100.0
+              coefs:
+                - 4.057635815185719
+                - -0.0007879356617456299
+                - 2.9087742909305137e-06
+                - -1.4751878527008285e-09
+                - 2.12842651634534e-13
+                - -30281.586635813106
+                - -0.3113639976762862
+              type: NASApolynomial
+            - Tmax: 5000.0
+              Tmin: 1130.2385808112142
+              coefs:
+                - 2.8432506156832478
+                - 0.00275108519827571
+                - -7.810313475808127e-07
+                - 1.0724360810734778e-10
+                - -5.793919870803679e-15
+                - -29958.612841614693
+                - 5.910418984789857
+              type: NASApolynomial
+          type: NASA
+        type: Species
+  - name: surface 
+    Species:  
+    - name: X
+      adjlist: '1 X u0 p0 c0
+
+        '
+      radicalelectrons: 0
+      smiles: '[Pt]'
+      thermo:
+        polys:
+          - Tmax: 1554.8254564764006
+            Tmin: 100.0
+            coefs:
+              - 0.007101151283281394
+              - -4.2559587401401835e-05
+              - 8.984704193437143e-08
+              - -7.801351471604437e-11
+              - 2.3244802872984768e-14
+              - -0.8760895873633465
+              - -0.031120209428007806
+            type: NASApolynomial
+          - Tmax: 5000.0
+            Tmin: 1554.8254564764006
+            coefs:
+              - 0.16030722153699747
+              - -0.00025224590049699474
+              - 1.1418659277045356e-07
+              - -1.2148303614861125e-11
+              - 3.858774746002212e-16
+              - -70.81392235850565
+              - -0.9095701384790345
+            type: NASApolynomial
+        type: NASA
+      type: Species
+    - name: H2O*
+      adjlist: '1 O u0 p2 c0 {2,S} {3,S}
+
+        2 H u0 p0 c0 {1,S}
+
+        3 H u0 p0 c0 {1,S}
+
+        4 X u0 p0 c0
+
+        '
+      radicalelectrons: 0
+      smiles: O.[Pt]
+      thermo:
+        polys:
+          - Tmax: 912.8480650240431
+            Tmin: 100.0
+            coefs:
+              - -1.3434003857158519
+              - 0.036669541489343246
+              - -7.994802510954608e-05
+              - 7.74124581096482e-08
+              - -2.6866505799218036e-11
+              - -32349.030507690783
+              - 11.023763211221299
+            type: NASApolynomial
+          - Tmax: 5000.0
+            Tmin: 912.8480650240431
+            coefs:
+              - 1.1215863891225382
+              - 0.008166397498178293
+              - -4.023583242699539e-06
+              - 7.2042147092004e-10
+              - -4.514428204332247e-14
+              - -32061.522362218544
+              - 3.396171956984284
+            type: NASApolynomial
+        type: NASA
+      type: Species
+    - name: CH3OH*
+      adjlist: '1 O u0 p2 c0 {2,S} {6,S}
+
+        2 C u0 p0 c0 {1,S} {3,S} {4,S} {5,S}
+
+        3 H u0 p0 c0 {2,S}
+
+        4 H u0 p0 c0 {2,S}
+
+        5 H u0 p0 c0 {2,S}
+
+        6 H u0 p0 c0 {1,S}
+
+        7 X u0 p0 c0
+
+        '
+      radicalelectrons: 0
+      smiles: CO.[Pt]
+      thermo:
+        polys:
+          - Tmax: 850.4182947849778
+            Tmin: 100.0
+            coefs:
+              - -1.6400744018097324
+              - 0.04099733230572096
+              - -6.661532384442968e-05
+              - 6.120931487370812e-08
+              - -2.1772474497691484e-11
+              - -30508.73700268059
+              - 13.824450566719833
+            type: NASApolynomial
+          - Tmax: 5000.0
+            Tmin: 850.4182947849778
+            coefs:
+              - 1.0183191109542546
+              - 0.018296716017487193
+              - -8.589822178236637e-06
+              - 1.6223273497664186e-09
+              - -1.1073368420565412e-13
+              - -30592.168510168303
+              - 3.5978312630276705
+            type: NASApolynomial
+        type: NASA
+      type: Species
+
+Reactions:
+    # adsorption Methanol
+  - kinetics:
+      A: 0.046
+      Ea: 0.0
+      n: 0.0
+      type: StickingCoefficient
+    products:
+      - CH3OH*
+    radicalchange: 0
+    reactants:
+      - CH3OH
+      - X
+    type: ElementaryReaction
+    # surface_rxn
+  - kinetics:
+      A: 7390000000000000.0
+      Ea: 77300.0
+      n: 0.0
+      type: Arrhenius
+    products:
+      - CH3OH*
+      - CH3OH*
+    radicalchange: 0
+    reactants:
+      - H2O*
+      - DME
+      - X
+    type: ElementaryReaction
+    # desorption H2O    
+  - kinetics:
+      A: 0.05
+      Ea: 0.0
+      n: 0.0
+      type: StickingCoefficient
+    products:
+      - H2O*
+    radicalchange: 0
+    reactants:
+      - H2O
+      - X
+    type: ElementaryReaction

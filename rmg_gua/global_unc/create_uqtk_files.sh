@@ -4,7 +4,7 @@
 #SBATCH --error=uq_error.log
 #SBATCH --output=uq_output.log
 #SBATCH --nodes=1
-#SBATCH --partition=west
+#SBATCH --partition=short
 #SBATCH --mem=20Gb
 #SBATCH --cpus-per-task=4
 #SBATCH --ntasks=1

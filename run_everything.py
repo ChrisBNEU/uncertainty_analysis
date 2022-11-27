@@ -8,19 +8,21 @@ import yaml
 from rmg_gua.rmg.generate_perturbed_files import generate_perturbed_files
 from rmg_gua.rmg.make_slurm_scripts import make_slurm_scripts
 from rmg_gua.rmg.clean_rmg_db import clean_rmg_db
-from rmg_gua.cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
+from rmg_gua.gua_cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
+from rmg_gua.global_unc.create_uqtk_files import create_files
 
 # specify inputs 
-M = 500 # number of runs of RMG to do
-N = 100 # number of slurm jobs to run at once
+M = 5000 # number of runs of RMG to do
+N = 500 # number of slurm jobs to run at once
 unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
 conda_path = os.path.join(unc_folder, "conda")
 RMG_base_folder = os.path.join(unc_folder, "RMG-Py")
 RMG_db_folder = os.path.join(unc_folder,"RMG-database")
+gua_dir = os.path.join(unc_folder, "rmg_gua", "global_unc")
 expt_yaml_file = os.path.join(unc_folder, "rmg_gua", "cantera" "all_experiments_reorg.yaml")
 
 rmg_unc_scripts_folder = os.path.join(unc_folder,"rmg_gua","rmg")
-output_path = "/scratch/blais.ch/methanol_results_2022_08_24_just_thermo_500/"
+output_path = "/scratch/blais.ch/methanol_results_2022_10_06_5000_runs_all_params_27_spec/"
 pert_yaml = os.path.join(unc_folder, "rmg_gua", "example", "perturb_groups.yaml")
 reference_input = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rmg/input.py"
 
@@ -79,3 +81,18 @@ for i, script in enumerate(slurm_scripts):
 
     
 # run uncertainty
+create_files(
+    output_path,
+    gua_dir, 
+    M,
+)
+
+working_dir = output_path + "rmg_run_scripts/"
+print("running GSA scripts")
+baseline_job = os.path.join(unc_folder, "rmg_gua", "global_unc", "run_workflow.sh")
+
+# submit baseline: 
+gsa_job = job_manager.SlurmJob()
+my_cmd = f'sbatch {baseline_job}'
+print(my_cmd)
+gsa_job.submit(my_cmd)
