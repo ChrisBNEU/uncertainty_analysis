@@ -19,6 +19,6 @@ source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda
 python-jl $RMG input.py
 
 # run cantera
-python /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/cantera/Spinning_basket_reactor/run_reactor.py /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/baseline/cantera/chem_annotated.cti ct_analysis.csv
+python /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/Spinning_basket_reactor/run_reactor.py /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/baseline/cantera/chem_annotated.cti ct_analysis.csv
               
 

@@ -22,3 +22,5 @@ output*.log
 */rms/*
 */testing/*.png
 *pynta/*
+*.png
+*.csv

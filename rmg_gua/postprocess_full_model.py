@@ -17,14 +17,17 @@ RMG_base_folder = unc_folder + "RMG-Py/"
 RMG_db_folder = unc_folder + "RMG-database/"
 conda_path = unc_folder + "conda/"
 expt_yaml_file = ""
-output_path  = "/scratch/blais.ch/methanol_results_2022_05_09/"
+output_path  = "/scratch/blais.ch/methanol_results_2022_07_19/"
 
 # make pdf pages obj
 pp = PdfPages('report.pdf')
 
+obj_func_file_name = "objective_function_ct_analysis.txt"
+obj_func_file_name_log = "objective_function_log_ct_analysis.txt"
+
 # get all objective function files
-obj_func_files = glob.glob(os.path.join(output_path,"run_*/cantera/objective_function.txt"))
-obj_func_files_log = glob.glob(os.path.join(output_path,"run_*/cantera/objective_function_log.txt"))
+obj_func_files = glob.glob(os.path.join(output_path,f"run_*/cantera/{obj_func_file_name}"))
+obj_func_files_log = glob.glob(os.path.join(output_path,f"run_*/cantera/{obj_func_file_name_log}"))
 
 # run through all objective function files. also, return model size
 obj_func_dict = {}
@@ -43,7 +46,7 @@ for file in obj_func_files:
         obj_func_dict[run_num] = float(obj_func)
         
     # access log file to get number fo species    
-    new_addr = file.replace("cantera/objective_function.txt", "RMG.log")
+    new_addr = file.replace(f"cantera/{obj_func_file_name}", "RMG.log")
     with open(new_addr, "r") as f:
         for line in f.readlines():
             if re.search('The final model core has', line, re.I):
@@ -78,7 +81,7 @@ for file in obj_func_files_log:
         obj_func_dict_log[run_num] = float(obj_func)
         
     # access log file to get number of species    
-    new_addr = file.replace("cantera/objective_function_log.txt", "RMG.log")
+    new_addr = file.replace(f"cantera/{obj_func_file_name_log}", "RMG.log")
     with open(new_addr, "r") as f:
         for line in f.readlines():
             if re.search('The final model core has', line, re.I):
@@ -187,6 +190,11 @@ def plot_perturbs(df, obj_func_dict, pp, log=False, label=""):
         plt.title(f'{label} {col}')
         if log:
             plt.yscale('log') 
+        
+        # if it is an a factor that isn't a sticking coef, plot x on log 
+        if col.endswith("/A") and max(val_list) > 1.0: 
+            plt.xscale('log')
+            
         pp.savefig(plt.gcf())
         plt.clf() 
 
@@ -256,7 +264,6 @@ for i,col in enumerate(df):
     pp.savefig(plt.gcf())
     plt.clf() 
 
-
 # get the values that are closest to the desired obj function value (0)
 closest_linear = min(obj_func_dict, key=lambda y: abs(obj_func_dict[y]))
 print("closest linear obj func : {} : {closest_linear}")
@@ -277,6 +284,7 @@ ax.set_xlim(1e-4, 5e-1)
 
 ax.set_xlabel("experimental TOF (1/s)")
 ax.set_ylabel("simulated TOF (1/s)")
+ax.set_title("lin obj func closest")
 ax.tick_params(axis='x', labelsize=14)
 ax.tick_params(axis='y', labelsize=14)
 ax.legend(labels=["MeOH TOF","H2O TOF"])
@@ -302,6 +310,7 @@ ax.set_xlim(1e-4, 5e-1)
 
 ax.set_xlabel("experimental TOF (1/s)")
 ax.set_ylabel("simulated TOF (1/s)")
+ax.set_title("log obj func closest")
 ax.tick_params(axis='x', labelsize=14)
 ax.tick_params(axis='y', labelsize=14)
 ax.legend(labels=["MeOH TOF","H2O TOF"])

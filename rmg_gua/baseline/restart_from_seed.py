@@ -395,18 +395,18 @@ species(
 )
 
 # insert CH4 because it is smothering the surface. 
-species(
-   label='CH4',
-   reactive=True,
-   structure=adjacencyList(
-       """
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-"""),
-)
+# species(
+#    label='CH4',
+#    reactive=True,
+#    structure=adjacencyList(
+#        """
+# 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+# 2 H u0 p0 c0 {1,S}
+# 3 H u0 p0 c0 {1,S}
+# 4 H u0 p0 c0 {1,S}
+# 5 H u0 p0 c0 {1,S}
+# """),
+# )
 
 
 # species(
@@ -584,7 +584,7 @@ options(
 )
 
 generatedSpeciesConstraints(
-    allowed=['input species','reaction libraries'],
+    allowed=['input species'],#,'reaction libraries'],
 #    maximumRadicalElectrons=2,
     maximumOxygenAtoms=2,
     maximumCarbonAtoms=2,
@@ -653,5 +653,30 @@ forbidden(
         """
     )
 )
+# check that we really are having an issue with methane formation
+# forbidden(
+#     label='ch3x',
+#     structure=adjacencyList(
+#         """
+#         1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+#         2 H u0 p0 c0 {1,S}
+#         3 H u0 p0 c0 {1,S}
+#         4 H u0 p0 c0 {1,S}
+#         5 X u0 p0 c0 {1,S}
+#         """
+#     )
+# )
+# forbidden(
+#     label='ch4',
+#     structure=adjacencyList(
+#         """
+#         1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+#         2 H u0 p0 c0 {1,S}
+#         3 H u0 p0 c0 {1,S}
+#         4 H u0 p0 c0 {1,S}
+#         5 H u0 p0 c0 {1,S}
+#         """
+#     )
+# )
 
 

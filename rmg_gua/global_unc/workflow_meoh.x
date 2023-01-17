@@ -19,8 +19,8 @@ source activate uqtk
 
 cp parameter_names_meoh.txt pnames.txt
 
-TRAIN=1182
-VAL=394
+TRAIN=273
+VAL=91
 
 # this needs to be extensible, so it just takes 10% of the runs for training
 head -n$TRAIN Input_meoh.txt > ptrain.dat
@@ -41,7 +41,7 @@ echo $NSAM
 echo $NVAL
 
 # Build surrogates
-${UQPC}/uq_pc.py -r offline_post -p parameter_ranges_meoh.txt -m bcs -s rand -n $NSAM -v $NVAL -t 4 -e 1.e-7
+${UQPC}/uq_pc.py -r offline_post -p parameter_ranges_meoh.txt -m bcs -s rand -n $NSAM -v $NVAL -t 3 -e 1.e-7
 
 # Plot model-vs-surrogate
 ${UQPC}/plot.py dm training validation

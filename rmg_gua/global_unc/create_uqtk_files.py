@@ -21,9 +21,11 @@ import math
 import csv
 import glob
 import re
+import tqdm
 
 def create_files(
     output_path,
+    gua_dir,
     M,
     ):
     
@@ -42,11 +44,12 @@ def create_files(
     obj_func_dict = {}
     model_size_dict = {}
     pattern = re.compile('run_+\d')
-    for file in obj_func_files:
+    for file in tqdm.tqdm(obj_func_files):
         with open(file, "r") as f:
             line = f.readline()
             path,obj_func = line.split(":")
-
+            obj_func = float(obj_func.replace("[","").replace("]",""))
+            
             # find the string for the run number 
             pattern = re.compile('run_\d{4}')
             match = re.search('run_\d{4}',file)
@@ -84,6 +87,21 @@ def create_files(
 
     closest = min(obj_func_dict, key=lambda y: abs(obj_func_dict[y]))
     print("run with closest match: ", closest, obj_func_dict[closest])
+    
+    # get expt # with the most runs w/ the best objective function
+    mindices = {}
+    for file in tqdm.tqdm(ct_data_files):
+        op_df = pd.read_csv(file)
+        # op_df['obj_func'] = op_df['obj_func'].str.replace("[","").str.replace("]","").astype(float)
+        op_df_opt = op_df[(op_df['use_for_opt'] == True) & (op_df['x_CO initial'] > 0) & (op_df['x_CO2 initial'] > 0)]
+        mindex = op_df_opt['obj_func'].idxmin()
+        if mindex in mindices.keys(): 
+            mindices[mindex] += 1
+        else:
+            mindices[mindex] = 1
+            
+    best_run = max(mindices, key=mindices.get)
+    print(best_run, mindices[best_run])
 
     # # sanitize inputs
     # first, load in the perturbed values  
@@ -155,21 +173,29 @@ def create_files(
     # we have a number of completed runs, but we really need the number 
     # of runs where meoh/h2o rop are greaterthan 0. 
 
-    for file in ct_data_files:
+    for file in tqdm.tqdm(ct_data_files):
         # find the string for the run number 
         pattern = re.compile('run_\d{4}')
         match = re.search('run_\d{4}',file)
         run_num = int(match.group(0).replace('run_', ""))
         df = pd.read_csv(file)
-        data_run = df[(df['Unnamed: 0'] == 80)]
+        
+        # this is because I fucked up and had them all formatted wrong ('[tof]' instead of just 'tof')
+        # for key in data_keys:
+        #     df[key] = df[key].str.replace("[","").str.replace("]","").astype(float)
+        
+        data_run = df[(df['Unnamed: 0'] == best_run)]
         data_dict = {}
 
         for key in data_keys: 
             output_value = float(data_run[key])
-            if  output_value <=0: 
+            if  abs(output_value) <=0: 
                 output_value = 0
+                # print(output_value)
             else: 
                 output_value = math.log(output_value, 10)
+                output_value = output_value
+                # print(key, " : ", output_value)
             data_dict[key] = output_value
 
 
@@ -214,7 +240,7 @@ def create_files(
     try:
         with open(csv_file, 'w') as f:
             writer = csv.writer(f, delimiter=" ")
-            # we will remove the header row, seems dicy because I do not know if the 
+            # we will remove the header row, seems dicey because I do not know if the 
             # values are written correctly
             # writer.writeheader()
             for key,perts in pert_val_san_dict_passed_copy.items():
@@ -228,13 +254,13 @@ def create_files(
 
 
     # update workflow.x file with training and valudation numbers
-    num_passed = len(pert_val_san_dict_passed)
+    num_passed = len(pert_val_san_dict_passed_copy)
     num_train = round(0.75*len(passed_runs))
     num_val = num_passed-num_train
     print("Training: ", num_train,"\nValidation: ", num_val)
 
-
-    with open('workflow_meoh.x', 'r') as f:
+    workflow_file = os.path.join(gua_dir, 'workflow_meoh.x')
+    with open(workflow_file, 'r') as f:
         # read a list of lines into data
         data = f.readlines()
 
@@ -244,14 +270,17 @@ def create_files(
         if ("VAL=" in datum) and not ("NVAL=" in datum):
             data[line] = f"VAL={num_val}\n"      
 
-    with open('workflow_meoh.x', 'w') as f:
+    with open(workflow_file, 'w') as f:
         f.writelines(data)
         
 
 if __name__ == "__main__":
-    output_path  = "/scratch/blais.ch/methanol_results_2022_08_25_just_thermo_5000/"
+    output_path  = "/scratch/blais.ch/methanol_results_2022_10_06_5000_runs_all_params_27_spec/"
+    gua_dir = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/global_unc/"
     M = 5000
+    
     create_files(
     output_path,
-    M=M,
+    gua_dir,   
+    M,
     )

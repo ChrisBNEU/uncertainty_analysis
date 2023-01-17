@@ -12,5 +12,5 @@
 #SBATCH --mail-user=$USER@northeastern.edu 
 #SBATCH --mail-type=FAIL,END
 
-source activate ./conda
+source activate ../conda
 python postprocess_full_model.py

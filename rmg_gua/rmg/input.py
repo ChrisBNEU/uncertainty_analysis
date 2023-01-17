@@ -30,14 +30,7 @@ database(
 )
 
 catalystProperties( # default values for Cu(111) calculated by Katrin Blondal and Bjarne Kreitz at Brown University
-    bindingEnergies = {
-                       'C':(-4.96033553, 'eV/molecule'),
-                       'O':(-4.20763879, 'eV/molecule'),
-                       'N':(-3.58446699, 'eV/molecule'),
-                       'H':(-2.58383235, 'eV/molecule'),
-                       },
-    surfaceSiteDensity=(2.943e-9, 'mol/cm^2'),  # from Katrin
-    coverageDependence=True,
+    metal='Cu111',
 
 )
 # catalystProperties( # Rh111
@@ -564,6 +557,7 @@ model(
 # FILTERING: set so threshold is slightly larger than max rate constants
 #    filterReactions=True,
 #    filterThreshold=5e8, # default value
+    maxNumSpecies=27,
 )
 
 options(

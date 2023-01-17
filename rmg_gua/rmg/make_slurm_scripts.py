@@ -206,7 +206,7 @@ def make_slurm_scripts(
         
 
         content.append('# Run the Cantera analysis\n')    
-        content.append(f'python {unc_folder + "rmg_gua/cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE\n')
+        content.append(f'python {unc_folder + "rmg_gua/gua_cantera/Spinning_basket_reactor/run_reactor.py"} $CT_FILE\n')
 
 
         jobfile.content = content
