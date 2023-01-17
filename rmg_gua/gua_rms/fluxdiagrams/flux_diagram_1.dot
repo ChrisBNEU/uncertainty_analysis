@@ -11,13 +11,13 @@ digraph flux_diagram {
 	];
 	node [label="\N"];
 	H2	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2.png",
 		label=" ",
 		penwidth=8.841,
 		pos="117.5,1031.6",
 		width=0.75];
 	"H*"	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="213,1031.6",
@@ -27,7 +27,7 @@ digraph flux_diagram {
 		penwidth=10.0,
 		pos="e,185.77,1031.6 144.54,1031.6 154.19,1031.6 165.31,1031.6 175.7,1031.6"];
 	"H2O*"	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2O*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2O*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="509.23,1113.6",
@@ -37,7 +37,7 @@ digraph flux_diagram {
 		penwidth=9.851,
 		pos="e,482.56,1118.3 234.24,1045.7 265.22,1066.3 327.03,1103.7 386,1117.6 414.57,1124.3 447.93,1122.6 472.57,1119.6"];
 	"CO*"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,757.6",
@@ -47,7 +47,7 @@ digraph flux_diagram {
 		penwidth=9.386,
 		pos="e,294.91,775.3 216.75,1008.9 222.85,964.93 240.31,866.01 281,793.6 283.07,789.91 285.59,786.31 288.31,782.89"];
 	"O*"	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/O*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/O*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,993.6",
@@ -57,7 +57,7 @@ digraph flux_diagram {
 		penwidth=7.384,
 		pos="e,290.51,1002.7 237.82,1022.6 250.74,1017.7 266.92,1011.6 281.09,1006.2"];
 	"CH2O*"	 [height=0.56961,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH2O*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH2O*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="509.23,864.6",
@@ -67,7 +67,7 @@ digraph flux_diagram {
 		penwidth=8.729,
 		pos="e,506.4,885.27 238.68,1038.9 283.24,1050.5 378.21,1067.7 440,1025.6 483.34,996.06 499.26,933.07 505.03,895.23"];
 	"HCO*"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCO*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCO*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="413,820.6",
@@ -77,7 +77,7 @@ digraph flux_diagram {
 		penwidth=8.611,
 		pos="e,389.97,806.07 338.65,772.21 351.31,780.56 367.37,791.16 381.23,800.3"];
 	CH3X	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3X.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3X.png",
 		label=" ",
 		penwidth=0.0,
 		pos="413,634.6",
@@ -87,7 +87,7 @@ digraph flux_diagram {
 		penwidth=8.713,
 		pos="e,399.15,654.14 335.06,738.58 340.06,733.22 345.36,727.29 350,721.6 365.48,702.63 381.47,680.09 393.34,662.71"];
 	"OH*"	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/OH*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/OH*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="413,993.6",
@@ -97,7 +97,7 @@ digraph flux_diagram {
 		penwidth=8.241,
 		pos="s,342.6,993.6 352.82,993.6 363.84,993.6 375.73,993.6 385.94,993.6"];
 	"OC[Pt]"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/OC[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/OC[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="605.47,824.6",
@@ -107,7 +107,7 @@ digraph flux_diagram {
 		penwidth=8.786,
 		pos="e,580.28,834.86 534.5,854.3 545.6,849.58 558.94,843.92 570.98,838.81"];
 	X	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/X.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/X.png",
 		label=" ",
 		penwidth=0.0,
 		pos="117.5,691.6",
@@ -136,7 +136,7 @@ digraph flux_diagram {
 		pos="s,117.8,709.6 117.77,719.85 118.16,767.73 126.17,864.83 181,918.6 236.34,972.86 277.54,934.09 350,961.6 363.93,966.89 378.79,974.48 \
 390.46,980.94"];
 	"CO2*"	 [height=0.72675,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO2*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO2*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="213,457.6",
@@ -146,7 +146,7 @@ digraph flux_diagram {
 		penwidth=9.191,
 		pos="e,194.16,478.4 122.17,673.78 129.82,638.79 149.43,559.19 181,498.6 183.1,494.57 185.59,490.53 188.23,486.63"];
 	"COOH*"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/COOH*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/COOH*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,363.6",
@@ -156,7 +156,7 @@ digraph flux_diagram {
 		penwidth=9.04,
 		pos="e,282.88,369.16 122.54,673.72 136.06,614 178.94,425.09 181,422.6 204.16,394.63 243.22,379.48 273.12,371.57"];
 	"CC(=O)O.[Pt]"	 [height=1.0999,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)O.[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)O.[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="213,58.598",
@@ -167,7 +167,7 @@ digraph flux_diagram {
 		pos="e,203.63,96.579 123.22,673.89 129.14,651.09 139.2,610.16 145,574.6 170.61,417.64 157.85,375.93 181,218.6 186.57,180.71 194.92,138.16 \
 201.55,106.47"];
 	"CH3OH*"	 [height=0.56961,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3OH*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3OH*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,691.6",
@@ -177,7 +177,7 @@ digraph flux_diagram {
 		penwidth=8.636,
 		pos="s,144.53,691.6 154.85,691.6 193.61,691.6 254.04,691.6 288.37,691.6"];
 	"CC.[Pt]"	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC.[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC.[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="413,208.6",
@@ -192,7 +192,7 @@ digraph flux_diagram {
 		penwidth=7.251,
 		pos="s,129.03,708.05 135,716.75 160.93,753.68 215.11,821.09 281,847.6 317.19,862.16 362.3,845.98 389.03,833.14"];
 	"HCOOH*"	 [height=0.72675,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOOH*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOOH*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="509.23,630.6",
@@ -202,7 +202,7 @@ digraph flux_diagram {
 		penwidth=7.673,
 		pos="e,482.29,614.92 121.93,673.48 128.22,646 144.45,594.69 181,572.6 275.13,515.71 410.52,575.7 473.53,610.05"];
 	"CC=O.[Pt]"	 [height=0.62854,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC=O.[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC=O.[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="213,250.6",
@@ -221,7 +221,7 @@ digraph flux_diagram {
 		penwidth=9.195,
 		pos="e,293.15,383.57 234.34,438.58 249.03,424.84 269.08,406.08 285.45,390.77"];
 	"HCOO*"	 [height=1.0607,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOO*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOO*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,446.6",
@@ -251,7 +251,7 @@ digraph flux_diagram {
 		penwidth=7.314,
 		pos="s,425.93,796.53 430.45,787.43 449.25,749.53 479.56,688.42 496.25,654.77"];
 	"CH3O2*"	 [height=1.0607,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3O2*.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3O2*.png",
 		label=" ",
 		penwidth=0.0,
 		pos="605.47,630.6",
@@ -261,7 +261,7 @@ digraph flux_diagram {
 		penwidth=7.387,
 		pos="e,578.22,630.6 542.66,630.6 550.82,630.6 559.64,630.6 567.98,630.6"];
 	"CCO[Pt]"	 [height=0.98611,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CCO[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CCO[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,244.6",
@@ -271,7 +271,7 @@ digraph flux_diagram {
 		penwidth=7.34,
 		pos="e,288.49,246.15 240.14,249.04 251.77,248.34 265.67,247.51 278.27,246.76"];
 	CH4	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH4.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH4.png",
 		label=" ",
 		penwidth=8.792,
 		pos="315.5,634.6",
@@ -281,7 +281,7 @@ digraph flux_diagram {
 		penwidth=9.534,
 		pos="s,342.6,634.6 352.82,634.6 363.84,634.6 375.73,634.6 385.94,634.6"];
 	"CC(=O)O"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)O.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)O.png",
 		label=" ",
 		penwidth=0.0,
 		pos="27,126.6",
@@ -296,7 +296,7 @@ digraph flux_diagram {
 		penwidth=9.092,
 		pos="e,181.18,64.279 49.925,111.91 61.465,104.7 76.078,96.342 90,90.598 116.21,79.783 147.13,71.721 171.27,66.395"];
 	"CC(=O)[Pt]"	 [height=0.75,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)[Pt].png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)[Pt].png",
 		label=" ",
 		penwidth=0.0,
 		pos="117.5,126.6",
@@ -318,7 +318,7 @@ digraph flux_diagram {
 		penwidth=7.61,
 		pos="e,197.67,231.59 134.57,147.91 150.31,168.79 174.36,200.68 191.48,223.38"];
 	H2O	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2O.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2O.png",
 		label=" ",
 		penwidth=10.0,
 		pos="413,1090.6",
@@ -328,7 +328,7 @@ digraph flux_diagram {
 		penwidth=9.308,
 		pos="s,438.76,1096.6 448.8,1099.1 460.13,1101.9 472.49,1104.9 482.98,1107.4"];
 	CO2	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO2.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO2.png",
 		label=" ",
 		penwidth=9.109,
 		pos="117.5,547.6",
@@ -342,7 +342,7 @@ digraph flux_diagram {
 		penwidth=9.191,
 		pos="e,192.31,476.55 133.94,532.74 147.79,519.4 168.44,499.53 185.01,483.57"];
 	CC	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC.png",
 		label=" ",
 		penwidth=8.651,
 		pos="315.5,172.6",
@@ -352,7 +352,7 @@ digraph flux_diagram {
 		penwidth=8.661,
 		pos="e,389.15,199.98 343.87,182.91 355.06,187.13 368.1,192.05 379.75,196.44"];
 	CH3OH	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3OH.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3OH.png",
 		label=" ",
 		penwidth=0.795,
 		pos="213,599.6",
@@ -366,7 +366,7 @@ digraph flux_diagram {
 		penwidth=8.636,
 		pos="e,389.99,622.75 244.97,598.36 272.83,597.96 314.69,599.15 350,607.6 360.36,610.08 371.17,614.19 380.8,618.47"];
 	HCOOH	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOOH.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOOH.png",
 		label=" ",
 		penwidth=0.0,
 		pos="315.5,820.6",
@@ -384,7 +384,7 @@ digraph flux_diagram {
 		penwidth=7.228,
 		pos="e,389.04,217.25 341.59,235.14 353.19,230.77 367.11,225.52 379.5,220.85"];
 	"CC=O"	 [height=0.5,
-		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC=O.png",
+		image="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC=O.png",
 		label=" ",
 		penwidth=0.0,
 		pos="117.5,276.6",

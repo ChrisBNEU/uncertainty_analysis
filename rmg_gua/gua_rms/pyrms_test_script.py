@@ -9,7 +9,6 @@ from pyrms import rms
 from diffeqpy import de
 from julia import Main
 import yaml
-from julia import Sundials
 from diffeqpy import de
 import time 
 import matplotlib
@@ -65,25 +64,17 @@ class sbr:
         # Define the domain (encodes how system thermodynamic properties calculated)
         domaingas,y0gas,pgas = rms.ConstantTPDomain(phase=ig,initialconds=initialcondsgas,sensitivity=True)
 
-        
+        # Set simulation Initial Temp Pressure and Mole Frac
         V = conditions["volume"]
         A = conditions["catalyst_area"]
         initialconds = {
                 "T":conditions["temperature"],
                 "A":conditions["catalyst_area"],
                 "X":cat.sitedensity*A
-        } #Set simulation Initial Temp and Pressure
+        } 
+        
         # Define the domain (encodes how system thermodynamic properties calculated)
         domaincat,y0cat,pcat = rms.ConstantTAPhiDomain(phase=cat,initialconds=initialconds,sensitivity=True);
-
-
-        # ## make reactor, inlet and outlet
-        # - makes an anonymous function x->42, is that velocity in? need to check if it is velocity or volume flowrate
-        # - also, I think the ```phi``` refers to chemical potential, but I should check, I think constantTPhi is just const T for our case. 
-
-        # In[10]:
-
-
         initialcondsinlet = {
                 "T":conditions["temperature"],
                 "P":conditions["pressure"],
@@ -93,7 +84,7 @@ class sbr:
             }
 
         # construct reactor
-        inter,pinter = rms.ReactiveInternalInterfaceConstantTPhi(domaingas,domaincat,interfacerxns,initialcondsinlet["T"],A);
+        inter,pinter = rms.ReactiveInternalInterfaceConstantTPhi(domaingas,domaincat,interfacerxns,initialcondsinlet["T"],A)
 
         # make inlet and outlet
         inletgas = rms.Inlet(domaingas,initialcondsinlet,Main.eval("x->"+str(conditions["molar_flow"])))
@@ -109,50 +100,38 @@ class sbr:
         sol = de.solve(react.ode,de.CVODE_BDF(),abstol=1e-20,reltol=1e-8)
         t2 = time.time()
 
-
-        # In[13]:
-
-
+        print("simulation took {0:2e} seconds".format(t2-t1))
         ssys = rms.SystemSimulation(sol,domains,interfaces,p)
 
+        # we need to extract the reaction objects from julia. the sensitivities 
+        # are just the second index in the tuple, but the first index is the 
+        # julia reaction objects. I need to spit out a reaction equation for the 
+        # spreadsheet. during postprocessing, need to get the sensitivities and 
+        # trace them back to their originating family
+        # dead reconing, get sensitivities at 0.001, 0.1, and 1 * time reacted
+        sens_times = [1e-3*time, 1e-1*time, time]
+        sens_rxn_meth = {}
+        sens_rxn_h2o = {}
+        for time in sens_times
+            senss_meth = rms.getrxntransitorysensitivities(ssys, "CH3OH", time)
+            senss_h2o = rms.getrxntransitorysensitivities(ssys, "H2O", time)
 
-        # In[14]:
+            # multiply them together to get some aggregate importance
+            for index, rxn in enumerate(senss_meth[0]): 
+                rxn_str = rms.getrxnstr(rxn)
+                if rxn_str in sens_rxn_meth.keys():
+                    sens_rxn_meth[rxn_str] *= senss[1][index]
+                else: 
+                    sens_rxn_meth[rxn_str] = senss[1][index]
 
-
-        rms.plotmolefractions(ssys.sims[1],tol=0.001)
-
-
-        # In[15]:
-
-
-        rms.plotrxntransitorysensitivities(ssys, "CC", 100)
-
-
-        # we need to extract the reaction objects from julia. the sensitivities are just the second index in the tuple, but the first index is the julia reaction objects. I need to spit out a reaction equation for the spreadsheet. during postprocessing, I need to get the sensitivities and trace them back to their originating family
-
-        # In[16]:
-
-
-        senss = rms.getrxntransitorysensitivities(ssys, "CC", 100)
-
-
-        # In[26]:
-
-
-        len(senss)
-
-
-        # In[28]:
-
-
-        for index, rxn in enumerate(senss[0]): 
-            print(rms.getrxnstr(rxn))
-
-
-        # In[ ]:
-
-
-
+            for index, rxn in enumerate(senss_h20[0]): 
+                rxn_str = rms.getrxnstr(rxn)
+                if rxn_str in sens_rxn_h2o.keys():
+                    sens_rxn_meth[rxn_str] *= senss[1][index]
+                else: 
+                    sens_rxn_meth[rxn_str] = senss[1][index]
+                    
+            
 
         ## test sbr
         file_dir = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/rms/chem53.rms"

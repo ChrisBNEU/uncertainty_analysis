@@ -12,8 +12,8 @@ from rmg_gua.gua_cantera.Spinning_basket_reactor.make_slurm_analysis_scripts imp
 from rmg_gua.global_unc.create_uqtk_files import create_files
 
 # specify inputs 
-M = 5000 # number of runs of RMG to do
-N = 500 # number of slurm jobs to run at once
+M = 500 # number of runs of RMG to do
+N = 100 # number of slurm jobs to run at once
 unc_folder = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
 conda_path = os.path.join(unc_folder, "conda")
 RMG_base_folder = os.path.join(unc_folder, "RMG-Py")

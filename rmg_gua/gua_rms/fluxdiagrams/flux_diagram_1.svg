@@ -13,13 +13,13 @@
 <!-- H2 -->
 <g id="node1" class="node"><title>H2</title>
 <ellipse fill="none" stroke="black" stroke-width="8.841" cx="117.5" cy="-1031.6" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2.png" width="22px" height="17px" preserveAspectRatio="xMinYMin meet" x="106.5" y="-1040.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2.png" width="22px" height="17px" preserveAspectRatio="xMinYMin meet" x="106.5" y="-1040.1"/>
 <text text-anchor="middle" x="117.5" y="-1027.9" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H* -->
 <g id="node2" class="node"><title>H*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="213" cy="-1031.6" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H*.png" width="16px" height="41px" preserveAspectRatio="xMinYMin meet" x="205" y="-1052.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H*.png" width="16px" height="41px" preserveAspectRatio="xMinYMin meet" x="205" y="-1052.1"/>
 <text text-anchor="middle" x="213" y="-1027.9" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H2&#45;&gt;H* -->
@@ -30,7 +30,7 @@
 <!-- H2O* -->
 <g id="node3" class="node"><title>H2O*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="509.234" cy="-1113.6" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2O*.png" width="31px" height="41px" preserveAspectRatio="xMinYMin meet" x="493.734" y="-1134.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2O*.png" width="31px" height="41px" preserveAspectRatio="xMinYMin meet" x="493.734" y="-1134.1"/>
 <text text-anchor="middle" x="509.234" y="-1109.9" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H*&#45;&gt;H2O* -->
@@ -41,7 +41,7 @@
 <!-- CO* -->
 <g id="node4" class="node"><title>CO*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-757.598" rx="27" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO*.png" width="35px" height="49px" preserveAspectRatio="xMinYMin meet" x="298" y="-782.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO*.png" width="35px" height="49px" preserveAspectRatio="xMinYMin meet" x="298" y="-782.098"/>
 <text text-anchor="middle" x="315.5" y="-753.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H*&#45;&gt;CO* -->
@@ -52,7 +52,7 @@
 <!-- O* -->
 <g id="node5" class="node"><title>O*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-993.598" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/O*.png" width="17px" height="41px" preserveAspectRatio="xMinYMin meet" x="307" y="-1014.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/O*.png" width="17px" height="41px" preserveAspectRatio="xMinYMin meet" x="307" y="-1014.1"/>
 <text text-anchor="middle" x="315.5" y="-989.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H*&#45;&gt;O* -->
@@ -63,7 +63,7 @@
 <!-- CH2O* -->
 <g id="node6" class="node"><title>CH2O*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="509.234" cy="-864.598" rx="29" ry="20.5122"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH2O*.png" width="52px" height="36px" preserveAspectRatio="xMinYMin meet" x="483.234" y="-882.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH2O*.png" width="52px" height="36px" preserveAspectRatio="xMinYMin meet" x="483.234" y="-882.598"/>
 <text text-anchor="middle" x="509.234" y="-860.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H*&#45;&gt;CH2O* -->
@@ -74,7 +74,7 @@
 <!-- HCO* -->
 <g id="node14" class="node"><title>HCO*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="413" cy="-820.598" rx="27" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCO*.png" width="35px" height="49px" preserveAspectRatio="xMinYMin meet" x="395.5" y="-845.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCO*.png" width="35px" height="49px" preserveAspectRatio="xMinYMin meet" x="395.5" y="-845.098"/>
 <text text-anchor="middle" x="413" y="-816.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CO*&#45;&gt;HCO* -->
@@ -85,7 +85,7 @@
 <!-- CH3X -->
 <g id="node18" class="node"><title>CH3X</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="413" cy="-634.598" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3X.png" width="30px" height="41px" preserveAspectRatio="xMinYMin meet" x="398" y="-655.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3X.png" width="30px" height="41px" preserveAspectRatio="xMinYMin meet" x="398" y="-655.098"/>
 <text text-anchor="middle" x="413" y="-630.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CO*&#45;&gt;CH3X -->
@@ -96,7 +96,7 @@
 <!-- OH* -->
 <g id="node8" class="node"><title>OH*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="413" cy="-993.598" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/OH*.png" width="24px" height="41px" preserveAspectRatio="xMinYMin meet" x="401" y="-1014.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/OH*.png" width="24px" height="41px" preserveAspectRatio="xMinYMin meet" x="401" y="-1014.1"/>
 <text text-anchor="middle" x="413" y="-989.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- O*&#45;&gt;OH* -->
@@ -107,7 +107,7 @@
 <!-- OC[Pt] -->
 <g id="node24" class="node"><title>OC[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="605.468" cy="-824.598" rx="27" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/OC[Pt].png" width="44px" height="49px" preserveAspectRatio="xMinYMin meet" x="583.468" y="-849.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/OC[Pt].png" width="44px" height="49px" preserveAspectRatio="xMinYMin meet" x="583.468" y="-849.098"/>
 <text text-anchor="middle" x="605.468" y="-820.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CH2O*&#45;&gt;OC[Pt] -->
@@ -118,7 +118,7 @@
 <!-- X -->
 <g id="node7" class="node"><title>X</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="117.5" cy="-691.598" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/X.png" width="16px" height="17px" preserveAspectRatio="xMinYMin meet" x="109.5" y="-700.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/X.png" width="16px" height="17px" preserveAspectRatio="xMinYMin meet" x="109.5" y="-700.098"/>
 <text text-anchor="middle" x="117.5" y="-687.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;H* -->
@@ -149,7 +149,7 @@
 <!-- CO2* -->
 <g id="node9" class="node"><title>CO2*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="213" cy="-457.598" rx="29.8983" ry="26.3269"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO2*.png" width="54px" height="47px" preserveAspectRatio="xMinYMin meet" x="186" y="-481.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO2*.png" width="54px" height="47px" preserveAspectRatio="xMinYMin meet" x="186" y="-481.098"/>
 <text text-anchor="middle" x="213" y="-453.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;CO2* -->
@@ -160,7 +160,7 @@
 <!-- COOH* -->
 <g id="node10" class="node"><title>COOH*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-363.598" rx="33.1514" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/COOH*.png" width="61px" height="49px" preserveAspectRatio="xMinYMin meet" x="285" y="-388.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/COOH*.png" width="61px" height="49px" preserveAspectRatio="xMinYMin meet" x="285" y="-388.098"/>
 <text text-anchor="middle" x="315.5" y="-359.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;COOH* -->
@@ -171,7 +171,7 @@
 <!-- CC(=O)O.[Pt] -->
 <g id="node11" class="node"><title>CC(=O)O.[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="213" cy="-58.598" rx="32" ry="39.6962"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)O.[Pt].png" width="58px" height="73px" preserveAspectRatio="xMinYMin meet" x="184" y="-95.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)O.[Pt].png" width="58px" height="73px" preserveAspectRatio="xMinYMin meet" x="184" y="-95.098"/>
 <text text-anchor="middle" x="213" y="-54.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;CC(=O)O.[Pt] -->
@@ -182,7 +182,7 @@
 <!-- CH3OH* -->
 <g id="node12" class="node"><title>CH3OH*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-691.598" rx="27" ry="20.5122"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3OH*.png" width="39px" height="36px" preserveAspectRatio="xMinYMin meet" x="296" y="-709.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3OH*.png" width="39px" height="36px" preserveAspectRatio="xMinYMin meet" x="296" y="-709.598"/>
 <text text-anchor="middle" x="315.5" y="-687.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;CH3OH* -->
@@ -193,7 +193,7 @@
 <!-- CC.[Pt] -->
 <g id="node13" class="node"><title>CC.[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="413" cy="-208.598" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC.[Pt].png" width="26px" height="30px" preserveAspectRatio="xMinYMin meet" x="400" y="-223.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC.[Pt].png" width="26px" height="30px" preserveAspectRatio="xMinYMin meet" x="400" y="-223.598"/>
 <text text-anchor="middle" x="413" y="-204.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;CC.[Pt] -->
@@ -209,7 +209,7 @@
 <!-- HCOOH* -->
 <g id="node15" class="node"><title>HCOOH*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="509.234" cy="-630.598" rx="33.4697" ry="26.3269"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOOH*.png" width="61px" height="47px" preserveAspectRatio="xMinYMin meet" x="478.734" y="-654.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOOH*.png" width="61px" height="47px" preserveAspectRatio="xMinYMin meet" x="478.734" y="-654.098"/>
 <text text-anchor="middle" x="509.234" y="-626.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;HCOOH* -->
@@ -220,7 +220,7 @@
 <!-- CC=O.[Pt] -->
 <g id="node16" class="node"><title>CC=O.[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="213" cy="-250.598" rx="27" ry="22.7556"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC=O.[Pt].png" width="48px" height="41px" preserveAspectRatio="xMinYMin meet" x="189" y="-271.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC=O.[Pt].png" width="48px" height="41px" preserveAspectRatio="xMinYMin meet" x="189" y="-271.098"/>
 <text text-anchor="middle" x="213" y="-246.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- X&#45;&gt;CC=O.[Pt] -->
@@ -241,7 +241,7 @@
 <!-- HCOO* -->
 <g id="node22" class="node"><title>HCOO*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-446.598" rx="27" ry="38.3684"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOO*.png" width="35px" height="70px" preserveAspectRatio="xMinYMin meet" x="298" y="-481.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOO*.png" width="35px" height="70px" preserveAspectRatio="xMinYMin meet" x="298" y="-481.598"/>
 <text text-anchor="middle" x="315.5" y="-442.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CO2*&#45;&gt;HCOO* -->
@@ -277,7 +277,7 @@
 <!-- CH3O2* -->
 <g id="node27" class="node"><title>CH3O2*</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="605.468" cy="-630.598" rx="27" ry="38.3684"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3O2*.png" width="42px" height="70px" preserveAspectRatio="xMinYMin meet" x="584.468" y="-665.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3O2*.png" width="42px" height="70px" preserveAspectRatio="xMinYMin meet" x="584.468" y="-665.598"/>
 <text text-anchor="middle" x="605.468" y="-626.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- HCOOH*&#45;&gt;CH3O2* -->
@@ -288,7 +288,7 @@
 <!-- CCO[Pt] -->
 <g id="node29" class="node"><title>CCO[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-244.598" rx="27" ry="35.5"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CCO[Pt].png" width="29px" height="64px" preserveAspectRatio="xMinYMin meet" x="301" y="-276.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CCO[Pt].png" width="29px" height="64px" preserveAspectRatio="xMinYMin meet" x="301" y="-276.598"/>
 <text text-anchor="middle" x="315.5" y="-240.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CC=O.[Pt]&#45;&gt;CCO[Pt] -->
@@ -299,7 +299,7 @@
 <!-- CH4 -->
 <g id="node17" class="node"><title>CH4</title>
 <ellipse fill="none" stroke="black" stroke-width="8.792" cx="315.5" cy="-634.598" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH4.png" width="30px" height="17px" preserveAspectRatio="xMinYMin meet" x="300.5" y="-643.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH4.png" width="30px" height="17px" preserveAspectRatio="xMinYMin meet" x="300.5" y="-643.098"/>
 <text text-anchor="middle" x="315.5" y="-630.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CH4&#45;&gt;CH3X -->
@@ -310,7 +310,7 @@
 <!-- CC(=O)O -->
 <g id="node19" class="node"><title>CC(=O)O</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="27" cy="-126.598" rx="27" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)O.png" width="48px" height="49px" preserveAspectRatio="xMinYMin meet" x="3" y="-151.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)O.png" width="48px" height="49px" preserveAspectRatio="xMinYMin meet" x="3" y="-151.098"/>
 <text text-anchor="middle" x="27" y="-122.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CC(=O)O&#45;&gt;COOH* -->
@@ -326,7 +326,7 @@
 <!-- CC(=O)[Pt] -->
 <g id="node20" class="node"><title>CC(=O)[Pt]</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="117.5" cy="-126.598" rx="27" ry="27"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC(=O)[Pt].png" width="48px" height="49px" preserveAspectRatio="xMinYMin meet" x="93.5" y="-151.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC(=O)[Pt].png" width="48px" height="49px" preserveAspectRatio="xMinYMin meet" x="93.5" y="-151.098"/>
 <text text-anchor="middle" x="117.5" y="-122.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CC(=O)O&#45;&gt;CC(=O)[Pt] -->
@@ -352,7 +352,7 @@
 <!-- H2O -->
 <g id="node21" class="node"><title>H2O</title>
 <ellipse fill="none" stroke="black" stroke-width="10" cx="413" cy="-1090.6" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/H2O.png" width="31px" height="17px" preserveAspectRatio="xMinYMin meet" x="397.5" y="-1099.1"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/H2O.png" width="31px" height="17px" preserveAspectRatio="xMinYMin meet" x="397.5" y="-1099.1"/>
 <text text-anchor="middle" x="413" y="-1086.9" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- H2O&#45;&gt;H2O* -->
@@ -363,7 +363,7 @@
 <!-- CO2 -->
 <g id="node23" class="node"><title>CO2</title>
 <ellipse fill="none" stroke="black" stroke-width="9.109" cx="117.5" cy="-547.598" rx="27.5" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CO2.png" width="54px" height="27px" preserveAspectRatio="xMinYMin meet" x="90.5" y="-561.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CO2.png" width="54px" height="27px" preserveAspectRatio="xMinYMin meet" x="90.5" y="-561.098"/>
 <text text-anchor="middle" x="117.5" y="-543.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CO2&#45;&gt;CO* -->
@@ -379,7 +379,7 @@
 <!-- CC -->
 <g id="node25" class="node"><title>CC</title>
 <ellipse fill="none" stroke="black" stroke-width="8.651" cx="315.5" cy="-172.598" rx="34.5" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC.png" width="68px" height="17px" preserveAspectRatio="xMinYMin meet" x="281.5" y="-181.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC.png" width="68px" height="17px" preserveAspectRatio="xMinYMin meet" x="281.5" y="-181.098"/>
 <text text-anchor="middle" x="315.5" y="-168.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CC&#45;&gt;CC.[Pt] -->
@@ -390,7 +390,7 @@
 <!-- CH3OH -->
 <g id="node26" class="node"><title>CH3OH</title>
 <ellipse fill="none" stroke="black" stroke-width="0.795" cx="213" cy="-599.598" rx="32" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CH3OH.png" width="63px" height="17px" preserveAspectRatio="xMinYMin meet" x="181.5" y="-608.098"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CH3OH.png" width="63px" height="17px" preserveAspectRatio="xMinYMin meet" x="181.5" y="-608.098"/>
 <text text-anchor="middle" x="213" y="-595.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CH3OH&#45;&gt;CH3OH* -->
@@ -406,7 +406,7 @@
 <!-- HCOOH -->
 <g id="node28" class="node"><title>HCOOH</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="315.5" cy="-820.598" rx="32" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/HCOOH.png" width="63px" height="22px" preserveAspectRatio="xMinYMin meet" x="284" y="-831.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/HCOOH.png" width="63px" height="22px" preserveAspectRatio="xMinYMin meet" x="284" y="-831.598"/>
 <text text-anchor="middle" x="315.5" y="-816.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- HCOOH&#45;&gt;HCO* -->
@@ -427,7 +427,7 @@
 <!-- CC=O -->
 <g id="node30" class="node"><title>CC=O</title>
 <ellipse fill="none" stroke="black" stroke-width="0" cx="117.5" cy="-276.598" rx="27" ry="18"/>
-<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/rms/species/CC=O.png" width="48px" height="22px" preserveAspectRatio="xMinYMin meet" x="93.5" y="-287.598"/>
+<image xlink:href="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/species/CC=O.png" width="48px" height="22px" preserveAspectRatio="xMinYMin meet" x="93.5" y="-287.598"/>
 <text text-anchor="middle" x="117.5" y="-272.898" font-family="Times,serif" font-size="14.00"> </text>
 </g>
 <!-- CC=O&#45;&gt;CC=O.[Pt] -->

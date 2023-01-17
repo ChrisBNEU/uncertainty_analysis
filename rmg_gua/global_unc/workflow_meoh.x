@@ -19,8 +19,8 @@ source activate uqtk
 
 cp parameter_names_meoh.txt pnames.txt
 
-TRAIN=3410
-VAL=1137
+TRAIN=273
+VAL=91
 
 # this needs to be extensible, so it just takes 10% of the runs for training
 head -n$TRAIN Input_meoh.txt > ptrain.dat
