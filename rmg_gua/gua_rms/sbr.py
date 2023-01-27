@@ -126,7 +126,7 @@ class rms_sbr():
         V = reac_config["volume"]
         A = reac_config["catalyst_area"]
         self.cat_area = A
-        self.total_sites = (self.cat_area*self.site_density)*1e3 #[mol sites]
+        self.total_sites = (self.cat_area*self.site_density) #[mol sites]
         initialconds = {
                 "T":reac_config["temperature"],
                 "A":reac_config ["catalyst_area"],
@@ -283,7 +283,10 @@ class rms_sbr():
                     
         # sort the dictionary by the score
         sens_rxn_dict = {k: v for k, v in sorted(sens_rxn_dict.items(), key=lambda item: item[1][0])}
-
+        # save the dictionary to a yaml file:
+        with open(os.path.join(self.base_path, "sens_rms_dict.pickle"), 'wb') as file:
+            pickle.dump(sens_rxn_dict, file)
+            
         # print the dict: 
         for rxn_str, entry in sens_rxn_dict.items():
             results[rxn_str + "CH3OH sens"] = entry[1][len(sens_times)-1]
@@ -312,7 +315,6 @@ class rms_sbr():
             for rxn in model.reactions:
                 counter = 0
                 if rxn.matches_species(entry[3],entry[4]):
-                    print("match : ", rxn_str, counter)
                     match_list.append(rxn_str)
                     sens_cmkn_dict[rxn_str] = (entry[0], rxn)
                 counter += 1
