@@ -24,3 +24,5 @@ output*.log
 *pynta/*
 *.png
 *.csv
+# temp files
+*[~][$]*
