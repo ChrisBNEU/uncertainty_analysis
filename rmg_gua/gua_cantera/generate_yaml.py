@@ -3,11 +3,21 @@ import numpy as np
 import pandas as pd
 import cantera as ct
 import itertools
+import sys
+import os
 
 # manually give addresses for data.
-graaf_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Graaf_data/'
-yang_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/yang_2010_data/'
-grabow_conditions_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Grabow_data/original_runs/'
+# graaf_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Graaf_data/'
+# yang_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/yang_2010_data/'
+# grabow_conditions_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Grabow_data/original_runs/'
+
+# # make addressed arguments
+# graaf_data_dir = sys.argv[1]
+# # yang_data_dir = sys.argv[2]
+# grabow_conditions_dir = sys.argv[2]
+
+graaf_data_dir = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/experimental_data/graaf"
+grabow_conditions_dir = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/experimental_data/grabow"
 
 def zip_dict(**kwargs):
     '''
@@ -102,7 +112,7 @@ H2O_mole_list = []
 # for grabow, currently only care about the 
 # meoh TOF and the H2O TOF
 
-Grabow_rates = pd.read_csv("/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Grabow_data/Paper_plot_data/Grabow_rates.csv")
+Grabow_rates = pd.read_csv(os.path.join(grabow_conditions_dir, "Grabow_rates.csv"))
 grabow_input_labels = {
     "y(CO)":"CO",
     "y(CO2)":"CO2",
@@ -153,15 +163,15 @@ print("temperature dtype ",  type(temp))
 # Graaf Data experimental 
 ###############################################################################
 
-file_name_feed1 = graaf_data_dir + "Feed_1.xlsx"
-file_name_feed2 = graaf_data_dir + "Feed_2.xlsx"
-file_name_feed3 = graaf_data_dir + "Feed_3.xlsx"
-file_name_feed4 = graaf_data_dir + "Feed_4.xlsx"
-file_name_feed5 = graaf_data_dir + "Feed_5.xlsx"
-file_name_feed6a = graaf_data_dir + "Feed_6a.xlsx"
-file_name_feed6b = graaf_data_dir + "Feed_6b.xlsx"
-file_name_feed7a = graaf_data_dir + "Feed_7a.xlsx"
-file_name_feed7b = graaf_data_dir + "Feed_7b.xlsx"
+file_name_feed1 = os.path.join(graaf_data_dir,"Feed_1.xlsx")
+file_name_feed2 = os.path.join(graaf_data_dir,"Feed_2.xlsx")
+file_name_feed3 = os.path.join(graaf_data_dir,"Feed_3.xlsx")
+file_name_feed4 = os.path.join(graaf_data_dir,"Feed_4.xlsx")
+file_name_feed5 = os.path.join(graaf_data_dir,"Feed_5.xlsx")
+file_name_feed6a = os.path.join(graaf_data_dir,"Feed_6a.xlsx")
+file_name_feed6b = os.path.join(graaf_data_dir,"Feed_6b.xlsx")
+file_name_feed7a = os.path.join(graaf_data_dir,"Feed_7a.xlsx")
+file_name_feed7b = os.path.join(graaf_data_dir,"Feed_7b.xlsx")
 
 df_1 = pd.read_excel(file_name_feed1, engine='openpyxl')
 df_2 = pd.read_excel(file_name_feed2, engine='openpyxl')
@@ -186,6 +196,13 @@ df_list = [df_1, df_2, df_3, df_4, df_5, df_6a, df_6b, df_7a, df_7b]
 H2_mole_list = []
 CO2_mole_list = []
 CO_mole_list = []
+
+H2_mole_list_out = []
+CO2_mole_list_out = []
+CO_mole_list_out = []
+CH3OH_mole_list_out = []
+H2O_mole_list_out = []
+
 volume_flows = []
 cat_areas = []
 pressures = []
@@ -202,6 +219,13 @@ for i in range(len(df_list)):
             H2_mole_list.append(float(df.iloc[row,df.columns.get_loc('feed Yh2')]))
             CO2_mole_list.append(float(df.iloc[row,df.columns.get_loc('feed Yco2')]))
             CO_mole_list.append(float(df.iloc[row,df.columns.get_loc('feed Yco')]))
+
+            # moles out
+            H2_mole_list_out.append(float(df.iloc[row,df.columns.get_loc('Yh2')]))
+            CO2_mole_list_out.append(float(df.iloc[row,df.columns.get_loc('Yco2')]))
+            CO_mole_list_out.append(float(df.iloc[row,df.columns.get_loc('Yco')]))
+            CH3OH_mole_list_out.append(float(df.iloc[row,df.columns.get_loc('Ych3oh')]))
+            H2O_mole_list_out.append(float(df.iloc[row,df.columns.get_loc('Yh2o')]))
             
             # volume flow
             volume_flow = float(df.iloc[row,df.columns.get_loc('10^6 * V (M^3/s)')])*1e-6  # m^3
@@ -244,6 +268,17 @@ mole_dict = {
 # make mole dict into a list of dictionaries for easier implementation
 mole_dict = list(zip_dict(**mole_dict))
 
+# construct output mole_dict
+mole_out_dict = {
+    'H2':H2_mole_list_out,
+    'CO2':CO2_mole_list_out,
+    'CO':CO_mole_list_out,
+    'CH3OH':CH3OH_mole_list_out,
+    'H2O':H2O_mole_list_out,
+}
+
+mole_out_dict = list(zip_dict(**mole_out_dict))
+
 output_dict = {
     'CH3OH':meoh_tofs,
     'H2O':h2o_tofs,
@@ -261,7 +296,8 @@ graaf_yammy['volume_flowrate'] = volume_flows
 graaf_yammy['temperature'] = temps
 graaf_yammy['pressure'] = pressures
 graaf_yammy['experiment_type'] = [expt_type]*size
-graaf_yammy['species'] = mole_dict    
+graaf_yammy['species'] = mole_dict  
+graaf_yammy['species_out'] = mole_out_dict
 graaf_yammy['output'] = output_dict  
 
 
