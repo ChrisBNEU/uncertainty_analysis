@@ -2,6 +2,7 @@
 *__pycache__*
 *.vscode*
 *conda/*
+*.DS_Store*
 *uncertainty_output_folder/*
 error*.log
 output*.log
