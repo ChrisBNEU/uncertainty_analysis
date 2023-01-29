@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import itertools
 import yaml
-import cantera as ct
 from multiprocessing import Pool
 from sbr import rms_sbr
 # import time
@@ -58,23 +57,16 @@ df.to_csv(csv_path)
 # we will only use runs where intraparticle diffusion limitations
 # are not an issue, i.e. T < 518K
 df_graaf = df[(df['T (K)'] < 518) & (df['experiment'] == 'graaf_1988') & (df['use_for_opt'] == True)]
-obj_func = df_graaf['obj_func'].sum()
+
+# obj_func = df_graaf['obj_func'].sum()
+obj_func = df_graaf['Sum Error %'].sum()
 print("objective function: ", obj_func)
 
-obj_func_log = df_graaf['log10(RMG/graaf) TOF'].sum()
-print("objective function log: ", obj_func_log)
-
-
 # make objective function title have cantera file name for easier id
-ct_run_str = output_file_name.replace(".csv", "")
+run_str = output_file_name.replace(".csv", "")
 
 # this is naive, but currently saving the objective function to a text file 
 # so we can parse all of them after.
-obj_func_file = os.path.join(rmg_model_folder, f"objective_function_{ct_run_str}.txt")
+obj_func_file = os.path.join(rmg_model_folder, f"objective_function_{run_str}.txt")
 with open(obj_func_file, "w") as f:
     f.write(rms_file_path + ":" + str(obj_func))
-
-# make log_obj_func file
-obj_func_file_log = os.path.join(rmg_model_folder, f"objective_function_log_{ct_run_str}.txt")
-with open(obj_func_file_log, "w") as f:
-    f.write(rms_file_path + ":" + str(obj_func_log))
