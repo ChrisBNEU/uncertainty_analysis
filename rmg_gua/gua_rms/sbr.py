@@ -73,6 +73,9 @@ class rms_sbr():
         self.graaf_meoh_tof = reac_config['output']['CH3OH']
         self.graaf_h2o_tof = reac_config['output']['H2O']
 
+        # load the experimental mole fracs out
+        self.graaf_mole_fracs = reac_config['species_out']
+
         # make phase dict
         phase_dict = rms.readinput(self.file_dir)
 
@@ -210,16 +213,13 @@ class rms_sbr():
         results['energy on?'] = self.energy
         results['catalyst area'] = self.cat_area
         results['graaf MeOH TOF 1/s'] = self.graaf_meoh_tof 
-        results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof
+        results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof    
         meoh_x = rms.molefractions(ssys.sims[0],"CH3OH", self.reactime)
         h2o_x = rms.molefractions(ssys.sims[0],"H2O", self.reactime)
         results['RMG MeOH TOF 1/s'] = float(self.molar_flow*(meoh_x)/(self.total_sites))
         results['RMG H2O TOF 1/s'] = float(self.molar_flow*(h2o_x- self.x_H2O)/(self.total_sites))
-        
-        # results['RMG MeOH TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
-        # results['RMG H2O TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
-        
-        
+
+        # objective function: make RMSE of Mole fractions for all species, weighted by their value 
         results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
         results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
         results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
@@ -229,6 +229,12 @@ class rms_sbr():
         results['log10(RMG/graaf) H2O TOF'] = np.log10(max(1e-9, results['RMG H2O TOF 1/s']/results['graaf H2O TOF 1/s']))
         results['log10(RMG/graaf) TOF'] = 0.5 * ( results['log10(RMG/graaf) MeOH TOF'] + results['log10(RMG/graaf) H2O TOF'])
 
+        # get graaf mole fractions
+        for spec, val in self.graaf_mole_fracs.items():
+            results['graaf moles ' + spec] = val
+
+        species_err = list(self.graaf_mole_fracs.keys())
+        
         # get mole fractions
         # gas
         gas_names = ssys.sims[0].names
@@ -241,6 +247,13 @@ class rms_sbr():
         surf_moles = rms.molefractions(ssys.sims[1], self.reactime)
         for (name, moles) in zip(surf_names, surf_moles):
             results[name] = moles
+
+        # get percent error
+        for spec in species_err:
+            results["Error % " + spec] = 100*abs(results["graaf moles " + spec] -
+                                                 results[spec])/results["graaf moles " + spec]
+        results["Sum Error %"] = sum(
+            [results["Error % " + spec] for spec in species_err])
 
         # get sensitivities
         sens_times = [1e-2, 3e-1, 600]
