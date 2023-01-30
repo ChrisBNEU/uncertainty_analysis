@@ -1,10 +1,3 @@
-
-
-
-# simple test script for executing rms from python, for use in the uncertainty pipeline. rms does sensitivities faster
-# 
-
-
 from pyrms import rms
 from diffeqpy import de
 from julia import Main
@@ -35,7 +28,7 @@ def make_spc(spc):
 
     return rmg_spc
 
-class rms_sbr():
+class rms_sbr:
 
     def __init__(
         self,

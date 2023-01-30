@@ -73,7 +73,7 @@ def make_slurm_analysis_scripts(
 
         # how do we get it to autodetect the latest RMS run? could we just have rmg do it? 
         # use ls | tail -1 to get the latest file
-        content.append(f'MECH_FILE=$(ls "{rmg_run_dir}/rms/ | tail -1)\n')
+        content.append(f'MECH_FILE=$(ls "{rmg_run_dir}/rms/" | tail -1)\n')
         
         # skip if csv file already exists
         # this will not work properly if there is a file with a new name, revise
@@ -90,7 +90,7 @@ def make_slurm_analysis_scripts(
         
 
         content.append('# Run the analysis\n')    
-        content.append(f'python {unc_folder + "gua_rms/run_reactor.py"} $MECH_FILE {output_name} \n')
+        content.append(f'python-jl {unc_folder + "gua_rms/run_reactor.py"} {rmg_run_dir}/rms/$MECH_FILE {output_name} \n')
         jobfile.content = content
         jobfile.write_file()
     

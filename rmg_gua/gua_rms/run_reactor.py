@@ -4,9 +4,15 @@ import numpy as np
 import pandas as pd
 import itertools
 import yaml
-from multiprocessing import Pool
+import multiprocessing
+# from multiprocessing import Pool
+
+import time 
+impt1 = time.time()
 from sbr import rms_sbr
-# import time
+impt2 = time.time()
+
+print(f"import of julia packages took {impt2-impt1} seconds")
 
 if len(sys.argv) < 2:
     raise ValueError("Incorrect usage. Must pass the cantera model file as an argument to this analysis script")
@@ -39,13 +45,31 @@ def run_reactor(condts):
         atol=1.0e-22,
     )
 
-    results = sbr_ss.run_reactor_ss_memory()
+    results = sbr_ss.run_simulation()
     return results
 
 
 # Too much memory? is that why it's slow?
-with Pool() as p:
-    result = p.map(run_reactor, settings)
+# multiprocessing.set_start_method("spawn")
+# with multiprocessing.Pool() as p:
+#     result = p.map(run_reactor, settings)
+
+result = []
+# workaround: just run in serial
+count = 0
+ttot1 = time.time()
+for condition in settings: 
+    print("running ", count)
+    
+    t1 = time.time()
+    res = run_reactor(condition)
+    result.append(res)
+    t2 = time.time()
+    
+    print(f"process took {t2-t1} seconds")
+
+ttot2 = time.time()
+print(f"all reactors took {ttot2-ttot1} seconds")
 
 df = pd.DataFrame(result)
 df.to_csv(csv_path)

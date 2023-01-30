@@ -8,7 +8,7 @@ import yaml
 from rmg_gua.rmg.generate_perturbed_files import generate_perturbed_files
 from rmg_gua.rmg.make_slurm_scripts import make_slurm_scripts
 from rmg_gua.rmg.clean_rmg_db import clean_rmg_db
-from rmg_gua.gua_cantera.Spinning_basket_reactor.make_slurm_analysis_scripts import make_slurm_analysis_scripts
+from rmg_gua.gua_rms.make_slurm_analysis_scripts import make_slurm_analysis_scripts
 from rmg_gua.global_unc.create_uqtk_files import create_files
 
 # specify inputs 
@@ -19,7 +19,7 @@ conda_path = os.path.join(unc_folder, "conda")
 RMG_base_folder = os.path.join(unc_folder, "RMG-Py")
 RMG_db_folder = os.path.join(unc_folder,"RMG-database")
 gua_dir = os.path.join(unc_folder, "rmg_gua", "global_unc")
-expt_yaml_file = os.path.join(unc_folder, "rmg_gua", "cantera" "all_experiments_reorg.yaml")
+expt_yaml_file = os.path.join(unc_folder, "rmg_gua", "cantera", "all_experiments_reorg.yaml")
 
 rmg_unc_scripts_folder = os.path.join(unc_folder,"rmg_gua","rmg")
 output_path = "/scratch/blais.ch/methanol_results_2022_10_06_5000_runs_all_params_27_spec/"
