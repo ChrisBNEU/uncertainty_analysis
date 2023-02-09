@@ -34,27 +34,29 @@ def repackage_yaml(yaml_file):
     # make the 
 
 
-def change_model(path, logA, Ea, rxn_num=0):
+def change_model(path, rdict):
     """
     change rms file to have new A and Ea values for reaction rxn_num
+    rdict = {"A_log_x or A_stick_x": A, "Ea_x": Ea} where x is rxn num
     """
 
     with open(path, "r") as f:
         rms_mech = yaml.load(f, Loader=yaml.FullLoader)
 
-    if all([isinstance(logA, list), isinstance(Ea, list), isinstance(rxn_num, list)]):
-        for num, rxn_num in enumerate(rxn_num):
-            A_i = 10**float(logA[num])
-            Ea_i = float(Ea[num])
-            rms_mech["Reactions"][rxn_num]["kinetics"]["A"] = A_i
-            print(f"A{num}", A_i)
-            rms_mech["Reactions"][rxn_num]["kinetics"]["Ea"] = Ea_i
-            print(f"Ea{num}", Ea_i)
-    else: 
-        A = 10**float(logA)
-        Ea = float(Ea)
-        rms_mech["Reactions"][rxn_num]["kinetics"]["A"] = A
-        rms_mech["Reactions"][rxn_num]["kinetics"]["Ea"] = Ea
+    for key, value in rdict.items():
+        num = int(key.split("_")[-1])
+
+        if "A" in key and "log" in key:
+            A_i = 10**float(val)
+            rms_mech["Reactions"][num]["kinetics"]["A"] = A_i
+        elif "A" in key and "stick" in key:
+            A_i = float(value)
+            rms_mech["Reactions"][num]["kinetics"]["A"] = A_i
+        elif "Ea" in key:
+            Ea_i = float(value)
+            rms_mech["Reactions"][num]["kinetics"]["Ea"] = Ea_i
+        else:
+            print("key {key} not recognized")
 
     # save the yaml as a new file
     new_path = path.replace(".rms", "_new.rms")
@@ -66,7 +68,7 @@ def change_model(path, logA, Ea, rxn_num=0):
 
 
 #To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
-def simulationFunction(logA1,Ea1,logA2,Ea2,logA3,Ea3,logA4,Ea4,logA5,Ea5):
+def simulationFunction(parameters):
     #here x is a scalar or an array and "a" and "b" are constants for the equation.
     """
     run rms reactor. 
@@ -76,25 +78,41 @@ def simulationFunction(logA1,Ea1,logA2,Ea2,logA3,Ea3,logA4,Ea4,logA5,Ea5):
 
     """
     # build and run the simulation
-    file_path = "./rms_model/rms/chem25.rms"
+    file_path = "../baseline/rms/chem53.rms"
+    kin_par_path = "./rms_initial.yaml"
     rmg_db_folder = "/Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-database/"
-    expt_condts = "./rms_model/small_expt.yaml"
-    meoh_tof = []
-    h2o_tof = []
-    # change the rms file. rxn 21 is the CH3OH desporption rxn
+    expt_condts = "expt_data.yaml"
+    CH3OH_X = []
+    CO_X = []
+    CO2_X = []
+    H2_X = []
+    H2O_X = []
+    # change the rms file. now doing all reactions in mechanism
+    with open(kin_par_path, 'r') as file:
+        kin_par_dat= yaml.safe_load(file)
 
-    # manualy putting in most sensitive rxns in mechanism. 
-    rxn_nums = [100, 106, 84, 38, 30]
-    logA_list = [logA1, logA2, logA3, logA4, logA5]
-    Ea_list = [Ea1, Ea2, Ea3, Ea4, Ea5]
-    file_path_new = change_model(file_path, logA_list, Ea_list, rxn_num=rxn_nums)
+    with open(file_path, 'r') as file: 
+        rms_mech = yaml.safe_load(file)
+    # 
+    n_reactions = len(rms_mech["kinetics"])
+
+    # unpack the peuquse parameters for use in modifying sim input
+    input_a_ea = dict(
+        zip(kin_par_dat["labels"], kin_par_dat["initial_values"]))
+
+    file_path_new = change_model(file_path, input_a_ea)
 
     with open(expt_condts, 'r') as file:
         data = yaml.safe_load(file)
 
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
-    for run, conditions in enumerate(data): 
+    # get number of experiments: 
+    n_expts = len(data["Catalyst_area"]) - 1
+    for run in n_expts: 
+        conditions = {}
+        for key in data: 
+            conditions[key] = data[key][run]
 
         test_sbr = rms_sbr(
             file_path_new,
@@ -104,15 +122,18 @@ def simulationFunction(logA1,Ea1,logA2,Ea2,logA3,Ea3,logA4,Ea4,logA5,Ea5):
         )
         results = test_sbr.run_simulation()
 
-        meoh_tof.append(results['RMG MeOH TOF 1/s'])
-        h2o_tof.append(results['RMG H2O TOF 1/s'])
-    
-    y_data = np.vstack([meoh_tof, h2o_tof])
+        CH3OH_X.append(results["CH3OH"])
+        CO_X.append(resuts["CO"])
+        CO2_X.append(results["CO2"])
+        H2_X.append(results["H2"])
+        H2O_X.append(results["H2O"])
+
+    y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
 
     return y_data
 
 def simulation_function_wrapper(parametersArray):#this has a and b in it.
     print("parametersArray: ", parametersArray, "\nType : ", type(parametersArray))
-    y = simulationFunction(*parametersArray)  #an alternatie simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
+    y = simulationFunction(parametersArray)  #an alternatie simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
     print(y)
     return y
