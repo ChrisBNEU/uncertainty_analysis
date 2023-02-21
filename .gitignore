@@ -29,3 +29,4 @@ output*.log
 *[~][$]*
 *.svg
 *peuquse_env*
+PEUQUSE/
