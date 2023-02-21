@@ -27,3 +27,5 @@ output*.log
 *.csv
 # temp files
 *[~][$]*
+*.svg
+*peuquse_env*
