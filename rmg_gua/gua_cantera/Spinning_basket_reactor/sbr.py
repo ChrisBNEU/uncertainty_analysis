@@ -31,12 +31,14 @@ class MinSBR:
         reactor_type=1,
         energy="off",
         time=600,
+        new_rate_dict = None, 
     ):
         """
         initialize sbr object
         yaml_file = cti or yaml file for mechanism
         reac_config = yaml file containing experimental configuration values
                       Temp, Pressure, concentrations, etc. 
+        new_rate_dict = dict of new rates that we want to set
         """
         self.expt_id = reac_config['expt_name']
         self.temperature = reac_config['temperature']
@@ -74,6 +76,35 @@ class MinSBR:
         self.gas = ct.Solution(yaml_file, "gas")
         self.surf = ct.Interface(yaml_file, "surface1", [self.gas])
         
+        # if we have rates we want to change: 
+        if new_rate_dict:
+            for param, value in new_rate_dict.items():
+                num = int(param.split("_")[-1])
+                new_rxn = self.surf.reactions()[num]
+                
+                print("oldrxn: ", self.surf.reactions()[num].rate)
+                
+                A_i = self.surf.reactions()[num].rate.pre_exponential_factor
+                Ea_i = self.surf.reactions()[num].rate.activation_energy
+                b_i = self.surf.reactions()[num].rate.temperature_exponent
+                
+                if "A" in param and "log" in param:
+                    A_i = 10**float(value)
+                elif "A" in param and "stick" in param:
+                    A_i = float(value)
+                elif "E" in param:
+                    # input should use J/kmol
+                    Ea_i = float(value)
+                else:
+                    logging.error(f"key {param} not recognized")
+                   
+                rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
+                new_rxn.rate = rate
+                print("new rxn rate", rate)
+                self.surf.modify_reaction(num, new_rxn)
+                
+                print("newrxn: ", self.surf.reactions()[num].rate)
+                
         # pull out species names
         for spec_str in self.gas.species_names:
             if spec_str.startswith("CO("):

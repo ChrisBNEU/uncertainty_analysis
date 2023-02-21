@@ -57,3 +57,16 @@ yaml_reorg = "all_experiments_reorg_" + expt_type + ".yaml"
 with open(yaml_reorg, 'w') as f:
     # use safe_load instead load
     doc = yaml.safe_dump(expt_dict_list, f)
+
+# make another yaml with just the opt expts 
+with open("./all_experiments_reorg_sbr.yaml", "r") as f:
+    expt_all = yaml.load(f, Loader=yaml.FullLoader)
+
+opt_expt_file = "./experiments_reorg_onlyopt.yaml"
+expt_copy = []
+for expt in expt_all:
+    if "use_for_opt" in expt.keys(): 
+        expt_copy.append(expt)
+
+with open(opt_expt_file, "w") as f:
+    yaml.dump(expt_copy, f)
