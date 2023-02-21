@@ -7,6 +7,7 @@ import yaml
 import multiprocessing
 # from multiprocessing import Pool
 
+sys.path.append(os.getcwd())
 import time 
 impt1 = time.time()
 from sbr import rms_sbr
@@ -31,7 +32,7 @@ rmg_model_folder = os.path.dirname(rms_file_path)
 csv_path = os.path.join(rmg_model_folder, output_file_name)
 
 # generate settings array
-settings_yaml = '/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/all_experiments_reorg_sbr.yaml'
+settings_yaml = '/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/experiments_reorg_onlyopt.yaml'
 with open(settings_yaml, 'r') as f:
     settings = yaml.safe_load(f)
 

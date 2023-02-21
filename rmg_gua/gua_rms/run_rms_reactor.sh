@@ -13,5 +13,6 @@
 #SBATCH --mail-type=FAIL,END
 
 source activate ../../conda
+source ../set_path_rmg.sh
 python-jl run_reactor.py /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/rms/chem53.rms
 

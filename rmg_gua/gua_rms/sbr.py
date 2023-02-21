@@ -8,13 +8,14 @@ import time
 import matplotlib
 import pickle
 from copy import deepcopy
+import os
+import numpy as np
+# in peuquse run we cannot use rmgpy objects
 from rmgpy.chemkin import load_chemkin_file
 from rmgpy.rmg.model import ReactionModel
 from rmgpy.species import Species
 from rmgpy.kinetics import StickingCoefficientBEP, StickingCoefficient, SurfaceArrheniusBEP, SurfaceArrhenius
 from rmgpy.data.kinetics.database import KineticsDatabase
-import os
-import numpy as np
 
 def make_spc(spc): 
     """
@@ -169,9 +170,10 @@ class rms_sbr:
         self.rtol = rtol
 
     
-    def run_simulation(self):
+    def run_simulation(self,peuqse = False):
         """
         run the simulation and save the results to a csv, like the cantera script
+        peuqse - cuts down on i/o operations so we run quicker
         """
         # run the simulation
         t1 = time.time()
@@ -222,11 +224,6 @@ class rms_sbr:
         results['log10(RMG/graaf) H2O TOF'] = np.log10(max(1e-9, results['RMG H2O TOF 1/s']/results['graaf H2O TOF 1/s']))
         results['log10(RMG/graaf) TOF'] = 0.5 * ( results['log10(RMG/graaf) MeOH TOF'] + results['log10(RMG/graaf) H2O TOF'])
 
-        # get graaf mole fractions
-        for spec, val in self.graaf_mole_fracs.items():
-            results['graaf moles ' + spec] = val
-
-        species_err = list(self.graaf_mole_fracs.keys())
         
         # get mole fractions
         # gas
@@ -240,6 +237,12 @@ class rms_sbr:
         surf_moles = rms.molefractions(ssys.sims[1], self.reactime)
         for (name, moles) in zip(surf_names, surf_moles):
             results[name] = moles
+        
+        # get graaf mole fractions
+        for spec, val in self.graaf_mole_fracs.items():
+            results['graaf moles ' + spec] = val
+
+        species_err = list(self.graaf_mole_fracs.keys())
 
         # get percent error
         for spec in species_err:
@@ -247,98 +250,106 @@ class rms_sbr:
                                                  results[spec])/results["graaf moles " + spec]
         results["Sum Error %"] = sum(
             [results["Error % " + spec] for spec in species_err])
-
-        # get sensitivities
-        sens_times = [1e-2, 3e-1, 600]
-        sens_rxn_dict = {}
-        max_len = 0
-        # get the ordering of reactions that are sensitive to CH3OH at different time scales. 
-        # our ordering is from highest sensitivity to low. so, start at one. if it is 
-        # found to be the first most sensitive at the first time value, then the 5th most sensitive at the 
-        # second time value, then the tenth at the third time value then the score it gets is 
-
-        for stime in sens_times:
-            # tol =0 will get all reactions
-            sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(ssys, "CH3OH", stime, tol=0)
-            counter = 1
-            for (rxn, sens) in zip(sens_rxns, rxn_sens):
-                if rms.getrxnstr(rxn) in sens_rxn_dict.keys():
-                    old_sens = sens_rxn_dict[rms.getrxnstr(rxn)][0]
-                    sens_rxn_dict[rms.getrxnstr(rxn)][0] = counter*old_sens
-                    sens_rxn_dict[rms.getrxnstr(rxn)][1].append(sens)
-                    sens_rxn_dict[rms.getrxnstr(rxn)][2].append(counter)
-                else:
-                    rxn_adj = rms.getrxnadjlist(rxn)
-                    reac_spec = [make_spc(reac) for reac in rxn.reactants]
-                    prod_spec = [make_spc(prod) for prod in rxn.products]
-                    sens_rxn_dict[rms.getrxnstr(rxn)] = [counter, [sens],[counter], reac_spec, prod_spec]
-
-                counter +=1
-            if len(sens_rxns) > max_len:
-                max_len = len(sens_rxns)
-    
-        # go through values in sens rxn dict that have fewer than len(sens_times) values 
-        # and multiply by max_len + 1. 
-        # penalizing for only being sensitive at one time point
-        for rxn in sens_rxn_dict.keys():
-            if len(sens_rxn_dict[rxn][1]) < len(sens_times):
-                sens_rxn_dict[rxn][0] *= (max_len + 1)
-                for i in range(len(sens_times) - len(sens_rxn_dict[rxn][1])):
-                    sens_rxn_dict[rxn][1].append(0)
-                    sens_rxn_dict[rxn][2].append(max_len + 1)
-                    
-        # sort the dictionary by the score
-        sens_rxn_dict = {k: v for k, v in sorted(sens_rxn_dict.items(), key=lambda item: item[1][0])}
-        # save the dictionary to a yaml file:
-        with open(os.path.join(self.base_path, "sens_rms_dict.pickle"), 'wb') as file:
-            pickle.dump(sens_rxn_dict, file)
-            
-        # print the dict: 
-        for rxn_str, entry in sens_rxn_dict.items():
-            results[rxn_str + "CH3OH sens"] = entry[1][len(sens_times)-1]
-            # print(rxn_str, entry[0])
+         
+        # get reaction for CH3OH, ethane, and CH4 at reactor outlet
+        sens_spcs = ["CH3OH","CC","CH4"]
+        for spec in sens_spcs:
+            sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(ssys, spec, 600, tol=0)
+            for rxn, sens in zip(sens_rxns,rxn_sens):
+                results[rms.getrxnstr(rxn) + " sens to " + spec] = sens
         
-        # load the chemkin file for the mechanism
-        chemkin_file = os.path.join(self.base_path, "chemkin", "chem_annotated-gas.inp")
-        chemkin_surf_file = os.path.join(self.base_path,"chemkin", "chem_annotated-surface.inp")
-        chemkin_dict = os.path.join(
-            self.base_path, "chemkin", "species_dictionary.txt")
+        if peuqse: 
+            # get sensitivities
+            sens_times = [1e-2, 3e-1, 600]
+            sens_rxn_dict = {}
+            max_len = 0
+            # get the ordering of reactions that are sensitive to CH3OH at different time scales. 
+            # our ordering is from highest sensitivity to low. so, start at one. if it is 
+            # found to be the first most sensitive at the first time value, then the 5th most sensitive at the 
+            # second time value, then the tenth at the third time value then the score it gets is 
 
-        # build reaction model
-        model = ReactionModel()
-        model.species, model.reactions = load_chemkin_file(
-            chemkin_file,
-            chemkin_dict, 
-            surface_path=chemkin_surf_file,
-            )
-        
-        # now match up the rms reaction sensitivities with the actual rxn in chemkin
-        # match species function does forward and reverse. if there are multiple matches, it will
-        # print a warning.
-        match_list = []
-        sens_cmkn_dict = {}
-        for rxn_str, entry in sens_rxn_dict.items():
-            for rxn in model.reactions:
-                counter = 0
-                if rxn.matches_species(entry[3],entry[4]):
-                    match_list.append(rxn_str)
-                    sens_cmkn_dict[rxn_str] = (entry[0], rxn)
-                counter += 1
-                if counter >=2: 
-                    print("more than 1 match found for ", rxn_str)
-        if len(match_list) == len(sens_rxn_dict.keys()):
-            print("all matches found")
-        else: 
+            for stime in sens_times:
+                # tol =0 will get all reactions
+                sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(ssys, "CH3OH", stime, tol=0)
+                counter = 1
+                for (rxn, sens) in zip(sens_rxns, rxn_sens):
+                    if rms.getrxnstr(rxn) in sens_rxn_dict.keys():
+                        old_sens = sens_rxn_dict[rms.getrxnstr(rxn)][0]
+                        sens_rxn_dict[rms.getrxnstr(rxn)][0] = counter*old_sens
+                        sens_rxn_dict[rms.getrxnstr(rxn)][1].append(sens)
+                        sens_rxn_dict[rms.getrxnstr(rxn)][2].append(counter)
+                    else:
+                        rxn_adj = rms.getrxnadjlist(rxn)
+                        reac_spec = [make_spc(reac) for reac in rxn.reactants]
+                        prod_spec = [make_spc(prod) for prod in rxn.products]
+                        sens_rxn_dict[rms.getrxnstr(rxn)] = [counter, [sens],[counter], reac_spec, prod_spec]
+
+                    counter +=1
+                if len(sens_rxns) > max_len:
+                    max_len = len(sens_rxns)
+
+            # go through values in sens rxn dict that have fewer than len(sens_times) values 
+            # and multiply by max_len + 1. 
+            # penalizing for only being sensitive at one time point
+            for rxn in sens_rxn_dict.keys():
+                if len(sens_rxn_dict[rxn][1]) < len(sens_times):
+                    sens_rxn_dict[rxn][0] *= (max_len + 1)
+                    for i in range(len(sens_times) - len(sens_rxn_dict[rxn][1])):
+                        sens_rxn_dict[rxn][1].append(0)
+                        sens_rxn_dict[rxn][2].append(max_len + 1)
+
+            # sort the dictionary by the score
+            sens_rxn_dict = {k: v for k, v in sorted(sens_rxn_dict.items(), key=lambda item: item[1][0])}
+            # save the dictionary to a yaml file:
+            with open(os.path.join(self.base_path, "sens_rms_dict.pickle"), 'wb') as file:
+                pickle.dump(sens_rxn_dict, file)
+
+            # print the dict: 
             for rxn_str, entry in sens_rxn_dict.items():
-                if rxn_str not in match_list:
-                    print("no match found for ", rxn_str)
+                results[rxn_str + "CH3OH sens"] = entry[1][len(sens_times)-1]
+                # print(rxn_str, entry[0])
 
-        # remove entries that are not estimated from families
+            # load the chemkin file for the mechanism
+            chemkin_file = os.path.join(self.base_path, "chemkin", "chem_annotated-gas.inp")
+            chemkin_surf_file = os.path.join(self.base_path,"chemkin", "chem_annotated-surface.inp")
+            chemkin_dict = os.path.join(
+                self.base_path, "chemkin", "species_dictionary.txt")
 
-        # save the dictionary in a pickle file
-        cmkn_pickle_path = os.path.join(self.base_path, "sens_cmkn_dict.pickle")
-        with open(cmkn_pickle_path, "wb") as handle:
-            pickle.dump(sens_cmkn_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            # build reaction model
+            model = ReactionModel()
+            model.species, model.reactions = load_chemkin_file(
+                chemkin_file,
+                chemkin_dict, 
+                surface_path=chemkin_surf_file,
+                )
+
+            # now match up the rms reaction sensitivities with the actual rxn in chemkin
+            # match species function does forward and reverse. if there are multiple matches, it will
+            # print a warning.
+            match_list = []
+            sens_cmkn_dict = {}
+            for rxn_str, entry in sens_rxn_dict.items():
+                for rxn in model.reactions:
+                    counter = 0
+                    if rxn.matches_species(entry[3],entry[4]):
+                        match_list.append(rxn_str)
+                        sens_cmkn_dict[rxn_str] = (entry[0], rxn)
+                    counter += 1
+                    if counter >=2: 
+                        print("more than 1 match found for ", rxn_str)
+            if len(match_list) == len(sens_rxn_dict.keys()):
+                print("all matches found")
+            else: 
+                for rxn_str, entry in sens_rxn_dict.items():
+                    if rxn_str not in match_list:
+                        print("no match found for ", rxn_str)
+
+            # remove entries that are not estimated from families
+
+            # save the dictionary in a pickle file
+            cmkn_pickle_path = os.path.join(self.base_path, "sens_cmkn_dict.pickle")
+            with open(cmkn_pickle_path, "wb") as handle:
+                pickle.dump(sens_cmkn_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         return results
     
