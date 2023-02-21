@@ -26,7 +26,7 @@ database(
         'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
-    kineticsFamilies =[('surface', True),('default', False)],
+    kineticsFamilies =['surface','default'],
     kineticsEstimator = 'rate rules',
 )
 

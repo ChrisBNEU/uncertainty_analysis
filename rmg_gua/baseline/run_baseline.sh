@@ -3,7 +3,7 @@
 #SBATCH --error=error.log
 #SBATCH --output=output.log
 #SBATCH --nodes=1
-#SBATCH --partition=west
+#SBATCH --partition=short
 #SBATCH --exclude=c5003
 #SBATCH --mem=10Gb
 #SBATCH --time=1:00:00
@@ -16,9 +16,13 @@ export RMG="/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/RMG-Py/rm
 source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda/
 
 # run RMG job
-python-jl $RMG input.py
+# python-jl $RMG input.py
 
+MECH_FILE=$(ls "./rms/" | tail -1)
+WRKDIR=$PWD
+
+cd /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/
 # run cantera
-python /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/Spinning_basket_reactor/run_reactor.py /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/baseline/cantera/chem_annotated.cti ct_analysis.csv
+python-jl /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_rms/run_reactor.py $WRKDIR/rms/$MECH_FILE rms_analysis.csv
               
 
