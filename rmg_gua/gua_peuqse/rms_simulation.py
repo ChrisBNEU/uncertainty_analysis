@@ -1,8 +1,10 @@
 import numpy as np
 import yaml
 import sys
+import logging
+import random
 sys.path.append(
-    "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/")
+    "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/")
 from rmg_gua.gua_rms.sbr import rms_sbr
 
 def repackage_yaml(yaml_file):
@@ -47,16 +49,16 @@ def change_model(path, rdict):
         num = int(key.split("_")[-1])
 
         if "A" in key and "log" in key:
-            A_i = 10**float(val)
+            A_i = 10**float(value)
             rms_mech["Reactions"][num]["kinetics"]["A"] = A_i
         elif "A" in key and "stick" in key:
             A_i = float(value)
             rms_mech["Reactions"][num]["kinetics"]["A"] = A_i
-        elif "Ea" in key:
+        elif "E" in key:
             Ea_i = float(value)
             rms_mech["Reactions"][num]["kinetics"]["Ea"] = Ea_i
         else:
-            print("key {key} not recognized")
+            logging.error(f"key {key} not recognized")
 
     # save the yaml as a new file
     new_path = path.replace(".rms", "_new.rms")
@@ -79,7 +81,7 @@ def simulationFunction(parameters):
     """
     # build and run the simulation
     file_path = "../baseline/rms/chem53.rms"
-    kin_par_path = "./rms_initial.yaml"
+    kin_par_path = "./rms_initial_small.yaml"
     rmg_db_folder = "/Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-database/"
     expt_condts = "expt_data.yaml"
     CH3OH_X = []
@@ -93,8 +95,8 @@ def simulationFunction(parameters):
 
     with open(file_path, 'r') as file: 
         rms_mech = yaml.safe_load(file)
-    # 
-    n_reactions = len(rms_mech["kinetics"])
+
+    n_reactions = len(rms_mech["Reactions"])
 
     # unpack the peuquse parameters for use in modifying sim input
     input_a_ea = dict(
@@ -108,12 +110,40 @@ def simulationFunction(parameters):
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
     # get number of experiments: 
-    n_expts = len(data["Catalyst_area"]) - 1
-    for run in n_expts: 
+    n_expts = len(data["catalyst_area"])
+    for run in range(0,n_expts): 
         conditions = {}
-        for key in data: 
-            conditions[key] = data[key][run]
-
+        for key in data.keys():
+            if "species_" in key and not "out" in key:
+                spec_name = key.split("_")[-1]
+                if "species" not in conditions.keys():
+                    spec_name = key.split("_")[-1]
+                    conditions["species"] = {}
+                    conditions["species"][spec_name] = data[key][run]
+                else:
+                    conditions["species"][spec_name] = data[key][run]
+            elif "output_" in key:
+                spec_name = key.split("_")[-1]
+                if "output" not in conditions.keys():
+                    spec_name = key.split("_")[-1]
+                    conditions["output"] = {}
+                    conditions["output"][spec_name] = data[key][run]
+                else:
+                    conditions["output"][spec_name] = data[key][run]
+                
+            elif "species_out_" in key:
+                spec_name = key.split("_")[-1]
+                if "species_out" not in conditions.keys():
+                    spec_name = key.split("_")[-1]
+                    conditions["species_out"] = {}
+                    conditions["species_out"][spec_name] = data[key][run]
+                else:
+                    conditions["species_out"][spec_name] = data[key][run]
+            else: 
+                conditions[key] = data[key][run]
+              
+        # print(conditions)
+        print(f"starting sim {run}")
         test_sbr = rms_sbr(
             file_path_new,
             reac_config=conditions,
@@ -121,19 +151,24 @@ def simulationFunction(parameters):
             atol=1.0e-22,
         )
         results = test_sbr.run_simulation()
-
+        
         CH3OH_X.append(results["CH3OH"])
-        CO_X.append(resuts["CO"])
+        CO_X.append(results["CO"])
         CO2_X.append(results["CO2"])
         H2_X.append(results["H2"])
         H2O_X.append(results["H2O"])
+        results = test_sbr.run_simulation()
+        
+        # CH3OH_X.append(random.random())
+        # CO_X.append(random.random())
+        # CO2_X.append(random.random())
+        # H2_X.append(random.random())
+        # H2O_X.append(random.random())
 
     y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
-
-    return y_data
+    print("sim done")
+    return y_data 
 
 def simulation_function_wrapper(parametersArray):#this has a and b in it.
-    print("parametersArray: ", parametersArray, "\nType : ", type(parametersArray))
     y = simulationFunction(parametersArray)  #an alternatie simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
-    print(y)
     return y
