@@ -186,14 +186,14 @@ class rms_sbr:
         print("elapsed time for sim: ", t2-t1)
 
     
-        ssys = rms.SystemSimulation(self.sol,self.domains,self.interfaces,self.p)
+        self.ssys = rms.SystemSimulation(self.sol,self.domains,self.interfaces,self.p)
         results = {}
-        # get mole fractions from ssys for csv
+        # get mole fractions from self.ssys for csv
         results['experiment'] = self.expt_id
         results['use_for_opt'] = self.use_for_opt
         results['time (s)'] = self.reactime
         results['T (K)'] = self.temperature
-        results['P (Pa)'] = rms.getP(ssys.sims[0], self.reactime) # given in Pa
+        results['P (Pa)'] = rms.getP(self.ssys.sims[0], self.reactime) # given in Pa
         results['V (m^3/s)'] = self.volume_flow
         results['x_CO initial'] = self.x_CO
         results['x_CO2 initial'] = self.x_CO2
@@ -201,7 +201,7 @@ class rms_sbr:
         results['x_H2O initial'] = self.x_H2O
         results['CO2/(CO2+CO)'] = self.CO2_ratio
         results['(CO+CO2/H2)'] = self.H2_ratio
-        results['T (K) final'] = rms.getT(ssys.sims[0], self.reactime)
+        results['T (K) final'] = rms.getT(self.ssys.sims[0], self.reactime)
         results['Rtol'] = self.rtol
         results['Atol'] = self.atol
         results['reactor type'] = self.reactor_type_str
@@ -209,8 +209,8 @@ class rms_sbr:
         results['catalyst area'] = self.cat_area
         results['graaf MeOH TOF 1/s'] = self.graaf_meoh_tof 
         results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof    
-        meoh_x = rms.molefractions(ssys.sims[0],"CH3OH", self.reactime)
-        h2o_x = rms.molefractions(ssys.sims[0],"H2O", self.reactime)
+        meoh_x = rms.molefractions(self.ssys.sims[0],"CH3OH", self.reactime)
+        h2o_x = rms.molefractions(self.ssys.sims[0],"H2O", self.reactime)
         results['RMG MeOH TOF 1/s'] = float(self.molar_flow*(meoh_x)/(self.total_sites))
         results['RMG H2O TOF 1/s'] = float(self.molar_flow*(h2o_x- self.x_H2O)/(self.total_sites))
 
@@ -227,14 +227,14 @@ class rms_sbr:
         
         # get mole fractions
         # gas
-        gas_names = ssys.sims[0].names
-        gas_moles = rms.molefractions(ssys.sims[0], self.reactime)
+        gas_names = self.ssys.sims[0].names
+        gas_moles = rms.molefractions(self.ssys.sims[0], self.reactime)
         for (name, moles) in zip(gas_names, gas_moles):
             results[name] = moles
         
         # surface
-        surf_names = ssys.sims[1].names
-        surf_moles = rms.molefractions(ssys.sims[1], self.reactime)
+        surf_names = self.ssys.sims[1].names
+        surf_moles = rms.molefractions(self.ssys.sims[1], self.reactime)
         for (name, moles) in zip(surf_names, surf_moles):
             results[name] = moles
         
@@ -254,7 +254,7 @@ class rms_sbr:
         # get reaction for CH3OH, ethane, and CH4 at reactor outlet
         sens_spcs = ["CH3OH","CC","CH4"]
         for spec in sens_spcs:
-            sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(ssys, spec, 600, tol=0)
+            sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(self.ssys, spec, 600, tol=0)
             for rxn, sens in zip(sens_rxns,rxn_sens):
                 results[rms.getrxnstr(rxn) + " sens to " + spec] = sens
         
@@ -270,7 +270,7 @@ class rms_sbr:
 
             for stime in sens_times:
                 # tol =0 will get all reactions
-                sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(ssys, "CH3OH", stime, tol=0)
+                sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(self.ssys, "CH3OH", stime, tol=0)
                 counter = 1
                 for (rxn, sens) in zip(sens_rxns, rxn_sens):
                     if rms.getrxnstr(rxn) in sens_rxn_dict.keys():
