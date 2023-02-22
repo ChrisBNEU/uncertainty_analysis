@@ -7,6 +7,7 @@ import time
 sys.path.append(
     "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/")
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
+from cantera import CanteraError
 
 def repackage_yaml(yaml_file):
     """
@@ -109,7 +110,7 @@ def simulationFunction(parameters):
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
     # get number of experiments: 
-    run_test = True
+    run_test = False
     if run_test: 
         n_expts = 3
     else:
@@ -160,13 +161,21 @@ def simulationFunction(parameters):
             atol=1.0e-22,
             new_rate_dict = input_a_ea
         )
-        results = test_sbr.run_reactor_ss_memory()
-        
-        CH3OH_X.append(results[lookup_dict["CH3OH"]])
-        CO_X.append(results[lookup_dict["CO"]])
-        CO2_X.append(results[lookup_dict["CO2"]])
-        H2_X.append(results[lookup_dict["H2"]])
-        H2O_X.append(results[lookup_dict["H2O"]])
+        # try except loop for this because cantera errors out for certain A and Ea values
+        try:
+            results = test_sbr.run_reactor_ss_memory()
+            CH3OH_X.append(results[lookup_dict["CH3OH"]])
+            CO_X.append(results[lookup_dict["CO"]])
+            CO2_X.append(results[lookup_dict["CO2"]])
+            H2_X.append(results[lookup_dict["H2"]])
+            H2O_X.append(results[lookup_dict["H2O"]])
+        except CanteraError: 
+            print("could not solve system of equations with parameters [parameters], so setting outlet moles to nan")
+            CH3OH_X.append(float('nan'))
+            CO_X.append(float('nan'))
+            CO2_X.append(float('nan'))
+            H2_X.append(float('nan'))
+            H2O_X.append(float('nan'))
         
         
 
