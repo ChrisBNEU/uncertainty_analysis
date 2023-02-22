@@ -100,7 +100,7 @@ class MinSBR:
                    
                 rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
                 new_rxn.rate = rate
-                print("new rxn rate", rate)
+                # print("new rxn rate", rate)
                 self.surf.modify_reaction(num, new_rxn)
                 
                 print("newrxn: ", self.surf.reactions()[num].rate)
