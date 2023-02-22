@@ -30,44 +30,44 @@ if __name__ == "__main__":
     
     # build the x-data array
     x_data = []
-    x_data.append(expt_data["catalyst_area"][0:3]) # inc in params? 
-    x_data.append(expt_data["pressure"][0:3])
-    x_data.append(expt_data["species_CO"][0:3])
-    x_data.append(expt_data["species_CO2"][0:3])
-    x_data.append(expt_data["species_H2"][0:3])
-    x_data.append(expt_data["temperature"][0:3])
-    x_data.append(expt_data["volume_flowrate"][0:3]) # inc in params? 
+    x_data.append(expt_data["catalyst_area"]) # inc in params? 
+    x_data.append(expt_data["pressure"])
+    x_data.append(expt_data["species_CO"])
+    x_data.append(expt_data["species_CO2"])
+    x_data.append(expt_data["species_H2"])
+    x_data.append(expt_data["temperature"])
+    x_data.append(expt_data["volume_flowrate"]) # inc in params? 
     x_data = np.array(x_data)
     print(f"length is {len(x_data[0])} in main")
     # build x uncertainties array
     x_unc = []
-    x_unc.append(expt_unc["catalyst_area"][0:3])
-    x_unc.append(expt_unc["pressure"][0:3])
-    x_unc.append(expt_unc["species_CO"][0:3])
-    x_unc.append(expt_unc["species_CO2"][0:3])
-    x_unc.append(expt_unc["species_H2"][0:3])
-    x_unc.append(expt_unc["temperature"][0:3])
-    x_unc.append(expt_unc["volume_flowrate"][0:3])
+    x_unc.append(expt_unc["catalyst_area"])
+    x_unc.append(expt_unc["pressure"])
+    x_unc.append(expt_unc["species_CO"])
+    x_unc.append(expt_unc["species_CO2"])
+    x_unc.append(expt_unc["species_H2"])
+    x_unc.append(expt_unc["temperature"])
+    x_unc.append(expt_unc["volume_flowrate"])
     x_unc = np.array(x_unc)
 
 
     # build y-data array
     y_data = []
-    y_data.append(expt_data['species_out_CH3OH'][0:3])
-    y_data.append(expt_data['species_out_CO'][0:3])
-    y_data.append(expt_data['species_out_CO2'][0:3])
-    y_data.append(expt_data['species_out_H2'][0:3])
-    y_data.append(expt_data['species_out_H2O'][0:3])
+    y_data.append(expt_data['species_out_CH3OH'])
+    y_data.append(expt_data['species_out_CO'])
+    y_data.append(expt_data['species_out_CO2'])
+    y_data.append(expt_data['species_out_H2'])
+    y_data.append(expt_data['species_out_H2O'])
     y_data = np.array(y_data)
 
 
     # build y uncertainties array
     y_unc = []
-    y_unc.append(expt_unc['species_out_CH3OH'][0:3])
-    y_unc.append(expt_unc['species_out_CO'][0:3])
-    y_unc.append(expt_unc['species_out_CO2'][0:3])
-    y_unc.append(expt_unc['species_out_H2'][0:3])
-    y_unc.append(expt_unc['species_out_H2O'][0:3])
+    y_unc.append(expt_unc['species_out_CH3OH'])
+    y_unc.append(expt_unc['species_out_CO'])
+    y_unc.append(expt_unc['species_out_CO2'])
+    y_unc.append(expt_unc['species_out_H2'])
+    y_unc.append(expt_unc['species_out_H2O'])
     y_unc = np.array(y_unc)
 
     #Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
