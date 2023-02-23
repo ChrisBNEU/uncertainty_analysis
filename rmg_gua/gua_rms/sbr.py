@@ -169,8 +169,7 @@ class rms_sbr:
         self.atol = atol
         self.rtol = rtol
 
-    
-    def run_simulation(self,peuqse = False):
+    def run_simulation(self, peuqse= False, sens_spcs=["CH3OH", "CC", "CH4"]):
         """
         run the simulation and save the results to a csv, like the cantera script
         peuqse - cuts down on i/o operations so we run quicker
@@ -252,7 +251,6 @@ class rms_sbr:
             [results["Error % " + spec] for spec in species_err])
          
         # get reaction for CH3OH, ethane, and CH4 at reactor outlet
-        sens_spcs = ["CH3OH","CC","CH4"]
         for spec in sens_spcs:
             sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(self.ssys, spec, 600, tol=0)
             for rxn, sens in zip(sens_rxns,rxn_sens):
