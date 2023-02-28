@@ -1,0 +1,420 @@
+digraph flux_diagram {
+	graph [bb="0,0,581.89,913.57",
+		fontname=sans,
+		fontsize=10,
+		label="t = 10^2.0 s",
+		lheight=0.15,
+		lp="290.95,9.5",
+		lwidth=0.72,
+		overlap=false,
+		rankdir=LR
+	];
+	node [label="\N"];
+	H2	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/H2.png",
+		label=" ",
+		penwidth=9.787,
+		pos="30.547,222.57",
+		width=0.75];
+	"H*"	[height=0.62854,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/H*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="131.09,222.57",
+		width=0.75];
+	H2 -> "H*"	[color="#FDE725",
+		dir=forward,
+		penwidth=10.0,
+		pos="e,103.82,222.57 57.697,222.57 68.723,222.57 81.747,222.57 93.686,222.57"];
+	"H2O*"	[height=0.62854,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/H2O*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="336.46,329.57",
+		width=0.75];
+	"H*" -> "H2O*"	[color="#D0E11C",
+		dir=forward,
+		penwidth=9.642,
+		pos="e,313.45,317.46 154.67,234.07 181.59,247.83 227.9,271.63 267.39,292.57 279.58,299.03 292.93,306.26 304.55,312.6"];
+	"HCO*"	[height=0.75,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/HCO*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="336.46,669.57",
+		width=0.75];
+	"H*" -> "HCO*"	[color="#218E8D",
+		dir=back,
+		penwidth=7.419,
+		pos="s,137.12,244.78 139.77,254.74 149.31,289.02 168.45,343.25 201.09,379.57 223.8,404.83 246.64,390.68 267.39,417.57 320.26,486.1 332.13,\
+592.65 334.75,642.34"];
+	CH3X	[height=0.62854,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH3X.png",
+		label=" ",
+		penwidth=0.0,
+		pos="234.24,179.57",
+		width=0.75];
+	"H*" -> CH3X	[color="#2DB27D",
+		dir=forward,
+		penwidth=8.188,
+		pos="e,209.91,189.49 155.55,212.6 168.96,206.9 185.97,199.67 200.66,193.42"];
+	"HCOOH*"	[height=0.70833,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/HCOOH*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="438.72,614.57",
+		width=0.92157];
+	"HCO*" -> "HCOOH*"	[color="#CDE11D",
+		dir=back,
+		penwidth=9.606,
+		pos="s,360.72,656.81 369.6,651.94 382.97,644.6 398.32,636.19 411.05,629.2"];
+	"CH2O*"	[height=0.55556,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH2O*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="438.72,678.57",
+		width=0.76389];
+	"HCO*" -> "CH2O*"	[color="#84D44B",
+		dir=forward,
+		penwidth=9.058,
+		pos="e,411.07,676.18 363.54,671.91 374.96,672.94 388.57,674.16 400.99,675.27"];
+	"CC.[Pt]"	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CC.[Pt].png",
+		label=" ",
+		penwidth=0.0,
+		pos="336.46,175.57",
+		width=0.75];
+	CH3X -> "CC.[Pt]"	[color="#2DB27D",
+		dir=forward,
+		penwidth=8.2,
+		pos="e,309.18,176.62 261.31,178.53 272.82,178.07 286.55,177.52 299.04,177.02"];
+	X	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/X.png",
+		label=" ",
+		penwidth=0.0,
+		pos="30.547,456.57",
+		width=0.75];
+	X -> "H*"	[color="#D8E219",
+		dir=forward,
+		penwidth=9.699,
+		pos="e,112.39,239.48 34.94,438.71 42.281,402.86 61.88,320.4 97.095,259.57 99.553,255.32 102.55,251.13 105.73,247.19"];
+	X -> "H2O*"	[color="#D5E21A",
+		dir=back,
+		penwidth=9.679,
+		pos="s,41.278,440 46.944,431.21 58.85,413.27 76.708,389.63 97.095,373.57 137.08,342.06 151.37,336.49 201.09,325.57 238.25,317.41 282.57,\
+321.26 309.86,325.14"];
+	X -> "HCO*"	[color="#3BBB75",
+		dir=back,
+		penwidth=8.401,
+		pos="s,36.437,474.17 39.479,483.75 49.142,513.01 67.888,559.52 97.095,590.57 154.6,651.7 260.4,665.56 309.36,668.68"];
+	X -> "HCOOH*"	[color="#26828E",
+		dir=forward,
+		penwidth=7.178,
+		pos="e,405.87,609.99 45.203,471.98 57.563,485.04 76.881,503.4 97.095,514.57 196.42,569.48 329.1,597.13 395.75,608.33"];
+	"CO2*"	[height=0.70833,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CO2*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="131.09,814.57",
+		width=0.80556];
+	X -> "CO2*"	[color="#B8DE29",
+		dir=forward,
+		penwidth=9.462,
+		pos="e,111.22,795.55 32.256,474.76 34.836,524.98 46.462,668.82 97.095,774.57 99.218,779.01 101.94,783.37 104.9,787.49"];
+	"HCOO*"	[height=1.0607,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/HCOO*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="234.24,782.57",
+		width=0.75];
+	X -> "HCOO*"	[color="#453882",
+		dir=forward,
+		penwidth=5.764,
+		pos="e,207.18,782.17 33.347,474.65 39.307,531.01 60.152,702.09 97.095,741.57 122.74,768.98 165.96,778.29 196.82,781.34"];
+	"O*"	[height=0.62854,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/O*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="131.09,405.57",
+		width=0.75];
+	X -> "O*"	[color="#AADC32",
+		dir=back,
+		penwidth=9.354,
+		pos="s,52.447,445.75 61.686,440.97 76.446,433.33 93.917,424.29 107.51,417.26"];
+	"CH3OH*"	[height=0.55556,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH3OH*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="131.09,69.57",
+		width=0.75];
+	X -> "CH3OH*"	[color="#29AF7F",
+		dir=back,
+		penwidth=8.13,
+		pos="s,33.61,438.45 34.845,428.49 42.006,372.01 61.288,241.16 97.095,136.57 102.97,119.4 112.29,100.97 119.53,87.794"];
+	"OH*"	[height=0.62854,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/OH*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="234.24,449.57",
+		width=0.75];
+	X -> "OH*"	[color="#38B977",
+		dir=forward,
+		penwidth=8.363,
+		pos="e,207.19,450.47 57.915,455.65 93.497,454.42 157.03,452.21 197.06,450.83"];
+	X -> "CC.[Pt]"	[color="#2DB27D",
+		dir=back,
+		penwidth=8.206,
+		pos="s,37.452,439.13 41.071,429.52 51.607,402.43 70.66,360.69 97.095,331.57 131.25,293.94 264.17,216.2 315.28,186.99"];
+	"COC=O.[Pt]"	[height=0.75,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/COC=O.[Pt].png",
+		label=" ",
+		penwidth=0.0,
+		pos="544.89,511.57",
+		width=1.0278];
+	X -> "COC=O.[Pt]"	[color="#20A386",
+		dir=forward,
+		penwidth=7.88,
+		pos="e,508.12,508.51 54.485,464.95 91.542,477.72 167.12,500.57 233.24,500.57 233.24,500.57 233.24,500.57 337.46,500.57 392.72,500.57 \
+456.17,504.55 497.98,507.72"];
+	"HCOOH*" -> "COC=O.[Pt]"	[color="#2DB27D",
+		dir=back,
+		penwidth=8.188,
+		pos="s,459.8,594.71 467.31,587.28 484.44,570.35 506.15,548.89 522.07,533.15"];
+	"CH3O2*"	[height=1.0607,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH3O2*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="544.89,675.57",
+		width=0.75];
+	"HCOOH*" -> "CH3O2*"	[color="#440154",
+		dir=back,
+		penwidth=4.954,
+		pos="s,465.74,629.81 474.62,635.01 489.39,643.66 506.25,653.53 519.63,661.36"];
+	"CO2*" -> "HCOO*"	[color="#B5DE2B",
+		dir=forward,
+		penwidth=9.446,
+		pos="e,207.54,790.7 158.67,806.16 170.59,802.39 184.82,797.89 197.63,793.83"];
+	"COOH*"	[height=0.75,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/COOH*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="336.46,817.57",
+		width=0.91877];
+	"CO2*" -> "COOH*"	[color="#306A8E",
+		dir=forward,
+		penwidth=6.682,
+		pos="e,323.19,842.62 143.06,838.03 154.32,859.04 174.02,888.49 201.09,901.57 227.62,914.39 240.79,914.25 267.39,901.57 289.23,891.16 \
+306.34,869.93 317.94,851.42"];
+	"HCOO*" -> "HCOOH*"	[color="#ADDC30",
+		dir=forward,
+		penwidth=9.372,
+		pos="e,418.05,634.78 260.34,772.56 289.2,760.12 336.81,736.68 369.54,705.57 390.99,685.19 387.46,672.99 405.54,649.57 407.34,647.24 409.26,\
+644.88 411.23,642.55"];
+	"HCOO*" -> "COOH*"	[color="#1F9F88",
+		dir=forward,
+		penwidth=7.781,
+		pos="e,305.55,807.12 260.53,791.4 271.22,795.14 283.93,799.57 295.82,803.72"];
+	"O*" -> CH3X	[color="#2DB27D",
+		dir=back,
+		penwidth=8.2,
+		pos="s,141.61,384.31 145.77,375.02 166.63,328.41 205.86,240.75 223.82,200.61"];
+	"O*" -> "OH*"	[color="#42BE71",
+		dir=back,
+		penwidth=8.474,
+		pos="s,155.3,415.66 164.57,419.7 179.28,426.1 196.35,433.52 209.79,439.37"];
+	"CH3OH*" -> CH3X	[color="#218F8D",
+		dir=forward,
+		penwidth=7.449,
+		pos="e,215.89,162.95 148.16,85.56 153.64,91.159 159.73,97.552 165.09,103.57 181.91,122.43 184.12,128.85 201.09,147.57 203.42,150.14 205.9,\
+152.77 208.41,155.36"];
+	"CH3OH*" -> "COC=O.[Pt]"	[color="#218E8D",
+		dir=forward,
+		penwidth=7.419,
+		pos="e,543.93,484.52 154.9,59.82 214.94,35.841 379.18,-18.517 471.89,60.57 534.39,113.88 542.89,376.34 543.85,474.46"];
+	"OC[Pt]"	[height=0.75,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/OC[Pt].png",
+		label=" ",
+		penwidth=0.0,
+		pos="544.89,589.57",
+		width=0.75];
+	"CH3OH*" -> "OC[Pt]"	[color="#48C16E",
+		dir=back,
+		penwidth=8.541,
+		pos="s,157.18,63.87 167.19,61.941 236.69,49.12 392.03,32.265 471.89,116.57 537.99,186.34 470.82,458.9 507.89,547.57 511.6,556.43 517.9,\
+564.78 524.21,571.66"];
+	"OH*" -> "H2O*"	[color="#25AB82",
+		dir=back,
+		penwidth=8.043,
+		pos="s,250.46,431.34 257.08,423.42 276.12,400.62 303.26,368.12 320.1,347.97"];
+	"OH*" -> "HCO*"	[color="#3ABA76",
+		dir=forward,
+		penwidth=8.368,
+		pos="e,324.37,645.22 244.85,470.66 262.28,508.92 299.23,590.02 320.16,635.97"];
+	"CC[Pt]"	[height=0.66782,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CC[Pt].png",
+		label=" ",
+		penwidth=0.0,
+		pos="438.72,149.57",
+		width=0.75];
+	"CC.[Pt]" -> "CC[Pt]"	[color="#460B5E",
+		dir=back,
+		penwidth=5.099,
+		pos="s,361.99,169.21 371.78,166.67 385.1,163.21 400.09,159.33 412.4,156.14"];
+	"CH2O*" -> "CH3O2*"	[color="#440154",
+		dir=forward,
+		penwidth=4.954,
+		pos="e,517.74,676.32 466.27,677.8 478.86,677.44 494.09,677 507.71,676.61"];
+	"CH3O*"	[height=0.66782,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH3O*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="544.89,758.57",
+		width=0.75];
+	"CH2O*" -> "CH3O*"	[color="#4CC26C",
+		dir=forward,
+		penwidth=8.568,
+		pos="e,524.01,743.3 458.34,692.87 474.38,705.19 497.76,723.14 516.02,737.17"];
+	"CH2O*" -> "OC[Pt]"	[color="#48C16E",
+		dir=forward,
+		penwidth=8.541,
+		pos="e,523.63,606.88 457.39,663.47 473.44,649.76 497.38,629.3 516.01,613.39"];
+	H2O	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/H2O.png",
+		label=" ",
+		penwidth=10.0,
+		pos="234.24,352.57",
+		width=0.75];
+	H2O -> "H2O*"	[color="#C5E021",
+		dir=back,
+		penwidth=9.558,
+		pos="s,260.02,346.88 269.8,344.64 283.1,341.59 298.02,338.16 310.28,335.35"];
+	CO2	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CO2.png",
+		label=" ",
+		penwidth=9.463,
+		pos="30.547,841.57",
+		width=0.75];
+	CO2 -> "CO2*"	[color="#B8DE29",
+		dir=forward,
+		penwidth=9.462,
+		pos="e,103.24,821.93 55.907,834.9 67.241,831.79 80.961,828.03 93.504,824.59"];
+	"CO*"	[height=0.75,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CO*.png",
+		label=" ",
+		penwidth=0.0,
+		pos="234.24,865.57",
+		width=0.75];
+	CO2 -> "CO*"	[color="#69CD5B",
+		dir=back,
+		penwidth=8.852,
+		pos="s,57.383,844.75 67.45,845.98 77.077,847.16 87.481,848.42 97.095,849.57 135.49,854.17 180,859.38 207.39,862.57"];
+	"CO*" -> "HCO*"	[color="#8ED645",
+		dir=back,
+		penwidth=9.151,
+		pos="s,254.17,846.7 260.7,838.93 263.1,835.88 265.38,832.73 267.39,829.57 295.38,785.48 316.63,727.91 327.46,695.22"];
+	"COOH*" -> "HCOOH*"	[color="#21A585",
+		dir=forward,
+		penwidth=7.928,
+		pos="e,417.34,634.28 347.87,791.96 354.15,776.5 362.31,756.4 369.54,738.57 385.57,699.02 382.73,685.63 405.54,649.57 407.11,647.08 408.87,\
+644.61 410.73,642.2"];
+	CH4	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH4.png",
+		label=" ",
+		penwidth=7.878,
+		pos="131.09,163.57",
+		width=0.75];
+	CH4 -> CH3X	[color="#3ABA76",
+		dir=back,
+		penwidth=8.371,
+		pos="s,157.62,167.61 167.71,169.2 180.78,171.27 195.32,173.57 207.37,175.48"];
+	CC	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CC.png",
+		label=" ",
+		penwidth=8.91,
+		pos="234.24,120.57",
+		width=0.92075];
+	CC -> "CC.[Pt]"	[color="#2DB27D",
+		dir=back,
+		penwidth=8.206,
+		pos="s,258.49,133.33 267.33,138.18 282.99,146.77 301.35,156.85 315.06,164.37"];
+	CC -> "CC[Pt]"	[color="#460B5E",
+		dir=forward,
+		penwidth=5.099,
+		pos="e,411.95,145.88 266.43,125.04 302.94,130.27 363.27,138.91 401.72,144.41"];
+	CH3OH	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/CH3OH.png",
+		label=" ",
+		penwidth=2.154,
+		pos="30.547,93.57",
+		width=0.84854];
+	CH3OH -> CH3X	[color="#29AF7F",
+		dir=forward,
+		penwidth=8.13,
+		pos="e,213.13,164.99 59.166,100.28 86.719,107.48 129.9,120.12 165.09,136.57 178.63,142.89 192.73,151.42 204.57,159.22"];
+	CH3OH -> "CH3OH*"	[color="#29AF7F",
+		dir=back,
+		penwidth=8.13,
+		pos="s,58.998,86.884 68.873,84.479 80.999,81.526 94.153,78.323 105.15,75.645"];
+	HCOOCH3	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/HCOOCH3.png",
+		label=" ",
+		penwidth=0.0,
+		pos="131.09,714.57",
+		width=0.94444];
+	HCOOCH3 -> "HCOO*"	[color="#481769",
+		dir=forward,
+		penwidth=5.262,
+		pos="e,209.48,766.59 153.05,728.66 166.92,737.98 185.37,750.39 201.08,760.95"];
+	HCOOCH3 -> "COC=O.[Pt]"	[color="#20A386",
+		dir=forward,
+		penwidth=7.88,
+		pos="e,508.32,516.68 137.48,696.58 146.33,670.24 166.5,621.48 201.09,595.57 248.01,560.43 416.26,530.9 498.28,518.22"];
+	HCOOCH3 -> "CH3O*"	[color="#20A486",
+		dir=back,
+		penwidth=7.899,
+		pos="s,164.75,718.06 174.87,719.14 260.14,728.25 449.05,748.44 518.03,755.81"];
+	HCOOH	[height=0.5,
+		image="/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/00_run_fitted_model/\
+species/HCOOH.png",
+		label=" ",
+		penwidth=0.0,
+		pos="234.24,622.57",
+		width=0.86659];
+	HCOOH -> "HCO*"	[color="#26828E",
+		dir=back,
+		penwidth=7.171,
+		pos="s,258.99,633.71 268.37,638.11 282.48,644.72 298.62,652.29 311.54,658.35"];
+	HCOOH -> "HCOOH*"	[color="#26828E",
+		dir=forward,
+		penwidth=7.178,
+		pos="e,405.52,615.84 265.55,621.37 299.94,620.01 356.26,617.79 395.07,616.25"];
+	"\n"	[height=0.5,
+		pos="30.547,895.57",
+		width=0.75];
+}

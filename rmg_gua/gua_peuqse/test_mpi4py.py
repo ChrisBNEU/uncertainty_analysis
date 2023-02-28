@@ -15,9 +15,6 @@ def test_mpi4py():
         "Hello, World! I am process %d of %d on %s \n started at %s\n, finished at %s.\n"
         % (rank, size, name, start, stop))
     
-
-
-    
 if (__name__ == "__main__"):
     test_mpi4py()
     

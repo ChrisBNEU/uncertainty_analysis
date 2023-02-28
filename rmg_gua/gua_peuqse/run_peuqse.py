@@ -23,6 +23,9 @@ if __name__ == "__main__":
 
     with open("expt_data.yaml", "r") as f:
         expt_data = yaml.load(f, Loader=yaml.FullLoader)
+
+    with open("expt_data_orig.yaml", "r") as f:
+        expt_data_orig = yaml.load(f, Loader=yaml.FullLoader)
         
     # load uncertainty yaml
     with open("expt_unc.yaml", "r") as f:
@@ -35,28 +38,24 @@ if __name__ == "__main__":
         li = -1
     
     # build the x-data array
+    # we actually need to build this with all the parameters for each expt in one list,
+    # e.g. [temp1, pres1, X_CO_1, etc.]
     x_data = []
-    x_data.append(expt_data["catalyst_area"][0:3])
-    x_data.append(expt_data["pressure"][0:3])
-    x_data.append(expt_data["species_CO"][0:3])
-    x_data.append(expt_data["species_CO2"][0:3])
-    x_data.append(expt_data["species_H2"][0:3])
-    x_data.append(expt_data["temperature"][0:3])
-    x_data.append(expt_data["volume_flowrate"][0:3])
+
+    for expt in range(len(expt_data["catalyst_area"])):
+        row = []
+        row.append(expt_data["catalyst_area"][expt])
+        row.append(expt_data["pressure"][expt])
+        row.append(expt_data["species_CO"][expt])
+        row.append(expt_data["species_CO2"][expt])
+        row.append(expt_data["species_H2"][expt])
+        row.append(expt_data["temperature"][expt])
+        row.append(expt_data["volume_flowrate"][expt])
+        x_data.append(row)
     x_data = np.array(x_data)
+
     print(f"length is {len(x_data[0])} in main")
-    # build x uncertainties array
-    x_unc = [] 
-    x_unc.append(expt_unc["catalyst_area"][0:3])
-    x_unc.append(expt_unc["pressure"][0:3])
-    x_unc.append(expt_unc["species_CO"][0:3])
-    x_unc.append(expt_unc["species_CO2"][0:3])
-    x_unc.append(expt_unc["species_H2"][0:3])
-    x_unc.append(expt_unc["temperature"][0:3])
-    x_unc.append(expt_unc["volume_flowrate"][0:3])
-    x_unc = np.array(x_unc)
-
-
+    
     # build y-data array
     y_data = []
     y_data.append(expt_data['species_out_CH3OH'][0:3])
