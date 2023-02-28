@@ -316,6 +316,12 @@ COC=[Pt]
 7 H u0 p0 c0 {3,S}
 8 X u0 p0 c0 {3,D}
 
+OC#[Pt]
+1 O u0 p2 c0 {2,S} {3,S}
+2 C u0 p0 c0 {1,S} {4,T}
+3 H u0 p0 c0 {1,S}
+4 X u0 p0 c0 {2,T}
+
 HCOOH*
 1 O u0 p2 c0 {3,S} {5,S}
 2 O u0 p2 c0 {3,D}
@@ -468,12 +474,6 @@ COC(O)[Pt]
 8  H u0 p0 c0 {4,S}
 9  H u0 p0 c0 {2,S}
 10 X u0 p0 c0 {3,S}
-
-OC#[Pt]
-1 O u0 p2 c0 {2,S} {3,S}
-2 C u0 p0 c0 {1,S} {4,T}
-3 H u0 p0 c0 {1,S}
-4 X u0 p0 c0 {2,T}
 
 OC(O)=[Pt]
 1 O u0 p2 c0 {3,S} {4,S}
@@ -669,12 +669,6 @@ OCOC#[Pt]
 7 H u0 p0 c0 {2,S}
 8 X u0 p0 c0 {4,T}
 
-CO2*
-1 O u0 p2 c0 {3,D}
-2 O u0 p2 c0 {3,D}
-3 C u0 p0 c0 {1,D} {2,D}
-4 X u0 p0 c0
-
 CC(=O)O[Pt]
 1 O u0 p2 c0 {4,S} {8,S}
 2 O u0 p2 c0 {4,D}
@@ -685,14 +679,11 @@ CC(=O)O[Pt]
 7 H u0 p0 c0 {3,S}
 8 X u0 p0 c0 {1,S}
 
-O=COC=[Pt]
-1 O u0 p2 c0 {3,S} {4,S}
-2 O u0 p2 c0 {4,D}
-3 C u0 p0 c0 {1,S} {5,S} {7,D}
-4 C u0 p0 c0 {1,S} {2,D} {6,S}
-5 H u0 p0 c0 {3,S}
-6 H u0 p0 c0 {4,S}
-7 X u0 p0 c0 {3,D}
+CO2*
+1 O u0 p2 c0 {3,D}
+2 O u0 p2 c0 {3,D}
+3 C u0 p0 c0 {1,D} {2,D}
+4 X u0 p0 c0
 
 O=CC=O.[Pt]
 1 O u0 p2 c0 {3,D}
@@ -702,6 +693,15 @@ O=CC=O.[Pt]
 5 H u0 p0 c0 {3,S}
 6 H u0 p0 c0 {4,S}
 7 X u0 p0 c0
+
+O=COC=[Pt]
+1 O u0 p2 c0 {3,S} {4,S}
+2 O u0 p2 c0 {4,D}
+3 C u0 p0 c0 {1,S} {5,S} {7,D}
+4 C u0 p0 c0 {1,S} {2,D} {6,S}
+5 H u0 p0 c0 {3,S}
+6 H u0 p0 c0 {4,S}
+7 X u0 p0 c0 {3,D}
 
 CC=O.[Pt]
 1 O u0 p2 c0 {3,D}
