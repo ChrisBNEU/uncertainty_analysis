@@ -43,44 +43,6 @@ H2O2
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {2,S}
 
-O*
-1 O u0 p2 c0 {2,D}
-2 X u0 p0 c0 {1,D}
-
-X
-1 X u0 p0 c0
-
-CO*
-1 O u0 p2 c0 {2,D}
-2 C u0 p0 c0 {1,D} {3,D}
-3 X u0 p0 c0 {2,D}
-
-CX
-1 C u0 p0 c0 {2,Q}
-2 X u0 p0 c0 {1,Q}
-
-H*
-1 H u0 p0 c0 {2,S}
-2 X u0 p0 c0 {1,S}
-
-CH2X
-1 C u0 p0 c0 {2,S} {3,S} {4,D}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 X u0 p0 c0 {1,D}
-
-CH3X
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 X u0 p0 c0 {1,S}
-
-CHX
-1 C u0 p0 c0 {2,S} {3,T}
-2 H u0 p0 c0 {1,S}
-3 X u0 p0 c0 {1,T}
-
 [CH]=O
 multiplicity 2
 1 O u0 p2 c0 {2,D}
@@ -210,6 +172,13 @@ multiplicity 2
 6 H u0 p0 c0 {3,S}
 7 H u0 p0 c0 {3,S}
 
+X
+1 X u0 p0 c0
+
+H*
+1 H u0 p0 c0 {2,S}
+2 X u0 p0 c0 {1,S}
+
 OH*
 1 O u0 p2 c0 {2,S} {3,S}
 2 H u0 p0 c0 {1,S}
@@ -279,12 +248,34 @@ OC(O)[Pt]
 6 H u0 p0 c0 {1,S}
 7 X u0 p0 c0 {3,S}
 
+O*
+1 O u0 p2 c0 {2,D}
+2 X u0 p0 c0 {1,D}
+
+C=[Pt]
+1 C u0 p0 c0 {2,S} {3,S} {4,D}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 X u0 p0 c0 {1,D}
+
 OC=[Pt]
 1 O u0 p2 c0 {2,S} {4,S}
 2 C u0 p0 c0 {1,S} {3,S} {5,D}
 3 H u0 p0 c0 {2,S}
 4 H u0 p0 c0 {1,S}
 5 X u0 p0 c0 {2,D}
+
+COC([Pt])O[Pt]
+1  O u0 p2 c0 {3,S} {4,S}
+2  O u0 p2 c0 {3,S} {10,S}
+3  C u0 p0 c0 {1,S} {2,S} {5,S} {9,S}
+4  C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
+5  H u0 p0 c0 {3,S}
+6  H u0 p0 c0 {4,S}
+7  H u0 p0 c0 {4,S}
+8  H u0 p0 c0 {4,S}
+9  X u0 p0 c0 {3,S}
+10 X u0 p0 c0 {2,S}
 
 O=COC[Pt]
 1 O u0 p2 c0 {3,S} {4,S}
@@ -315,6 +306,31 @@ COC=[Pt]
 6 H u0 p0 c0 {2,S}
 7 H u0 p0 c0 {3,S}
 8 X u0 p0 c0 {3,D}
+
+COC=O.[Pt]
+1 O u0 p2 c0 {3,S} {4,S}
+2 O u0 p2 c0 {4,D}
+3 C u0 p0 c0 {1,S} {5,S} {6,S} {7,S}
+4 C u0 p0 c0 {1,S} {2,D} {8,S}
+5 H u0 p0 c0 {3,S}
+6 H u0 p0 c0 {3,S}
+7 H u0 p0 c0 {3,S}
+8 H u0 p0 c0 {4,S}
+9 X u0 p0 c0
+
+CO*
+1 O u0 p2 c0 {2,D}
+2 C u0 p0 c0 {1,D} {3,D}
+3 X u0 p0 c0 {2,D}
+
+C~[Pt]
+1 C u0 p0 c0 {2,Q}
+2 X u0 p0 c0 {1,Q}
+
+C#[Pt]
+1 C u0 p0 c0 {2,S} {3,T}
+2 H u0 p0 c0 {1,S}
+3 X u0 p0 c0 {1,T}
 
 OC#[Pt]
 1 O u0 p2 c0 {2,S} {3,S}
@@ -542,6 +558,13 @@ CH3OH*
 5 H u0 p0 c0 {2,S}
 6 H u0 p0 c0 {1,S}
 7 X u0 p0 c0
+
+C[Pt]
+1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2 H u0 p0 c0 {1,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {1,S}
+5 X u0 p0 c0 {1,S}
 
 OO.[Pt]
 1 O u0 p2 c0 {2,S} {3,S}
@@ -884,22 +907,6 @@ COOC.[Pt]
 10 H u0 p0 c0 {4,S}
 11 X u0 p0 c0
 
-COC=O.[Pt]
-1 O u0 p2 c0 {3,S} {4,S}
-2 O u0 p2 c0 {4,D}
-3 C u0 p0 c0 {1,S} {5,S} {6,S} {7,S}
-4 C u0 p0 c0 {1,S} {2,D} {8,S}
-5 H u0 p0 c0 {3,S}
-6 H u0 p0 c0 {3,S}
-7 H u0 p0 c0 {3,S}
-8 H u0 p0 c0 {4,S}
-9 X u0 p0 c0
-
-[H][H].[Pt]
-1 H u0 p0 c0 {2,S}
-2 H u0 p0 c0 {1,S}
-3 X u0 p0 c0
-
 [Pt]CO[Pt]
 1 O u0 p2 c0 {2,S} {6,S}
 2 C u0 p0 c0 {1,S} {3,S} {4,S} {5,S}
@@ -957,6 +964,11 @@ OCCO
 9  H u0 p0 c0 {1,S}
 10 H u0 p0 c0 {2,S}
 
+[H][H].[Pt]
+1 H u0 p0 c0 {2,S}
+2 H u0 p0 c0 {1,S}
+3 X u0 p0 c0
+
 CC=O
 1 O u0 p2 c0 {3,D}
 2 C u0 p0 c0 {3,S} {4,S} {5,S} {6,S}
@@ -975,6 +987,17 @@ CC(=O)O
 6 H u0 p0 c0 {3,S}
 7 H u0 p0 c0 {3,S}
 8 H u0 p0 c0 {1,S}
+
+CC.[Pt]
+1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
+3 H u0 p0 c0 {1,S}
+4 H u0 p0 c0 {1,S}
+5 H u0 p0 c0 {1,S}
+6 H u0 p0 c0 {2,S}
+7 H u0 p0 c0 {2,S}
+8 H u0 p0 c0 {2,S}
+9 X u0 p0 c0
 
 COC
 1 O u0 p2 c0 {2,S} {3,S}
@@ -998,34 +1021,6 @@ CCO
 8 H u0 p0 c0 {3,S}
 9 H u0 p0 c0 {1,S}
 
-CH4
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 H u0 p0 c0 {1,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-
-CC[Pt]
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {8,S}
-2 C u0 p0 c0 {1,S} {5,S} {6,S} {7,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 X u0 p0 c0 {1,S}
-
-CC.[Pt]
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 H u0 p0 c0 {2,S}
-9 X u0 p0 c0
-
 CC
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
@@ -1036,57 +1031,10 @@ CC
 7 H u0 p0 c0 {2,S}
 8 H u0 p0 c0 {2,S}
 
-C[CH2]
-multiplicity 2
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u1 p0 c0 {1,S} {6,S} {7,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-
-C=C
-1 C u0 p0 c0 {2,D} {3,S} {4,S}
-2 C u0 p0 c0 {1,D} {5,S} {6,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {2,S}
-
-C=C.[Pt]
-1 C u0 p0 c0 {2,D} {3,S} {4,S}
-2 C u0 p0 c0 {1,D} {5,S} {6,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {2,S}
-7 X u0 p0 c0
-
-CC=[Pt]
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u0 p0 c0 {1,S} {6,S} {7,D}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 X u0 p0 c0 {2,D}
-
-[Pt]CC[Pt]
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {7,S}
-2 C u0 p0 c0 {1,S} {5,S} {6,S} {8,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {2,S}
-7 X u0 p0 c0 {1,S}
-8 X u0 p0 c0 {2,S}
-
-C.[Pt]
+C
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
 5 H u0 p0 c0 {1,S}
-6 X u0 p0 c0
 

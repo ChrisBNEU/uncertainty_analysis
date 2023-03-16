@@ -18,18 +18,17 @@ database(
         'surfaceThermoPt111', 
         'primaryThermoLibrary', 
         'thermo_DFT_CCSDTF12_BAC',
-        'DFT_QCI_thermo'
+        'DFT_QCI_thermo',
         ],
     reactionLibraries = [
         'BurkeH2O2inArHe',
-        'BurkeH2O2inN2', 
-        'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
+        'BurkeH2O2inN2', ],
+        # 'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
-    kineticsFamilies =['surface','default'],
+    kineticsFamilies=[('surface', True), ('default', False)],
     kineticsEstimator = 'rate rules',
 )
-
 
 catalystProperties(
     metal='Cu111'
@@ -580,7 +579,9 @@ options(
     # generateLabeledReactions=True, # using labelreactions branch, to get a list of labeled reactions
     saveEdgeSpecies=True,
     saveSimulationProfiles=True,
-    generateSeedEachIteration=True
+    generateSeedEachIteration=True,
+    verboseComments=True,
+
 )
 
 generatedSpeciesConstraints(

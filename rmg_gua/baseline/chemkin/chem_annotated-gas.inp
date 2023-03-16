@@ -30,8 +30,7 @@ SPECIES
     HCOOH(7)            ! HCOOH(7)
     CH3OH(8)            ! CH3OH(8)
     HCOOCH3(9)          ! HCOOCH3(9)
-    CH4(32)             ! CH4(32)
-    CC(133)             ! CC(133)
+    C(40)               ! C(40)
 END
 
 
@@ -100,16 +99,10 @@ HCOOCH3(9)              C   2H   4O   2     G   100.000  5000.000 1141.77      1
 -2.41949346E-08 7.75152330E-12-4.46725569E+04 1.20363387E+01                   4
 
 ! Thermo library: primaryThermoLibrary
-CH4(32)                 C   1H   4          G   100.000  5000.000 1084.12      1
+C(40)                   C   1H   4          G   100.000  5000.000 1084.12      1
  9.08279610E-01 1.14540629E-02-4.57172537E-06 8.29188673E-10-5.66312440E-14    2
 -9.71998052E+03 1.39930158E+01 4.20541283E+00-5.35554587E-03 2.51122331E-05    3
 -2.13761692E-08 5.97519324E-12-1.01619432E+04-9.21270597E-01                   4
-
-! Thermo library: thermo_DFT_CCSDTF12_BAC
-CC(133)                 C   2H   6          G   100.000  5000.000 1012.42      1
- 2.82845780E+00 1.73040987E-02-6.73336647E-06 1.23742590E-09-8.65681088E-14    2
--1.19977975E+04 5.93825672E+00 3.72239865E+00 1.65077010E-03 3.44177937E-05    3
--3.76861352E-08 1.24451983E-11-1.15575904E+04 4.68245945E+00                   4
 
 END
 
@@ -117,7 +110,7 @@ END
 
 REACTIONS    KCAL/MOLE   MOLES
 
-! Reaction index: Chemkin #1; RMG #49
+! Reaction index: Chemkin #1; RMG #31
 ! Template reaction: 1,2_Insertion_CO
 ! Flux pairs: CO(3), CH2O(6); H2(2), CH2O(6); 
 ! Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
@@ -125,16 +118,17 @@ REACTIONS    KCAL/MOLE   MOLES
 ! family: 1,2_Insertion_CO
 H2(2)+CO(3)=CH2O(6)                                 2.890000e+09 1.160     82.100   
 
-! Reaction index: Chemkin #2; RMG #51
+! Reaction index: Chemkin #2; RMG #33
 ! Template reaction: 1,2_Insertion_CO
 ! Flux pairs: CO(3), HCOOH(7); H2O(5), HCOOH(7); 
+! Average of [From training reaction 7 used for CO;CsO_H]
 ! Estimated using an average for rate rule [CO;RO_H]
 ! Euclidian distance = 0
 ! Multiplied by reaction path degeneracy 2.0
 ! family: 1,2_Insertion_CO
 H2O(5)+CO(3)=HCOOH(7)                               2.540000e-01 3.700     53.360   
 
-! Reaction index: Chemkin #3; RMG #52
+! Reaction index: Chemkin #3; RMG #34
 ! Template reaction: 1,3_Insertion_CO2
 ! Flux pairs: CO2(4), HCOOH(7); H2(2), HCOOH(7); 
 ! Matched reaction 0 H2 + CO2 <=> CH2O2 in 1,3_Insertion_CO2/training
@@ -142,7 +136,7 @@ H2O(5)+CO(3)=HCOOH(7)                               2.540000e-01 3.700     53.36
 ! family: 1,3_Insertion_CO2
 H2(2)+CO2(4)=HCOOH(7)                               1.510000e+09 1.230     73.900   
 
-! Reaction index: Chemkin #4; RMG #61
+! Reaction index: Chemkin #4; RMG #43
 ! Template reaction: 1,2_Insertion_CO
 ! Flux pairs: CO(3), HCOOCH3(9); CH3OH(8), HCOOCH3(9); 
 ! Matched reaction 7 CH4O + CO <=> C2H4O2 in 1,2_Insertion_CO/training
@@ -150,12 +144,12 @@ H2(2)+CO2(4)=HCOOH(7)                               1.510000e+09 1.230     73.90
 ! family: 1,2_Insertion_CO
 CO(3)+CH3OH(8)=HCOOCH3(9)                           1.270000e-01 3.700     53.360   
 
-! Reaction index: Chemkin #5; RMG #63
+! Reaction index: Chemkin #5; RMG #45
 ! Template reaction: 1,3_Insertion_CO2
-! Flux pairs: CO2(4), HCOOCH3(9); CH4(32), HCOOCH3(9); 
+! Flux pairs: CO2(4), HCOOCH3(9); C(40), HCOOCH3(9); 
 ! Estimated from node Root_5CbCdCsHN->Cs_N-4CbCdCsHN->Cs
 ! Multiplied by reaction path degeneracy 8.0
-CO2(4)+CH4(32)=HCOOCH3(9)                           3.192624e-01 3.391     85.307   
+CO2(4)+C(40)=HCOOCH3(9)                             3.192624e-01 3.391     85.307   
 
 END
 

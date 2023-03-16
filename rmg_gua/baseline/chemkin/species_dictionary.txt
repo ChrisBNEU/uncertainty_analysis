@@ -148,18 +148,7 @@ CH3OH*(23)
 6 H u0 p0 c0 {1,S}
 7 X u0 p0 c0
 
-SX(62)
-1 O u0 p2 c0 {3,S} {4,S}
-2 O u0 p2 c0 {4,D}
-3 C u0 p0 c0 {1,S} {5,S} {6,S} {7,S}
-4 C u0 p0 c0 {1,S} {2,D} {8,S}
-5 H u0 p0 c0 {3,S}
-6 H u0 p0 c0 {3,S}
-7 H u0 p0 c0 {3,S}
-8 H u0 p0 c0 {4,S}
-9 X u0 p0 c0
-
-CH3OX(49)
+CH3OX(45)
 1 O u0 p2 c0 {2,S} {5,S}
 2 C u0 p0 c0 {1,S} {3,S} {4,S} {6,S}
 3 H u0 p0 c0 {2,S}
@@ -167,48 +156,17 @@ CH3OX(49)
 5 H u0 p0 c0 {1,S}
 6 X u0 p0 c0 {2,S}
 
-CH3X(33)
+CH3X(55)
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
 5 X u0 p0 c0 {1,S}
 
-CH4(32)
+C(40)
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
 5 H u0 p0 c0 {1,S}
-
-C2H6X(130)
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 H u0 p0 c0 {2,S}
-9 X u0 p0 c0
-
-CC(133)
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {1,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 H u0 p0 c0 {2,S}
-
-C2H5X(135)
-1 C u0 p0 c0 {2,S} {3,S} {4,S} {8,S}
-2 C u0 p0 c0 {1,S} {5,S} {6,S} {7,S}
-3 H u0 p0 c0 {1,S}
-4 H u0 p0 c0 {1,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {2,S}
-7 H u0 p0 c0 {2,S}
-8 X u0 p0 c0 {1,S}
 
