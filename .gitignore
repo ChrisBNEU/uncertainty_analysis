@@ -30,3 +30,5 @@ output*.log
 *.svg
 *peuquse_env*
 *PEUQSE/*
+*flux_diagram*
+
