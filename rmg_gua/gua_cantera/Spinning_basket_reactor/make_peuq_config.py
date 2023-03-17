@@ -123,10 +123,51 @@ def make_be_peuq_input(results_path=False):
         with open(be_ub_file, 'w') as f:
             yaml.safe_dump(be_ub, f, sort_keys=False)
 
+def trim_rule_file(results_path, rules_used):
+    """
+    remove rules from rule config files that are not in the mechanism
+    rules_used: dictionary of the rules used in the mechanism with a reaction or
+    list of reactions as the values. 
+    """
 
-def make_ck_reac_config(results_path=False):
+    rule_config_file = os.path.join(results_path, "rule_config.yaml")
+    with open(rule_config_file, 'r') as f:
+        rule_dict = yaml.safe_load(f)
+    rule_unc_config_file = os.path.join(results_path, "rule_unc_config.yaml")
+    with open(rule_unc_config_file, 'r') as f:
+        rule_unc_dict = yaml.safe_load(f)
+    rule_lb_config_file = os.path.join(results_path, "rule_lb_config.yaml") 
+    with open(rule_lb_config_file, 'r') as f:
+        rule_lb_dict = yaml.safe_load(f)
+    rule_ub_config_file = os.path.join(results_path, "rule_ub_config.yaml")
+    with open(rule_ub_config_file, 'r') as f:
+        rule_ub_dict = yaml.safe_load(f)
+
+
+    rule_list = list(rule_dict.keys())
+    for rule in rule_list:
+        if rule not in rules_used:
+            print("removing rule: ", rule, " from config files")
+            rule_dict.pop(rule)
+            rule_unc_dict.pop(rule)
+            rule_lb_dict.pop(rule)
+            rule_ub_dict.pop(rule)
+    
+    # save all the yaml files 
+    with open(rule_config_file, 'w') as f:
+        yaml.safe_dump(rule_dict, f, sort_keys=False)
+    with open(rule_unc_config_file, 'w') as f:
+        yaml.safe_dump(rule_unc_dict, f, sort_keys=False)
+    with open(rule_lb_config_file, 'w') as f:
+        yaml.safe_dump(rule_lb_dict, f, sort_keys=False)
+    with open(rule_ub_config_file, 'w') as f:
+        yaml.safe_dump(rule_ub_dict, f, sort_keys=False)    
+
+def make_ck_reac_config(results_path=False, trim_rules=False):
     """
     make config file detailing the rule associated with each rmg reaction
+    trim_rule_file: if true, remove rules from rule config files that are not in 
+    the mechanism
     """
     # now load the sensitive reactions
     path = os.path.join(prefix, "rmg_gua", "baseline")
@@ -145,6 +186,7 @@ def make_ck_reac_config(results_path=False):
         use_chemkin_names=True,
     )
     ck_rule_dict = []
+    rules_used = {}
     for rxn in model.reactions:
         if rxn.is_surface_reaction():
             if isinstance(rxn, TemplateReaction):
@@ -190,11 +232,20 @@ def make_ck_reac_config(results_path=False):
                     "reactants": reactants, "products":products ,"source": source_str, 
                     "dHrxn": dhrxn, "reac_dict": reac_dict, "rtype":rtype, "deg":deg}})
 
+                # add rule to rules_used dict. if it already exists, add the rxn to the list
+                if source_str in rules_used.keys():
+                    rules_used[source_str].append(rxn.to_labeled_str(use_index=True))
+                else:
+                    rules_used[source_str] = [rxn.to_labeled_str(use_index=True)]
+
     if results_path:
         ck_rule_dict_path = os.path.join(results_path, "ck_rule_dict.yaml")
         with open(ck_rule_dict_path, 'w') as f:
             yaml.dump(ck_rule_dict, f)
-        
+
+    if trim_rules:
+        trim_rule_file(results_path, rules_used)
+
     return ck_rule_dict
  
 def make_be_config(results_path=False, return_test_spec=False):
@@ -318,6 +369,66 @@ def make_be_config(results_path=False, return_test_spec=False):
     else:
         return bond_orders
 
-if __name__ == "__main__":
-    make_rule_dict()
-    make_be_dict()
+def get_all_param_lists(results_path, kinetic=True, thermo=True):
+    """
+    returns lists for all the parameters used in the peuqse model
+    kinetic - get all kinetic parameters (A, E0, alpha from rmg rules)
+    thermo - get all thermo parameters (CHON and vdw be)
+    if kinetic and thermo are true, append thermo parameters to kinetic parameters
+
+    returns:
+    value list - list of all parameter values
+    label list - list of all parameter labels
+    unc_list - list of all parameter uncertainties
+    upper list - list of all parameter upper bounds
+    lower list - list of all parameter lower bounds
+    """
+    # open all of the config files
+    with open(os.path.join(results_path, "rule_config"), 'r') as f:
+        rule_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "rule_unc_config"), 'r') as f:
+        rule_unc_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "rule_lb_config"), 'r') as f:
+        rule_lb_config = yaml.safe_load(f) 
+    with open(os.path.join(results_path, "rule_ub_config"), 'r') as f:
+        rule_ub_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "be_values.yaml"), 'r') as f:
+        thermo_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "be_unc.yaml"), 'r') as f:
+        thermo_unc_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "be_lb.yaml"), 'r') as f:
+        thermo_lb_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "be_ub.yaml"), 'r') as f:
+        thermo_ub_config = yaml.safe_load(f)
+
+    value_list = []
+    label_list = []
+    unc_list = []
+    upper_list = []
+    lower_list = []
+
+    if kinetic and thermo: 
+        # kinetic parameters
+        for label, value in rule_config.items():
+            value_list.append(value)
+            label_list.append(label)
+            unc_list.append(rule_unc_config[label])
+            upper_list.append(rule_ub_config[label])
+            lower_list.append(rule_lb_config[label])
+
+        # thermo parameters
+        for label, value in thermo_config.items():
+            value_list.append(value)
+            label_list.append(label)
+            unc_list.append(thermo_unc_config[label])
+            upper_list.append(thermo_ub_config[label])
+            lower_list.append(thermo_lb_config[label])
+    # return as a dictionary so we don't confuse what's what
+    peuqse_params = {
+        "value_list": value_list,
+        "label_list": label_list,
+        "unc_list": unc_list,
+        "upper_list": upper_list,
+        "lower_list": lower_list
+    }
+    return peuqse_params
