@@ -16,7 +16,10 @@ import cantera as ct
 import math
 import yaml
 import numpy as np
-
+import os
+import sys
+from copy import deepcopy
+import collections
 class MinSBR:
     """
     A minimal stirred batch reactor
@@ -31,7 +34,8 @@ class MinSBR:
         reactor_type=1,
         energy="off",
         time=600,
-        new_rate_dict = None, 
+        reaction_list = None, 
+        results_path = None, 
     ):
         """
         initialize sbr object
@@ -40,6 +44,18 @@ class MinSBR:
                       Temp, Pressure, concentrations, etc. 
         new_rate_dict = dict of new rates that we want to set
         """
+
+        # load the cantera mechanism
+        prefix = os.path.dirname(os.path.abspath(__file__))
+        if os.path.exists("/work"):
+            self.prefix = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
+        else:
+            self.prefix = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/"
+
+        if results_path:
+            self.results_path = results_path
+        else:
+            self.results_path = os.getcwd()
         self.expt_id = reac_config['expt_name']
         self.temperature = reac_config['temperature']
         self.pressure = reac_config['pressure']
@@ -76,35 +92,14 @@ class MinSBR:
         self.gas = ct.Solution(yaml_file, "gas")
         self.surf = ct.Interface(yaml_file, "surface1", [self.gas])
         
-        # if we have rates we want to change: 
-        if new_rate_dict:
-            for param, value in new_rate_dict.items():
-                num = int(param.split("_")[-1])
-                new_rxn = self.surf.reactions()[num]
-                
-                print("oldrxn: ", self.surf.reactions()[num].rate)
-                
-                A_i = self.surf.reactions()[num].rate.pre_exponential_factor
-                Ea_i = self.surf.reactions()[num].rate.activation_energy
-                b_i = self.surf.reactions()[num].rate.temperature_exponent
-                
-                if "A" in param and "log" in param:
-                    A_i = 10**float(value)
-                elif "A" in param and "stick" in param:
-                    A_i = float(value)
-                elif "E" in param:
-                    # input should use J/kmol
-                    Ea_i = float(value)
-                else:
-                    logging.error(f"key {param} not recognized")
-                   
-                rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
-                new_rxn.rate = rate
-                # print("new rxn rate", rate)
-                self.surf.modify_reaction(num, new_rxn)
-                
-                print("newrxn: ", self.surf.reactions()[num].rate)
-                
+        # modify the reactions if specified
+        if reaction_list is not None:
+            self.gas.TP = 298.0, 101325.0
+            self.surf.TP = 298.0, 101325.0
+            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
+            self.change_be(thermo_pert_dict)
+            self.change_reactions_rmg(rule_dict=rxn_pert_dict)
+
         # pull out species names
         for spec_str in self.gas.species_names:
             if spec_str.startswith("CO("):
@@ -198,25 +193,249 @@ class MinSBR:
         self.sim.atol = atol
         
         self.time=time
+
+
+    def load_perts(self, pert_list):
+        """ 
+        load the perturbations to a dictionary
+        """
+        ck_rule_dict_path = os.path.join(self.results_path, "ck_rule_dict.yaml")
+        with open(ck_rule_dict_path, 'r') as f:
+            ck_rule_dict = yaml.load(f, Loader=yaml.FullLoader)
+
+        rule_config_file = os.path.join(self.results_path, "rule_config.yaml")
+        with open(rule_config_file, "r") as f:
+            rule_dict_orig = yaml.safe_load(f)
+
+        # # load in the perturbations. haven't thought of a more intelligent way to do this, 
+        # but order is preserved in yaml for dict for python 3.6+ if we safe load 
+        # and save with sort_keys = False
+        rule_dict = deepcopy(rule_dict_orig)
+        ck_matches = {}
+        ck_no_match = []
+        count = 0
+
+        if len(pert_list) > 0:
+            assert len(pert_list) == len(rule_dict_orig)*3 + 5, "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
+            print("changing reactions")
+            for rule, vals in rule_dict_orig.items():
+                rule_dict[rule]["A"] = pert_list[count]
+                count += 1
+                rule_dict[rule]["E0"] = pert_list[count]
+                count += 1
+                rule_dict[rule]["alpha"] = pert_list[count]
+                count += 1
+            # load the binding energy perturbations last values in dict
+            thermo_pert_dict = {'C': 0., 'O': 0., 'N': 0., 'H': 0., 'vdw': 0.}
+            for num, (key, value) in enumerate(thermo_pert_dict.items()):
+                thermo_pert_dict[key] = pert_list[count]
+                count += 1
+
+
+        return rule_dict, thermo_pert_dict
+
+    def change_be(self, thermo_pert_dict):
+        """
+        change the species BE by altering the enthalpy of formation
+        """
+        # load in the test species yaml file if requested
+        test_spec_path = os.path.join(self.results_path, "be_test_config.yaml")        
+        with open(test_spec_path, "r") as f:
+            test_spec = yaml.safe_load(f)
+
+        # load the lookup for which species have which bond order
+        thermo_bo_dict_path = os.path.join(self.results_path, "thermo_pert.yaml")
+        with open(thermo_bo_dict_path, 'r') as f:
+            thermo_bo_dict = yaml.load(f, Loader=yaml.FullLoader)
         
-        # restrict species that we know do not belong
-        # for index, rxn in enumerate(self.gas.reactions()):
-        #     if "CH4(24)" in rxn.reactants or "CH4(24)" in rxn.products:
-        #         print( "turning off reaction: ", rxn)
-        #         self.gas.set_multiplier(0,index)
-        # for index, rxn in enumerate(self.surf.reactions()):
-        #     if "CH4(24)" in rxn.reactants or "CH4(24)" in rxn.products:
-        #         print( "turning off reaction: ", rxn)  
-        #         self.surf.set_multiplier(0,index)
-        # for index, rxn in enumerate(self.surf.reactions()):
-        #     if "CH3X(33)" in rxn.reactants or "CH3X(33)" in rxn.products:
-        #         print( "turning off reaction: ", rxn)
-        #         self.surf.set_multiplier(0,index)
+        # dh is range of 0.3 eV, or 1e7 j/kmol
+        kj_thermo_pert = {k: v/1e6 for k, v in thermo_pert_dict.items()}
+
+        old_h298 = {}
+        for spec in self.surf.species():
+            if spec.name == "X(1)":
+                print(spec.name)
+                pass
+            else:
+                dh = 0. 
+                species = spec.name
+                if test_spec and species in test_spec.values():
+                    old_h298[species] = spec.thermo.h(298.15)/1e6
+                # calculate dh
+                bo_spec = thermo_bo_dict[species] 
+                for atom, value in bo_spec.items():
+                    dh += thermo_pert_dict[atom] * value
+
+                st_orig = spec.thermo
+
+                coeffs = st_orig.coeffs
+                coeffs[[6, 13]] += dh / ct.gas_constant
+                s_new = ct.NasaPoly2(st_orig.min_temp, st_orig.max_temp, st_orig.reference_pressure, coeffs)
+                spec.thermo = s_new
+                self.surf.modify_species(self.surf.species_index(species), spec)
+
+                if test_spec and species in test_spec.values():
+                    diff = spec.thermo.h(298.15)/1e6 - old_h298[species]
+                    pert = dh/1e6
+                    assert np.isclose(diff, pert, rtol=1e-3, atol=1e-3)
+        
+        return old_h298
+
+    def scale_ea(self, E0, alpha, rxn, rxind):
+        """ 
+        scale the activation energy for each reaction using either blowers masel
+        or BEP
+        """
+        hrxn = self.surf.delta_standard_enthalpy[rxind]
+        reactants = rxn.reactants
+        products = rxn.products
+        # get enthalpy of reaction at 0K
+        reactants = rxn.reactants
+        products = rxn.products
+        reac_enth = 0
+        for reactant, stoic in reactants.items():
+            try:
+                ind = self.surf.species_index(reactant)
+                reac_enth += self.surf.species(ind).thermo.h(0.01) * stoic
+            except ValueError:
+                ind = self.gas.species_index(reactant)
+                reac_enth += self.gas.species(ind).thermo.h(0.01) * stoic
+        prod_enth = 0
+        for product, stoic in products.items():
+            try:
+                ind = self.surf.species_index(product)
+                prod_enth += self.surf.species(ind).thermo.h(0.01) * stoic
+            except ValueError:
+                ind = self.gas.species_index(product)
+                prod_enth += self.gas.species(ind).thermo.h(0.01) * stoic
+
+        H0 = prod_enth - reac_enth
+
+        # scale Ea
+        Ea = E0 + alpha * hrxn
+
+        # check if Ea is negative or less than rxn enthalpy at 0K
+        if H0 > 0.0 and Ea < H0:
+            Ea = H0
+        elif H0 < 0.0 and Ea < 0.0:
+            Ea = 0
+        return Ea
+
+    def change_reactions_rmg(self, rule_dict = [], test = False):
+        """
+        find the template for a given reaction
+        for now, we don't really care about gas phase rxns
+        """
+        # load the chenkin rxn_config file
+        ck_rule_dict_path = os.path.join(self.results_path, "ck_rule_dict.yaml")
+        with open(ck_rule_dict_path, 'r') as f:
+            ck_rule_dict = yaml.load(f, Loader=yaml.FullLoader)
+
+        ck_matches = {}
+        ck_no_match = []
+        for ck_num, ck_items in enumerate(ck_rule_dict):
+            ck_rxn = list(ck_items.keys())[0] 
+            ck_data = list(ck_items.values())[0]
+            ck_reac = collections.Counter(ck_data["reactants"])
+            ck_prod = collections.Counter(ck_data["products"])
+
+            # for num, rxn in enumerate(self.surf.reactions()):
+            num = ck_num
+            rxn = self.surf.reactions()[ck_num]
+            reaclist = []
+            prodlist = []
+            for reac, stoic in rxn.reactants.items():
+                if stoic > 1:
+                    reaclist.extend([reac]*int(stoic))
+                else:
+                    reaclist.append(reac)
+
+            for reac, stoic in rxn.products.items():
+                if stoic > 1:
+                    prodlist.extend([reac]*int(stoic))
+                else:
+                    prodlist.append(reac)
+
+            reactants = collections.Counter(reaclist)
+            products = collections.Counter(prodlist)
+
+            fwd = reactants == ck_reac and products == ck_prod
+            rev = reactants == ck_prod and products == ck_reac
+
+            # if we have a match, write the A, Ea to the ct rxn
+            if fwd:
+                if num in ck_matches.keys():
+                    print(f"duplicate reaction found {ck_rxn}, moving to next rxn")
+                    pass
+                else: 
+                    new_rxn = self.surf.reactions()[num]
+                    # print("oldrxn: ", self.surf.reactions()[num].rate)
+
+                    A_old = self.surf.reactions()[num].rate.pre_exponential_factor
+                    Ea_old = self.surf.reactions()[num].rate.activation_energy
+
+                    # pull the A, Ea from the chemkin file
+                    A_src = rule_dict[ck_data["source"]]["A"]
+                    E0_src = rule_dict[ck_data["source"]]["E0"]
+                    alpha_src = rule_dict[ck_data["source"]]["alpha"]
+                    # hrxn = ck_data["dHrxn"]*1e3
+                    hrxn = self.surf.delta_standard_enthalpy[num] 
+
+                    # get nreactants for A unit consistency
+                    n_reactants = len(ck_data["reactants"])
+
+                    # record initial values from cantera
+                    A_i = self.surf.reactions()[num].rate.pre_exponential_factor
+                    Ea_i = self.surf.reactions()[num].rate.activation_energy
+                    b_i = self.surf.reactions()[num].rate.temperature_exponent
+                    
+                    if ck_data["rtype"] == "arrhenius":
+                        A_i = 10**float(A_src)
+                        # for bimolecular reactions we have m^2/mol*s in chemkin, 
+                        # but m^2/kmol*s in cantera. all others are either sticking 
+                        # (trimolecular dissociative rxns) or unimolecular (units 1/s)
+                        if n_reactants == 2:
+                            A_i = A_i*1e3
+                    elif ck_data["rtype"] == "stick":
+                        A_i = float(A_src)
+                    else:
+                        raise Exception("reaction type not recognized")
+                    
+                    # account for rxn path degeneracy
+                    if ck_data["deg"] > 1.0:
+                        A_i = A_i * ck_data["deg"]
+                    
+                    # units j/mol in chemkin, j/kmol in cantera
+                    E0_src = E0_src*1e3
+                    Ea_i = self.scale_ea(E0_src, alpha_src, rxn, num)
+
+                    rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
+                    new_rxn.rate = rate
+                    self.surf.modify_reaction(num, new_rxn)
+
+                    # print("new rxn rate", rate)
+                    a_match = np.isclose(A_old, A_i, rtol=1e-3)
+                    e_match = np.isclose(Ea_old, Ea_i, rtol=1e-3)
+
+                    if a_match and e_match:
+                        ck_matches[num] = ck_num
+                    else: 
+                        ck_no_match.append(ck_items)   
+                        ck_matches[num] = ck_num
+
+            elif rev: 
+                raise Exception("reverse of chemkin reaction found in ct")
+            else:
+                raise Exception("chemkin reaction does not match ct")
+
+        return ck_matches
+
 
     def run_reactor_ss_memory(self):
         """
         Run single reactor to steady state and save the results to an ordered dictionary in memory
         """
+
         # how to sort out gas and surface such that we can attach units?
         gas_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.species_names]
 
