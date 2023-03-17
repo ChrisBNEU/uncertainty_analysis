@@ -1,16 +1,23 @@
 import sys
 import os 
-if os.path.exists("/work"):
-    prefix = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
-else:
-    prefix = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/"
-sys.path.append(prefix)
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from rmg_gua.gua_peuqse.peuqse_utilities import *
-import numpy as np 
-import pandas as pd
-import yaml
+sys.path.append(repo_dir)
+from rmg_gua.gua_cantera.Spinning_basket_reactor.make_peuq_config import *
 
-# 
-sens_spcs = ["CH3OH"]
-make_ct_peuq_input(base_model, overwrite=True, sens_specs=sens_spcs)
+
+
+rmg_path = os.path.dirname(os.environ["RMGPY"])
+results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
+if not os.path.exists(results_path):
+    os.mkdir(results_path)
+
+
+make_rmg_reac_config(
+    rmg_path=rmg_path,
+    results_path=results_path, 
+)   
+make_ck_reac_config(results_path=results_path, trim_rules=True)
+make_be_peuq_input(results_path=results_path)
+make_be_config(results_path=results_path)
+

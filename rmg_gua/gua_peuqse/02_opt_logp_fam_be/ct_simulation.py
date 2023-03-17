@@ -4,83 +4,17 @@ import sys
 import logging
 import random
 import time
-sys.path.append(
-    "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/")
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(repo_dir)
+results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
 from cantera import CanteraError
-
-def repackage_yaml(yaml_file):
-    """
-    make the yaml for expt data dict with lists for entries
-    """
-    with open(yaml_file, "r") as f:
-        expt_yaml = yaml.load(f, Loader=yaml.FullLoader)
-    
-    # get the keys from the first entry. 
-    new_expt_dict = {}
-    for num, expt in enumerate(expt_yaml): 
-        for key, value in expt.items():
-            if not isinstance(value, dict): 
-                if key not in new_expt_dict.keys():
-                    new_expt_dict[key] = [value]
-                else: 
-                    new_expt_dict[key].append(value)
-            else: 
-                # bump out nested dicts to the top level (e.g. concentrations in)
-                for sub_key, sub_value in value.items(): 
-                    new_key = key + "_" + sub_key
-                    if new_key not in new_expt_dict.keys():
-                        new_expt_dict[new_key] = [sub_value]
-                    else:
-                        new_expt_dict[new_key].append(sub_value)
-                    
-    return new_expt_dict
-    # make the 
-
-
-# def change_model(path, rdict):
-#     """
-#     change rms file to have new A and Ea values for reaction rxn_num
-#     rdict = {"A_log_x or A_stick_x": A, "Ea_x": Ea} where x is rxn num
-#     """
-
-#     with open(path, "r") as f: 
-#         ct_mech = yaml.load(f, Loader=yaml.FullLoader)
-
-#     # get the most sensitive reaction from cti mech
-#     for key, value in rdict.items():
-#         num = int(key.split("_")[-1])
-#         print(key, value, num)
-#         if "A" in key and "log" in key:
-#             A_i = 10**float(value)
-#             ct_mech["surface1-reactions"][num]["rate-constant"]["A"] = A_i
-#         elif "A" in key and "stick" in key:
-#             A_i = float(value)
-#             ct_mech["surface1-reactions"][num]["rate-constant"]["A"] = A_i
-#         elif "E" in key:
-#             Ea_i = float(value)
-#             ct_mech["surface1-reactions"][num]["rate-constant"]["Ea"] = Ea_i
-#         else:
-#             logging.error(f"key {key} not recognized")
-
-#     # save the yaml as a new file
-#     new_path = path.replace(".yaml", "_new.yaml")
-#     with open(new_path, "w") as f:
-#         yaml.dump(ct_mech, f)
-
-#     return new_path
-
-
 
 #To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
 def simulationFunction(parameters):
     #here x is a scalar or an array and "a" and "b" are constants for the equation.
     """
     run rms reactor. 
-    x = experimental data. I think we want it to run all of them at once? 
-    logA = rxn 1 a-factor
-    Ea = rxn 1 activation energy
-
     """
     t1 = time.asctime()
     t1s = time.time()
@@ -96,13 +30,6 @@ def simulationFunction(parameters):
     H2O_X = []
     print("input parameters: ", parameters)
     # change the rms file. now doing all reactions in mechanism
-    with open(kin_par_path, 'r') as file:
-        kin_par_dat= yaml.safe_load(file)
-
-    # unpack the peuquse parameters for use in modifying sim input
-    input_a_ea = dict(
-        zip(kin_par_dat["labels"], [parameters[0], parameters[1]]))
-
 
     with open(expt_condts, 'r') as file:
         data = yaml.safe_load(file)
@@ -159,7 +86,8 @@ def simulationFunction(parameters):
             reac_config=conditions,
             rtol=1.0e-11,
             atol=1.0e-22,
-            reaction_list=input_a_ea
+            reaction_list=parameters, 
+            results_path=results_path,
         )
         # try except loop for this because cantera errors out for certain A and Ea values
         try:

@@ -9,8 +9,10 @@ import numpy as np
 import PEUQSE as PEUQSE
 import PEUQSE.UserInput as UserInput
 import sys
-sys.path.insert(0, '../../../')
-
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(repo_dir)
+results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
+from rmg_gua.gua_cantera.Spinning_basket_reactor.make_peuq_config import get_all_param_lists
 run_test = False
 
 
@@ -19,8 +21,12 @@ import ct_simulation  # function for peuquse to optimize
 if __name__ == "__main__":
     # Just a simple example. The user can also put the values in directly into the runfile or extract from a csv, for example.
     print("running job")
-    # load the experimental data yaml so we get a dict of lists for each parameter
 
+    results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
+    # get the peuqse parameters
+    param_dict = get_all_param_lists(results_path=results_path)     
+
+    # load the exp data yaml
     with open("expt_data.yaml", "r") as f:
         expt_data = yaml.load(f, Loader=yaml.FullLoader)
         
@@ -60,37 +66,28 @@ if __name__ == "__main__":
     y_unc.append(expt_unc['species_out_H2O'])
     y_unc = np.array(y_unc)
 
-    #Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
+    # Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
     UserInput.responses['responses_abscissa'] = x_data
     UserInput.responses['responses_observed'] = y_data
 
     # estimated graaf uncertainties. 
     UserInput.responses['responses_observed_uncertainties'] = y_unc
 
-    # load the input file we made for the imulation data (A, Ea, uncertainty A&Ea, etc.)
-    ct_file = "./ct_initial_small.yaml" 
-    with open(ct_file, "r") as f:
-        mech_values = yaml.load(f, Loader=yaml.FullLoader)
-
-    # convert to lists
-    param_name_dict = {key: key for key in mech_values["labels"]} # dictionary of parameter names, not changing for now
-
-
     #Optional: provide labels for the responses axes and parameter names.
     UserInput.simulated_response_plot_settings['x_label'] = [
         "catalyst_area", "pressure (Pa)", "mole frac CO", "mole frac CO2", "mole frac H2", "temperature (K)", "volume flowrate (m^3/s)"]
     UserInput.simulated_response_plot_settings['y_label'] = [
         "CH3OH mole Frac out", "CO mole Frac out", "CO2 mole Frac out", "H2 mole Frac out", "H2O mole Frac out"]
-    UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = param_name_dict
+    UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = param_dict["label_list"]
 
     #Provide the prior distribution and uncertainties of the individual parameters.
     # prior expected values for a and b
-    UserInput.model['InputParameterPriorValues'] = mech_values["initial_values"]
+    UserInput.model['InputParameterPriorValues'] = param_dict["value_list"]
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
-    UserInput.model['InputParametersPriorValuesUncertainties'] = mech_values["uncertainties"]
+    UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
     # UserInput.model['InputParameterInitialGuess'] = #Can optionally change the initial guess to be different from prior means.
-    UserInput.model['InputParameterPriorValues_lowerBounds'] = mech_values["lower_bounds"]
-    UserInput.model['InputParameterPriorValues_upperBounds'] = mech_values["upper_bounds"]
+    UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
+    UserInput.model['InputParameterPriorValues_upperBounds'] = mech_values["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 
@@ -108,3 +105,5 @@ if __name__ == "__main__":
     # run the model
     PE_object.doMultiStart()
     PE_object.createAllPlots() #This function calls each of the below functions so that the user does not have to.
+
+

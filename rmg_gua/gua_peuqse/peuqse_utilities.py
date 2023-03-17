@@ -21,7 +21,7 @@ from matplotlib import pyplot as plt
 # various utilities for working with our awful rms->cantera->rms conversions
 ###############################################################################
 
-
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 
 def repackage_yaml(yaml_file):
@@ -348,11 +348,8 @@ def make_ct_expt_file(path):
     """
     make the ct experiment file for peuqse
     """
-    if os.path.exists("/work"):
-        settings_path = "/work/blais.ch/meOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/experiments_reorg_onlyopt.yaml"
-    else:
-        settings_path = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/gua_cantera/experiments_reorg_onlyopt.yaml"
-
+    
+    settings_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera", "experiments_reorg_onlyopt.yaml")
     # open the yaml file and get the list of experiments
     with open(settings_path, "r") as f:
         expt_list = yaml.load(f, Loader=yaml.FullLoader)
