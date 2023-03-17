@@ -9,9 +9,9 @@ import numpy as np
 import PEUQSE as PEUQSE
 import PEUQSE.UserInput as UserInput
 import sys
-sys.path.insert(0, '../../')
+sys.path.insert(0, '../../../')
 
-run_test = False#
+run_test = False
 
 
 import ct_simulation  # function for peuquse to optimize
@@ -28,34 +28,18 @@ if __name__ == "__main__":
     with open("expt_unc.yaml", "r") as f:
         expt_unc = yaml.load(f, Loader=yaml.FullLoader)
     
-    # set last index to 3 if we want to test and only run 3 experiments
-    if run_test: 
-        li = 3
-    else:
-        li = -1
-    
-    # build the x-data array
-    x_data = []
-    x_data.append(expt_data["catalyst_area"])
-    x_data.append(expt_data["pressure"])
-    x_data.append(expt_data["species_CO"])
-    x_data.append(expt_data["species_CO2"])
-    x_data.append(expt_data["species_H2"])
-    x_data.append(expt_data["temperature"])
-    x_data.append(expt_data["volume_flowrate"])
+    for expt in range(len(expt_data["catalyst_area"])):
+        row = []
+        row.append(expt_data["catalyst_area"][expt])
+        row.append(expt_data["pressure"][expt])
+        row.append(expt_data["species_CO"][expt])
+        row.append(expt_data["species_CO2"][expt])
+        row.append(expt_data["species_H2"][expt])
+        row.append(expt_data["temperature"][expt])
+        row.append(expt_data["volume_flowrate"][expt])
+        x_data.append(row)
     x_data = np.array(x_data)
     print(f"length is {len(x_data[0])} in main")
-    # build x uncertainties array
-    x_unc = []
-    x_unc.append(expt_unc["catalyst_area"])
-    x_unc.append(expt_unc["pressure"])
-    x_unc.append(expt_unc["species_CO"])
-    x_unc.append(expt_unc["species_CO2"])
-    x_unc.append(expt_unc["species_H2"])
-    x_unc.append(expt_unc["temperature"])
-    x_unc.append(expt_unc["volume_flowrate"])
-    x_unc = np.array(x_unc)
-
 
     # build y-data array
     y_data = []
@@ -108,20 +92,19 @@ if __name__ == "__main__":
     UserInput.model['InputParameterPriorValues_lowerBounds'] = mech_values["lower_bounds"]
     UserInput.model['InputParameterPriorValues_upperBounds'] = mech_values["upper_bounds"]
     
-    UserInput.parameter_estimation_settings['mcmc_length'] = 100
-    
+    UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
+
+    UserInput.parameter_estimation_settings['mcmc_threshold_filter_samples'] = True
+
     UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0
-    UserInput.parameter_estimation_settings['mcmc_parallel_sampling'] = False
-    UserInput.parameter_estimation_settings['multistart_parallel_sampling'] = True
-    UserInput.parameter_estimation_settings['mcmc_exportLog'] = True
-    UserInput.parameter_estimation_settings['mcmc_continueSampling'] = True #NOTE: For parallel sampling this cannot be fed as an argument to doMultiStart, it must be through UserInput and before the PE_object is made.
+    UserInput.parameter_estimation_settings['multistart_searchType'] = 'doOptimizeLogP'
+    UserInput.parameter_estimation_settings['multistart_passThroughArgs'] = {'method':'BFGS'} #Here, BFGS is used. However, Nelder-Mead is usually what is recommended.
+    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'grid'
+    UserInput.parameter_estimation_settings['multistart_exportLog'] = True
     
-
-
     #After making the UserInput, now we make a 'parameter_estimation' object from it.
     PE_object = PEUQSE.parameter_estimation(UserInput)
-    PE_object.doMultiStart('doMetropolisHastings', initialPointsDistributionType='grid') #This is an old non-recommended syntax though it still works. The UserInput dictionaries should be used, as in other examples.
-    PE_object.createAllPlots()
-
-    #Finally, create all plots!
-    PE_object.createAllPlots()
+    
+    # run the model
+    PE_object.doMultiStart()
+    PE_object.createAllPlots() #This function calls each of the below functions so that the user does not have to.

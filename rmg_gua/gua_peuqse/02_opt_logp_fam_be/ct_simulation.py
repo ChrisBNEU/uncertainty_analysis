@@ -3,9 +3,11 @@ import yaml
 import sys
 import logging
 import random
+import time
 sys.path.append(
     "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/")
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
+from cantera import CanteraError
 
 def repackage_yaml(yaml_file):
     """
@@ -80,10 +82,11 @@ def simulationFunction(parameters):
     Ea = rxn 1 activation energy
 
     """
+    t1 = time.asctime()
+    t1s = time.time()
     # build and run the simulation
-    file_path = "../baseline/cantera/chem_annotated.cti"
+    file_path = "../../baseline/cantera/chem_annotated.cti"
     kin_par_path = "./ct_initial_small.yaml"
-    rmg_db_folder = "/Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-database/"
     expt_condts = "./expt_data.yaml"
     lookup_dict_file = "./rmg_2_ck_dict.yaml"
     CH3OH_X = []
@@ -91,13 +94,14 @@ def simulationFunction(parameters):
     CO2_X = []
     H2_X = []
     H2O_X = []
+    print("input parameters: ", parameters)
     # change the rms file. now doing all reactions in mechanism
     with open(kin_par_path, 'r') as file:
         kin_par_dat= yaml.safe_load(file)
 
     # unpack the peuquse parameters for use in modifying sim input
     input_a_ea = dict(
-        zip(kin_par_dat["labels"], kin_par_dat["initial_values"]))
+        zip(kin_par_dat["labels"], [parameters[0], parameters[1]]))
 
 
     with open(expt_condts, 'r') as file:
@@ -155,25 +159,39 @@ def simulationFunction(parameters):
             reac_config=conditions,
             rtol=1.0e-11,
             atol=1.0e-22,
-            new_rate_dict = input_a_ea
-            
+            reaction_list=input_a_ea
         )
-        results = test_sbr.run_reactor_ss_memory()
-        
-        CH3OH_X.append(results[lookup_dict["CH3OH"]])
-        CO_X.append(results[lookup_dict["CO"]])
-        CO2_X.append(results[lookup_dict["CO2"]])
-        H2_X.append(results[lookup_dict["H2"]])
-        H2O_X.append(results[lookup_dict["H2O"]])
-        
-        # CH3OH_X.append(random.random())
-        # CO_X.append(random.random())
-        # CO2_X.append(random.random())
-        # H2_X.append(random.random())
-        # H2O_X.append(random.random())
+        # try except loop for this because cantera errors out for certain A and Ea values
+        try:
+            results = test_sbr.run_reactor_ss_memory()
+            CH3OH_X.append(results[lookup_dict["CH3OH"]])
+            CO_X.append(results[lookup_dict["CO"]])
+            CO2_X.append(results[lookup_dict["CO2"]])
+            H2_X.append(results[lookup_dict["H2"]])
+            H2O_X.append(results[lookup_dict["H2O"]])
+        except CanteraError: 
+            print("could not solve system of equations with parameters [parameters], so setting outlet moles to nan")
+            CH3OH_X.append(float('nan'))
+            CO_X.append(float('nan'))
+            CO2_X.append(float('nan'))
+            H2_X.append(float('nan'))
+            H2O_X.append(float('nan'))
 
     y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
+    
+    print("Results:\n")
+    print("CH3OH: ", CH3OH_X)
+    print("CO: ", CO_X)
+    print("CO2: ", CO2_X)
+    print("H2: ", H2_X)
+    print("H2O: ", H2O_X)
     print("sim done")
+    t2 = time.asctime()
+    t2s = time.time()
+    
+    print(f"start time: {t1}")
+    print(f"end time: {t2}")
+    print(f"elapsed: {t2s-t1s} seconds")
     return y_data 
 
 def simulation_function_wrapper(parametersArray):#this has a and b in it.
