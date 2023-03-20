@@ -12,7 +12,7 @@ import sys
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(repo_dir)
 results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
-from rmg_gua.gua_cantera.Spinning_basket_reactor.make_peuq_config import get_all_param_lists
+from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists
 run_test = False
 
 
