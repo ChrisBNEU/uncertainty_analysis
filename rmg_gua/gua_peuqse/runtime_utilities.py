@@ -48,11 +48,11 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
     if kinetic and thermo: 
         # kinetic parameters
         for label, value in rule_config.items():
-            value_list.append(value)
-            label_list.append(label)
-            unc_list.append(rule_unc_config[label])
-            upper_list.append(rule_ub_config[label])
-            lower_list.append(rule_lb_config[label])
+            value_list.extend([value["A"], value["E0"], value["alpha"]])
+            label_list.extend([label + " A", label + " E0", label + " alpha"])
+            unc_list.extend([rule_unc_config[label]["A"], rule_unc_config[label]["E0"], rule_unc_config[label]["alpha"]])
+            upper_list.extend([rule_ub_config[label]["A"], rule_ub_config[label]["E0"], rule_ub_config[label]["alpha"]])
+            lower_list.extend([rule_lb_config[label]["A"], rule_lb_config[label]["E0"], rule_lb_config[label]["alpha"]])
 
         # thermo parameters
         for label, value in thermo_config.items():

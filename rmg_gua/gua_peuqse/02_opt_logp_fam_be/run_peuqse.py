@@ -34,6 +34,7 @@ if __name__ == "__main__":
     with open("expt_unc.yaml", "r") as f:
         expt_unc = yaml.load(f, Loader=yaml.FullLoader)
     
+    x_data = []
     for expt in range(len(expt_data["catalyst_area"])):
         row = []
         row.append(expt_data["catalyst_area"][expt])
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
     # UserInput.model['InputParameterInitialGuess'] = #Can optionally change the initial guess to be different from prior means.
     UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
-    UserInput.model['InputParameterPriorValues_upperBounds'] = mech_values["upper_list"]
+    UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 
