@@ -6,8 +6,8 @@ sys.path.append(repo_dir)
 from rmg_gua.gua_cantera.Spinning_basket_reactor.make_peuq_config import *
 
 
-
-rmg_path = os.path.dirname(os.environ["RMGPY"])
+# this is the folder that the rmg and rmg database folders are located in. 
+rmg_path = os.path.dirname(os.path.dirname(os.environ["RMGPY"]))
 results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
 if not os.path.exists(results_path):
     os.mkdir(results_path)
