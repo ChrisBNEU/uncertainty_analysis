@@ -22,7 +22,7 @@ def simulationFunction(parameters):
     # build and run the simulation
     file_path = "../../baseline/cantera/chem_annotated.cti"
     kin_par_path = "./ct_initial_small.yaml"
-    expt_condts = "./expt_data.yaml"
+    expt_condts = "../../gua_cantera/all_experiments_reorg_sbr.yaml"
     lookup_dict_file = "./config/rmg_2_ck_dict.yaml"
     CH3OH_X = []
     CO_X = []
@@ -47,41 +47,11 @@ def simulationFunction(parameters):
     if run_test: 
         n_expts = 3
     else:
-        n_expts = len(data["catalyst_area"])
+        n_expts = len(data)
     
     print(f"length is {n_expts} in sim")
     for run in range(0,n_expts): 
-        conditions = {}
-        for key in data.keys():
-            if "species_" in key and not "out" in key:
-                spec_name = key.split("_")[-1]
-                if "species" not in conditions.keys():
-                    spec_name = key.split("_")[-1]
-                    conditions["species"] = {}
-                    conditions["species"][spec_name] = data[key][run]
-                else:
-                    conditions["species"][spec_name] = data[key][run]
-            elif "output_" in key:
-                spec_name = key.split("_")[-1]
-                if "output" not in conditions.keys():
-                    spec_name = key.split("_")[-1]
-                    conditions["output"] = {}
-                    conditions["output"][spec_name] = data[key][run]
-                else:
-                    conditions["output"][spec_name] = data[key][run]
-                
-            elif "species_out_" in key:
-                spec_name = key.split("_")[-1]
-                if "species_out" not in conditions.keys():
-                    spec_name = key.split("_")[-1]
-                    conditions["species_out"] = {}
-                    conditions["species_out"][spec_name] = data[key][run]
-                else:
-                    conditions["species_out"][spec_name] = data[key][run]
-            else: 
-                conditions[key] = data[key][run]
-              
-            
+        conditions = data[run]
         print(f"starting sim {run}")
         
         # we modify rates in memory

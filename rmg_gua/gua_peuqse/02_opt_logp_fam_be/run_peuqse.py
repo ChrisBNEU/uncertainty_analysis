@@ -34,38 +34,9 @@ if __name__ == "__main__":
     with open("expt_unc.yaml", "r") as f:
         expt_unc = yaml.load(f, Loader=yaml.FullLoader)
     
-    x_data = []
-    for expt in range(len(expt_data["catalyst_area"])):
-        row = []
-        row.append(expt_data["catalyst_area"][expt])
-        row.append(expt_data["pressure"][expt])
-        row.append(expt_data["species_CO"][expt])
-        row.append(expt_data["species_CO2"][expt])
-        row.append(expt_data["species_H2"][expt])
-        row.append(expt_data["temperature"][expt])
-        row.append(expt_data["volume_flowrate"][expt])
-        x_data.append(row)
-    x_data = np.array(x_data)
+    data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera", "all_experiments_reorg_sbr.yaml")
+    x_data ,y_data, y_unc = make_exp_data_lists(data_path, results_path)
     print(f"length is {len(x_data[0])} in main")
-
-    # build y-data array
-    y_data = []
-    y_data.append(expt_data['species_out_CH3OH'])
-    y_data.append(expt_data['species_out_CO'])
-    y_data.append(expt_data['species_out_CO2'])
-    y_data.append(expt_data['species_out_H2'])
-    y_data.append(expt_data['species_out_H2O'])
-    y_data = np.array(y_data)
-
-
-    # build y uncertainties array
-    y_unc = []
-    y_unc.append(expt_unc['species_out_CH3OH'])
-    y_unc.append(expt_unc['species_out_CO'])
-    y_unc.append(expt_unc['species_out_CO2'])
-    y_unc.append(expt_unc['species_out_H2'])
-    y_unc.append(expt_unc['species_out_H2O'])
-    y_unc = np.array(y_unc)
 
     # Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
     UserInput.responses['responses_abscissa'] = x_data

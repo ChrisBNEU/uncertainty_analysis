@@ -70,3 +70,52 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
         "lower_list": lower_list
     }
     return peuqse_params
+
+
+def make_exp_data_lists(data_path, results_path):
+    """ 
+    make a list of lists for the experimental data from graaf. 
+    each sublist is an experiment. 
+    for saving/loading yamls, we want to not sort yaml dictionaries. 
+    input is expected to be a list of dictionaries, with each dictionary 
+    having key/value pairs for temp, pressure, etc. 
+    """
+
+    expt_yaml_path = os.path.join(data_path, "all_experiments_reorg_sbr.yaml")
+    with open(expt_yaml_path, 'r') as f:
+        expt_yaml = yaml.safe_load(f)
+
+    # make the list of lists.
+    # x_data is expected to have all experimental values in each sub list.
+    # e.g [[T1, P1, V1, ...], [T2, P2, V2, ...], ... to nexpts] 
+    # y_data is expected to have each sub list be on experimental value
+    # e.g [[X1, X2, X3, ...], [Y1, Y2, Y3, ... ], ... to n_output parameters]
+
+    exp_list_in = []
+    expt_list_y = [[],[],[],[],[],]
+    expt_unc_list_y = [[],[],[],[],[],]
+    for exp in expt_yaml:
+        exp_list_in.append(
+            exp["catalyst_area"],
+            exp["pressure"],
+            exp["species"]["CO"],
+            exp["species"]["CO2"],
+            exp["species"]["H2"],
+            exp["temperature"],
+            exp["volume_flowrate"],
+            )
+        
+        exp_list_y[0].append(exp['species_out']['CH3OH'])
+        exp_list_y[1].append(exp['species_out']['CO'])
+        exp_list_y[2].append(exp['species_out']['CO2'])
+        exp_list_y[3].append(exp['species_out']['H2'])
+        exp_list_y[4].append(exp['species_out']['H2O'])
+
+        exp_unc_list_y[0].append(exp['species_out']['CH3OH']*0.01)
+        exp_unc_list_y[1].append(exp['species_out']['CO']*0.01)
+        exp_unc_list_y[2].append(exp['species_out']['CO2']*0.01)
+        exp_unc_list_y[3].append(exp['species_out']['H2']*0.01)
+        exp_unc_list_y[4].append(exp['species_out']['H2O']*0.01) 
+
+    return exp_list_in, exp_list_y, exp_unc_list_y
+        
