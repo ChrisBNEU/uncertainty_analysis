@@ -22,7 +22,7 @@ def simulationFunction(parameters):
     file_path = "../../baseline/cantera/chem_annotated.cti"
     kin_par_path = "./ct_initial_small.yaml"
     expt_condts = "./expt_data.yaml"
-    lookup_dict_file = "./rmg_2_ck_dict.yaml"
+    lookup_dict_file = "./config/rmg_2_ck_dict.yaml"
     CH3OH_X = []
     CO_X = []
     CO2_X = []
@@ -30,9 +30,14 @@ def simulationFunction(parameters):
     H2O_X = []
     print("input parameters: ", parameters)
     # change the rms file. now doing all reactions in mechanism
-
+    
+    # load experimental conditions
     with open(expt_condts, 'r') as file:
         data = yaml.safe_load(file)
+    
+    # simplified names to rmg species labels (e.g. CH3OH to CH3OH(10)
+    with open(lookup_dict_file, "r") as f: 
+            lookup_dict =yaml.load(f, Loader = yaml.FullLoader)
 
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
@@ -75,8 +80,6 @@ def simulationFunction(parameters):
             else: 
                 conditions[key] = data[key][run]
               
-            with open(lookup_dict_file, "r") as f: 
-                lookup_dict =yaml.load(f, Loader = yaml.FullLoader)
             
         print(f"starting sim {run}")
         

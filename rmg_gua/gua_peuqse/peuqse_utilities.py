@@ -100,7 +100,7 @@ def initial_val_unc(kinetics, num):
     return (A, E), (A_unc, E_unc), (A_lb, E_lb), (A_ub, E_ub), (label_A, label_E)
 
 
-def make_lookup_dict(base_path):
+def make_lookup_dict(base_path, results_path=None):
     """
     make a dictionary to look up the chemkin name from the rms name
     """
@@ -146,13 +146,17 @@ def make_lookup_dict(base_path):
                 ck_name = species.to_cantera(use_chemkin_identifier=True).name
                 rmg_2_ck_dict[rms_name] = ck_name
 
-    rmg_2_ck_path = os.path.join(os.path.realpath(
-        os.path.dirname(__file__)), "rmg_2_ck_dict.yaml")
+    if results_path:
+        rmg_2_ck_path = os.path.join(results_path, "rmg_2_ck_dict.yaml")
+    
+    else:
+        rmg_2_ck_path = os.path.join(os.path.realpath(
+            os.path.dirname(__file__)), "rmg_2_ck_dict.yaml")
+        
     with open(rmg_2_ck_path, "w") as f:
         yaml.dump(rmg_2_ck_dict, f)
 
     return rmg_2_ck_dict
-
 
 def run_reactor(condts, path, sens_spcs):
 
