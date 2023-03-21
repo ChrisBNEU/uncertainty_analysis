@@ -12,7 +12,7 @@ from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
 from cantera import CanteraError
 
 #To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
-def simulationFunction(parameters):
+def simulationFunction(parameters, debug=False):
     #here x is a scalar or an array and "a" and "b" are constants for the equation.
     """
     run rms reactor. 
@@ -21,8 +21,7 @@ def simulationFunction(parameters):
     t1s = time.time()
     # build and run the simulation
     file_path = "../../baseline/cantera/chem_annotated.cti"
-    kin_par_path = "./ct_initial_small.yaml"
-    expt_condts = "../../gua_cantera/all_experiments_reorg_sbr.yaml"
+    expt_condts = "./config/ct_expt_list.yaml"
     lookup_dict_file = "./config/rmg_2_ck_dict.yaml"
     CH3OH_X = []
     CO_X = []
@@ -38,7 +37,7 @@ def simulationFunction(parameters):
     
     # simplified names to rmg species labels (e.g. CH3OH to CH3OH(10)
     with open(lookup_dict_file, "r") as f: 
-            lookup_dict =yaml.load(f, Loader = yaml.FullLoader)
+        lookup_dict =yaml.load(f, Loader = yaml.FullLoader)
 
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
@@ -71,7 +70,9 @@ def simulationFunction(parameters):
             CO2_X.append(results[lookup_dict["CO2"]])
             H2_X.append(results[lookup_dict["H2"]])
             H2O_X.append(results[lookup_dict["H2O"]])
-        except CanteraError: 
+        except Exception as e: #CanteraError: making bare exception just to see if there is something catchable 
+            with open("./mpiproblem.txt", "w") as f:
+                f.write(f"error on cantera run {run}, encountered exception {e}")
             print("could not solve system of equations with parameters [parameters], so setting outlet moles to nan")
             CH3OH_X.append(float('nan'))
             CO_X.append(float('nan'))
@@ -94,8 +95,13 @@ def simulationFunction(parameters):
     print(f"start time: {t1}")
     print(f"end time: {t2}")
     print(f"elapsed: {t2s-t1s} seconds")
-    return y_data 
+    
+    if debug:
+        return test_sbr, y_data
+    else:
+        return y_data 
+    
 
 def simulation_function_wrapper(parametersArray):#this has a and b in it.
-    y = simulationFunction(parametersArray)  #an alternatie simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
+    y = simulationFunction(parametersArray)  #an alternate simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
     return y

@@ -72,7 +72,7 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
     return peuqse_params
 
 
-def make_exp_data_lists(data_path, results_path):
+def make_exp_data_lists(data_path, results_path, use_count=False):
     """ 
     make a list of lists for the experimental data from graaf. 
     each sublist is an experiment. 
@@ -90,32 +90,62 @@ def make_exp_data_lists(data_path, results_path):
     # e.g [[T1, P1, V1, ...], [T2, P2, V2, ...], ... to nexpts] 
     # y_data is expected to have each sub list be on experimental value
     # e.g [[X1, X2, X3, ...], [Y1, Y2, Y3, ... ], ... to n_output parameters]
-
-    exp_list_in = []
-    expt_list_y = [[],[],[],[],[],]
-    expt_unc_list_y = [[],[],[],[],[],]
-    for exp in expt_yaml:
-        exp_list_in.append(
-            exp["catalyst_area"],
-            exp["pressure"],
-            exp["species"]["CO"],
-            exp["species"]["CO2"],
-            exp["species"]["H2"],
-            exp["temperature"],
-            exp["volume_flowrate"],
-            )
+    if use_count:
+        fcount = use_count
         
-        exp_list_y[0].append(exp['species_out']['CH3OH'])
-        exp_list_y[1].append(exp['species_out']['CO'])
-        exp_list_y[2].append(exp['species_out']['CO2'])
-        exp_list_y[3].append(exp['species_out']['H2'])
-        exp_list_y[4].append(exp['species_out']['H2O'])
+    
+    exp_ct_input = []
+    exp_list_in = []
+    exp_list_in_alt = [[],[],[],[],[],[],[],]
+    exp_list_y = [[],[],[],[],[],]
+    exp_unc_list_y = [[],[],[],[],[],]
+    count = 0
+    for exp in expt_yaml:
+        if "use_for_opt" in exp.keys() and exp["use_for_opt"]: 
+            
+            # append 
+            exp_ct_input.append(exp)
+            
+            exp_list_in.append([
+                exp["catalyst_area"],
+                exp["pressure"],
+                exp["species"]["CO"],
+                exp["species"]["CO2"],
+                exp["species"]["H2"],
+                exp["temperature"],
+                exp["volume_flowrate"]
+            ])
+            # trying alternate method because I am getting errors with the above
+            exp_list_in_alt[0].append(exp["catalyst_area"])
+            exp_list_in_alt[1].append(exp["pressure"])
+            exp_list_in_alt[2].append(exp["species"]["CO"])
+            exp_list_in_alt[3].append(exp["species"]["CO2"])
+            exp_list_in_alt[4].append(exp["species"]["H2"])
+            exp_list_in_alt[5].append(exp["temperature"])
+            exp_list_in_alt[6].append(exp["volume_flowrate"])
+                                      
+            exp_list_y[0].append(exp['species_out']['CH3OH'])
+            exp_list_y[1].append(exp['species_out']['CO'])
+            exp_list_y[2].append(exp['species_out']['CO2'])
+            exp_list_y[3].append(exp['species_out']['H2'])
+            exp_list_y[4].append(exp['species_out']['H2O'])
 
-        exp_unc_list_y[0].append(exp['species_out']['CH3OH']*0.01)
-        exp_unc_list_y[1].append(exp['species_out']['CO']*0.01)
-        exp_unc_list_y[2].append(exp['species_out']['CO2']*0.01)
-        exp_unc_list_y[3].append(exp['species_out']['H2']*0.01)
-        exp_unc_list_y[4].append(exp['species_out']['H2O']*0.01) 
+            exp_unc_list_y[0].append(exp['species_out']['CH3OH']*0.01)
+            exp_unc_list_y[1].append(exp['species_out']['CO']*0.01)
+            exp_unc_list_y[2].append(exp['species_out']['CO2']*0.01)
+            exp_unc_list_y[3].append(exp['species_out']['H2']*0.01)
+            exp_unc_list_y[4].append(exp['species_out']['H2O']*0.01) 
+            
+            count+=1
+            
+        if use_count and count >=fcount:
+            break
+            
+    
+    exp_ct_file = os.path.join(results_path, "ct_expt_list.yaml")
+    with open(exp_ct_file, "w") as f:
+        yaml.safe_dump(exp_ct_input, f, sort_keys=False)
+        
 
-    return exp_list_in, exp_list_y, exp_unc_list_y
+    return exp_list_in, exp_list_in_alt, exp_list_y, exp_unc_list_y
         

@@ -3,11 +3,11 @@
 #SBATCH --time=8:00:00
 #SBATCH --error=error.log
 #SBATCH --output=output.log
-#SBATCH --tasks-per-node=64
-#SBATCH --cpus-per-task=1
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=16
 #SBATCH --partition=short
-#SBATCH --mem=200Gb
-#SBATCH --ntasks=128
+#SBATCH --mem=100Gb
+#SBATCH --ntasks=1
 #SBATCH --mail-user=blais.ch@northeastern.edu 
 #SBATCH --mail-type=FAIL,END
 
@@ -16,10 +16,9 @@ source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuqu
 
 # load modules
 module load gcc/10.1.0
-module load openmpi/4.1.2-gcc10.1
+# module load openmpi/3.1.2
 
+echo "running script"
 # python-jl run_peuqse.py
-# /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuquse_env/bin/mpiexec -n 28 python run_peuqse.py
-mpiexec -n 28 -v python run_peuqse.py
-# python run_peuqse.py
+python -u run_peuqse.py
 

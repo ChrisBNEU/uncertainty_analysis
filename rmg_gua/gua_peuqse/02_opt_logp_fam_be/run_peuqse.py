@@ -12,7 +12,7 @@ import sys
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(repo_dir)
 results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
-from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists
+from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_data_lists
 run_test = False
 
 
@@ -30,13 +30,17 @@ if __name__ == "__main__":
     with open("expt_data.yaml", "r") as f:
         expt_data = yaml.load(f, Loader=yaml.FullLoader)
         
-    # load uncertainty yaml
+    # load uncertainty yaml. experimenting with different layout for X. 
     with open("expt_unc.yaml", "r") as f:
         expt_unc = yaml.load(f, Loader=yaml.FullLoader)
     
-    data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera", "all_experiments_reorg_sbr.yaml")
-    x_data ,y_data, y_unc = make_exp_data_lists(data_path, results_path)
-    print(f"length is {len(x_data[0])} in main")
+    data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
+    _, x_data, y_data, y_unc = make_exp_data_lists(data_path, results_path, use_count=3)
+    
+    x_data = np.array(x_data)
+    y_data = np.array(y_data)
+    y_unc = np.array(y_data)
+    print(f"length is {len(x_data)} in main")
 
     # Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
     UserInput.responses['responses_abscissa'] = x_data
