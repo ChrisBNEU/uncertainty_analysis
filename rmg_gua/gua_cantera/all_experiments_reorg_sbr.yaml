@@ -5,11 +5,17 @@
     CH3OH: 0.0008257685305560042
     H2O: 0.000994675729987914
   pressure: 1530000.0
-  run_num: 1.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0044
+    CO: 0.0675
+    CO2: 0.2553
+    H2: 0.6675
+    H2O: 0.0053
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -21,11 +27,17 @@
     CH3OH: 0.0011222945028920238
     H2O: 0.0011690567738458582
   pressure: 1500000.0
-  run_num: 2.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0024
+    CO: 0.0665
+    CO2: 0.2581
+    H2: 0.6705
+    H2O: 0.0025
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -37,11 +49,17 @@
     CH3OH: 0.0014663021657350137
     H2O: 0.0014663021657350134
   pressure: 3000000.0
-  run_num: 3.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0078
+    CO: 0.067
+    CO2: 0.2538
+    H2: 0.6636
+    H2O: 0.0078
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -53,11 +71,17 @@
     CH3OH: 0.00195844769830199
     H2O: 0.0018249171734177633
   pressure: 3000000.0
-  run_num: 4.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0044
+    CO: 0.0662
+    CO2: 0.2561
+    H2: 0.6692
+    H2O: 0.0041
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -69,11 +93,17 @@
     CH3OH: 0.0023934150159501642
     H2O: 0.0020865669369821947
   pressure: 5080000.0
-  run_num: 5.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0117
+    CO: 0.0666
+    CO2: 0.2542
+    H2: 0.6573
+    H2O: 0.0102
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -85,11 +115,17 @@
     CH3OH: 0.0030500886724082223
     H2O: 0.002870671691678327
   pressure: 4970000.0
-  run_num: 6.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0068
+    CO: 0.0665
+    CO2: 0.2563
+    H2: 0.664
+    H2O: 0.0064
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -101,11 +137,17 @@
     CH3OH: 0.001326234306650552
     H2O: 0.001962826773842817
   pressure: 1500000.0
-  run_num: 7.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.005
+    CO: 0.0689
+    CO2: 0.2527
+    H2: 0.666
+    H2O: 0.0074
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -117,11 +159,17 @@
     CH3OH: 0.0016494726397856183
     H2O: 0.002499200969372149
   pressure: 1500000.0
-  run_num: 8.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0033
+    CO: 0.068
+    CO2: 0.255
+    H2: 0.6687
+    H2O: 0.005
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -133,11 +181,17 @@
     CH3OH: 0.003073485447440643
     H2O: 0.0033265960137004603
   pressure: 3020000.0
-  run_num: 9.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0085
+    CO: 0.0681
+    CO2: 0.2523
+    H2: 0.6619
+    H2O: 0.0092
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -149,11 +203,17 @@
     CH3OH: 0.003434446388448835
     H2O: 0.003892372573575347
   pressure: 3000000.0
-  run_num: 10.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.006
+    CO: 0.0679
+    CO2: 0.2551
+    H2: 0.6642
+    H2O: 0.0068
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -165,11 +225,17 @@
     CH3OH: 0.0050159182409076075
     H2O: 0.004388928460794156
   pressure: 4960000.0
-  run_num: 11.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0152
+    CO: 0.0668
+    CO2: 0.2531
+    H2: 0.6515
+    H2O: 0.0133
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -181,11 +247,17 @@
     CH3OH: 0.005689670291974894
     H2O: 0.0053482900744564
   pressure: 5010000.0
-  run_num: 12.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.01
+    CO: 0.0672
+    CO2: 0.2516
+    H2: 0.6618
+    H2O: 0.0094
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -197,11 +269,17 @@
     CH3OH: 0.0017356153114958925
     H2O: 0.0033898736552654147
   pressure: 1500000.0
-  run_num: 13.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0064
+    CO: 0.0722
+    CO2: 0.2489
+    H2: 0.66
+    H2O: 0.0125
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -213,11 +291,17 @@
     CH3OH: 0.0023605719493939594
     H2O: 0.00484538452770339
   pressure: 1480000.0
-  run_num: 14.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0699
+    CO2: 0.2517
+    H2: 0.6668
+    H2O: 0.0078
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -229,11 +313,17 @@
     CH3OH: 0.004872034330280425
     H2O: 0.006942648920649606
   pressure: 3010000.0
-  run_num: 15.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.008
+    CO: 0.0715
+    CO2: 0.2515
+    H2: 0.6576
+    H2O: 0.0114
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -245,11 +335,17 @@
     CH3OH: 0.00825577727978868
     H2O: 0.006906584105659791
   pressure: 5020000.0
-  run_num: 16.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0257
+    CO: 0.0664
+    CO2: 0.2494
+    H2: 0.6368
+    H2O: 0.0215
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -261,11 +357,17 @@
     CH3OH: 0.010575123360876853
     H2O: 0.010505089431334621
   pressure: 4990000.0
-  run_num: 17.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0151
+    CO: 0.069
+    CO2: 0.2506
+    H2: 0.6502
+    H2O: 0.015
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -277,11 +379,17 @@
     CH3OH: 0.002136019211482537
     H2O: 0.005947347608441572
   pressure: 1490000.0
-  run_num: 18.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.0744
+    CO2: 0.2467
+    H2: 0.6596
+    H2O: 0.0142
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -293,11 +401,17 @@
     CH3OH: 0.002780149944427226
     H2O: 0.00804780247071039
   pressure: 1500000.0
-  run_num: 19.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0713
+    CO2: 0.2465
+    H2: 0.6674
+    H2O: 0.011
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -309,11 +423,17 @@
     CH3OH: 0.005269091365389436
     H2O: 0.007479898931287101
   pressure: 3000000.0
-  run_num: 20.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0143
+    CO: 0.0729
+    CO2: 0.244
+    H2: 0.6484
+    H2O: 0.0203
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -325,11 +445,17 @@
     CH3OH: 0.006595638463150047
     H2O: 0.011183908698384861
   pressure: 3000000.0
-  run_num: 21.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0092
+    CO: 0.073
+    CO2: 0.2488
+    H2: 0.6534
+    H2O: 0.0156
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -341,11 +467,17 @@
     CH3OH: 0.011030953845565968
     H2O: 0.009539346879027173
   pressure: 5010000.0
-  run_num: 22.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0318
+    CO: 0.0671
+    CO2: 0.2487
+    H2: 0.6247
+    H2O: 0.0275
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -357,11 +489,17 @@
     CH3OH: 0.014565962575898801
     H2O: 0.014634995573888842
   pressure: 4990000.0
-  run_num: 23.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0211
+    CO: 0.0704
+    CO2: 0.2486
+    H2: 0.6386
+    H2O: 0.0212
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -373,11 +511,17 @@
     CH3OH: 0.0018905094691971547
     H2O: 0.00841276713792734
   pressure: 1490000.0
-  run_num: 24.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.004
+    CO: 0.0792
+    CO2: 0.2425
+    H2: 0.6565
+    H2O: 0.0178
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -389,11 +533,17 @@
     CH3OH: 0.0025640112873763924
     H2O: 0.011266110202108394
   pressure: 1480000.0
-  run_num: 25.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0033
+    CO: 0.076
+    CO2: 0.2444
+    H2: 0.6618
+    H2O: 0.0145
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -405,11 +555,17 @@
     CH3OH: 0.00569511285728992
     H2O: 0.011052380036605016
   pressure: 3020000.0
-  run_num: 26.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0118
+    CO: 0.0766
+    CO2: 0.2414
+    H2: 0.6473
+    H2O: 0.0229
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -421,11 +577,17 @@
     CH3OH: 0.007318248485608562
     H2O: 0.015181472922273082
   pressure: 3030000.0
-  run_num: 27.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0094
+    CO: 0.0752
+    CO2: 0.2428
+    H2: 0.6531
+    H2O: 0.0195
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -437,11 +599,17 @@
     CH3OH: 0.010287136585845444
     H2O: 0.010393923470819619
   pressure: 4990000.0
-  run_num: 28.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0289
+    CO: 0.0713
+    CO2: 0.2435
+    H2: 0.6269
+    H2O: 0.0292
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -453,11 +621,17 @@
     CH3OH: 0.014020173367956693
     H2O: 0.016548401352342323
   pressure: 4990000.0
-  run_num: 29.0
   species:
     CO: 0.065
     CO2: 0.261
     H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0244
+    CO: 0.0725
+    CO2: 0.2423
+    H2: 0.6319
+    H2O: 0.0288
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -469,11 +643,17 @@
     CH3OH: 0.0012230757985530634
     H2O: 0.0008046551306270153
   pressure: 1510000.0
-  run_num: 30.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0537
+    CO2: 0.044
+    H2: 0.896
+    H2O: 0.0025
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -485,11 +665,17 @@
     CH3OH: 0.0014150982610183405
     H2O: 0.0006767861248348586
   pressure: 1500000.0
-  run_num: 31.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0023
+    CO: 0.0537
+    CO2: 0.0448
+    H2: 0.8981
+    H2O: 0.0011
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -501,11 +687,17 @@
     CH3OH: 0.002116657441769879
     H2O: 0.0012636760846387338
   pressure: 2990000.0
-  run_num: 32.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0067
+    CO: 0.0528
+    CO2: 0.0426
+    H2: 0.8939
+    H2O: 0.004
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -517,11 +709,17 @@
     CH3OH: 0.002803859510569705
     H2O: 0.0018692396737131365
   pressure: 3010000.0
-  run_num: 33.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0036
+    CO: 0.054
+    CO2: 0.0441
+    H2: 0.8959
+    H2O: 0.0024
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -533,11 +731,17 @@
     CH3OH: 0.003066604043019343
     H2O: 0.001711592954243354
   pressure: 4940000.0
-  run_num: 34.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0129
+    CO: 0.0501
+    CO2: 0.0407
+    H2: 0.8891
+    H2O: 0.0072
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -549,11 +753,17 @@
     CH3OH: 0.0035234041801496412
     H2O: 0.0021811549686640637
   pressure: 4940000.0
-  run_num: 35.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.0531
+    CO2: 0.0426
+    H2: 0.8941
+    H2O: 0.0039
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -565,11 +775,17 @@
     CH3OH: 0.001574121261372383
     H2O: 0.000980600130035255
   pressure: 1470000.0
-  run_num: 36.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0061
+    CO: 0.0523
+    CO2: 0.0426
+    H2: 0.8952
+    H2O: 0.0038
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -581,11 +797,17 @@
     CH3OH: 0.001719475290216843
     H2O: 0.001146316860144562
   pressure: 1500000.0
-  run_num: 37.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0036
+    CO: 0.053
+    CO2: 0.0438
+    H2: 0.8972
+    H2O: 0.0024
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -597,11 +819,17 @@
     CH3OH: 0.0037519919233808263
     H2O: 0.0016185063198897681
   pressure: 2990000.0
-  run_num: 38.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0153
+    CO: 0.0477
+    CO2: 0.0405
+    H2: 0.8898
+    H2O: 0.0066
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -613,11 +841,17 @@
     CH3OH: 0.004168723519312555
     H2O: 0.0023900681510725316
   pressure: 3000000.0
-  run_num: 39.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0075
+    CO: 0.0522
+    CO2: 0.0423
+    H2: 0.8937
+    H2O: 0.0043
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -629,11 +863,17 @@
     CH3OH: 0.006542526532662014
     H2O: 0.002549435221647639
   pressure: 5020000.0
-  run_num: 40.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0213
+    CO: 0.0447
+    CO2: 0.0394
+    H2: 0.8862
+    H2O: 0.0083
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -645,11 +885,17 @@
     CH3OH: 0.007021096931052426
     H2O: 0.003695314174238119
   pressure: 5010000.0
-  run_num: 41.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0114
+    CO: 0.0503
+    CO2: 0.0409
+    H2: 0.8913
+    H2O: 0.006
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -661,11 +907,17 @@
     CH3OH: 0.002079372741450835
     H2O: 0.001257295145993528
   pressure: 1500000.0
-  run_num: 42.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0086
+    CO: 0.0525
+    CO2: 0.0418
+    H2: 0.8919
+    H2O: 0.0052
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -677,11 +929,17 @@
     CH3OH: 0.0032538095223897095
     H2O: 0.0021121219706740223
   pressure: 1510000.0
-  run_num: 43.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0057
+    CO: 0.0535
+    CO2: 0.0427
+    H2: 0.8944
+    H2O: 0.0037
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -693,11 +951,17 @@
     CH3OH: 0.006044875876557997
     H2O: 0.0024364550726942956
   pressure: 2990000.0
-  run_num: 44.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0196
+    CO: 0.0456
+    CO2: 0.0399
+    H2: 0.8869
+    H2O: 0.0079
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -709,11 +973,17 @@
     CH3OH: 0.007274332613756267
     H2O: 0.0038475808866148854
   pressure: 3000000.0
-  run_num: 45.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0121
+    CO: 0.0502
+    CO2: 0.041
+    H2: 0.8903
+    H2O: 0.0064
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -725,11 +995,17 @@
     CH3OH: 0.011268456135433836
     H2O: 0.003938822053419122
   pressure: 5020000.0
-  run_num: 46.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0329
+    CO: 0.0373
+    CO2: 0.0377
+    H2: 0.8804
+    H2O: 0.0115
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -741,11 +1017,17 @@
     CH3OH: 0.012686432074664718
     H2O: 0.005271531136047898
   pressure: 5000000.0
-  run_num: 47.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0219
+    CO: 0.0443
+    CO2: 0.0388
+    H2: 0.8858
+    H2O: 0.0091
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -757,11 +1039,17 @@
     CH3OH: 0.0025501233620897697
     H2O: 0.001904522510927802
   pressure: 1520000.0
-  run_num: 48.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0079
+    CO: 0.054
+    CO2: 0.0412
+    H2: 0.891
+    H2O: 0.0059
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -773,11 +1061,17 @@
     CH3OH: 0.003547989561400286
     H2O: 0.002863289821480933
   pressure: 1510000.0
-  run_num: 49.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0057
+    CO: 0.0545
+    CO2: 0.042
+    H2: 0.8932
+    H2O: 0.0046
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -789,11 +1083,17 @@
     CH3OH: 0.00627631001889072
     H2O: 0.0028323860598070943
   pressure: 2980000.0
-  run_num: 50.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0195
+    CO: 0.0464
+    CO2: 0.0394
+    H2: 0.8859
+    H2O: 0.0088
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -805,11 +1105,17 @@
     CH3OH: 0.00895258203566732
     H2O: 0.004779197928814887
   pressure: 2980000.0
-  run_num: 51.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0133
+    CO: 0.0502
+    CO2: 0.0405
+    H2: 0.8889
+    H2O: 0.0071
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -821,11 +1127,17 @@
     CH3OH: 0.013402473483811995
     H2O: 0.00523534120461406
   pressure: 4960000.0
-  run_num: 52.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.032
+    CO: 0.0384
+    CO2: 0.0368
+    H2: 0.8802
+    H2O: 0.0125
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -837,11 +1149,17 @@
     CH3OH: 0.01751082831888314
     H2O: 0.007647586245389781
   pressure: 5000000.0
-  run_num: 53.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0245
+    CO: 0.0424
+    CO2: 0.0372
+    H2: 0.8851
+    H2O: 0.0107
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -853,11 +1171,17 @@
     CH3OH: 0.006435833485020858
     H2O: 0.003950270208047285
   pressure: 2980000.0
-  run_num: 54.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0145
+    CO: 0.05
+    CO2: 0.0384
+    H2: 0.8882
+    H2O: 0.0089
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -869,11 +1193,17 @@
     CH3OH: 0.00805215026714021
     H2O: 0.005325831672754155
   pressure: 2990000.0
-  run_num: 55.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0127
+    CO: 0.051
+    CO2: 0.0389
+    H2: 0.889
+    H2O: 0.0084
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -885,11 +1215,17 @@
     CH3OH: 0.012394160061425503
     H2O: 0.005348164958012375
   pressure: 4980000.0
-  run_num: 56.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0292
+    CO: 0.0405
+    CO2: 0.0361
+    H2: 0.8815
+    H2O: 0.0126
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -901,11 +1237,17 @@
     CH3OH: 0.015961198601428386
     H2O: 0.007185718892276523
   pressure: 4970000.0
-  run_num: 57.0
   species:
     CO: 0.053
     CO2: 0.047
     H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0251
+    CO: 0.0432
+    CO2: 0.0368
+    H2: 0.8835
+    H2O: 0.0113
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -917,11 +1259,17 @@
     CH3OH: 0.0009528868376840192
     H2O: 0.0002892692185826487
   pressure: 1500000.0
-  run_num: 58.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0056
+    CO: 0.2206
+    CO2: 0.1536
+    H2: 0.6185
+    H2O: 0.0017
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -933,11 +1281,17 @@
     CH3OH: 0.0012431569878188571
     H2O: 0.000271940591085375
   pressure: 1520000.0
-  run_num: 59.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0032
+    CO: 0.221
+    CO2: 0.1538
+    H2: 0.6213
+    H2O: 0.0007
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -949,11 +1303,17 @@
     CH3OH: 0.0016798133774613504
     H2O: 0.0005827923962621011
   pressure: 2970000.0
-  run_num: 60.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0098
+    CO: 0.2195
+    CO2: 0.1533
+    H2: 0.614
+    H2O: 0.0034
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -965,11 +1325,17 @@
     CH3OH: 0.0019241345135285073
     H2O: 0.0008124123501564809
   pressure: 2950000.0
-  run_num: 61.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0045
+    CO: 0.2211
+    CO2: 0.1534
+    H2: 0.6191
+    H2O: 0.0019
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -981,11 +1347,17 @@
     CH3OH: 0.0027942881026018973
     H2O: 0.0009979600366435346
   pressure: 4980000.0
-  run_num: 62.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0126
+    CO: 0.2191
+    CO2: 0.1528
+    H2: 0.611
+    H2O: 0.0045
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -997,11 +1369,17 @@
     CH3OH: 0.002982150443303388
     H2O: 0.0014058709232715972
   pressure: 4920000.0
-  run_num: 63.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.007
+    CO: 0.221
+    CO2: 0.1526
+    H2: 0.6161
+    H2O: 0.0033
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1013,11 +1391,17 @@
     CH3OH: 0.0017972977183995458
     H2O: 0.0005497616550398609
   pressure: 1500000.0
-  run_num: 64.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0085
+    CO: 0.219
+    CO2: 0.153
+    H2: 0.6169
+    H2O: 0.0026
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1029,11 +1413,17 @@
     CH3OH: 0.0018302033431777621
     H2O: 0.0007957405839903313
   pressure: 1500000.0
-  run_num: 65.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0046
+    CO: 0.2205
+    CO2: 0.1527
+    H2: 0.6202
+    H2O: 0.002
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1045,11 +1435,17 @@
     CH3OH: 0.0038394170386423423
     H2O: 0.0010844154994638679
   pressure: 2950000.0
-  run_num: 66.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0131
+    CO: 0.2188
+    CO2: 0.1545
+    H2: 0.6099
+    H2O: 0.0037
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1061,11 +1457,17 @@
     CH3OH: 0.0039580587066877565
     H2O: 0.0015103118749203279
   pressure: 2990000.0
-  run_num: 67.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0076
+    CO: 0.2208
+    CO2: 0.1539
+    H2: 0.6148
+    H2O: 0.0029
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1077,11 +1479,17 @@
     CH3OH: 0.005785634604541022
     H2O: 0.001308655446265231
   pressure: 4990000.0
-  run_num: 68.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0252
+    CO: 0.2144
+    CO2: 0.1564
+    H2: 0.5982
+    H2O: 0.0057
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1093,11 +1501,17 @@
     CH3OH: 0.006770363577229056
     H2O: 0.0023956671119425886
   pressure: 5050000.0
-  run_num: 69.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.013
+    CO: 0.2194
+    CO2: 0.154
+    H2: 0.609
+    H2O: 0.0046
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1109,11 +1523,17 @@
     CH3OH: 0.002916276635524943
     H2O: 0.0009246730795566892
   pressure: 1520000.0
-  run_num: 70.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0123
+    CO: 0.2154
+    CO2: 0.1517
+    H2: 0.6167
+    H2O: 0.0039
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1125,11 +1545,17 @@
     CH3OH: 0.003320215075055255
     H2O: 0.0014159740761265057
   pressure: 1520000.0
-  run_num: 71.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0068
+    CO: 0.2174
+    CO2: 0.1509
+    H2: 0.622
+    H2O: 0.0029
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1141,11 +1567,17 @@
     CH3OH: 0.006329515786711773
     H2O: 0.0011302706761985306
   pressure: 3030000.0
-  run_num: 72.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0308
+    CO: 0.2065
+    CO2: 0.1551
+    H2: 0.602
+    H2O: 0.0055
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1157,11 +1589,17 @@
     CH3OH: 0.007785276892037794
     H2O: 0.0018734623536989345
   pressure: 3010000.0
-  run_num: 73.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0187
+    CO: 0.2123
+    CO2: 0.152
+    H2: 0.6124
+    H2O: 0.0045
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1173,11 +1611,17 @@
     CH3OH: 0.010996734498125502
     H2O: 0.0015494420427887203
   pressure: 5000000.0
-  run_num: 74.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0511
+    CO: 0.1997
+    CO2: 0.1628
+    H2: 0.579
+    H2O: 0.0072
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1189,11 +1633,17 @@
     CH3OH: 0.01374063195289688
     H2O: 0.0030422063364347334
   pressure: 5070000.0
-  run_num: 75.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0271
+    CO: 0.2122
+    CO2: 0.156
+    H2: 0.5986
+    H2O: 0.006
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1205,11 +1655,17 @@
     CH3OH: 0.0037088267501926716
     H2O: 0.0015830358080090674
   pressure: 1500000.0
-  run_num: 76.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0082
+    CO: 0.2205
+    CO2: 0.1533
+    H2: 0.6145
+    H2O: 0.0035
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1221,11 +1677,17 @@
     CH3OH: 0.004213108577829941
     H2O: 0.0018724927012577514
   pressure: 1490000.0
-  run_num: 77.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.2215
+    CO2: 0.1534
+    H2: 0.616
+    H2O: 0.0028
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1237,11 +1699,17 @@
     CH3OH: 0.010296176248926153
     H2O: 0.002101987538708107
   pressure: 3050000.0
-  run_num: 78.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0289
+    CO: 0.2113
+    CO2: 0.1568
+    H2: 0.597
+    H2O: 0.0059
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1253,11 +1721,17 @@
     CH3OH: 0.01188853323201498
     H2O: 0.0032709191961099414
   pressure: 3030000.0
-  run_num: 79.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0189
+    CO: 0.2167
+    CO2: 0.1545
+    H2: 0.6047
+    H2O: 0.0052
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1269,11 +1743,17 @@
     CH3OH: 0.021060851022498814
     H2O: 0.003261034997032074
   pressure: 4980000.0
-  run_num: 80.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0465
+    CO: 0.2024
+    CO2: 0.1607
+    H2: 0.583
+    H2O: 0.0072
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1285,11 +1765,17 @@
     CH3OH: 0.02326002275910228
     H2O: 0.004314359060156068
   pressure: 4950000.0
-  run_num: 81.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0372
+    CO: 0.2081
+    CO2: 0.1586
+    H2: 0.589
+    H2O: 0.0069
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1301,11 +1787,17 @@
     CH3OH: 0.003222749365160842
     H2O: 0.002014218353225526
   pressure: 1490000.0
-  run_num: 82.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0072
+    CO: 0.2227
+    CO2: 0.1523
+    H2: 0.6133
+    H2O: 0.0045
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1317,11 +1809,17 @@
     CH3OH: 0.004487395102240759
     H2O: 0.003079584874086795
   pressure: 1510000.0
-  run_num: 83.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.2222
+    CO2: 0.1523
+    H2: 0.6169
+    H2O: 0.0035
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1333,11 +1831,17 @@
     CH3OH: 0.009081014065457584
     H2O: 0.0021808734566650108
   pressure: 3010000.0
-  run_num: 84.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0254
+    CO: 0.2147
+    CO2: 0.1559
+    H2: 0.5978
+    H2O: 0.0061
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1349,11 +1853,17 @@
     CH3OH: 0.011429387161559239
     H2O: 0.003555809339151763
   pressure: 3000000.0
-  run_num: 85.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.018
+    CO: 0.2188
+    CO2: 0.1547
+    H2: 0.6029
+    H2O: 0.0056
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1365,11 +1875,17 @@
     CH3OH: 0.020384440246996028
     H2O: 0.0035254686014760312
   pressure: 4990000.0
-  run_num: 86.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0451
+    CO: 0.2039
+    CO2: 0.1605
+    H2: 0.5825
+    H2O: 0.0078
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1381,11 +1897,17 @@
     CH3OH: 0.027120490639451603
     H2O: 0.005910876165008682
   pressure: 5000000.0
-  run_num: 87.0
   species:
     CO: 0.22
     CO2: 0.155
     H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0312
+    CO: 0.2113
+    CO2: 0.1569
+    H2: 0.5937
+    H2O: 0.0068
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1397,11 +1919,17 @@
     CH3OH: 0.00113111521219569
     H2O: 0.00016158788745652717
   pressure: 1540000.0
-  run_num: 88.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.117
+    CO2: 0.02
+    H2: 0.8558
+    H2O: 0.0009
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1413,11 +1941,17 @@
     CH3OH: 0.0011347435890723756
     H2O: 0.00023362368010313618
   pressure: 1520000.0
-  run_num: 89.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0034
+    CO: 0.1187
+    CO2: 0.0202
+    H2: 0.857
+    H2O: 0.0007
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1429,11 +1963,17 @@
     CH3OH: 0.0024651067383757077
     H2O: 0.00033312253221293354
   pressure: 3000000.0
-  run_num: 90.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0111
+    CO: 0.1164
+    CO2: 0.0197
+    H2: 0.8512
+    H2O: 0.0015
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1445,11 +1985,17 @@
     CH3OH: 0.0025555659274047976
     H2O: 0.0005512004941461328
   pressure: 3000000.0
-  run_num: 91.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.1181
+    CO2: 0.0196
+    H2: 0.856
+    H2O: 0.0011
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1461,11 +2007,17 @@
     CH3OH: 0.004427558162886454
     H2O: 0.0005126646293868527
   pressure: 4980000.0
-  run_num: 92.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.019
+    CO: 0.1097
+    CO2: 0.0186
+    H2: 0.8504
+    H2O: 0.0022
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1477,11 +2029,17 @@
     CH3OH: 0.003927092386791906
     H2O: 0.0006981497576518945
   pressure: 4970000.0
-  run_num: 93.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.009
+    CO: 0.116
+    CO2: 0.0193
+    H2: 0.8541
+    H2O: 0.0016
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1493,11 +2051,17 @@
     CH3OH: 0.0020625445797296557
     H2O: 0.0003928656342342202
   pressure: 1500000.0
-  run_num: 94.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0084
+    CO: 0.1145
+    CO2: 0.0201
+    H2: 0.8553
+    H2O: 0.0016
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1509,11 +2073,17 @@
     CH3OH: 0.0021882866059734106
     H2O: 0.000601778816642688
   pressure: 1490000.0
-  run_num: 95.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.004
+    CO: 0.1179
+    CO2: 0.0207
+    H2: 0.8563
+    H2O: 0.0011
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1525,11 +2095,17 @@
     CH3OH: 0.004533469232752463
     H2O: 0.0005697802860836429
   pressure: 3000000.0
-  run_num: 96.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0183
+    CO: 0.1087
+    CO2: 0.0195
+    H2: 0.851
+    H2O: 0.0023
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1541,11 +2117,17 @@
     CH3OH: 0.004802907494957365
     H2O: 0.0010994607518577102
   pressure: 3000000.0
-  run_num: 97.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0083
+    CO: 0.1161
+    CO2: 0.0197
+    H2: 0.8539
+    H2O: 0.0019
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1557,11 +2139,17 @@
     CH3OH: 0.008460373944878334
     H2O: 0.0006474775978223214
   pressure: 4980000.0
-  run_num: 98.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0392
+    CO: 0.0938
+    CO2: 0.0191
+    H2: 0.8447
+    H2O: 0.003
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1573,11 +2161,17 @@
     CH3OH: 0.009200656665055188
     H2O: 0.0009778475682667349
   pressure: 4970000.0
-  run_num: 99.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0207
+    CO: 0.108
+    CO2: 0.0189
+    H2: 0.8501
+    H2O: 0.0022
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1589,11 +2183,17 @@
     CH3OH: 0.0029204054781777227
     H2O: 0.00021957935926148291
   pressure: 1500000.0
-  run_num: 100.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0133
+    CO: 0.1119
+    CO2: 0.0201
+    H2: 0.8536
+    H2O: 0.001
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1605,11 +2205,17 @@
     CH3OH: 0.003754807043371358
     H2O: 0.00041720078259681754
   pressure: 1500000.0
-  run_num: 101.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0081
+    CO: 0.1149
+    CO2: 0.0199
+    H2: 0.8562
+    H2O: 0.0009
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1621,11 +2227,17 @@
     CH3OH: 0.0074614442557936166
     H2O: 0.0005212038266914659
   pressure: 3000000.0
-  run_num: 102.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0272
+    CO: 0.1024
+    CO2: 0.0197
+    H2: 0.8487
+    H2O: 0.0019
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1637,11 +2249,17 @@
     CH3OH: 0.008983235564453112
     H2O: 0.0008884518690118462
   pressure: 2970000.0
-  run_num: 103.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0182
+    CO: 0.1096
+    CO2: 0.0196
+    H2: 0.8507
+    H2O: 0.0018
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1653,11 +2271,17 @@
     CH3OH: 0.01581018305349186
     H2O: 0.0010200118099027006
   pressure: 5000000.0
-  run_num: 104.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0465
+    CO: 0.0892
+    CO2: 0.0195
+    H2: 0.8416
+    H2O: 0.003
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1669,11 +2293,17 @@
     CH3OH: 0.017779828673533962
     H2O: 0.0014770934590320525
   pressure: 4980000.0
-  run_num: 105.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0325
+    CO: 0.0996
+    CO2: 0.0193
+    H2: 0.8457
+    H2O: 0.0027
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1685,11 +2315,17 @@
     CH3OH: 0.0034923753020317796
     H2O: 0.0004407852322952731
   pressure: 1500000.0
-  run_num: 106.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0103
+    CO: 0.1142
+    CO2: 0.0199
+    H2: 0.8543
+    H2O: 0.0013
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1701,11 +2337,17 @@
     CH3OH: 0.0042959982219955995
     H2O: 0.000522486270242708
   pressure: 1500000.0
-  run_num: 107.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0074
+    CO: 0.1161
+    CO2: 0.02
+    H2: 0.8556
+    H2O: 0.0009
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1717,11 +2359,17 @@
     CH3OH: 0.008371040803845455
     H2O: 0.0006975867336537879
   pressure: 2990000.0
-  run_num: 108.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0252
+    CO: 0.1031
+    CO2: 0.0198
+    H2: 0.8498
+    H2O: 0.0021
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1733,11 +2381,17 @@
     CH3OH: 0.010446441098198542
     H2O: 0.0010846031741299034
   pressure: 2980000.0
-  run_num: 109.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0183
+    CO: 0.1085
+    CO2: 0.0196
+    H2: 0.8517
+    H2O: 0.0019
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1749,11 +2403,17 @@
     CH3OH: 0.015737334003959096
     H2O: 0.0009815385033654324
   pressure: 4980000.0
-  run_num: 110.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0481
+    CO: 0.0874
+    CO2: 0.0195
+    H2: 0.8418
+    H2O: 0.003
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1765,11 +2425,17 @@
     CH3OH: 0.020589287144973722
     H2O: 0.0015615470587480073
   pressure: 5000000.0
-  run_num: 111.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0356
+    CO: 0.0973
+    CO2: 0.0193
+    H2: 0.8449
+    H2O: 0.0027
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1781,11 +2447,17 @@
     CH3OH: 0.003067604974571532
     H2O: 0.00048632761791987694
   pressure: 1500000.0
-  run_num: 112.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0082
+    CO: 0.1162
+    CO2: 0.0198
+    H2: 0.8544
+    H2O: 0.0013
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1797,11 +2469,17 @@
     CH3OH: 0.003856432875029557
     H2O: 0.000612132202385644
   pressure: 1510000.0
-  run_num: 113.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.1174
+    CO2: 0.0198
+    H2: 0.8555
+    H2O: 0.001
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1813,11 +2491,17 @@
     CH3OH: 0.010442593767544816
     H2O: 0.0010928295803244573
   pressure: 2960000.0
-  run_num: 114.0
   species:
     CO: 0.12
     CO2: 0.021
     H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0172
+    CO: 0.1097
+    CO2: 0.0195
+    H2: 0.8517
+    H2O: 0.0018
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1829,11 +2513,17 @@
     CH3OH: 0.0010714659475074212
     H2O: 0.0003626500130025119
   pressure: 1530000.0
-  run_num: 115.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0065
+    CO: 0.1763
+    CO2: 0.0647
+    H2: 0.7502
+    H2O: 0.0022
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1845,11 +2535,17 @@
     CH3OH: 0.0012178834661260827
     H2O: 0.0005892984513513303
   pressure: 1520000.0
-  run_num: 116.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0031
+    CO: 0.1777
+    CO2: 0.0651
+    H2: 0.7526
+    H2O: 0.0015
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1861,11 +2557,17 @@
     CH3OH: 0.0020073369488042263
     H2O: 0.0007793190507122289
   pressure: 3100000.0
-  run_num: 117.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0085
+    CO: 0.1765
+    CO2: 0.0642
+    H2: 0.7474
+    H2O: 0.0033
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1877,11 +2579,17 @@
     CH3OH: 0.002017971846546235
     H2O: 0.0009892018855618802
   pressure: 3010000.0
-  run_num: 118.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.1776
+    CO2: 0.0644
+    H2: 0.7504
+    H2O: 0.0025
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -1893,11 +2601,17 @@
     CH3OH: 0.0034612213074698937
     H2O: 0.0011190414753474093
   pressure: 5010000.0
-  run_num: 119.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0133
+    CO: 0.1756
+    CO2: 0.0641
+    H2: 0.7426
+    H2O: 0.0043
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1909,11 +2623,17 @@
     CH3OH: 0.003155123927166066
     H2O: 0.0015324887646235175
   pressure: 5000000.0
-  run_num: 120.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.007
+    CO: 0.1787
+    CO2: 0.0645
+    H2: 0.7463
+    H2O: 0.0034
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1925,11 +2645,17 @@
     CH3OH: 0.00219410452062051
     H2O: 0.0006501050431468178
   pressure: 1530000.0
-  run_num: 121.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0081
+    CO: 0.1765
+    CO2: 0.0651
+    H2: 0.7478
+    H2O: 0.0024
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1941,11 +2667,17 @@
     CH3OH: 0.0022506884324302
     H2O: 0.0009002753729720802
   pressure: 1540000.0
-  run_num: 122.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0045
+    CO: 0.1787
+    CO2: 0.0655
+    H2: 0.7495
+    H2O: 0.0018
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1957,11 +2689,17 @@
     CH3OH: 0.004699467474860824
     H2O: 0.0009758457051623568
   pressure: 3030000.0
-  run_num: 123.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0183
+    CO: 0.1725
+    CO2: 0.0652
+    H2: 0.74
+    H2O: 0.0038
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1973,11 +2711,17 @@
     CH3OH: 0.004412356514937582
     H2O: 0.0015042124482741758
   pressure: 3010000.0
-  run_num: 124.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0088
+    CO: 0.1775
+    CO2: 0.0649
+    H2: 0.7457
+    H2O: 0.003
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -1989,11 +2733,17 @@
     CH3OH: 0.007848554533602748
     H2O: 0.0013337412932919702
   pressure: 5000000.0
-  run_num: 125.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0306
+    CO: 0.1658
+    CO2: 0.0651
+    H2: 0.7329
+    H2O: 0.0052
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2005,11 +2755,17 @@
     CH3OH: 0.007927377893337641
     H2O: 0.0021139674382233704
   pressure: 5000000.0
-  run_num: 126.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0165
+    CO: 0.1724
+    CO2: 0.0638
+    H2: 0.7427
+    H2O: 0.0044
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2021,11 +2777,17 @@
     CH3OH: 0.003342861151423533
     H2O: 0.0007398135335117656
   pressure: 1530000.0
-  run_num: 127.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0122
+    CO: 0.1739
+    CO2: 0.0651
+    H2: 0.746
+    H2O: 0.0027
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2037,11 +2799,17 @@
     CH3OH: 0.003715833271057995
     H2O: 0.0012568259593284394
   pressure: 1510000.0
-  run_num: 128.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0068
+    CO: 0.1767
+    CO2: 0.0654
+    H2: 0.7487
+    H2O: 0.0023
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2053,11 +2821,17 @@
     CH3OH: 0.007926814869339533
     H2O: 0.0013157870835745786
   pressure: 2950000.0
-  run_num: 129.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0247
+    CO: 0.1688
+    CO2: 0.066
+    H2: 0.7361
+    H2O: 0.0041
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2069,11 +2843,17 @@
     CH3OH: 0.00939483738617987
     H2O: 0.001791573641085464
   pressure: 3000000.0
-  run_num: 130.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0215
+    CO: 0.1676
+    CO2: 0.0645
+    H2: 0.7421
+    H2O: 0.0041
   temperature: 516.7
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2085,11 +2865,17 @@
     CH3OH: 0.014796395786679337
     H2O: 0.0016555407873207646
   pressure: 5000000.0
-  run_num: 131.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0572
+    CO: 0.1479
+    CO2: 0.0679
+    H2: 0.7199
+    H2O: 0.0064
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2101,11 +2887,17 @@
     CH3OH: 0.016910707295123766
     H2O: 0.002403330494139037
   pressure: 4990000.0
-  run_num: 132.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0387
+    CO: 0.1578
+    CO2: 0.0652
+    H2: 0.7324
+    H2O: 0.0055
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2117,11 +2909,17 @@
     CH3OH: 0.0038573712483597348
     H2O: 0.0011120349544820858
   pressure: 1540000.0
-  run_num: 133.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0111
+    CO: 0.1762
+    CO2: 0.0651
+    H2: 0.7443
+    H2O: 0.0032
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2133,11 +2931,17 @@
     CH3OH: 0.004406476042068471
     H2O: 0.0016121253812445627
   pressure: 1530000.0
-  run_num: 134.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0082
+    CO: 0.1776
+    CO2: 0.064
+    H2: 0.7471
+    H2O: 0.003
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2149,11 +2953,17 @@
     CH3OH: 0.009808628745677046
     H2O: 0.0015652067147356986
   pressure: 3000000.0
-  run_num: 135.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0282
+    CO: 0.1662
+    CO2: 0.0659
+    H2: 0.7349
+    H2O: 0.0045
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2165,11 +2975,17 @@
     CH3OH: 0.011893881959996992
     H2O: 0.0026837477243070135
   pressure: 3010000.0
-  run_num: 136.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0195
+    CO: 0.1718
+    CO2: 0.0653
+    H2: 0.7388
+    H2O: 0.0044
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2181,11 +2997,17 @@
     CH3OH: 0.018624583624470555
     H2O: 0.002301516987814802
   pressure: 5000000.0
-  run_num: 137.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0526
+    CO: 0.1508
+    CO2: 0.0671
+    H2: 0.7225
+    H2O: 0.0065
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2197,11 +3019,17 @@
     CH3OH: 0.022974569592062358
     H2O: 0.003515897193508223
   pressure: 5000000.0
-  run_num: 138.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0379
+    CO: 0.1606
+    CO2: 0.066
+    H2: 0.7293
+    H2O: 0.0058
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2213,11 +3041,17 @@
     CH3OH: 0.0032555924317170465
     H2O: 0.0013336161768479466
   pressure: 1510000.0
-  run_num: 139.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0083
+    CO: 0.1777
+    CO2: 0.0643
+    H2: 0.7462
+    H2O: 0.0034
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2229,11 +3063,17 @@
     CH3OH: 0.00404176160773957
     H2O: 0.0017682707033860618
   pressure: 1510000.0
-  run_num: 140.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0064
+    CO: 0.1785
+    CO2: 0.0643
+    H2: 0.7479
+    H2O: 0.0028
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2245,11 +3085,17 @@
     CH3OH: 0.010335869440792652
     H2O: 0.002020192663427655
   pressure: 2980000.0
-  run_num: 141.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.022
+    CO: 0.1706
+    CO2: 0.065
+    H2: 0.7379
+    H2O: 0.0043
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2261,11 +3107,17 @@
     CH3OH: 0.011584844343258611
     H2O: 0.0027370786085720894
   pressure: 2970000.0
-  run_num: 142.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0182
+    CO: 0.1723
+    CO2: 0.0645
+    H2: 0.7406
+    H2O: 0.0043
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2277,11 +3129,17 @@
     CH3OH: 0.018200689112118473
     H2O: 0.002345088789446034
   pressure: 5000000.0
-  run_num: 143.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.052
+    CO: 0.1522
+    CO2: 0.0674
+    H2: 0.7211
+    H2O: 0.0067
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2293,11 +3151,17 @@
     CH3OH: 0.023518919960898194
     H2O: 0.003726374331466987
   pressure: 5000000.0
-  run_num: 144.0
   species:
     CO: 0.179
     CO2: 0.067
     H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0385
+    CO: 0.1609
+    CO2: 0.066
+    H2: 0.7281
+    H2O: 0.0061
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2309,11 +3173,17 @@
     CH3OH: 0.0007481650561503432
     H2O: 0.001043658817823168
   pressure: 1510000.0
-  run_num: 145.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0119
+    CO: 0.0043
+    CO2: 0.101
+    H2: 0.8661
+    H2O: 0.0166
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2325,11 +3195,17 @@
     CH3OH: 0.0011803798120299973
     H2O: 0.00157383974937333
   pressure: 1500000.0
-  run_num: 146.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.0021
+    CO2: 0.1087
+    H2: 0.8745
+    H2O: 0.0084
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2341,11 +3217,17 @@
     CH3OH: 0.0014704935666098057
     H2O: 0.0019180350868823553
   pressure: 1500000.0
-  run_num: 147.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0046
+    CO: 0.0012
+    CO2: 0.11
+    H2: 0.8782
+    H2O: 0.006
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2357,11 +3239,17 @@
     CH3OH: 0.0015814092942367595
     H2O: 0.0019069935606972693
   pressure: 1480000.0
-  run_num: 148.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0034
+    CO: 0.001
+    CO2: 0.112
+    H2: 0.8795
+    H2O: 0.0041
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2373,11 +3261,17 @@
     CH3OH: 0.0016635482397382771
     H2O: 0.0020101207896837518
   pressure: 1480000.0
-  run_num: 149.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0024
+    CO: 0.0006
+    CO2: 0.1117
+    H2: 0.8824
+    H2O: 0.0029
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2389,11 +3283,17 @@
     CH3OH: 0.001661202306412834
     H2O: 0.0019776217933486122
   pressure: 1490000.0
-  run_num: 150.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0021
+    CO: 0.0006
+    CO2: 0.1125
+    H2: 0.8823
+    H2O: 0.0025
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2405,11 +3305,17 @@
     CH3OH: 0.0013079047476010892
     H2O: 0.001579595105798417
   pressure: 3020000.0
-  run_num: 151.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0207
+    CO: 0.0039
+    CO2: 0.0951
+    H2: 0.8553
+    H2O: 0.025
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2421,11 +3327,17 @@
     CH3OH: 0.0020457476971194825
     H2O: 0.002378776391999398
   pressure: 3000000.0
-  run_num: 152.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0129
+    CO: 0.0025
+    CO2: 0.1032
+    H2: 0.8664
+    H2O: 0.015
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2437,11 +3349,17 @@
     CH3OH: 0.002677366785661808
     H2O: 0.003187341411502153
   pressure: 3010000.0
-  run_num: 153.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0084
+    CO: 0.0015
+    CO2: 0.1082
+    H2: 0.8719
+    H2O: 0.01
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2453,11 +3371,17 @@
     CH3OH: 0.0030612553150373327
     H2O: 0.0035446114174116482
   pressure: 3000000.0
-  run_num: 154.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0057
+    CO: 0.0011
+    CO2: 0.1105
+    H2: 0.8761
+    H2O: 0.0066
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2469,11 +3393,17 @@
     CH3OH: 0.002971359150006349
     H2O: 0.0036976913866745677
   pressure: 2990000.0
-  run_num: 155.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0045
+    CO: 0.0011
+    CO2: 0.1101
+    H2: 0.8787
+    H2O: 0.0056
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2485,11 +3415,17 @@
     CH3OH: 0.0034635985199063437
     H2O: 0.003737040508320002
   pressure: 2970000.0
-  run_num: 156.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0006
+    CO2: 0.1132
+    H2: 0.8783
+    H2O: 0.0041
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2501,11 +3437,17 @@
     CH3OH: 0.0014061524352706504
     H2O: 0.001596173034631549
   pressure: 5030000.0
-  run_num: 157.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0333
+    CO: 0.0038
+    CO2: 0.085
+    H2: 0.8399
+    H2O: 0.0378
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2517,11 +3459,17 @@
     CH3OH: 0.0025673894313650307
     H2O: 0.002852654923738923
   pressure: 4990000.0
-  run_num: 158.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.018
+    CO: 0.0022
+    CO2: 0.0986
+    H2: 0.8611
+    H2O: 0.02
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2533,11 +3481,17 @@
     CH3OH: 0.003560939113356732
     H2O: 0.004132033122102623
   pressure: 5000000.0
-  run_num: 159.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0106
+    CO: 0.0017
+    CO2: 0.1053
+    H2: 0.8701
+    H2O: 0.0123
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2549,11 +3503,17 @@
     CH3OH: 0.004138288944303806
     H2O: 0.0047365957796248375
   pressure: 5010000.0
-  run_num: 160.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0083
+    CO: 0.0012
+    CO2: 0.1081
+    H2: 0.8729
+    H2O: 0.0095
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2565,11 +3525,17 @@
     CH3OH: 0.004361840750663038
     H2O: 0.005310067000807177
   pressure: 5000000.0
-  run_num: 161.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0069
+    CO: 0.001
+    CO2: 0.108
+    H2: 0.8757
+    H2O: 0.0084
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2581,11 +3547,17 @@
     CH3OH: 0.004725898323660817
     H2O: 0.005738590821588134
   pressure: 4980000.0
-  run_num: 162.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0056
+    CO: 0.0009
+    CO2: 0.1099
+    H2: 0.8768
+    H2O: 0.0068
   temperature: 483.5
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2597,11 +3569,17 @@
     CH3OH: 0.005207419998172021
     H2O: 0.0013457377523365898
   pressure: 2000000.0
-  run_num: 163.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0089
+    CO: 0.1262
+    CO2: 0.0221
+    H2: 0.8405
+    H2O: 0.0023
   temperature: 483.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2613,11 +3591,17 @@
     CH3OH: 0.005792523368753147
     H2O: 0.001492013594981871
   pressure: 2000000.0
-  run_num: 164.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0066
+    CO: 0.1275
+    CO2: 0.0219
+    H2: 0.8423
+    H2O: 0.0017
   temperature: 483.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2629,11 +3613,17 @@
     CH3OH: 0.005178164829642964
     H2O: 0.0015797791005690402
   pressure: 2000000.0
-  run_num: 165.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0059
+    CO: 0.1265
+    CO2: 0.0219
+    H2: 0.8439
+    H2O: 0.0018
   temperature: 483.6
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2645,11 +3635,17 @@
     CH3OH: 0.0051489096611139085
     H2O: 0.0018723307858596033
   pressure: 2000000.0
-  run_num: 166.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0044
+    CO: 0.1289
+    CO2: 0.0223
+    H2: 0.8428
+    H2O: 0.0016
   temperature: 483.6
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2661,11 +3657,17 @@
     CH3OH: 0.005265930335230133
     H2O: 0.001901585954388659
   pressure: 2000000.0
-  run_num: 167.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0036
+    CO: 0.1285
+    CO2: 0.0223
+    H2: 0.8443
+    H2O: 0.0013
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2677,11 +3679,17 @@
     CH3OH: 0.0115362881232912
     H2O: 0.0015017653178248903
   pressure: 2000000.0
-  run_num: 168.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0169
+    CO: 0.12
+    CO2: 0.0221
+    H2: 0.8388
+    H2O: 0.0022
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2693,11 +3701,17 @@
     CH3OH: 0.008737543667344815
     H2O: 0.0016382894376271526
   pressure: 2000000.0
-  run_num: 169.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0112
+    CO: 0.124
+    CO2: 0.0221
+    H2: 0.8406
+    H2O: 0.0021
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2709,11 +3723,17 @@
     CH3OH: 0.00916661947243764
     H2O: 0.0019503445686037534
   pressure: 2000000.0
-  run_num: 170.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0094
+    CO: 0.1255
+    CO2: 0.022
+    H2: 0.8411
+    H2O: 0.002
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2725,11 +3745,17 @@
     CH3OH: 0.009225129809495754
     H2O: 0.0020381100741909217
   pressure: 2000000.0
-  run_num: 171.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0086
+    CO: 0.1258
+    CO2: 0.0221
+    H2: 0.8416
+    H2O: 0.0019
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2741,11 +3767,17 @@
     CH3OH: 0.01051235722477423
     H2O: 0.0020381100741909217
   pressure: 2000000.0
-  run_num: 172.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0098
+    CO: 0.1242
+    CO2: 0.022
+    H2: 0.8421
+    H2O: 0.0019
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2757,11 +3789,17 @@
     CH3OH: 0.011113063351904187
     H2O: 0.0023092079692268435
   pressure: 2000000.0
-  run_num: 173.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0077
+    CO: 0.1257
+    CO2: 0.0221
+    H2: 0.8429
+    H2O: 0.0016
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2773,11 +3811,17 @@
     CH3OH: 0.01130224677505875
     H2O: 0.0027792410102603486
   pressure: 2000000.0
-  run_num: 174.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0061
+    CO: 0.1264
+    CO2: 0.0221
+    H2: 0.8439
+    H2O: 0.0015
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2789,11 +3833,17 @@
     CH3OH: 0.011019446812611206
     H2O: 0.002047861797033941
   pressure: 2000000.0
-  run_num: 175.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0113
+    CO: 0.1241
+    CO2: 0.0221
+    H2: 0.8404
+    H2O: 0.0021
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2805,11 +3855,17 @@
     CH3OH: 0.010999943366925167
     H2O: 0.0021063721340920535
   pressure: 2000000.0
-  run_num: 176.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0094
+    CO: 0.1214
+    CO2: 0.0216
+    H2: 0.8458
+    H2O: 0.0018
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2821,11 +3877,17 @@
     CH3OH: 0.011994619096913083
     H2O: 0.002486689324969785
   pressure: 2000000.0
-  run_num: 177.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0082
+    CO: 0.1259
+    CO2: 0.022
+    H2: 0.8422
+    H2O: 0.0017
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2837,11 +3899,17 @@
     CH3OH: 0.012599225913180245
     H2O: 0.0031498064782950613
   pressure: 2000000.0
-  run_num: 178.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0076
+    CO: 0.1226
+    CO2: 0.0216
+    H2: 0.8463
+    H2O: 0.0019
   temperature: 532.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2853,11 +3921,17 @@
     CH3OH: 0.013106315501017223
     H2O: 0.0034813650549576996
   pressure: 2000000.0
-  run_num: 179.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0064
+    CO: 0.127
+    CO2: 0.022
+    H2: 0.8429
+    H2O: 0.0017
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2869,11 +3943,17 @@
     CH3OH: 0.013340356849249672
     H2O: 0.0032765788752543053
   pressure: 2000000.0
-  run_num: 180.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0057
+    CO: 0.1235
+    CO2: 0.0217
+    H2: 0.8477
+    H2O: 0.0014
   temperature: 532.6
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2885,11 +3965,17 @@
     CH3OH: 0.012482205239064023
     H2O: 0.003432606440742606
   pressure: 2000000.0
-  run_num: 181.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.008
+    CO: 0.1265
+    CO2: 0.0218
+    H2: 0.8415
+    H2O: 0.0022
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2901,11 +3987,17 @@
     CH3OH: 0.013262343066505521
     H2O: 0.003705654680347131
   pressure: 2000000.0
-  run_num: 182.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0068
+    CO: 0.1272
+    CO2: 0.0219
+    H2: 0.8422
+    H2O: 0.0019
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2917,11 +4009,17 @@
     CH3OH: 0.013569522336060612
     H2O: 0.004440934582710746
   pressure: 2000000.0
-  run_num: 183.0
   species:
     CO: 0.0
     CO2: 0.115
     H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0055
+    CO: 0.1278
+    CO2: 0.0219
+    H2: 0.843
+    H2O: 0.0018
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2933,11 +4031,17 @@
     CH3OH: 0.0005782348296336266
     H2O: 0.00015320751896275573
   pressure: 1500000.0
-  run_num: 184.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0351
+    CO: 0.0739
+    CO2: 0.1035
+    H2: 0.7777
+    H2O: 0.0093
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2949,11 +4053,17 @@
     CH3OH: 0.0015263841967433106
     H2O: 0.0006775276791666735
   pressure: 1500000.0
-  run_num: 185.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0196
+    CO: 0.0841
+    CO2: 0.1
+    H2: 0.7875
+    H2O: 0.0087
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2965,11 +4075,17 @@
     CH3OH: 0.0019480335204097893
     H2O: 0.0008748653534774502
   pressure: 1490000.0
-  run_num: 186.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0167
+    CO: 0.087
+    CO2: 0.1001
+    H2: 0.7887
+    H2O: 0.0075
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -2981,11 +4097,17 @@
     CH3OH: 0.0022890105238925554
     H2O: 0.001281005889517852
   pressure: 1520000.0
-  run_num: 187.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0109
+    CO: 0.0896
+    CO2: 0.1001
+    H2: 0.7933
+    H2O: 0.0061
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -2997,11 +4119,17 @@
     CH3OH: 0.0024517196713257938
     H2O: 0.0016052926419395078
   pressure: 1500000.0
-  run_num: 188.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0084
+    CO: 0.091
+    CO2: 0.1012
+    H2: 0.7939
+    H2O: 0.0055
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3013,11 +4141,17 @@
     CH3OH: 0.0026770131001556787
     H2O: 0.0020442645492097906
   pressure: 1510000.0
-  run_num: 189.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0055
+    CO: 0.0916
+    CO2: 0.1023
+    H2: 0.7964
+    H2O: 0.0042
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3029,11 +4163,17 @@
     CH3OH: 0.0008813717225351713
     H2O: 0.00019848585708566856
   pressure: 3010000.0
-  run_num: 190.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0746
+    CO: 0.0471
+    CO2: 0.1036
+    H2: 0.757
+    H2O: 0.0168
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3045,11 +4185,17 @@
     CH3OH: 0.0032475268166364084
     H2O: 0.0011247531901521222
   pressure: 3000000.0
-  run_num: 191.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.041
+    CO: 0.0721
+    CO2: 0.099
+    H2: 0.7735
+    H2O: 0.0142
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3061,11 +4207,17 @@
     CH3OH: 0.004786424541593034
     H2O: 0.0022811895687592336
   pressure: 2980000.0
-  run_num: 192.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0235
+    CO: 0.084
+    CO2: 0.0986
+    H2: 0.7827
+    H2O: 0.0112
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3077,11 +4229,17 @@
     CH3OH: 0.005345639473955624
     H2O: 0.002936801933222534
   pressure: 3010000.0
-  run_num: 193.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0162
+    CO: 0.088
+    CO2: 0.099
+    H2: 0.7879
+    H2O: 0.0089
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3093,11 +4251,17 @@
     CH3OH: 0.005584860859054851
     H2O: 0.0033875385538529425
   pressure: 2980000.0
-  run_num: 194.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0122
+    CO: 0.0897
+    CO2: 0.101
+    H2: 0.7897
+    H2O: 0.0074
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3109,11 +4273,17 @@
     CH3OH: 0.005813465713568845
     H2O: 0.0035409291164464783
   pressure: 3000000.0
-  run_num: 195.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.011
+    CO: 0.0903
+    CO2: 0.101
+    H2: 0.791
+    H2O: 0.0067
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3125,11 +4295,17 @@
     CH3OH: 0.005976807193544776
     H2O: 0.004089394395583268
   pressure: 2980000.0
-  run_num: 196.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0076
+    CO: 0.0913
+    CO2: 0.1009
+    H2: 0.795
+    H2O: 0.0052
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3141,11 +4317,17 @@
     CH3OH: 0.002589834410914245
     H2O: 0.0006822535329068085
   pressure: 5000000.0
-  run_num: 197.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0949
+    CO: 0.0401
+    CO2: 0.1001
+    H2: 0.739
+    H2O: 0.025
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3157,11 +4339,17 @@
     CH3OH: 0.006720763070354476
     H2O: 0.0025274664538085206
   pressure: 4990000.0
-  run_num: 198.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0468
+    CO: 0.0711
+    CO2: 0.0971
+    H2: 0.7672
+    H2O: 0.0176
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3173,11 +4361,17 @@
     CH3OH: 0.007907484849690621
     H2O: 0.0038365945011461905
   pressure: 4980000.0
-  run_num: 199.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.027
+    CO: 0.0824
+    CO2: 0.0971
+    H2: 0.7804
+    H2O: 0.0131
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3189,11 +4383,17 @@
     CH3OH: 0.008570435599715187
     H2O: 0.004725321249572698
   pressure: 5000000.0
-  run_num: 200.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0185
+    CO: 0.0861
+    CO2: 0.0983
+    H2: 0.7869
+    H2O: 0.0102
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3205,11 +4405,17 @@
     CH3OH: 0.009663422399761966
     H2O: 0.005680026906730316
   pressure: 4970000.0
-  run_num: 201.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0131
+    CO: 0.0877
+    CO2: 0.1002
+    H2: 0.7913
+    H2O: 0.0077
   temperature: 499.3
   use_for_opt: true
   volume: 0.0001346957850226624
@@ -3221,11 +4427,17 @@
     CH3OH: 0.0034562056100227107
     H2O: 0.0014662690466763016
   pressure: 2000000.0
-  run_num: 202.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0033
+    CO: 0.1336
+    CO2: 0.0316
+    H2: 0.8301
+    H2O: 0.0014
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3237,11 +4449,17 @@
     CH3OH: 0.0033639543119277538
     H2O: 0.0016819771559638769
   pressure: 2000000.0
-  run_num: 203.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0022
+    CO: 0.1338
+    CO2: 0.0318
+    H2: 0.8311
+    H2O: 0.0011
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3253,11 +4471,17 @@
     CH3OH: 0.0032422528108468794
     H2O: 0.0018237672061013697
   pressure: 2000000.0
-  run_num: 204.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0016
+    CO: 0.1342
+    CO2: 0.032
+    H2: 0.8313
+    H2O: 0.0009
   temperature: 483.5
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3269,11 +4493,17 @@
     CH3OH: 0.006568955541514302
     H2O: 0.0015944066848335684
   pressure: 2000000.0
-  run_num: 205.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0103
+    CO: 0.129
+    CO2: 0.0312
+    H2: 0.827
+    H2O: 0.0025
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3285,11 +4515,17 @@
     CH3OH: 0.006382990186897934
     H2O: 0.0021678079880030716
   pressure: 2000000.0
-  run_num: 206.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0053
+    CO: 0.1327
+    CO2: 0.0315
+    H2: 0.8287
+    H2O: 0.0018
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3301,11 +4537,17 @@
     CH3OH: 0.0061708902150622745
     H2O: 0.00246835608602491
   pressure: 2000000.0
-  run_num: 207.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0035
+    CO: 0.1328
+    CO2: 0.0317
+    H2: 0.8306
+    H2O: 0.0014
   temperature: 499.3
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3317,11 +4559,17 @@
     CH3OH: 0.009173153126742464
     H2O: 0.001935619467110795
   pressure: 2000000.0
-  run_num: 208.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0109
+    CO: 0.1311
+    CO2: 0.0316
+    H2: 0.8241
+    H2O: 0.0023
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3333,11 +4581,17 @@
     CH3OH: 0.00957716700412873
     H2O: 0.002736333429751066
   pressure: 2000000.0
-  run_num: 209.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.007
+    CO: 0.134
+    CO2: 0.0318
+    H2: 0.8252
+    H2O: 0.002
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3349,11 +4603,17 @@
     CH3OH: 0.009336494484363028
     H2O: 0.003112164828121009
   pressure: 2000000.0
-  run_num: 210.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0054
+    CO: 0.1345
+    CO2: 0.032
+    H2: 0.8263
+    H2O: 0.0018
   temperature: 516.7
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3365,11 +4625,17 @@
     CH3OH: 0.010868880211914995
     H2O: 0.002717220052978749
   pressure: 2000000.0
-  run_num: 211.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0096
+    CO: 0.1297
+    CO2: 0.0311
+    H2: 0.8272
+    H2O: 0.0024
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3381,11 +4647,17 @@
     CH3OH: 0.011795683950915499
     H2O: 0.0038704587963941475
   pressure: 2000000.0
-  run_num: 212.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0064
+    CO: 0.1313
+    CO2: 0.0315
+    H2: 0.8287
+    H2O: 0.0021
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3397,11 +4669,17 @@
     CH3OH: 0.012022313989787257
     H2O: 0.004171006894415986
   pressure: 2000000.0
-  run_num: 213.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0049
+    CO: 0.1321
+    CO2: 0.0316
+    H2: 0.8297
+    H2O: 0.0017
   temperature: 532.4
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3413,11 +4691,17 @@
     CH3OH: 0.010323173801619666
     H2O: 0.0032668271524112866
   pressure: 2000000.0
-  run_num: 214.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0079
+    CO: 0.1306
+    CO2: 0.031
+    H2: 0.828
+    H2O: 0.0025
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3429,11 +4713,17 @@
     CH3OH: 0.011351297940959133
     H2O: 0.003948277544681437
   pressure: 2000000.0
-  run_num: 215.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0069
+    CO: 0.1319
+    CO2: 0.0311
+    H2: 0.8277
+    H2O: 0.0024
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3445,11 +4735,17 @@
     CH3OH: 0.01152614633153446
     H2O: 0.004433133204436332
   pressure: 2000000.0
-  run_num: 216.0
   species:
     CO: 0.092
     CO2: 0.105
     H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0052
+    CO: 0.1323
+    CO2: 0.0312
+    H2: 0.8293
+    H2O: 0.002
   temperature: 547.8
   use_for_opt: false
   volume: 0.0001346957850226624
@@ -3457,1584 +4753,660 @@
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id001
+  output:
     CH3OH: 0.0457
     H2O: 0.055
-  pressure: 7599300
-  species: &id002
+  pressure: 7599375
+  species:
     CO: 0.0
     CO2: 0.2
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id003
+  output:
     CH3OH: 0.0465
     H2O: 0.0495
-  pressure: 7599300
-  species: &id004
+  pressure: 7599375
+  species:
     CO: 0.02
     CO2: 0.18
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id005
+  output:
     CH3OH: 0.0472
     H2O: 0.0443
-  pressure: 7599300
-  species: &id006
+  pressure: 7599375
+  species:
     CO: 0.04
     CO2: 0.16
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id007
+  output:
     CH3OH: 0.0477
     H2O: 0.0392
-  pressure: 7599300
-  species: &id008
+  pressure: 7599375
+  species:
     CO: 0.06
     CO2: 0.14
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id009
+  output:
     CH3OH: 0.0488
     H2O: 0.0346
-  pressure: 7599300
-  species: &id010
+  pressure: 7599375
+  species:
     CO: 0.08
     CO2: 0.12
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id011
+  output:
     CH3OH: 0.0487
     H2O: 0.0294
-  pressure: 7599300
-  species: &id012
+  pressure: 7599375
+  species:
     CO: 0.1
     CO2: 0.1
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id013
+  output:
     CH3OH: 0.0488
     H2O: 0.0242
-  pressure: 7599300
-  species: &id014
+  pressure: 7599375
+  species:
     CO: 0.12
     CO2: 0.08
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id015
+  output:
     CH3OH: 0.0487
     H2O: 0.0189
-  pressure: 7599300
-  species: &id016
+  pressure: 7599375
+  species:
     CO: 0.14
     CO2: 0.06
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id017
+  output:
     CH3OH: 0.0484
     H2O: 0.0134
-  pressure: 7599300
-  species: &id018
+  pressure: 7599375
+  species:
     CO: 0.16
     CO2: 0.04
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id019
+  output:
     CH3OH: 0.0478
     H2O: 0.007379999999999999
-  pressure: 7599300
-  species: &id020
+  pressure: 7599375
+  species:
     CO: 0.18
     CO2: 0.02
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id021
+  output:
     CH3OH: 0.047
     H2O: -9.090000000000001e-17
-  pressure: 7599300
-  species: &id022
+  pressure: 7599375
+  species:
     CO: 0.2
     CO2: 0.0
     H2: 0.8
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id023
+  output:
     CH3OH: 0.0314
     H2O: 0.0442
-  pressure: 7599300
-  species: &id024
+  pressure: 7599375
+  species:
     CO: 0.0
     CO2: 0.2
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id025
+  output:
     CH3OH: 0.0328
     H2O: 0.0283
-  pressure: 7599300
-  species: &id026
+  pressure: 7599375
+  species:
     CO: 0.02
     CO2: 0.18
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id027
+  output:
     CH3OH: 0.0341
     H2O: 0.0136
-  pressure: 7599300
-  species: &id028
+  pressure: 7599375
+  species:
     CO: 0.04
     CO2: 0.16
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id029
+  output:
     CH3OH: 0.0352
     H2O: 2.15e-05
-  pressure: 7599300
-  species: &id030
+  pressure: 7599375
+  species:
     CO: 0.06
     CO2: 0.14
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id031
+  output:
     CH3OH: 0.0361
     H2O: -0.0127
-  pressure: 7599300
-  species: &id032
+  pressure: 7599375
+  species:
     CO: 0.08
     CO2: 0.12
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id033
+  output:
     CH3OH: 0.0369
     H2O: -0.0247
-  pressure: 7599300
-  species: &id034
+  pressure: 7599375
+  species:
     CO: 0.1
     CO2: 0.1
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id035
+  output:
     CH3OH: 0.0375
     H2O: -0.0362
-  pressure: 7599300
-  species: &id036
+  pressure: 7599375
+  species:
     CO: 0.12
     CO2: 0.08
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id037
+  output:
     CH3OH: 0.038
     H2O: -0.0474
-  pressure: 7599300
-  species: &id038
+  pressure: 7599375
+  species:
     CO: 0.14
     CO2: 0.06
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id039
+  output:
     CH3OH: 0.0383
     H2O: -0.0583
-  pressure: 7599300
-  species: &id040
+  pressure: 7599375
+  species:
     CO: 0.16
     CO2: 0.04
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id041
+  output:
     CH3OH: 0.0384
     H2O: -0.0692
-  pressure: 7599300
-  species: &id042
+  pressure: 7599375
+  species:
     CO: 0.18
     CO2: 0.02
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id043
+  output:
     CH3OH: 0.0381
     H2O: -0.0801
-  pressure: 7599300
-  species: &id044
+  pressure: 7599375
+  species:
     CO: 0.2
     CO2: 0.0
     H2: 0.75
     H2O: 0.05
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id045
+  output:
     CH3OH: 0.0327
     H2O: 0.0375
-  pressure: 7599300
-  species: &id046
+  pressure: 7599375
+  species:
     CO: 0.0
     CO2: 0.05
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id047
+  output:
     CH3OH: 0.0319
     H2O: 0.0341
-  pressure: 7599300
-  species: &id048
+  pressure: 7599375
+  species:
     CO: 0.01
     CO2: 0.05
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id049
+  output:
     CH3OH: 0.031
     H2O: 0.0305
-  pressure: 7599300
-  species: &id050
+  pressure: 7599375
+  species:
     CO: 0.01
     CO2: 0.04
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id051
+  output:
     CH3OH: 0.03
     H2O: 0.027
-  pressure: 7599300
-  species: &id052
+  pressure: 7599375
+  species:
     CO: 0.02
     CO2: 0.04
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id053
+  output:
     CH3OH: 0.0289
     H2O: 0.0234
-  pressure: 7599300
-  species: &id054
+  pressure: 7599375
+  species:
     CO: 0.02
     CO2: 0.03
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id055
+  output:
     CH3OH: 0.0277
     H2O: 0.0199
-  pressure: 7599300
-  species: &id056
+  pressure: 7599375
+  species:
     CO: 0.03
     CO2: 0.03
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id057
+  output:
     CH3OH: 0.0264
     H2O: 0.0161
-  pressure: 7599300
-  species: &id058
+  pressure: 7599375
+  species:
     CO: 0.03
     CO2: 0.02
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id059
+  output:
     CH3OH: 0.0249
     H2O: 0.0124
-  pressure: 7599300
-  species: &id060
+  pressure: 7599375
+  species:
     CO: 0.04
     CO2: 0.02
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id061
+  output:
     CH3OH: 0.0233
     H2O: 0.00848
-  pressure: 7599300
-  species: &id062
+  pressure: 7599375
+  species:
     CO: 0.04
     CO2: 0.01
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id063
+  output:
     CH3OH: 0.0215
     H2O: 0.0044
-  pressure: 7599300
-  species: &id064
+  pressure: 7599375
+  species:
     CO: 0.05
     CO2: 0.01
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id065
+  output:
     CH3OH: 0.0197
     H2O: -1.2e-16
-  pressure: 7599300
-  species: &id066
+  pressure: 7599375
+  species:
     CO: 0.05
     CO2: 0.0
     H2: 0.95
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id067
+  output:
     CH3OH: 0.0325
     H2O: 0.0443
-  pressure: 7599300
-  species: &id068
+  pressure: 7599375
+  species:
     CO: 0.0
     CO2: 0.5
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id069
+  output:
     CH3OH: 0.0344
     H2O: 0.0368
-  pressure: 7599300
-  species: &id070
+  pressure: 7599375
+  species:
     CO: 0.05
     CO2: 0.45
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id071
+  output:
     CH3OH: 0.0362
     H2O: 0.0313
-  pressure: 7599300
-  species: &id072
+  pressure: 7599375
+  species:
     CO: 0.1
     CO2: 0.4
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id073
+  output:
     CH3OH: 0.0378
     H2O: 0.0268
-  pressure: 7599300
-  species: &id074
+  pressure: 7599375
+  species:
     CO: 0.15
     CO2: 0.35
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id075
+  output:
     CH3OH: 0.0397
     H2O: 0.0229
-  pressure: 7599300
-  species: &id076
+  pressure: 7599375
+  species:
     CO: 0.2
     CO2: 0.3
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id077
+  output:
     CH3OH: 0.0415
     H2O: 0.0194
-  pressure: 7599300
-  species: &id078
+  pressure: 7599375
+  species:
     CO: 0.25
     CO2: 0.25
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id079
+  output:
     CH3OH: 0.0432
     H2O: 0.0159
-  pressure: 7599300
-  species: &id080
+  pressure: 7599375
+  species:
     CO: 0.3
     CO2: 0.2
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id081
+  output:
     CH3OH: 0.0451
     H2O: 0.0124
-  pressure: 7599300
-  species: &id082
+  pressure: 7599375
+  species:
     CO: 0.35
     CO2: 0.15
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id083
+  output:
     CH3OH: 0.047
     H2O: 0.00875
-  pressure: 7599300
-  species: &id084
+  pressure: 7599375
+  species:
     CO: 0.4
     CO2: 0.1
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id085
+  output:
     CH3OH: 0.049
     H2O: 0.00485
-  pressure: 7599300
-  species: &id086
+  pressure: 7599375
+  species:
     CO: 0.45
     CO2: 0.05
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06
 - catalyst_area: 44.4241930003398
   experiment_type: sbr
   expt_name: grabow2011
-  output: &id087
+  output:
     CH3OH: 0.0513
     H2O: 1.3e-16
-  pressure: 7599300
-  species: &id088
+  pressure: 7599375
+  species:
     CO: 0.5
     CO2: 0.0
     H2: 0.5
     H2O: 0.0
   temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id001
-  pressure: 7599300
-  species: *id002
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id003
-  pressure: 7599300
-  species: *id004
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id005
-  pressure: 7599300
-  species: *id006
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id007
-  pressure: 7599300
-  species: *id008
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id009
-  pressure: 7599300
-  species: *id010
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id011
-  pressure: 7599300
-  species: *id012
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id013
-  pressure: 7599300
-  species: *id014
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id015
-  pressure: 7599300
-  species: *id016
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id017
-  pressure: 7599300
-  species: *id018
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id019
-  pressure: 7599300
-  species: *id020
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id021
-  pressure: 7599300
-  species: *id022
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id023
-  pressure: 7599300
-  species: *id024
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id025
-  pressure: 7599300
-  species: *id026
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id027
-  pressure: 7599300
-  species: *id028
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id029
-  pressure: 7599300
-  species: *id030
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id031
-  pressure: 7599300
-  species: *id032
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id033
-  pressure: 7599300
-  species: *id034
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id035
-  pressure: 7599300
-  species: *id036
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id037
-  pressure: 7599300
-  species: *id038
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id039
-  pressure: 7599300
-  species: *id040
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id041
-  pressure: 7599300
-  species: *id042
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id043
-  pressure: 7599300
-  species: *id044
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id045
-  pressure: 7599300
-  species: *id046
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id047
-  pressure: 7599300
-  species: *id048
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id049
-  pressure: 7599300
-  species: *id050
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id051
-  pressure: 7599300
-  species: *id052
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id053
-  pressure: 7599300
-  species: *id054
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id055
-  pressure: 7599300
-  species: *id056
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id057
-  pressure: 7599300
-  species: *id058
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id059
-  pressure: 7599300
-  species: *id060
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id061
-  pressure: 7599300
-  species: *id062
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id063
-  pressure: 7599300
-  species: *id064
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id065
-  pressure: 7599300
-  species: *id066
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id067
-  pressure: 7599300
-  species: *id068
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id069
-  pressure: 7599300
-  species: *id070
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id071
-  pressure: 7599300
-  species: *id072
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id073
-  pressure: 7599300
-  species: *id074
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id075
-  pressure: 7599300
-  species: *id076
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id077
-  pressure: 7599300
-  species: *id078
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id079
-  pressure: 7599300
-  species: *id080
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id081
-  pressure: 7599300
-  species: *id082
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id083
-  pressure: 7599300
-  species: *id084
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id085
-  pressure: 7599300
-  species: *id086
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id087
-  pressure: 7599300
-  species: *id088
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id001
-  pressure: 7599300
-  species: *id002
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id003
-  pressure: 7599300
-  species: *id004
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id005
-  pressure: 7599300
-  species: *id006
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id007
-  pressure: 7599300
-  species: *id008
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id009
-  pressure: 7599300
-  species: *id010
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id011
-  pressure: 7599300
-  species: *id012
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id013
-  pressure: 7599300
-  species: *id014
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id015
-  pressure: 7599300
-  species: *id016
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id017
-  pressure: 7599300
-  species: *id018
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id019
-  pressure: 7599300
-  species: *id020
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id021
-  pressure: 7599300
-  species: *id022
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id023
-  pressure: 7599300
-  species: *id024
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id025
-  pressure: 7599300
-  species: *id026
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id027
-  pressure: 7599300
-  species: *id028
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id029
-  pressure: 7599300
-  species: *id030
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id031
-  pressure: 7599300
-  species: *id032
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id033
-  pressure: 7599300
-  species: *id034
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id035
-  pressure: 7599300
-  species: *id036
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id037
-  pressure: 7599300
-  species: *id038
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id039
-  pressure: 7599300
-  species: *id040
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id041
-  pressure: 7599300
-  species: *id042
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id043
-  pressure: 7599300
-  species: *id044
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id045
-  pressure: 7599300
-  species: *id046
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id047
-  pressure: 7599300
-  species: *id048
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id049
-  pressure: 7599300
-  species: *id050
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id051
-  pressure: 7599300
-  species: *id052
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id053
-  pressure: 7599300
-  species: *id054
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id055
-  pressure: 7599300
-  species: *id056
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id057
-  pressure: 7599300
-  species: *id058
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id059
-  pressure: 7599300
-  species: *id060
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id061
-  pressure: 7599300
-  species: *id062
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id063
-  pressure: 7599300
-  species: *id064
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id065
-  pressure: 7599300
-  species: *id066
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id067
-  pressure: 7599300
-  species: *id068
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id069
-  pressure: 7599300
-  species: *id070
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id071
-  pressure: 7599300
-  species: *id072
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id073
-  pressure: 7599300
-  species: *id074
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id075
-  pressure: 7599300
-  species: *id076
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id077
-  pressure: 7599300
-  species: *id078
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id079
-  pressure: 7599300
-  species: *id080
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id081
-  pressure: 7599300
-  species: *id082
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id083
-  pressure: 7599300
-  species: *id084
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id085
-  pressure: 7599300
-  species: *id086
-  temperature: 528
-  use_for_opt: false
-  volume: 0.0001346957850226624
-  volume_flowrate: 7.84e-06
-- catalyst_area: 44.4241930003398
-  experiment_type: sbr
-  expt_name: grabow2011
-  output: *id087
-  pressure: 7599300
-  species: *id088
-  temperature: 528
-  use_for_opt: false
   volume: 0.0001346957850226624
   volume_flowrate: 7.84e-06

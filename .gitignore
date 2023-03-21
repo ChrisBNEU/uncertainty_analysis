@@ -2,6 +2,7 @@
 *__pycache__*
 *.vscode*
 *conda/*
+*.DS_Store*
 *uncertainty_output_folder/*
 error*.log
 output*.log
@@ -24,3 +25,11 @@ output*.log
 *pynta/*
 *.png
 *.csv
+# temp files
+*[~][$]*
+*.svg
+*peuquse_env*
+*PEUQSE/*
+*flux_diagram*
+*\rmg_gua/gua_cantera/Spinning_basket_reactor/testing/
+*\config/

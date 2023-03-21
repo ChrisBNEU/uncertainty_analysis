@@ -1,0 +1,1628 @@
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0008257685305560042
+    H2O: 0.000994675729987914
+  pressure: 1530000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0044
+    CO: 0.0675
+    CO2: 0.2553
+    H2: 0.6675
+    H2O: 0.0053
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 6.0e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0014663021657350137
+    H2O: 0.0014663021657350134
+  pressure: 3000000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0078
+    CO: 0.067
+    CO2: 0.2538
+    H2: 0.6636
+    H2O: 0.0078
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 6.009999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.00195844769830199
+    H2O: 0.0018249171734177633
+  pressure: 3000000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0044
+    CO: 0.0662
+    CO2: 0.2561
+    H2: 0.6692
+    H2O: 0.0041
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.423e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.001326234306650552
+    H2O: 0.001962826773842817
+  pressure: 1500000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.005
+    CO: 0.0689
+    CO2: 0.2527
+    H2: 0.666
+    H2O: 0.0074
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 8.48e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0016494726397856183
+    H2O: 0.002499200969372149
+  pressure: 1500000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0033
+    CO: 0.068
+    CO2: 0.255
+    H2: 0.6687
+    H2O: 0.005
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.598e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003073485447440643
+    H2O: 0.0033265960137004603
+  pressure: 3020000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0085
+    CO: 0.0681
+    CO2: 0.2523
+    H2: 0.6619
+    H2O: 0.0092
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.156e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.005689670291974894
+    H2O: 0.0053482900744564
+  pressure: 5010000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.01
+    CO: 0.0672
+    CO2: 0.2516
+    H2: 0.6618
+    H2O: 0.0094
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.819e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0017356153114958925
+    H2O: 0.0033898736552654147
+  pressure: 1500000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0064
+    CO: 0.0722
+    CO2: 0.2489
+    H2: 0.66
+    H2O: 0.0125
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 8.67e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0023605719493939594
+    H2O: 0.00484538452770339
+  pressure: 1480000.0
+  species:
+    CO: 0.065
+    CO2: 0.261
+    H2: 0.674
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0699
+    CO2: 0.2517
+    H2: 0.6668
+    H2O: 0.0078
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.986e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0012230757985530634
+    H2O: 0.0008046551306270153
+  pressure: 1510000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0038
+    CO: 0.0537
+    CO2: 0.044
+    H2: 0.896
+    H2O: 0.0025
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.0289999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0014150982610183405
+    H2O: 0.0006767861248348586
+  pressure: 1500000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0023
+    CO: 0.0537
+    CO2: 0.0448
+    H2: 0.8981
+    H2O: 0.0011
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.967e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002116657441769879
+    H2O: 0.0012636760846387338
+  pressure: 2990000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0067
+    CO: 0.0528
+    CO2: 0.0426
+    H2: 0.8939
+    H2O: 0.004
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.01e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003066604043019343
+    H2O: 0.001711592954243354
+  pressure: 4940000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0129
+    CO: 0.0501
+    CO2: 0.0407
+    H2: 0.8891
+    H2O: 0.0072
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.599999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0035234041801496412
+    H2O: 0.0021811549686640637
+  pressure: 4940000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.0531
+    CO2: 0.0426
+    H2: 0.8941
+    H2O: 0.0039
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.7879999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.001574121261372383
+    H2O: 0.000980600130035255
+  pressure: 1470000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0061
+    CO: 0.0523
+    CO2: 0.0426
+    H2: 0.8952
+    H2O: 0.0038
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 8.249999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.001719475290216843
+    H2O: 0.001146316860144562
+  pressure: 1500000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0036
+    CO: 0.053
+    CO2: 0.0438
+    H2: 0.8972
+    H2O: 0.0024
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.5269999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0037519919233808263
+    H2O: 0.0016185063198897681
+  pressure: 2990000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0153
+    CO: 0.0477
+    CO2: 0.0405
+    H2: 0.8898
+    H2O: 0.0066
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.84e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.006542526532662014
+    H2O: 0.002549435221647639
+  pressure: 5020000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0213
+    CO: 0.0447
+    CO2: 0.0394
+    H2: 0.8862
+    H2O: 0.0083
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 9.82e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.007021096931052426
+    H2O: 0.003695314174238119
+  pressure: 5010000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0114
+    CO: 0.0503
+    CO2: 0.0409
+    H2: 0.8913
+    H2O: 0.006
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.969e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002079372741450835
+    H2O: 0.001257295145993528
+  pressure: 1500000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0086
+    CO: 0.0525
+    CO2: 0.0418
+    H2: 0.8919
+    H2O: 0.0052
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.73e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0032538095223897095
+    H2O: 0.0021121219706740223
+  pressure: 1510000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0057
+    CO: 0.0535
+    CO2: 0.0427
+    H2: 0.8944
+    H2O: 0.0037
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.825e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.006044875876557997
+    H2O: 0.0024364550726942956
+  pressure: 2990000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0196
+    CO: 0.0456
+    CO2: 0.0399
+    H2: 0.8869
+    H2O: 0.0079
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 9.859999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.007274332613756267
+    H2O: 0.0038475808866148854
+  pressure: 3000000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0121
+    CO: 0.0502
+    CO2: 0.041
+    H2: 0.8903
+    H2O: 0.0064
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.922e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.011268456135433836
+    H2O: 0.003938822053419122
+  pressure: 5020000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0329
+    CO: 0.0373
+    CO2: 0.0377
+    H2: 0.8804
+    H2O: 0.0115
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.0949999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.012686432074664718
+    H2O: 0.005271531136047898
+  pressure: 5000000.0
+  species:
+    CO: 0.053
+    CO2: 0.047
+    H2: 0.9
+    H2O: 0
+  species_out:
+    CH3OH: 0.0219
+    CO: 0.0443
+    CO2: 0.0388
+    H2: 0.8858
+    H2O: 0.0091
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.852e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002916276635524943
+    H2O: 0.0009246730795566892
+  pressure: 1520000.0
+  species:
+    CO: 0.22
+    CO2: 0.155
+    H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0123
+    CO: 0.2154
+    CO2: 0.1517
+    H2: 0.6167
+    H2O: 0.0039
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.5799999999999994e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003320215075055255
+    H2O: 0.0014159740761265057
+  pressure: 1520000.0
+  species:
+    CO: 0.22
+    CO2: 0.155
+    H2: 0.625
+    H2O: 0
+  species_out:
+    CH3OH: 0.0068
+    CO: 0.2174
+    CO2: 0.1509
+    H2: 0.622
+    H2O: 0.0029
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.5609999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.00113111521219569
+    H2O: 0.00016158788745652717
+  pressure: 1540000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.117
+    CO2: 0.02
+    H2: 0.8558
+    H2O: 0.0009
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 5.74e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0011347435890723756
+    H2O: 0.00023362368010313618
+  pressure: 1520000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0034
+    CO: 0.1187
+    CO2: 0.0202
+    H2: 0.857
+    H2O: 0.0007
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.067e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0025555659274047976
+    H2O: 0.0005512004941461328
+  pressure: 3000000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.1181
+    CO2: 0.0196
+    H2: 0.856
+    H2O: 0.0011
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.602e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004427558162886454
+    H2O: 0.0005126646293868527
+  pressure: 4980000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.019
+    CO: 0.1097
+    CO2: 0.0186
+    H2: 0.8504
+    H2O: 0.0022
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.45e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003927092386791906
+    H2O: 0.0006981497576518945
+  pressure: 4970000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.009
+    CO: 0.116
+    CO2: 0.0193
+    H2: 0.8541
+    H2O: 0.0016
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.3949999999999999e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0020625445797296557
+    H2O: 0.0003928656342342202
+  pressure: 1500000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0084
+    CO: 0.1145
+    CO2: 0.0201
+    H2: 0.8553
+    H2O: 0.0016
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.85e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004533469232752463
+    H2O: 0.0005697802860836429
+  pressure: 3000000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0183
+    CO: 0.1087
+    CO2: 0.0195
+    H2: 0.851
+    H2O: 0.0023
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.92e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004802907494957365
+    H2O: 0.0010994607518577102
+  pressure: 3000000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0083
+    CO: 0.1161
+    CO2: 0.0197
+    H2: 0.8539
+    H2O: 0.0019
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.85e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.008460373944878334
+    H2O: 0.0006474775978223214
+  pressure: 4980000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0392
+    CO: 0.0938
+    CO2: 0.0191
+    H2: 0.8447
+    H2O: 0.003
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 6.9e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.009200656665055188
+    H2O: 0.0009778475682667349
+  pressure: 4970000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0207
+    CO: 0.108
+    CO2: 0.0189
+    H2: 0.8501
+    H2O: 0.0022
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.421e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0029204054781777227
+    H2O: 0.00021957935926148291
+  pressure: 1500000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0133
+    CO: 0.1119
+    CO2: 0.0201
+    H2: 0.8536
+    H2O: 0.001
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.019999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003754807043371358
+    H2O: 0.00041720078259681754
+  pressure: 1500000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0081
+    CO: 0.1149
+    CO2: 0.0199
+    H2: 0.8562
+    H2O: 0.0009
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.482e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0074614442557936166
+    H2O: 0.0005212038266914659
+  pressure: 3000000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0272
+    CO: 0.1024
+    CO2: 0.0197
+    H2: 0.8487
+    H2O: 0.0019
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 8.769999999999999e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.008983235564453112
+    H2O: 0.0008884518690118462
+  pressure: 2970000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0182
+    CO: 0.1096
+    CO2: 0.0196
+    H2: 0.8507
+    H2O: 0.0018
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.5779999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.01581018305349186
+    H2O: 0.0010200118099027006
+  pressure: 5000000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0465
+    CO: 0.0892
+    CO2: 0.0195
+    H2: 0.8416
+    H2O: 0.003
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.087e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.017779828673533962
+    H2O: 0.0014770934590320525
+  pressure: 4980000.0
+  species:
+    CO: 0.12
+    CO2: 0.021
+    H2: 0.859
+    H2O: 0
+  species_out:
+    CH3OH: 0.0325
+    CO: 0.0996
+    CO2: 0.0193
+    H2: 0.8457
+    H2O: 0.0027
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.7489999999999997e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0010714659475074212
+    H2O: 0.0003626500130025119
+  pressure: 1530000.0
+  species:
+    CO: 0.179
+    CO2: 0.067
+    H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0065
+    CO: 0.1763
+    CO2: 0.0647
+    H2: 0.7502
+    H2O: 0.0022
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 5.2699999999999995e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0012178834661260827
+    H2O: 0.0005892984513513303
+  pressure: 1520000.0
+  species:
+    CO: 0.179
+    CO2: 0.067
+    H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0031
+    CO: 0.1777
+    CO2: 0.0651
+    H2: 0.7526
+    H2O: 0.0015
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.256e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0020073369488042263
+    H2O: 0.0007793190507122289
+  pressure: 3100000.0
+  species:
+    CO: 0.179
+    CO2: 0.067
+    H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0085
+    CO: 0.1765
+    CO2: 0.0642
+    H2: 0.7474
+    H2O: 0.0033
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.55e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002017971846546235
+    H2O: 0.0009892018855618802
+  pressure: 3010000.0
+  species:
+    CO: 0.179
+    CO2: 0.067
+    H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0051
+    CO: 0.1776
+    CO2: 0.0644
+    H2: 0.7504
+    H2O: 0.0025
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.265e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.00939483738617987
+    H2O: 0.001791573641085464
+  pressure: 3000000.0
+  species:
+    CO: 0.179
+    CO2: 0.067
+    H2: 0.754
+    H2O: 0
+  species_out:
+    CH3OH: 0.0215
+    CO: 0.1676
+    CO2: 0.0645
+    H2: 0.7421
+    H2O: 0.0041
+  temperature: 516.7
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.397e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0007481650561503432
+    H2O: 0.001043658817823168
+  pressure: 1510000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0119
+    CO: 0.0043
+    CO2: 0.101
+    H2: 0.8661
+    H2O: 0.0166
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.01e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0011803798120299973
+    H2O: 0.00157383974937333
+  pressure: 1500000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0063
+    CO: 0.0021
+    CO2: 0.1087
+    H2: 0.8745
+    H2O: 0.0084
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 5.99e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0014704935666098057
+    H2O: 0.0019180350868823553
+  pressure: 1500000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0046
+    CO: 0.0012
+    CO2: 0.11
+    H2: 0.8782
+    H2O: 0.006
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.022e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0016635482397382771
+    H2O: 0.0020101207896837518
+  pressure: 1480000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0024
+    CO: 0.0006
+    CO2: 0.1117
+    H2: 0.8824
+    H2O: 0.0029
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.2159999999999998e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.001661202306412834
+    H2O: 0.0019776217933486122
+  pressure: 1490000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0021
+    CO: 0.0006
+    CO2: 0.1125
+    H2: 0.8823
+    H2O: 0.0025
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.5289999999999997e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0013079047476010892
+    H2O: 0.001579595105798417
+  pressure: 3020000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0207
+    CO: 0.0039
+    CO2: 0.0951
+    H2: 0.8553
+    H2O: 0.025
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.0199999999999997e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0020457476971194825
+    H2O: 0.002378776391999398
+  pressure: 3000000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0129
+    CO: 0.0025
+    CO2: 0.1032
+    H2: 0.8664
+    H2O: 0.015
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 5.07e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002677366785661808
+    H2O: 0.003187341411502153
+  pressure: 3010000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0084
+    CO: 0.0015
+    CO2: 0.1082
+    H2: 0.8719
+    H2O: 0.01
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.0189999999999999e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.002971359150006349
+    H2O: 0.0036976913866745677
+  pressure: 2990000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0045
+    CO: 0.0011
+    CO2: 0.1101
+    H2: 0.8787
+    H2O: 0.0056
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.111e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0014061524352706504
+    H2O: 0.001596173034631549
+  pressure: 5030000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0333
+    CO: 0.0038
+    CO2: 0.085
+    H2: 0.8399
+    H2O: 0.0378
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.35e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0025673894313650307
+    H2O: 0.002852654923738923
+  pressure: 4990000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.018
+    CO: 0.0022
+    CO2: 0.0986
+    H2: 0.8611
+    H2O: 0.02
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 4.5599999999999995e-06
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.003560939113356732
+    H2O: 0.004132033122102623
+  pressure: 5000000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0106
+    CO: 0.0017
+    CO2: 0.1053
+    H2: 0.8701
+    H2O: 0.0123
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.074e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004138288944303806
+    H2O: 0.0047365957796248375
+  pressure: 5010000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0083
+    CO: 0.0012
+    CO2: 0.1081
+    H2: 0.8729
+    H2O: 0.0095
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.594e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004361840750663038
+    H2O: 0.005310067000807177
+  pressure: 5000000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0069
+    CO: 0.001
+    CO2: 0.108
+    H2: 0.8757
+    H2O: 0.0084
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.021e-05
+- catalyst_area: 44.424193000339805
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004725898323660817
+    H2O: 0.005738590821588134
+  pressure: 4980000.0
+  species:
+    CO: 0.0
+    CO2: 0.115
+    H2: 0.885
+    H2O: 0
+  species_out:
+    CH3OH: 0.0056
+    CO: 0.0009
+    CO2: 0.1099
+    H2: 0.8768
+    H2O: 0.0068
+  temperature: 483.5
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.698e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0015263841967433106
+    H2O: 0.0006775276791666735
+  pressure: 1500000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0196
+    CO: 0.0841
+    CO2: 0.1
+    H2: 0.7875
+    H2O: 0.0087
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 4.679999999999999e-06
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0022890105238925554
+    H2O: 0.001281005889517852
+  pressure: 1520000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0109
+    CO: 0.0896
+    CO2: 0.1001
+    H2: 0.7933
+    H2O: 0.0061
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.262e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0008813717225351713
+    H2O: 0.00019848585708566856
+  pressure: 3010000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0746
+    CO: 0.0471
+    CO2: 0.1036
+    H2: 0.757
+    H2O: 0.0168
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 7.1e-07
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.0032475268166364084
+    H2O: 0.0011247531901521222
+  pressure: 3000000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.041
+    CO: 0.0721
+    CO2: 0.099
+    H2: 0.7735
+    H2O: 0.0142
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 4.759999999999999e-06
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.004786424541593034
+    H2O: 0.0022811895687592336
+  pressure: 2980000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0235
+    CO: 0.084
+    CO2: 0.0986
+    H2: 0.7827
+    H2O: 0.0112
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.224e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.005345639473955624
+    H2O: 0.002936801933222534
+  pressure: 3010000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0162
+    CO: 0.088
+    CO2: 0.099
+    H2: 0.7879
+    H2O: 0.0089
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.9829999999999998e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.005976807193544776
+    H2O: 0.004089394395583268
+  pressure: 2980000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0076
+    CO: 0.0913
+    CO2: 0.1009
+    H2: 0.795
+    H2O: 0.0052
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 4.726e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.006720763070354476
+    H2O: 0.0025274664538085206
+  pressure: 4990000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0468
+    CO: 0.0711
+    CO2: 0.0971
+    H2: 0.7672
+    H2O: 0.0176
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 8.63e-06
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.007907484849690621
+    H2O: 0.0038365945011461905
+  pressure: 4980000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.027
+    CO: 0.0824
+    CO2: 0.0971
+    H2: 0.7804
+    H2O: 0.0131
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 1.76e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.008570435599715187
+    H2O: 0.004725321249572698
+  pressure: 5000000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0185
+    CO: 0.0861
+    CO2: 0.0983
+    H2: 0.7869
+    H2O: 0.0102
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 2.7839999999999998e-05
+- catalyst_area: 83.5049099558274
+  experiment_type: sbr
+  expt_name: graaf_1988
+  output:
+    CH3OH: 0.009663422399761966
+    H2O: 0.005680026906730316
+  pressure: 4970000.0
+  species:
+    CO: 0.092
+    CO2: 0.105
+    H2: 0.803
+    H2O: 0
+  species_out:
+    CH3OH: 0.0131
+    CO: 0.0877
+    CO2: 0.1002
+    H2: 0.7913
+    H2O: 0.0077
+  temperature: 499.3
+  use_for_opt: true
+  volume: 0.0001346957850226624
+  volume_flowrate: 4.433e-05
