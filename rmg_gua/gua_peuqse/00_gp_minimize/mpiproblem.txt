@@ -1,0 +1,31 @@
+error on cantera run 2, encountered exception 
+*******************************************************************************
+CanteraError thrown by CVodesIntegrator::integrate:
+CVodes error encountered. Error code: -1
+At t = 469.346, mxstep steps taken before reaching tout.
+
+Exceptions caught during RHS evaluation:
+
+*******************************************************************************
+CanteraError thrown by Phase::setDensity:
+density must be positive. density = -644.0591356887096
+*******************************************************************************
+
+
+*******************************************************************************
+CanteraError thrown by Phase::setDensity:
+density must be positive. density = -2392.5777345918013
+*******************************************************************************
+
+Components with largest weighted error estimates:
+22: -0.005204683272781908
+24: 0.005200492840374497
+19: 0.005163065603715837
+21: -0.0051256349641298354
+25: -3.762421281957069e-05
+16: -1.1660023732280864e-05
+0: 1.0472073094114162e-05
+14: 4.2312454305625545e-06
+23: -1.6663940124085253e-07
+18: 7.338750180985278e-11
+*******************************************************************************
