@@ -92,9 +92,9 @@ def initial_val_unc(kinetics, num):
         label_A = f"A_stick_{num}"
 
     E = kinetics["Ea"]
-    E_unc = 30000000  # J/kmol for cantera
+    E_unc = 30000  # j/mol, we convert to j/kmol in cantera script
     E_lb = 0
-    E_ub = 400000000  # J/kmol
+    E_ub = 400000  # J/mol
     label_E = f"E_{num}"
 
     return (A, E), (A_unc, E_unc), (A_lb, E_lb), (A_ub, E_ub), (label_A, label_E)

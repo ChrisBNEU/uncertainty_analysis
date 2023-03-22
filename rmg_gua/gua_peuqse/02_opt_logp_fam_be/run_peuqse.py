@@ -57,34 +57,31 @@ if __name__ == "__main__":
     UserInput.simulated_response_plot_settings['y_label'] = [
         "CH3OH mole Frac out", "CO mole Frac out", "CO2 mole Frac out", "H2 mole Frac out", "H2O mole Frac out"]
     UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = param_dict["label_list"]
-
+    
     #Provide the prior distribution and uncertainties of the individual parameters.
     # prior expected values for a and b
     UserInput.model['InputParameterPriorValues'] = param_dict["value_list"]
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
     UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
-    # UserInput.model['InputParameterInitialGuess'] = #Can optionally change the initial guess to be different from prior means.
-    # UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
-    # UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
+    # UserInput.model['InputParameterInitialGuess'] = (np.array(param_dict["upper_list"]) - np.array(param_dict["lower_list"]))/2 # start at midpoint instead of bottom of range (may cause errors if lower range = value)
+    
+    
+    #Can optionally change the initial guess to be different from prior means.
+    UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
+    UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
+    
+    UserInput.parameter_estimation_settings['scaling_uncertainties_type'] = 'off'
+    UserInput.parameter_estimation_settings['mcmc_length'] = 10000 #10000 is the default.
 
-    UserInput.parameter_estimation_settings['mcmc_length'] = 10000
-    
-    UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0
-    
-    UserInput.parameter_estimation_settings['multistart_searchType'] = 'doEnsembleSliceSampling'
-    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'sobol'      
-    UserInput.parameter_estimation_settings['multistart_parallel_sampling'] = True
-    UserInput.parameter_estimation_settings['mcmc_exportLog'] = True #note that if we want the mcmc results for each parallel run to be exported, we need to state that, otherwise they won't be.
-    
-    #After making the UserInput, now we make a 'parameter_estimation' object from it.
-    PE_object = PEUQSE.parameter_estimation(UserInput)
-    #After making the UserInput, now we make a 'parameter_estimation' object from it.
+    #After filinlg the variables of the UserInput, now we make a 'parameter_estimation' object from it.
     PE_object = PEUQSE.parameter_estimation(UserInput)
     
-    # run the model
-    PE_object.doMultiStart()
+    #Now we can do the mcmc!
+    PE_object.doMetropolisHastings()
+    #Another option would be PE_object.doEnsembleSliceSampling(), one can also do grid search or an astroidal distribution search.
+    
     PE_object.createAllPlots() #This function calls each of the below functions so that the user does not have to.
 
 
