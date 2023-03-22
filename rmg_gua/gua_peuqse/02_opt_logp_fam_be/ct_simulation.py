@@ -20,9 +20,9 @@ def simulationFunction(parameters, debug=False):
     t1 = time.asctime()
     t1s = time.time()
     # build and run the simulation
-    file_path = "../../baseline/cantera/chem_annotated.cti"
-    expt_condts = "./config/ct_expt_list.yaml"
-    lookup_dict_file = "./config/rmg_2_ck_dict.yaml"
+    file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
+    expt_condts = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config", "ct_expt_list.yaml")
+    lookup_dict_file = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config", "rmg_2_ck_dict.yaml")
     CH3OH_X = []
     CO_X = []
     CO2_X = []

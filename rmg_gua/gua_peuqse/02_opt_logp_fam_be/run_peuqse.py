@@ -27,11 +27,13 @@ if __name__ == "__main__":
     param_dict = get_all_param_lists(results_path=results_path)     
 
     # load the exp data yaml
-    with open("expt_data.yaml", "r") as f:
+    expt_data_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "expt_data.yaml")
+    with open(expt_data_path, "r") as f:
         expt_data = yaml.load(f, Loader=yaml.FullLoader)
         
     # load uncertainty yaml. experimenting with different layout for X. 
-    with open("expt_unc.yaml", "r") as f:
+    expt_unc_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "expt_unc.yaml")
+    with open(expt_unc_path, "r") as f:
         expt_unc = yaml.load(f, Loader=yaml.FullLoader)
     
     data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
@@ -67,14 +69,19 @@ if __name__ == "__main__":
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 
-    UserInput.parameter_estimation_settings['mcmc_threshold_filter_samples'] = True
-
-    UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0
-    UserInput.parameter_estimation_settings['multistart_searchType'] = 'doOptimizeLogP'
-    UserInput.parameter_estimation_settings['multistart_passThroughArgs'] = {'method':'BFGS'} #Here, BFGS is used. However, Nelder-Mead is usually what is recommended.
-    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'grid'
-    UserInput.parameter_estimation_settings['multistart_exportLog'] = True
+    UserInput.parameter_estimation_settings['mcmc_length'] = 100
     
+    UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0
+    UserInput.parameter_estimation_settings['mcmc_parallel_sampling'] = False
+    
+    
+    UserInput.parameter_estimation_settings['multistart_searchType'] = 'doEnsembleSliceSampling'
+    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'grid'      
+    UserInput.parameter_estimation_settings['multistart_parallel_sampling'] = True
+    UserInput.parameter_estimation_settings['mcmc_exportLog'] = True #note that if we want the mcmc results for each parallel run to be exported, we need to state that, otherwise they won't be.
+    
+    #After making the UserInput, now we make a 'parameter_estimation' object from it.
+    PE_object = PEUQSE.parameter_estimation(UserInput)
     #After making the UserInput, now we make a 'parameter_estimation' object from it.
     PE_object = PEUQSE.parameter_estimation(UserInput)
     
