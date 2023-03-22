@@ -64,19 +64,17 @@ if __name__ == "__main__":
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
     UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
     # UserInput.model['InputParameterInitialGuess'] = #Can optionally change the initial guess to be different from prior means.
-    UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
-    UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
+    # UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
+    # UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 
-    UserInput.parameter_estimation_settings['mcmc_length'] = 100
+    UserInput.parameter_estimation_settings['mcmc_length'] = 10000
     
     UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0
-    UserInput.parameter_estimation_settings['mcmc_parallel_sampling'] = False
-    
     
     UserInput.parameter_estimation_settings['multistart_searchType'] = 'doEnsembleSliceSampling'
-    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'grid'      
+    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'sobol'      
     UserInput.parameter_estimation_settings['multistart_parallel_sampling'] = True
     UserInput.parameter_estimation_settings['mcmc_exportLog'] = True #note that if we want the mcmc results for each parallel run to be exported, we need to state that, otherwise they won't be.
     
