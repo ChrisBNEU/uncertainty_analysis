@@ -47,9 +47,9 @@ def make_rmg_reac_config(rmg_path, results_path=False):
                 A_ub = 1
 
             E0_val = entry.E0.value_si
-            E0_unc = 30000000  # J/kmol for cantera
+            E0_unc = 30000  # J/mol, convert in cantera to j/kmol
             E0_lb = 0
-            E0_ub = 400000000  # J/kmol
+            E0_ub = 400000  # J/mol
 
             alpha_val = entry.alpha.value_si
             alpha_unc = 1
