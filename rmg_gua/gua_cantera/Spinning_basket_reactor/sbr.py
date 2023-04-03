@@ -93,12 +93,19 @@ class MinSBR:
         self.surf = ct.Interface(yaml_file, "surface1", [self.gas])
         
         # modify the reactions if specified
-        if reaction_list is not None:
+        if reaction_list is not None and len(reaction_list) > 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
             rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
             self.change_be(thermo_pert_dict)
             self.change_reactions_rmg(rule_dict=rxn_pert_dict)
+        
+        # janky, but only do binding energies if len reactionlist ==5
+        elif reaction_list is not None and len(reaction_list) == 5:
+            self.gas.TP = 298.0, 101325.0
+            self.surf.TP = 298.0, 101325.0
+            thermo_pert_dict = self.load_perts_beonly(reaction_list)
+            self.change_be(thermo_pert_dict)
 
         # pull out species names
         for spec_str in self.gas.species_names:
@@ -233,6 +240,20 @@ class MinSBR:
 
 
         return rule_dict, thermo_pert_dict
+
+    def load_perts_beonly(self, pert_list):
+        """ 
+        load the perturbations to a dictionary
+        """
+        count = 0
+        if len(pert_list) == 5:
+            thermo_pert_dict = {'C': 0., 'O': 0., 'N': 0., 'H': 0., 'vdw': 0.}
+            for num, (key, value) in enumerate(thermo_pert_dict.items()):
+                thermo_pert_dict[key] = pert_list[count]
+                count += 1
+
+
+        return thermo_pert_dict
 
     def change_be(self, thermo_pert_dict):
         """
