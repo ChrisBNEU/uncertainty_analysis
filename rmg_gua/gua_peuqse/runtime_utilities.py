@@ -30,6 +30,8 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
         rule_lb_config = yaml.safe_load(f) 
     with open(os.path.join(results_path, "rule_ub_config.yaml"), 'r') as f:
         rule_ub_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "rule_guess_config.yaml"), 'r') as f:
+        rule_guess_config = yaml.safe_load(f)
     with open(os.path.join(results_path, "be_values.yaml"), 'r') as f:
         thermo_config = yaml.safe_load(f)
     with open(os.path.join(results_path, "be_unc.yaml"), 'r') as f:
@@ -38,12 +40,15 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
         thermo_lb_config = yaml.safe_load(f)
     with open(os.path.join(results_path, "be_ub.yaml"), 'r') as f:
         thermo_ub_config = yaml.safe_load(f)
+    with open(os.path.join(results_path, "be_guess.yaml"), 'r') as f:
+        thermo_guess_config = yaml.safe_load(f)
 
     value_list = []
     label_list = []
     unc_list = []
     upper_list = []
     lower_list = []
+    guess_list = []
 
     if kinetic and thermo: 
         # kinetic parameters
@@ -53,7 +58,8 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
             unc_list.extend([rule_unc_config[label]["A"], rule_unc_config[label]["E0"], rule_unc_config[label]["alpha"]])
             upper_list.extend([rule_ub_config[label]["A"], rule_ub_config[label]["E0"], rule_ub_config[label]["alpha"]])
             lower_list.extend([rule_lb_config[label]["A"], rule_lb_config[label]["E0"], rule_lb_config[label]["alpha"]])
-
+            guess_list.extend([rule_guess_config[label]["A"], rule_guess_config[label]["E0"], rule_guess_config[label]["alpha"]])
+                               
         # thermo parameters
         for label, value in thermo_config.items():
             value_list.append(value)
@@ -61,13 +67,26 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
             unc_list.append(thermo_unc_config[label])
             upper_list.append(thermo_ub_config[label])
             lower_list.append(thermo_lb_config[label])
+            guess_list.append(thermo_guess_config[label])
+    
+    # only do thermo parameter perturbation. more for testing 
+    elif not kinetic and thermo:
+        for label, value in thermo_config.items():
+            value_list.append(value)
+            label_list.append(label)
+            unc_list.append(thermo_unc_config[label])
+            upper_list.append(thermo_ub_config[label])
+            lower_list.append(thermo_lb_config[label])
+            guess_list.append(thermo_guess_config[label])
+        
     # return as a dictionary so we don't confuse what's what
     peuqse_params = {
         "value_list": value_list,
         "label_list": label_list,
         "unc_list": unc_list,
         "upper_list": upper_list,
-        "lower_list": lower_list
+        "lower_list": lower_list,
+        "guess_list": guess_list, 
     }
     return peuqse_params
 
