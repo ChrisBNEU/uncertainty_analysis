@@ -33,3 +33,7 @@ output*.log
 *flux_diagram*
 *\rmg_gua/gua_cantera/Spinning_basket_reactor/testing/
 *\config/
+*.pkl
+*\mpi_cached_files/*
+# peuquse files and folders
+*\CITATIONS/
