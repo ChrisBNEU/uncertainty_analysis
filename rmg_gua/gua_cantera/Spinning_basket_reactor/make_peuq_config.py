@@ -29,6 +29,7 @@ def make_rmg_reac_config(rmg_path, results_path=False):
     rule_unc_dict = {}
     rule_lb_dict = {}
     rule_ub_dict = {}
+    rule_guess_dict = {}
 
     # gather the values, uncertainties, and bounds for each rule
     for fname, family in kdb.families.items(): 
@@ -40,21 +41,37 @@ def make_rmg_reac_config(rmg_path, results_path=False):
                 A_unc = 1
                 A_lb = 0
                 A_ub = 25
+                A_guess = A_val
             else:
                 A_val = entry.A.value_si
-                A_unc = 1
+                A_unc = -1
                 A_lb = 0
                 A_ub = 1
-
+                A_guess = 0.5
+                
             E0_val = entry.E0.value_si
             E0_unc = 30000  # J/mol, convert in cantera to j/kmol
             E0_lb = 0
             E0_ub = 400000  # J/mol
+            
+            # peuqse will take a "-1" input and just use range if it falls outside of uncertainty
+            if E0_val - E0_unc <= E0_lb:
+                
+                # bump up our guess to the uncertainty 
+                E0_guess = E0_unc + E0_lb
+                E0_ub = E0_unc*2 + E0_lb
+                # then change out uncertainty so it uses range
+                E0_unc = -1
 
+            else: 
+                E0_guess = E0_val
+            
+            # we will treat all alphas the same, with allowable values spanning 0 to 1
             alpha_val = entry.alpha.value_si
-            alpha_unc = 1
+            alpha_unc = -1
             alpha_lb = 0
             alpha_ub = 1
+            alpha_guess = 0.5
 
             rule_dict[fname + " : " +  rule_name] = {
                 'A': A_val, 
@@ -76,7 +93,11 @@ def make_rmg_reac_config(rmg_path, results_path=False):
                 'E0': E0_ub,
                 'alpha': alpha_ub,
                 }
-
+            rule_guess_dict[fname + " : " +  rule_name] = {
+                'A': A_guess, 
+                'E0': E0_guess,
+                'alpha': alpha_guess,
+                }
             
     if results_path:  
         rule_config_file = os.path.join(results_path, "rule_config.yaml")
@@ -94,6 +115,10 @@ def make_rmg_reac_config(rmg_path, results_path=False):
         rule_ub_config_file = os.path.join(results_path, "rule_ub_config.yaml")
         with open(rule_ub_config_file, 'w') as f:
             yaml.safe_dump(rule_ub_dict, f, sort_keys=False)
+            
+        rule_guess_config_file = os.path.join(results_path, "rule_guess_config.yaml")
+        with open(rule_guess_config_file, 'w') as f:
+            yaml.safe_dump(rule_guess_dict, f, sort_keys=False)
 
 
 def make_be_peuq_input(results_path=False):
@@ -105,7 +130,7 @@ def make_be_peuq_input(results_path=False):
     be_unc = {'C': 3e7, 'O': 3e7, 'N': 3e7, 'H': 3e7, 'vdw': 2e7}
     be_lb = {'C': -1e8, 'O': -1e8, 'N': -1e8, 'H': -1e8, 'vdw': -1e8}
     be_ub = {'C': 1e8, 'O': 1e8, 'N': 1e8, 'H': 1e8, 'vdw': 1e8}
-    
+    be_guess = {'C': 0, 'O': 0, 'N': 0, 'H': 0, 'vdw': 0}
     if results_path:
         be_values_file = os.path.join(results_path,  "be_values.yaml")
         with open(be_values_file, 'w') as f:
@@ -122,6 +147,10 @@ def make_be_peuq_input(results_path=False):
         be_ub_file = os.path.join(results_path,  "be_ub.yaml")
         with open(be_ub_file, 'w') as f:
             yaml.safe_dump(be_ub, f, sort_keys=False)
+
+        be_guess_file = os.path.join(results_path,  "be_guess.yaml")
+        with open(be_guess_file, 'w') as f:
+            yaml.safe_dump(be_guess, f, sort_keys=False)
 
 def trim_rule_file(results_path, rules_used):
     """
