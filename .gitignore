@@ -37,3 +37,4 @@ output*.log
 *\mpi_cached_files/*
 # peuquse files and folders
 *\CITATIONS/
+/rmg_gua/gua_peuqse/peuqse_runs/*
