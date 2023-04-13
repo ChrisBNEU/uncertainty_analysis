@@ -5,14 +5,32 @@ import os
 import logging
 import random
 import time
-repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-print(repo_dir)
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(repo_dir)
 results_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config")
+peuq_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "peuqse_out")
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
 from cantera import CanteraError
+from PEUQSE import parallel_processing
 
-#To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
+# load the exp data and lookup dict 
+expt_condts = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config", "ct_expt_list.yaml")
+lookup_dict_file = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "02_opt_logp_fam_be", "config", "rmg_2_ck_dict.yaml")
+try: 
+    with open(expt_condts, 'r') as f:
+        data = yaml.load(f, Loader = yaml.FullLoader)
+    assert len(data) > 0
+except AssertionError: 
+    # wait for a second and try again
+    print("couldn't load data, trying again")
+    while len(data ==0):
+        data = yaml.load(f, Loader = yaml.FullLoader)
+    
+# simplified names to rmg species labels (e.g. CH3OH to CH3OH(10)
+with open(lookup_dict_file, 'r') as f: 
+    lookup_dict = yaml.load(f, Loader = yaml.FullLoader)
+
+# To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
 def simulationFunction(parameters, debug=False):
     #here x is a scalar or an array and "a" and "b" are constants for the equation.
     """
@@ -21,31 +39,23 @@ def simulationFunction(parameters, debug=False):
     t1 = time.asctime()
     t1s = time.time()
     # build and run the simulation
-    file_path = "../../baseline/cantera/chem_annotated.cti"
-    expt_condts = "./config/ct_expt_list.yaml"
-    lookup_dict_file = "./config/rmg_2_ck_dict.yaml"
+    file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
+    
+
     CH3OH_X = []
     CO_X = []
     CO2_X = []
     H2_X = []
     H2O_X = []
-    print("input parameters: ", parameters)
     # change the rms file. now doing all reactions in mechanism
-    
-    # load experimental conditions
-    with open(expt_condts, 'r') as file:
-        data = yaml.safe_load(file)
-    
-    # simplified names to rmg species labels (e.g. CH3OH to CH3OH(10)
-    with open(lookup_dict_file, "r") as f: 
-        lookup_dict =yaml.load(f, Loader = yaml.FullLoader)
+
 
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
     # get number of experiments: 
     run_test = False
     n_expts = len(data)
-    
+            
     print(f"length is {n_expts} in sim")
     for run in range(0,n_expts): 
         conditions = data[run]
@@ -79,6 +89,31 @@ def simulationFunction(parameters, debug=False):
             H2O_X.append(float('nan'))
 
     y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
+    
+    pnum = parallel_processing.currentProcessorNumber
+    
+    peuq_output_yaml_path = os.path.join(peuq_path, f"{pnum}_out.yaml")
+    if os.path.exists(peuq_output_yaml_path):
+        with open(peuq_output_yaml_path, "r") as f:
+            peuq_output_yaml = yaml.safe_load(f)
+    else: 
+        peuq_output_yaml = []
+        
+    # not sure why but peuqse has an array for first iteration and a tuple for
+    # successive ones for input parameters
+    # print("dtype output: ", type(parameters[0]), type(y_data[0][0]))
+    if isinstance(parameters, tuple):
+        parameters = np.array(parameters).astype(float).tolist()
+        y_data_list = y_data.astype(float).tolist()
+    else: 
+        parameters = parameters.astype(float).tolist()
+        y_data_list = y_data.astype(float).tolist()
+        
+    
+    peuq_output_yaml.append((parameters, y_data_list))
+    
+    with open(peuq_output_yaml_path, "w") as f:
+        yaml.safe_dump(peuq_output_yaml, f)
     
     print("Results:\n")
     print("CH3OH: ", CH3OH_X)
