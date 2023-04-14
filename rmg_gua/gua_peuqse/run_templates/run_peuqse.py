@@ -9,9 +9,12 @@ import numpy as np
 import PEUQSE as PEUQSE
 import PEUQSE.UserInput as UserInput
 import sys
-sys.path.insert(0, '../../')
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.insert(0, repo_dir)
+import rmg_gua.gua_peuqse.ct_simulation as ct_simulation
 
-run_test = False#
+project_path = os.path.dirname(os.path.abspath(__file__))
+
 
 
 import ct_simulation  # function for peuquse to optimize
@@ -20,6 +23,11 @@ if __name__ == "__main__":
     # Just a simple example. The user can also put the values in directly into the runfile or extract from a csv, for example.
     print("running job")
     # load the experimental data yaml so we get a dict of lists for each parameter
+
+    # setup our ct_simulation function
+    ct_simulation.sim_init(project_path)
+
+
 
     with open("expt_data.yaml", "r") as f:
         expt_data = yaml.load(f, Loader=yaml.FullLoader)
