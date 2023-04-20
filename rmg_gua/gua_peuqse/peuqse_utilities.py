@@ -1,5 +1,7 @@
 import collections
+import itertools
 import sys
+import numpy as np 
 from rmg_gua.gua_rms.sbr import rms_sbr
 import os
 from pyrms import rms
@@ -21,8 +23,7 @@ from matplotlib import pyplot as plt
 # various utilities for working with our awful rms->cantera->rms conversions
 ###############################################################################
 
-repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def repackage_yaml(yaml_file):
     """
@@ -170,7 +171,6 @@ def run_reactor(condts, path, sens_spcs):
 
     results = sbr_ss.run_simulation(sens_spcs=sens_spcs)
     return results
-
 
 def get_highest_rms_file(path):
     """
@@ -348,9 +348,92 @@ def make_ct_peuq_input(path, overwrite=True, sens_specs=["CH3OH"]):
         yaml.dump(ct_peuqyml, f)
 
 
-def make_ct_expt_file(path):
+
+def trim_expts(expt_data):
+    """
+    trim the experiment list to a subset we've determined to be important. 
+    8 experiments with high/low T, P, H2/(co2+co) and co/co2 ratios
+    """
+    # flatten the species sub-dictionary
+    flat_expt_data = []
+    for i, expt in enumerate(expt_data):
+        flat_output = {}
+        for key, value in expt.items(): 
+            if key == "species":
+                    for keysub, valuesub in expt[key].items():
+                        flat_output[key+" "+keysub] = valuesub
+            else: 
+                flat_output[key] = value
+        flat_expt_data.append(flat_output)
+
+    flat_expt_df = pd.DataFrame(flat_expt_data)
+
+    # make new column for h2 to co+co2 ratio and co to co2
+    flat_expt_df["h2/(co+co2)"] = flat_expt_df["species H2"]/(flat_expt_df["species CO"] + flat_expt_df["species CO2"])
+    flat_expt_df["co/co2"] = flat_expt_df["species CO"]/flat_expt_df["species CO2"]
+
+    # get min/max values for each parameter
+    pminmax = flat_expt_df["pressure"].min(), flat_expt_df["pressure"].max()
+    tminmax = flat_expt_df["temperature"].min(), flat_expt_df["temperature"].max()
+    ratioh2minmax = flat_expt_df["h2/(co+co2)"].min(), flat_expt_df["h2/(co+co2)"].max()
+    ratiocominmax = flat_expt_df["co/co2"].min(), flat_expt_df["co/co2"].max()
+
+    # get set of experiments that have combinations of low and high for each parameter
+    expt_combos = {"p": pminmax, "t": tminmax, "ratioh2": ratioh2minmax, "ratioco": ratiocominmax}
+    expt_combos = list(itertools.product(*expt_combos.values()))
+
+    # get the experiments that have the closest values to the low and high values for each parameter
+    # for the h2 ratio, we are going to settle for if it is less than 9
+    rtol = 1.0
+    peuqse_expts = pd.DataFrame()
+    for expset in expt_combos: 
+        if expset[2] >= 9:
+            next_series = flat_expt_df[np.isclose(flat_expt_df["pressure"], expset[0], rtol=0.1) & \
+                (np.isclose(flat_expt_df["temperature"], expset[1], rtol=0.1)) & \
+                (flat_expt_df["h2/(co+co2)"] >= 7) & \
+                (np.isclose(flat_expt_df["co/co2"], expset[3], rtol=0.1))]
+        else:
+            next_series = flat_expt_df[np.isclose(flat_expt_df["pressure"], expset[0], rtol=0.1) & \
+                (np.isclose(flat_expt_df["temperature"], expset[1], rtol=0.1)) & \
+                (flat_expt_df["h2/(co+co2)"] < 7) & \
+                (np.isclose(flat_expt_df["co/co2"], expset[3], rtol=0.1))]
+        if next_series.empty:
+            print("No experiments found for", expset)
+
+        
+        else: 
+            # remove indices that are already in the dataframe
+            next_series = next_series[~next_series.index.isin(peuqse_expts.index)]
+            peuqse_expts = pd.concat([peuqse_expts,next_series.head(1)])
+
+    # they didn't do experiments with [low h2 low co/co2] or [high h2 high co/co2] 
+    # convert dataframe to dictionary
+    # remove the h2/co+co2 and co/co2 columns we made
+    peuqse_expts = peuqse_expts.drop(columns=["h2/(co+co2)", "co/co2"])
+    peuqse_expts_dict = peuqse_expts.to_dict(orient="records")
+
+    # now unflatten the species sub-dictionary
+    new_peuqse_expts_dict = []
+    for i, expt in enumerate(peuqse_expts_dict):
+        flat_output = {}
+        for key, value in expt.items(): 
+            if key.startswith("species "):
+                keysub = key.split(" ")[1]
+                if "species" not in flat_output.keys():
+                    flat_output["species"] = {}
+                flat_output["species"][keysub] = value
+            else: 
+                flat_output[key] = value
+        new_peuqse_expts_dict.append(flat_output)
+
+    return new_peuqse_expts_dict
+
+    
+
+def make_ct_expt_file(results_path, use_peuq_expts=False):
     """
     make the ct experiment file for peuqse
+    if use_peuq_expts is True, then use a smaller subset of experiments
     """
     
     settings_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera", "experiments_reorg_onlyopt.yaml")
@@ -358,6 +441,9 @@ def make_ct_expt_file(path):
     with open(settings_path, "r") as f:
         expt_list = yaml.load(f, Loader=yaml.FullLoader)
 
+    if use_peuq_expts:
+        expt_list = trim_expts(expt_list)
+    
     # filter out the experiments we don't want
     new_expt_yaml = []
     for expt in expt_list:
@@ -366,17 +452,15 @@ def make_ct_expt_file(path):
                 new_expt_yaml.append(expt)
 
     # save the new yaml
-    new_expt_file_orig = os.path.join(os.path.realpath(
-        os.path.dirname(__file__)), "expt_data_orig.yaml")
+    new_expt_file_orig = os.path.join(results_path, "expt_data_orig.yaml")
     with open(new_expt_file_orig, "w") as f:
         yaml.dump(new_expt_yaml, f)
 
     # load the experimental data yaml so we get a dict of lists for each parameter
-    expt_data = rms_simulation.repackage_yaml(new_expt_file_orig)
+    expt_data = repackage_yaml(new_expt_file_orig)
 
     # we need a new file for this
-    new_expt_file = os.path.join(os.path.realpath(
-        os.path.dirname(__file__)), "expt_data.yaml")
+    new_expt_file = os.path.join(results_path, "expt_data.yaml")
     with open(new_expt_file, "w") as f:
         yaml.dump(expt_data, f)
 
@@ -384,25 +468,19 @@ def make_ct_expt_file(path):
     unc_yaml = {}
     unc_yaml["catalyst_area"] = len(expt_data["catalyst_area"])*[7]
     unc_yaml["pressure"] = len(expt_data["pressure"])*[1e3]
-    unc_yaml["species_CO"] = list(np.array(expt_data["species_CO"])*0.01)
-    unc_yaml["species_CO2"] = list(np.array(expt_data["species_CO2"])*0.01)
-    unc_yaml["species_H2"] = list(np.array(expt_data["species_H2"])*0.01)
-    unc_yaml["species_H2O"] = list(np.array(expt_data["species_H2O"])*0.01)
-    unc_yaml["species_out_CH3OH"] = list(
-        np.array(expt_data["species_out_CH3OH"])*0.01)
-    unc_yaml["species_out_H2O"] = list(
-        np.array(expt_data["species_out_H2O"])*0.01)
-    unc_yaml["species_out_H2"] = list(
-        np.array(expt_data["species_out_H2"])*0.01)
-    unc_yaml["species_out_CO"] = list(
-        np.array(expt_data["species_out_CO"])*0.01)
-    unc_yaml["species_out_CO2"] = list(
-        np.array(expt_data["species_out_CO2"])*0.01)
+    unc_yaml["species_CO"] = (np.array(expt_data["species_CO"])*0.01).tolist()
+    unc_yaml["species_CO2"] = (np.array(expt_data["species_CO2"])*0.01).tolist()
+    unc_yaml["species_H2"] = (np.array(expt_data["species_H2"])*0.01).tolist()
+    unc_yaml["species_H2O"] = (np.array(expt_data["species_H2O"])*0.01).tolist()
+    unc_yaml["species_out_CH3OH"] = (np.array(expt_data["species_out_CH3OH"])*0.01).tolist()
+    unc_yaml["species_out_H2O"] = (np.array(expt_data["species_out_H2O"])*0.01).tolist()
+    unc_yaml["species_out_H2"] = (np.array(expt_data["species_out_H2"])*0.01).tolist()
+    unc_yaml["species_out_CO"] = (np.array(expt_data["species_out_CO"])*0.01).tolist()
+    unc_yaml["species_out_CO2"] = (np.array(expt_data["species_out_CO2"])*0.01).tolist()
     unc_yaml["temperature"] = len(expt_data["temperature"])*[0.05]
 
     # save the new yaml
-    new_unc_file = os.path.join(os.path.realpath(
-        os.path.dirname(__file__)), "expt_unc.yaml")
+    new_unc_file = os.path.join(results_path, "expt_unc.yaml")
     with open(new_unc_file, "w") as f:
         yaml.dump(unc_yaml, f)
         
