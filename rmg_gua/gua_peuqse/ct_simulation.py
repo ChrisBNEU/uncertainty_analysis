@@ -6,7 +6,7 @@ import logging
 import random
 import time
 import h5py
-repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(repo_dir)
 
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
@@ -20,9 +20,9 @@ def sim_init(project_path):
     global lookup_dict
 
     results_path = os.path.join(project_path, "config")
-    peuq_path = os.path.join(project_path, "peuqse_out")
+    peuq_path = os.path.join(project_path, "peuqse")
 
-    expt_condts = os.path.join(results_path, "ct_expt_list.yaml")
+    expt_condts = os.path.join(results_path, "expt_data_orig.yaml")
     lookup_dict_file = os.path.join(results_path, "rmg_2_ck_dict.yaml")
 
     # load the exp data and lookup dict
@@ -34,12 +34,11 @@ def sim_init(project_path):
 
 # To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
 def simulationFunction(parameters, debug=False):
+
     #here x is a scalar or an array and "a" and "b" are constants for the equation.
     """
     run rms reactor. 
     """
-    t1 = time.asctime()
-    t1s = time.time()
     # build and run the simulation
     file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
     
@@ -127,9 +126,7 @@ def simulationFunction(parameters, debug=False):
     t2 = time.asctime()
     t2s = time.time()
     
-    print(f"start time: {t1}")
-    print(f"end time: {t2}")
-    print(f"elapsed: {t2s-t1s} seconds")
+
     
     if debug:
         return test_sbr, y_data
@@ -138,5 +135,16 @@ def simulationFunction(parameters, debug=False):
     
 
 def simulation_function_wrapper(parametersArray):#this has a and b in it.
+    
+    t1 = time.asctime()
+    t1s = time.time()
+
     y = simulationFunction(parametersArray)  #an alternate simpler syntax to unpack the parameters would be: simulationFunction(x_values_for_data, *parametersArray) 
+    
+    t2 = time.asctime()
+    t2s = time.time()
+
+    print(f"start time: {t1}")
+    print(f"end time: {t2}")
+    print(f"elapsed: {t2s-t1s} seconds")
     return y
