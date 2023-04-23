@@ -91,7 +91,7 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
     return peuqse_params
 
 
-def make_exp_data_lists(data_path, results_path, use_count=False):
+def make_exp_data_lists(results_path, use_count=False):
     """ 
     make a list of lists for the experimental data from graaf. 
     each sublist is an experiment. 
@@ -100,10 +100,14 @@ def make_exp_data_lists(data_path, results_path, use_count=False):
     having key/value pairs for temp, pressure, etc. 
     """
 
-    expt_yaml_path = os.path.join(data_path, "all_experiments_reorg_sbr.yaml")
+    expt_yaml_path = os.path.join(results_path, "expt_data.yaml")
     with open(expt_yaml_path, 'r') as f:
         expt_yaml = yaml.safe_load(f)
 
+    expt_yaml_path = os.path.join(results_path, "expt_unc.yaml")
+    with open(expt_yaml_path, 'r') as f:
+        expt_unc_yaml = yaml.safe_load(f)
+    
     # make the list of lists.
     # x_data is expected to have all experimental values in each sub list.
     # e.g [[T1, P1, V1, ...], [T2, P2, V2, ...], ... to nexpts] 
@@ -119,52 +123,35 @@ def make_exp_data_lists(data_path, results_path, use_count=False):
     exp_list_y = [[],[],[],[],[],]
     exp_unc_list_y = [[],[],[],[],[],]
     count = 0
-    for exp in expt_yaml:
-        if "use_for_opt" in exp.keys() and exp["use_for_opt"]: 
-            
-            # append 
-            exp_ct_input.append(exp)
-            
-            exp_list_in.append([
-                exp["catalyst_area"],
-                exp["pressure"],
-                exp["species"]["CO"],
-                exp["species"]["CO2"],
-                exp["species"]["H2"],
-                exp["temperature"],
-                exp["volume_flowrate"]
-            ])
-            # trying alternate method because I am getting errors with the above
-            exp_list_in_alt[0].append(exp["catalyst_area"])
-            exp_list_in_alt[1].append(exp["pressure"])
-            exp_list_in_alt[2].append(exp["species"]["CO"])
-            exp_list_in_alt[3].append(exp["species"]["CO2"])
-            exp_list_in_alt[4].append(exp["species"]["H2"])
-            exp_list_in_alt[5].append(exp["temperature"])
-            exp_list_in_alt[6].append(exp["volume_flowrate"])
-                                      
-            exp_list_y[0].append(exp['species_out']['CH3OH'])
-            exp_list_y[1].append(exp['species_out']['CO'])
-            exp_list_y[2].append(exp['species_out']['CO2'])
-            exp_list_y[3].append(exp['species_out']['H2'])
-            exp_list_y[4].append(exp['species_out']['H2O'])
 
-            exp_unc_list_y[0].append(exp['species_out']['CH3OH']*0.01)
-            exp_unc_list_y[1].append(exp['species_out']['CO']*0.01)
-            exp_unc_list_y[2].append(exp['species_out']['CO2']*0.01)
-            exp_unc_list_y[3].append(exp['species_out']['H2']*0.01)
-            exp_unc_list_y[4].append(exp['species_out']['H2O']*0.01) 
-            
-            count+=1
-            
-        if use_count and count >=fcount:
-            break
-            
+
+    exp_list_in = [
+        expt_yaml["catalyst_area"],
+        expt_yaml["pressure"],
+        expt_yaml["species_CO"],
+        expt_yaml["species_CO2"],
+        expt_yaml["species_H2"],
+        expt_yaml["temperature"],
+        expt_yaml["volume_flowrate"]
+        ]
+
+
+    exp_list_y = [
+        expt_yaml['species_out_CH3OH'],
+        expt_yaml['species_out_CO'],
+        expt_yaml['species_out_CO2'],
+        expt_yaml['species_out_H2'],
+        expt_yaml['species_out_H2O'],
+    ]
     
-    exp_ct_file = os.path.join(results_path, "ct_expt_list.yaml")
-    with open(exp_ct_file, "w") as f:
-        yaml.safe_dump(exp_ct_input, f, sort_keys=False)
-        
-
-    return exp_list_in, exp_list_in_alt, exp_list_y, exp_unc_list_y
+    
+    exp_unc_list_y = [
+        expt_unc_yaml['species_out_CH3OH'],
+        expt_unc_yaml['species_out_CO'],
+        expt_unc_yaml['species_out_CO2'],
+        expt_unc_yaml['species_out_H2'],
+        expt_unc_yaml['species_out_H2O'],
+    ]
+    
+    return exp_list_in, exp_list_y, exp_unc_list_y
         
