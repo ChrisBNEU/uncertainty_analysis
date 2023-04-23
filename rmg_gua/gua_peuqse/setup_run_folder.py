@@ -6,7 +6,7 @@ print("repo_dir: ", repo_dir)
 sys.path.append(repo_dir)
 from rmg_gua.gua_cantera.Spinning_basket_reactor.make_peuq_config import make_rmg_reac_config, make_be_peuq_input, \
     trim_rule_file, make_ck_reac_config, make_be_config
-from rmg_gua.gua_peuqse.peuqse_utilities import make_ct_expt_file
+from rmg_gua.gua_peuqse.peuqse_utilities import make_ct_expt_file, make_lookup_dict
 
 # first command line arg is the run folder location 
 # second is bool. if true do simple sum squares residual opt
@@ -85,12 +85,14 @@ def make_run_file(full_path, parallel=False):
     output.append("repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))")
     output.append("sys.path.insert(0, repo_dir)")
     output.append("import rmg_gua.gua_peuqse.ct_simulation as ct_simulation")
+    output.append("from rmg_gua.gua_peuqse.setup_peuqse import setup_userinput")
     output.append("project_path = os.path.dirname(os.path.abspath(__file__))")
     output.append("")
     output.append("if __name__ == \"__main__\":")
     output.append("    print(\"running job\")")
     output.append("    # setup our ct_simulation function")
     output.append("    ct_simulation.sim_init(project_path)")
+    output.append("    UserInput = setup_userinput(project_path)")
     output.append("    UserInput.model['exportResponses'] = True")
     output.append("    UserInput.parameter_estimation_settings['mcmc_threshold_filter_samples'] = True")
     output.append(f"    UserInput.parameter_estimation_settings['mcmc_parallel_sampling'] = {parallel}")
@@ -121,6 +123,9 @@ def make_run_folder(full_path, parallel=False, local_run=False):
     # if we are consistent with env variables this should work
     rmg_path = os.path.dirname(os.environ["RMGPY"])
 
+    # base_path
+    base_path = os.path.join(repo_dir, "rmg_gua", "baseline")
+
     # make the input files into a "config" folder
     config_path = os.path.join(full_path, "config")
     if not os.path.exists(config_path):
@@ -145,6 +150,9 @@ def make_run_folder(full_path, parallel=False, local_run=False):
     # make the scripts for running the ct simulation
     make_bash_script(full_path, parallel=parallel, local_run=local_run)
     make_run_file(full_path, parallel=parallel)
+
+    # make the lookup dict
+    make_lookup_dict(base_path, results_path=results_path)
 
 if __name__ == "__main__":
 
