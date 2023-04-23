@@ -418,7 +418,8 @@ class MinSBR:
                         if n_reactants == 2:
                             A_i = A_i*1e3
                     elif ck_data["rtype"] == "stick":
-                        A_i = float(A_src)
+                        A_i = 10**float(A_src)
+                        # I don't think we have bimolecular sticking rxns
                     else:
                         raise Exception("reaction type not recognized")
                     

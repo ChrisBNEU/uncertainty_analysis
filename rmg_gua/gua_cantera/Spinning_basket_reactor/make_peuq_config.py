@@ -42,12 +42,20 @@ def make_rmg_reac_config(rmg_path, results_path=False):
                 A_lb = 0
                 A_ub = 25
                 A_guess = A_val
+
+            # changing to be the same as the surface arrhenius
+            # else:
+            #     A_val = entry.A.value_si
+            #     A_unc = -1
+            #     A_lb = 0
+            #     A_ub = 1
+            #     A_guess = 0.5
             else:
-                A_val = entry.A.value_si
-                A_unc = -1
-                A_lb = 0
-                A_ub = 1
-                A_guess = 0.5
+                A_val = math.log(entry.A.value_si)
+                A_unc = 1
+                A_lb = -2
+                A_ub = 0
+                A_guess = -1
                 
             E0_val = entry.E0.value_si
             E0_unc = 30000  # J/mol, convert in cantera to j/kmol
