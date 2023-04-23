@@ -12,6 +12,7 @@ import sys
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, repo_dir)
 import rmg_gua.gua_peuqse.ct_simulation as ct_simulation
+from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_data_lists
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -22,91 +23,53 @@ def setup_userinput(project_path):
     """
     
     ct_simulation.sim_init(project_path)
-    
-    with open("expt_data.yaml", "r") as f:
-        expt_data = yaml.load(f, Loader=yaml.FullLoader)
+    results_path = os.path.join(project_path, "config")
+    peuq_path = os.path.join(project_path, "peuqse")
 
-    with open("expt_data_orig.yaml", "r") as f:
-        expt_data_orig = yaml.load(f, Loader=yaml.FullLoader)
-        
-    # load uncertainty yaml
-    with open("expt_unc.yaml", "r") as f:
-        expt_unc = yaml.load(f, Loader=yaml.FullLoader)
+    if not os.path.exists(peuq_path):
+        os.mkdir(peuq_path)
     
-    # set last index to 3 if we want to test and only run 3 experiments
-    if run_test: 
-        li = 3
-    else:
-        li = -1
-    
-    # build the x-data array
-    # we actually need to build this with all the parameters for each expt in one list,
-    # e.g. [temp1, pres1, X_CO_1, etc.]
-    x_data = []
+    # get the peuqse parameters
+    param_dict = get_all_param_lists(results_path=results_path)     
 
-    for expt in range(len(expt_data["catalyst_area"])):
-        row = []
-        row.append(expt_data["catalyst_area"][expt])
-        row.append(expt_data["pressure"][expt])
-        row.append(expt_data["species_CO"][expt])
-        row.append(expt_data["species_CO2"][expt])
-        row.append(expt_data["species_H2"][expt])
-        row.append(expt_data["temperature"][expt])
-        row.append(expt_data["volume_flowrate"][expt])
-        x_data.append(row)
+    
+    data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
+    x_data, y_data, y_unc = make_exp_data_lists(results_path)
+    
     x_data = np.array(x_data)
-
-    print(f"length is {len(x_data[0])} in main")
-    
-    # build y-data array
-    y_data = []
-    y_data.append(expt_data['species_out_CH3OH'])
-    y_data.append(expt_data['species_out_CO'])
-    y_data.append(expt_data['species_out_CO2'])
-    y_data.append(expt_data['species_out_H2'])
-    y_data.append(expt_data['species_out_H2O'])
     y_data = np.array(y_data)
-
-
-    # build y uncertainties array
-    y_unc = []
-    y_unc.append(expt_unc['species_out_CH3OH'])
-    y_unc.append(expt_unc['species_out_CO'])
-    y_unc.append(expt_unc['species_out_CO2'])
-    y_unc.append(expt_unc['species_out_H2'])
-    y_unc.append(expt_unc['species_out_H2O'])
-    y_unc = np.array(y_unc)
-
-    #Provide the observed X values and Y values and uncertainties -- all should be arrays or lists with nesting like [[1,2,3]] or [[1,2,3,4],[4,5,6,6]]
+    y_unc = np.array(y_data)
+    print(f"length is {len(x_data)} in main")
+    
+    # UserInput.directories['graphs'] = os.path.join(peuq_path, "graphs/")
+    # UserInput.directories['logs_and_csvs'] = os.path.join(peuq_path, "logs_and_csvs/")
+    # UserInput.directories['pickles'] = os.path.join(peuq_path, "pickles/")
+    
     UserInput.responses['responses_abscissa'] = x_data
     UserInput.responses['responses_observed'] = y_data
 
     # estimated graaf uncertainties. 
     UserInput.responses['responses_observed_uncertainties'] = y_unc
 
-    # load the input file we made for the imulation data (A, Ea, uncertainty A&Ea, etc.)
-    ct_file = "./ct_initial_small.yaml" 
-    with open(ct_file, "r") as f:
-        mech_values = yaml.load(f, Loader=yaml.FullLoader)
-
-    # convert to lists
-    param_name_dict = {key: key for key in mech_values["labels"]} # dictionary of parameter names, not changing for now
-
-
     #Optional: provide labels for the responses axes and parameter names.
     UserInput.simulated_response_plot_settings['x_label'] = [
         "catalyst_area", "pressure (Pa)", "mole frac CO", "mole frac CO2", "mole frac H2", "temperature (K)", "volume flowrate (m^3/s)"]
     UserInput.simulated_response_plot_settings['y_label'] = [
         "CH3OH mole Frac out", "CO mole Frac out", "CO2 mole Frac out", "H2 mole Frac out", "H2O mole Frac out"]
-    UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = param_name_dict
-
+    UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = param_dict["label_list"]
+    
     #Provide the prior distribution and uncertainties of the individual parameters.
     # prior expected values for a and b
-    UserInput.model['InputParameterPriorValues'] = mech_values["initial_values"]
+    UserInput.model['InputParameterPriorValues'] = param_dict["value_list"]
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
-    UserInput.model['InputParametersPriorValuesUncertainties'] = mech_values["uncertainties"]
-    # UserInput.model['InputParameterInitialGuess'] = #Can optionally change the initial guess to be different from prior means.
-    UserInput.model['InputParameterPriorValues_lowerBounds'] = mech_values["lower_bounds"]
-    UserInput.model['InputParameterPriorValues_upperBounds'] = mech_values["upper_bounds"]
+    UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
+    UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
+    
+    
+    #Can optionally change the initial guess to be different from prior means.
+    UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
+    UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
+
+    return UserInput
