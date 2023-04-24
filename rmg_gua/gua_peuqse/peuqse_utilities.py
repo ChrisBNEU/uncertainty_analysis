@@ -382,25 +382,16 @@ def trim_expts(expt_data):
     expt_combos = {"p": pminmax, "t": tminmax, "ratioh2": ratioh2minmax, "ratioco": ratiocominmax}
     expt_combos = list(itertools.product(*expt_combos.values()))
 
-    # get the experiments that have the closest values to the low and high values for each parameter
-    # for the h2 ratio, we are going to settle for if it is less than 9
+    # Remove criteria for h2 ratio, makes it too restrictive, and without it we
+    # end up having a variety of h2 rations anyway
     rtol = 1.0
     peuqse_expts = pd.DataFrame()
     for expset in expt_combos: 
-        if expset[2] >= 9:
-            next_series = flat_expt_df[np.isclose(flat_expt_df["pressure"], expset[0], rtol=0.1) & \
-                (np.isclose(flat_expt_df["temperature"], expset[1], rtol=0.1)) & \
-                (flat_expt_df["h2/(co+co2)"] >= 7) & \
-                (np.isclose(flat_expt_df["co/co2"], expset[3], rtol=0.1))]
-        else:
-            next_series = flat_expt_df[np.isclose(flat_expt_df["pressure"], expset[0], rtol=0.1) & \
-                (np.isclose(flat_expt_df["temperature"], expset[1], rtol=0.1)) & \
-                (flat_expt_df["h2/(co+co2)"] < 7) & \
-                (np.isclose(flat_expt_df["co/co2"], expset[3], rtol=0.1))]
+        next_series = flat_expt_df[np.isclose(flat_expt_df["pressure"], expset[0], rtol=0.5) & \
+            (np.isclose(flat_expt_df["temperature"], expset[1], atol=20)) & \
+            (np.isclose(flat_expt_df["co/co2"], expset[3], rtol=0.5))]
         if next_series.empty:
             print("No experiments found for", expset)
-
-        
         else: 
             # remove indices that are already in the dataframe
             next_series = next_series[~next_series.index.isin(peuqse_expts.index)]
