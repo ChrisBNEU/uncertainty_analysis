@@ -20,6 +20,13 @@ import os
 import sys
 from copy import deepcopy
 import collections
+
+# define molecular weights for mass flow calculations
+MW_CO = 28.01e-3  # [kg/mol]
+MW_CO2 = 44.01e-3  # [kg/mol]
+MW_H2 = 2.016e-3  # [kg/mol]
+MW_H2O = 18.01528e-3  # [kg/mol]
+
 class MinSBR:
     """
     A minimal stirred batch reactor
@@ -56,6 +63,30 @@ class MinSBR:
             self.results_path = results_path
         else:
             self.results_path = os.getcwd()
+
+        # load the config files so we only do that once: 
+        rule_config_file = os.path.join(self.results_path, "rule_config.yaml")
+        with open(rule_config_file, "r") as f:
+            self.rule_dict_orig = yaml.safe_load(f)
+
+        # load the chemkin rxn_config file
+        ck_rule_dict_path = os.path.join(self.results_path, "ck_rule_dict.yaml")
+        with open(ck_rule_dict_path, 'r') as f:
+            self.ck_rule_dict = yaml.load(f, Loader=yaml.FullLoader)
+
+        # load in the test species yaml file if requested
+        test_spec_path = os.path.join(self.results_path, "be_test_config.yaml")  
+        if os.path.exists(test_spec_path):      
+            with open(test_spec_path, "r") as f:
+                self.test_spec = yaml.safe_load(f)
+        else: 
+            self.test_spec = None
+
+        # load the lookup for which species have which bond order
+        thermo_bo_dict_path = os.path.join(self.results_path, "thermo_pert.yaml")
+        with open(thermo_bo_dict_path, 'r') as f:
+            self.thermo_bo_dict = yaml.load(f, Loader=yaml.FullLoader)
+
         self.expt_id = reac_config['expt_name']
         self.temperature = reac_config['temperature']
         self.pressure = reac_config['pressure']
@@ -75,12 +106,6 @@ class MinSBR:
         # load the experimental TOFs
         self.graaf_meoh_tof = reac_config['output']['CH3OH']
         self.graaf_h2o_tof = reac_config['output']['H2O']
-
-        # molecular weights for mass flow calculations
-        MW_CO = 28.01e-3  # [kg/mol]
-        MW_CO2 = 44.01e-3  # [kg/mol]
-        MW_H2 = 2.016e-3  # [kg/mol]
-        MW_H2O = 18.01528e-3  # [kg/mol]
 
         # define ratios of reactants for plots
         # CO2/(CO+CO2) and (CO2+CO)/H2
@@ -192,8 +217,12 @@ class MinSBR:
         # needing to use a large value for 'K', which can introduce undesired stiffness.
         self.outlet_mfc = ct.PressureController(self.r, self.exhaust, master=self.mfc, K=0.01)
 
+        # load preconditioner
+        self.precon = ct.AdaptivePreconditioner()
         # initialize reactor network
         self.sim = ct.ReactorNet([self.r])
+        self.sim.preconditioner = self.precon
+        self.sim.initialize()
 
         # set relative and absolute tolerances on the simulation
         self.sim.rtol = rtol
@@ -201,31 +230,141 @@ class MinSBR:
         
         self.time=time
 
+    def set_params(
+        self, 
+        reac_config, 
+        rtol=1.0e-11,
+        atol=1.0e-22,
+        reaction_list = None, 
+        ):
+        """ 
+        resets the reactor and loads a new set of parameters. 
+        """
+        # modify the reactions if specified
+        if reaction_list is not None and len(reaction_list) > 5:
+            self.gas.TP = 298.0, 101325.0
+            self.surf.TP = 298.0, 101325.0
+            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
+            self.change_be(thermo_pert_dict)
+            self.change_reactions_rmg(rule_dict=rxn_pert_dict)
+        
+        # janky, but only do binding energies if len reactionlist ==5
+        elif reaction_list is not None and len(reaction_list) == 5:
+            self.gas.TP = 298.0, 101325.0
+            self.surf.TP = 298.0, 101325.0
+            thermo_pert_dict = self.load_perts_beonly(reaction_list)
+            self.change_be(thermo_pert_dict)
+        
+        else: 
+            raise Exception("must specify parameters to use set_parameters")
+        
+        self.reset_reactor(
+            reac_config, 
+            rtol=rtol,
+            atol=atol,
+        )
+
+    def reset_reactor(        
+        self,
+        reac_config, 
+        rtol=1.0e-11,
+        atol=1.0e-22,
+        ): 
+        """ 
+        resets the reactor without clearing the perturbations we've loaded
+        """ 
+        self.expt_id = reac_config['expt_name']
+        self.temperature = reac_config['temperature']
+        self.pressure = reac_config['pressure']
+        self.volume_flow = reac_config['volume_flowrate']
+        self.use_for_opt = reac_config['use_for_opt']
+
+        # can probably generalize with isomorphism
+        # do that later
+        self.x_H2 = reac_config['species']['H2']
+        self.x_CO2 = reac_config['species']['CO2']
+        self.x_CO = reac_config['species']['CO']
+        if 'H2O' in reac_config['species'].keys():
+            self.x_H2O = reac_config['species']['H2O']
+        else: 
+            self.x_H2O = 0.0
+        
+        # load the experimental TOFs
+        self.graaf_meoh_tof = reac_config['output']['CH3OH']
+        self.graaf_h2o_tof = reac_config['output']['H2O']
+
+        # define ratios of reactants for plots
+        # CO2/(CO+CO2) and (CO2+CO)/H2
+        self.CO2_ratio = self.x_CO2 / (self.x_CO + self.x_CO2)
+        self.H2_ratio = (self.x_CO2 + self.x_CO) / self.x_H2
+
+        # CO/CO2/H2/H2: typical is
+        self.concentrations_rmg = {
+            self.co_str: self.x_CO,
+            self.co2_str: self.x_CO2,
+            self.h2_str: self.x_H2,
+            self.h2o_str: self.x_H2O,
+        }
+        # initialize T and P
+        self.gas.TPX = self.temperature, self.pressure, self.concentrations_rmg
+        self.surf.TP = self.temperature, self.pressure
+        self.rsurf.kinetics.TP = self.surf.TP
+
+
+        # Reactor volume
+        self.rvol = reac_config['volume'] 
+
+        # Catalyst Surface Area
+        self.cat_area = reac_config['catalyst_area']  # [m^3]
+        self.cat_area_str = "%s" % "%.3g" % self.cat_area
+        self.total_sites = (self.cat_area*self.surf.site_density)*1e3 #[mol sites]
+
+        # calculate the available catalyst area in a differential reactor
+        # self.rsurf = ct.ReactorSurface(self.surf, self.r, A=self.cat_area)
+        self.rsurf.area = self.cat_area
+        self.r.volume = self.rvol
+
+        self.surf.coverages = "X(1):1.0"
+        self.rsurf.coverages = self.surf.coverages
+
+        # flow controllers (Graaf measured flow at 293.15 and 1 atm)
+        FC_temp = 293.15
+        self.molar_flow = self.volume_flow * ct.one_atm / (8.3145 * FC_temp)  # [mol/s]
+        self.mass_flow = self.molar_flow * (
+            self.x_CO * MW_CO + self.x_CO2 * MW_CO2 + self.x_H2 * MW_H2 + self.x_H2O * MW_H2O
+        )  # [kg/s]
+        self.mfc.mass_flow_rate = self.mass_flow
+
+        # reinitialize reactor network
+        self.sim.set_initial_time(0)
+        self.r.syncState()
+        self.inlet.syncState()
+        self.exhaust.syncState()
+
+        # initialize reactor network
+        self.sim.reinitialize()
+
+        # set relative and absolute tolerances on the simulation
+        self.sim.rtol = rtol
+        self.sim.atol = atol
 
     def load_perts(self, pert_list):
         """ 
         load the perturbations to a dictionary
         """
-        ck_rule_dict_path = os.path.join(self.results_path, "ck_rule_dict.yaml")
-        with open(ck_rule_dict_path, 'r') as f:
-            ck_rule_dict = yaml.load(f, Loader=yaml.FullLoader)
-
-        rule_config_file = os.path.join(self.results_path, "rule_config.yaml")
-        with open(rule_config_file, "r") as f:
-            rule_dict_orig = yaml.safe_load(f)
 
         # # load in the perturbations. haven't thought of a more intelligent way to do this, 
         # but order is preserved in yaml for dict for python 3.6+ if we safe load 
         # and save with sort_keys = False
-        rule_dict = deepcopy(rule_dict_orig)
+        rule_dict = deepcopy(self.rule_dict_orig)
         ck_matches = {}
         ck_no_match = []
         count = 0
 
         if len(pert_list) > 0:
-            assert len(pert_list) == len(rule_dict_orig)*3 + 5, "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
-            print("changing reactions")
-            for rule, vals in rule_dict_orig.items():
+            assert len(pert_list) == len(self.rule_dict_orig)*3 + 5, "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
+            # print("changing reactions")
+            for rule, vals in self.rule_dict_orig.items():
                 rule_dict[rule]["A"] = pert_list[count]
                 count += 1
                 rule_dict[rule]["E0"] = pert_list[count]
@@ -259,15 +398,6 @@ class MinSBR:
         """
         change the species BE by altering the enthalpy of formation
         """
-        # load in the test species yaml file if requested
-        test_spec_path = os.path.join(self.results_path, "be_test_config.yaml")        
-        with open(test_spec_path, "r") as f:
-            test_spec = yaml.safe_load(f)
-
-        # load the lookup for which species have which bond order
-        thermo_bo_dict_path = os.path.join(self.results_path, "thermo_pert.yaml")
-        with open(thermo_bo_dict_path, 'r') as f:
-            thermo_bo_dict = yaml.load(f, Loader=yaml.FullLoader)
         
         # dh is range of 0.3 eV, or 1e7 j/kmol
         kj_thermo_pert = {k: v/1e6 for k, v in thermo_pert_dict.items()}
@@ -275,15 +405,15 @@ class MinSBR:
         old_h298 = {}
         for spec in self.surf.species():
             if spec.name == "X(1)":
-                print(spec.name)
+                # print(spec.name)
                 pass
             else:
                 dh = 0. 
                 species = spec.name
-                if test_spec and species in test_spec.values():
+                if self.test_spec and species in self.test_spec.values():
                     old_h298[species] = spec.thermo.h(298.15)/1e6
                 # calculate dh
-                bo_spec = thermo_bo_dict[species] 
+                bo_spec = self.thermo_bo_dict[species] 
                 for atom, value in bo_spec.items():
                     dh += thermo_pert_dict[atom] * value
 
@@ -295,7 +425,7 @@ class MinSBR:
                 spec.thermo = s_new
                 self.surf.modify_species(self.surf.species_index(species), spec)
 
-                if test_spec and species in test_spec.values():
+                if self.test_spec and species in self.test_spec.values():
                     diff = spec.thermo.h(298.15)/1e6 - old_h298[species]
                     pert = dh/1e6
                     assert np.isclose(diff, pert, rtol=1e-3, atol=1e-3)
@@ -347,14 +477,10 @@ class MinSBR:
         find the template for a given reaction
         for now, we don't really care about gas phase rxns
         """
-        # load the chenkin rxn_config file
-        ck_rule_dict_path = os.path.join(self.results_path, "ck_rule_dict.yaml")
-        with open(ck_rule_dict_path, 'r') as f:
-            ck_rule_dict = yaml.load(f, Loader=yaml.FullLoader)
 
         ck_matches = {}
         ck_no_match = []
-        for ck_num, ck_items in enumerate(ck_rule_dict):
+        for ck_num, ck_items in enumerate(self.ck_rule_dict):
             ck_rxn = list(ck_items.keys())[0] 
             ck_data = list(ck_items.values())[0]
             ck_reac = collections.Counter(ck_data["reactants"])
@@ -452,22 +578,10 @@ class MinSBR:
 
         return ck_matches
 
-
-    def run_reactor_ss_memory(self):
+    def run_reactor_ss_memory(self, peuqse=False):
         """
         Run single reactor to steady state and save the results to an ordered dictionary in memory
         """
-
-        # how to sort out gas and surface such that we can attach units?
-        gas_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.species_names]
-
-        # Okay, this is weird. rsurf.kinetics.net_production_rates includes both gas and 
-        # surface rates, but surf.species_names only has surface species
-        all_surf_rop_specs = self.gas.species_names + self.surf.species_names
-        surf_ROP_str = [i + " ROP [kmol/m^2 s]" for i in all_surf_rop_specs]
-
-        gasrxn_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.reaction_equations()]
-        surfrxn_ROP_str = [i + " ROP [kmol/m^2 s]" for i in self.surf.reaction_equations()]
 
         # run the simulation
         # 600s chosen because residence time is ~20 seconds
@@ -476,61 +590,86 @@ class MinSBR:
         # our residence time is 134s. so 134*4 = 536.  
         self.sim.advance(self.time)
         results = {}
-        results['experiment'] = self.expt_id
-        results['use_for_opt'] = self.use_for_opt
-        results['time (s)'] = self.sim.time
-        results['T (K)'] = self.temperature
-        results['P (Pa)'] = self.gas.P
-        results['V (m^3/s)'] = self.volume_flow
-        results['x_CO initial'] = self.x_CO
-        results['x_CO2 initial'] = self.x_CO2
-        results['x_H2 initial'] = self.x_H2
-        results['x_H2O initial'] = self.x_H2O
-        results['CO2/(CO2+CO)'] = self.CO2_ratio
-        results['(CO+CO2/H2)'] = self.H2_ratio
-        results['T (K) final'] = self.gas.T
-        results['Rtol'] = self.sim.rtol
-        results['Atol'] = self.sim.atol
-        results['reactor type'] = self.reactor_type_str
-        results['energy on?'] = self.energy
-        results['catalyst area'] = self.cat_area
-        results['graaf MeOH TOF 1/s'] = self.graaf_meoh_tof 
-        results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof
-        
-        results['RMG MeOH TOF 1/s'] = float(self.molar_flow*(self.r.thermo[self.ch3oh_str].X)/(self.total_sites))
-        results['RMG H2O TOF 1/s'] = float(self.molar_flow*(self.r.thermo[self.h2o_str].X - self.x_H2O)/(self.total_sites))
-        
-        # results['RMG MeOH TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
-        # results['RMG H2O TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
-        
-        
-        results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
-        results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
-        results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
 
-        # adding alternative objective function using avg of log(rate_rmg/rate_exp)
-        results['log10(RMG/graaf) MeOH TOF'] = np.log10(max(1e-9, results['RMG MeOH TOF 1/s']/results['graaf MeOH TOF 1/s']))
-        results['log10(RMG/graaf) H2O TOF'] = np.log10(max(1e-9, results['RMG H2O TOF 1/s']/results['graaf H2O TOF 1/s']))
-        results['log10(RMG/graaf) TOF'] = 0.5 * ( results['log10(RMG/graaf) MeOH TOF'] + results['log10(RMG/graaf) H2O TOF'])
-        
-        for i in range(0, len(self.gas.X)):
-            results[self.gas.species_names[i]] = self.gas.X[i]
-        for i in range(0, len(self.surf.X)):
-            results[self.surf.species_names[i]] = self.surf.X[i]
-        
-        # Enter the ROP's
-        for i in range(0, len(self.r.kinetics.net_production_rates)):
-            results[gas_ROP_str[i]] = self.r.kinetics.net_production_rates[i]
+        if not peuqse: 
+            # how to sort out gas and surface such that we can attach units?
+            gas_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.species_names]
 
-        for i in range(0, len(self.rsurf.kinetics.net_production_rates)):
-            results[surf_ROP_str[i]] = self.rsurf.kinetics.net_production_rates[i]
+            # Okay, this is weird. rsurf.kinetics.net_production_rates includes both gas and 
+            # surface rates, but surf.species_names only has surface species
+            all_surf_rop_specs = self.gas.species_names + self.surf.species_names
+            surf_ROP_str = [i + " ROP [kmol/m^2 s]" for i in all_surf_rop_specs]
 
-        for i in range(0, len(self.rsurf.kinetics.net_rates_of_progress)):
-            results[surfrxn_ROP_str[i]] = self.rsurf.kinetics.net_rates_of_progress[i]
+            gasrxn_ROP_str = [i + " ROP [kmol/m^3 s]" for i in self.gas.reaction_equations()]
+            surfrxn_ROP_str = [i + " ROP [kmol/m^2 s]" for i in self.surf.reaction_equations()]
 
-        if gasrxn_ROP_str:
-            for i in range(0, len(self.r.kinetics.net_rates_of_progress)):
-                results[gasrxn_ROP_str[i]] = self.r.kinetics.net_rates_of_progress[i]
+            # save all the results
+            results['experiment'] = self.expt_id
+            results['use_for_opt'] = self.use_for_opt
+            results['time (s)'] = self.sim.time
+            results['T (K)'] = self.temperature
+            results['P (Pa)'] = self.gas.P
+            results['V (m^3/s)'] = self.volume_flow
+            results['x_CO initial'] = self.x_CO
+            results['x_CO2 initial'] = self.x_CO2
+            results['x_H2 initial'] = self.x_H2
+            results['x_H2O initial'] = self.x_H2O
+            results['CO2/(CO2+CO)'] = self.CO2_ratio
+            results['(CO+CO2/H2)'] = self.H2_ratio
+            results['T (K) final'] = self.gas.T
+            results['Rtol'] = self.sim.rtol
+            results['Atol'] = self.sim.atol
+            results['reactor type'] = self.reactor_type_str
+            results['energy on?'] = self.energy
+            results['catalyst area'] = self.cat_area
+            results['graaf MeOH TOF 1/s'] = self.graaf_meoh_tof 
+            results['graaf H2O TOF 1/s'] = self.graaf_h2o_tof
+            
+            results['RMG MeOH TOF 1/s'] = float(self.molar_flow*(self.r.thermo[self.ch3oh_str].X)/(self.total_sites))
+            results['RMG H2O TOF 1/s'] = float(self.molar_flow*(self.r.thermo[self.h2o_str].X - self.x_H2O)/(self.total_sites))
+            
+            # results['RMG MeOH TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.ch3oh_str)]/self.surf.site_density
+            # results['RMG H2O TOF 1/s'] = self.rsurf.kinetics.net_production_rates[self.gas.species_index(self.h2o_str)]/self.surf.site_density
+            
+            
+            results['error squared MeOH TOF'] = ((results['graaf MeOH TOF 1/s'] - results['RMG MeOH TOF 1/s'])/results['graaf MeOH TOF 1/s'] )**2
+            results['error squared H2O TOF'] = ((results['graaf H2O TOF 1/s'] - results['RMG H2O TOF 1/s'])/results['graaf H2O TOF 1/s'])**2
+            results['obj_func'] = results['error squared MeOH TOF'] + results['error squared H2O TOF']
+
+            # adding alternative objective function using avg of log(rate_rmg/rate_exp)
+            results['log10(RMG/graaf) MeOH TOF'] = np.log10(max(1e-9, results['RMG MeOH TOF 1/s']/results['graaf MeOH TOF 1/s']))
+            results['log10(RMG/graaf) H2O TOF'] = np.log10(max(1e-9, results['RMG H2O TOF 1/s']/results['graaf H2O TOF 1/s']))
+            results['log10(RMG/graaf) TOF'] = 0.5 * ( results['log10(RMG/graaf) MeOH TOF'] + results['log10(RMG/graaf) H2O TOF'])
+            
+            for i in range(0, len(self.gas.X)):
+                results[self.gas.species_names[i]] = self.gas.X[i]
+            for i in range(0, len(self.surf.X)):
+                results[self.surf.species_names[i]] = self.surf.X[i]
+            
+            # Enter the ROP's
+            for i in range(0, len(self.r.kinetics.net_production_rates)):
+                results[gas_ROP_str[i]] = self.r.kinetics.net_production_rates[i]
+
+            for i in range(0, len(self.rsurf.kinetics.net_production_rates)):
+                results[surf_ROP_str[i]] = self.rsurf.kinetics.net_production_rates[i]
+
+            for i in range(0, len(self.rsurf.kinetics.net_rates_of_progress)):
+                results[surfrxn_ROP_str[i]] = self.rsurf.kinetics.net_rates_of_progress[i]
+
+            if gasrxn_ROP_str:
+                for i in range(0, len(self.r.kinetics.net_rates_of_progress)):
+                    results[gasrxn_ROP_str[i]] = self.r.kinetics.net_rates_of_progress[i]
+
+        else: 
+            for i in range(0, len(self.gas.X)):
+                results[self.gas.species_names[i]] = self.gas.X[i]
+            for i in range(0, len(self.surf.X)):
+                results[self.surf.species_names[i]] = self.surf.X[i]
+            # results[self.ch3oh_str] = self.gas.X[self.gas.species_index(self.ch3oh_str)]
+            # results[self.co_str] = self.gas.X[self.gas.species_index(self.co_str)]
+            # results[self.co2_str] = self.gas.X[self.gas.species_index(self.co2_str)]
+            # results[self.h2_str] = self.gas.X[self.gas.species_index(self.h2_str)]
+            # results[self.h2o_str] = self.gas.X[self.gas.species_index(self.h2o_str)]
 
         return results
 
@@ -555,7 +694,7 @@ def run_sbr_test():
 
     # run to SS
     results = sbr_ss.run_reactor_ss_memory()
-    print("done")
+    # print("done")
 
 if __name__ == "__main__":
     # execute only if run as a script
