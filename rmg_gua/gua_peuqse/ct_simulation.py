@@ -11,7 +11,13 @@ sys.path.append(repo_dir)
 
 from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
 from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists
+
+import cantera as ct
 from cantera import CanteraError
+ct_major = int(ct.__version__.split(".")[0])
+ct_minor = int(ct.__version__.split(".")[1])
+ct_full = float(str(ct_major) + "." + str(ct_minor))
+
 from PEUQSE import parallel_processing
 
 def sim_init(project_path):
@@ -27,7 +33,12 @@ def sim_init(project_path):
     expt_condts = os.path.join(results_path, "expt_data_orig.yaml")
     lookup_dict_file = os.path.join(results_path, "rmg_2_ck_dict.yaml")
 
-    file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
+    # cti support deprecated in 2.6
+    if ct_full > 2.6:
+        file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.yaml")
+    else: 
+        file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
+
 
     # load the exp data and lookup dict
     with open(expt_condts, 'r') as f:
@@ -111,6 +122,7 @@ def simulationFunction(parameters, debug=False):
             H2O_X.append(float('nan'))
 
     y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
+    
     # pnum = parallel_processing.currentProcessorNumber
     
     # is there a faster filetype? json?

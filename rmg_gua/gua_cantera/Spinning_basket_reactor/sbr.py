@@ -21,6 +21,12 @@ import sys
 from copy import deepcopy
 import collections
 
+# get major and minor revisions
+ct_major = int(ct.__version__.split(".")[0])
+ct_minor = int(ct.__version__.split(".")[1])
+
+ct_full = float(str(ct_major) + "." + str(ct_minor))
+
 # define molecular weights for mass flow calculations
 MW_CO = 28.01e-3  # [kg/mol]
 MW_CO2 = 44.01e-3  # [kg/mol]
@@ -218,10 +224,10 @@ class MinSBR:
         self.outlet_mfc = ct.PressureController(self.r, self.exhaust, master=self.mfc, K=0.01)
 
         # load preconditioner
-        self.precon = ct.AdaptivePreconditioner()
+        # self.precon = ct.AdaptivePreconditioner()
         # initialize reactor network
         self.sim = ct.ReactorNet([self.r])
-        self.sim.preconditioner = self.precon
+        # self.sim.preconditioner = self.precon
         self.sim.initialize()
 
         # set relative and absolute tolerances on the simulation
@@ -557,7 +563,17 @@ class MinSBR:
                     E0_src = E0_src*1e3
                     Ea_i = self.scale_ea(E0_src, alpha_src, rxn, num)
 
-                    rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
+                    # new surface reaction objects were made after 2.6
+                    if ct_full <=2.6:
+                        rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
+                    else: 
+                        if ck_data["rtype"] == "stick":
+                            rate = ct.StickingArrheniusRate(A = A_i, b = b_i, Ea = Ea_i)
+                        elif ck_data["rtype"] == "arrhenius":
+                            rate = ct.InterfaceArrheniusRate(A = A_i, b = b_i, Ea = Ea_i)
+                        else: 
+                            raise Exception("reaction type not recognized")
+
                     new_rxn.rate = rate
                     self.surf.modify_reaction(num, new_rxn)
 
