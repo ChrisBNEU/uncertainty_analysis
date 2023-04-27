@@ -17,7 +17,7 @@ prefix = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(os.path
 print("uncertainty repo path: ", prefix)
 
 # use yaml safe load to preserve order (python 3.6+)
-def make_rmg_reac_config(rmg_path, results_path=False):
+def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
     # load rmg database
     print("loading rmg database")
     kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
@@ -51,11 +51,11 @@ def make_rmg_reac_config(rmg_path, results_path=False):
             #     A_ub = 1
             #     A_guess = 0.5
             else:
-                A_val = math.log(entry.A.value_si)
+                A_val = math.log10(entry.A.value_si)
                 A_unc = 1
-                A_lb = -2
-                A_ub = 0
-                A_guess = -1
+                A_lb = -6
+                A_ub = 1
+                A_guess = A_val
                 
             E0_val = entry.E0.value_si
             E0_unc = 30000  # J/mol, convert in cantera to j/kmol
@@ -80,6 +80,18 @@ def make_rmg_reac_config(rmg_path, results_path=False):
             alpha_lb = 0
             alpha_ub = 1
             alpha_guess = 0.5
+
+            # if A, alpha, or E0 vals +/- unc goes out of bounds, then we will reset to 
+            if check_ranges:
+                if A_val + A_unc > A_ub or A_val - A_unc < A_lb:
+                    print("A out of bounds for ", fname, " : ", rule_name, " : ", A_val, " +/- ", A_unc)
+                    # A_val = A_guess
+                if E0_val + E0_unc > E0_ub or E0_val - E0_unc < E0_lb:
+                    print("E0 out of bounds for ", fname, " : ", rule_name, " : ", E0_val, " +/- ", E0_unc)
+                    # E0_val = E0_guess
+                if alpha_val + alpha_unc > alpha_ub or alpha_val - alpha_unc < alpha_lb:
+                    print("alpha out of bounds for ", fname, " : ", rule_name, " : ", alpha_val, " +/- ", alpha_unc)
+                    # alpha_val = alpha_guess
 
             rule_dict[fname + " : " +  rule_name] = {
                 'A': A_val, 
