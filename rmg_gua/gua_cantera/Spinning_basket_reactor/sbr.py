@@ -49,7 +49,8 @@ class MinSBR:
         time=600,
         reaction_list = None, 
         results_path = None, 
-    ):
+        use_precond = False,
+        ):
         """
         initialize sbr object
         yaml_file = cti or yaml file for mechanism
@@ -57,13 +58,6 @@ class MinSBR:
                       Temp, Pressure, concentrations, etc. 
         new_rate_dict = dict of new rates that we want to set
         """
-
-        # load the cantera mechanism
-        prefix = os.path.dirname(os.path.abspath(__file__))
-        if os.path.exists("/work"):
-            self.prefix = "/work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/"
-        else:
-            self.prefix = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/"
 
         if results_path:
             self.results_path = results_path
@@ -128,15 +122,15 @@ class MinSBR:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
             rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
-            self.change_be(thermo_pert_dict)
-            self.change_reactions_rmg(rule_dict=rxn_pert_dict)
+            self.change_be(thermo_pert_dict, save_old_thermo=True)
+            self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=True)
         
         # janky, but only do binding energies if len reactionlist ==5
         elif reaction_list is not None and len(reaction_list) == 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
             thermo_pert_dict = self.load_perts_beonly(reaction_list)
-            self.change_be(thermo_pert_dict)
+            self.change_be(thermo_pert_dict, save_old_thermo=True)
 
         # pull out species names
         for spec_str in self.gas.species_names:
@@ -191,19 +185,32 @@ class MinSBR:
         self.reactor_type = reactor_type
         self.energy = energy
         if self.reactor_type == 0:
-            self.r = ct.Reactor(self.gas, energy=self.energy)
+            if ct_full >= 3.0:
+                self.r = ct.MoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.Reactor(self.gas, energy=self.energy)
             self.reactor_type_str = "Reactor"
         elif reactor_type == 1:
-            self.r = ct.IdealGasReactor(self.gas, energy=self.energy)
+            if ct_full >= 3.0:
+                self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.IdealGasReactor(self.gas, energy=self.energy)
             self.reactor_type_str = "IdealGasReactor"
         elif reactor_type == 2:
-            self.r = ct.ConstPressureReactor(self.gas, energy=self.energy)
+            if ct_full >= 3.0:
+                self.r = ct.ConstPressureMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.ConstPressureReactor(self.gas, energy=self.energy)
             self.reactor_type_str = "ConstPressureReactor"
         elif reactor_type == 3:
-            self.r = ct.IdealGasConstPressureReactor(self.gas, energy=self.energy)
+            if ct_full >= 3.0:
+                self.r = ct.IdealGasConstPressureMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.IdealGasConstPressureReactor(self.gas, energy=self.energy)
             self.reactor_type_str = "IdealGasConstPressureReactor"
 
         # calculate the available catalyst area in a differential reactor
+        self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
         self.rsurf = ct.ReactorSurface(self.surf, self.r, A=self.cat_area)
         self.r.volume = self.rvol
 
@@ -223,11 +230,26 @@ class MinSBR:
         # needing to use a large value for 'K', which can introduce undesired stiffness.
         self.outlet_mfc = ct.PressureController(self.r, self.exhaust, master=self.mfc, K=0.01)
 
-        # load preconditioner
-        # self.precon = ct.AdaptivePreconditioner()
-        # initialize reactor network
+        # create reactor network
         self.sim = ct.ReactorNet([self.r])
-        # self.sim.preconditioner = self.precon
+
+        # determine if we can use preconditioning
+        if ct_full >= 3.0:
+            self.use_precond = use_precond
+        else:
+            self.use_precond = False
+            print("Cantera version is too old for preconditioning, skipping...")
+        
+        if self.use_precond:
+            self.sim.derivative_settings = {"skip-coverage-dependence":True}
+            # load preconditioner
+            self.precon = ct.AdaptivePreconditioner()
+            # self.precon.threshold = 0 # default 0.0
+            # self.precon.ilut_drop_tol = 1e-10 # default 1e-10
+            # self.precon.ilut_fill_factor = 30//4 # 30 == len of sim.get_state()
+            self.sim.preconditioner = self.precon
+
+        # initialize reactornet
         self.sim.initialize()
 
         # set relative and absolute tolerances on the simulation
@@ -236,16 +258,119 @@ class MinSBR:
         
         self.time=time
 
-    def set_params(
-        self, 
+    def reset_params(
+        self,
         reac_config, 
         rtol=1.0e-11,
         atol=1.0e-22,
+        reaction_list=None,
+        ): 
+        # [A_i, Ea_i, b_i]
+
+        if len(self.old_kinetics) > 0 and len(self.old_thermo) > 0: 
+            # reset kinetics
+            for num, reaction in enumerate(self.surf.reactions()): 
+
+                pert_rxn = reaction
+                A_i = self.old_kinetics[num][0]
+                Ea_i = self.old_kinetics[num][1]
+                b_i = self.old_kinetics[num][2]
+
+                # new surface reaction objects were made after 2.6
+                if ct_full <=2.6:
+                    rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
+                else: 
+                    if isinstance(reaction.rate, ct.StickingArrheniusRate):
+                        rate = ct.StickingArrheniusRate(A = A_i, b = b_i, Ea = Ea_i)
+                    elif isinstance(reaction.rate, ct.InterfaceArrheniusRate):
+                        rate = ct.InterfaceArrheniusRate(A = A_i, b = b_i, Ea = Ea_i)
+                    else: 
+                        raise Exception("reaction type not recognized")
+
+                pert_rxn.rate = rate
+                self.surf.modify_reaction(num, pert_rxn)
+
+            # reset thermo
+            for spec in self.surf.species():
+                species = spec.name
+                if spec.name == "X(1)":
+                    # print(spec.name)
+                    pass
+                else:
+                    st_pert = spec.thermo
+                    coeffs = st_pert.coeffs
+                    coeffs[[6, 13]] = self.old_thermo[spec.name]
+                    s_new = ct.NasaPoly2(st_pert.min_temp, st_pert.max_temp, st_pert.reference_pressure, coeffs)
+                    spec.thermo = s_new
+                    self.surf.modify_species(self.surf.species_index(species), spec)
+        else: 
+            raise Exception("old kinetics and thermo not found")
+
+
+        # reset reactor
+        self.gas.TP = 298.0, 101325.0
+        self.surf.TP = 298.0, 101325.0
+        rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
+        self.change_be(thermo_pert_dict, save_old_thermo=False)
+        self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=False)
+
+        # now reset all of the phase objects
+        self.reset_reactor(
+            reac_config, 
+            rtol=1.0e-11,
+            atol=1.0e-22,
+            ) 
+        
+
+    def re_init(
+        self,
+        yaml_file,
+        reac_config, 
+        rtol=1.0e-11,
+        atol=1.0e-22,
+        reactor_type=1,
+        energy="off",
+        time=600,
         reaction_list = None, 
+        results_path = None, 
+        use_precond = False,
         ):
-        """ 
-        resets the reactor and loads a new set of parameters. 
+
         """
+        regenerate solutions, reactors, and reactor networks, but skip unnecessary
+        parts of the init routine. 
+        """
+
+        self.expt_id = reac_config['expt_name']
+        self.temperature = reac_config['temperature']
+        self.pressure = reac_config['pressure']
+        self.volume_flow = reac_config['volume_flowrate']
+        self.use_for_opt = reac_config['use_for_opt']
+
+        # can probably generalize with isomorphism
+        # do that later
+        self.x_H2 = reac_config['species']['H2']
+        self.x_CO2 = reac_config['species']['CO2']
+        self.x_CO = reac_config['species']['CO']
+        if 'H2O' in reac_config['species'].keys():
+            self.x_H2O = reac_config['species']['H2O']
+        else: 
+            self.x_H2O = 0.0
+        
+        # load the experimental TOFs
+        self.graaf_meoh_tof = reac_config['output']['CH3OH']
+        self.graaf_h2o_tof = reac_config['output']['H2O']
+
+        # define ratios of reactants for plots
+        # CO2/(CO+CO2) and (CO2+CO)/H2
+        self.CO2_ratio = self.x_CO2 / (self.x_CO + self.x_CO2)
+        self.H2_ratio = (self.x_CO2 + self.x_CO) / self.x_H2
+
+        # create thermo phases
+        self.yaml_file = yaml_file
+        self.gas = ct.Solution(yaml_file, "gas")
+        self.surf = ct.Interface(yaml_file, "surface1", [self.gas])
+        
         # modify the reactions if specified
         if reaction_list is not None and len(reaction_list) > 5:
             self.gas.TP = 298.0, 101325.0
@@ -260,15 +385,132 @@ class MinSBR:
             self.surf.TP = 298.0, 101325.0
             thermo_pert_dict = self.load_perts_beonly(reaction_list)
             self.change_be(thermo_pert_dict)
+
+        # pull out species names
+        for spec_str in self.gas.species_names:
+            if spec_str.startswith("CO("):
+                self.co_str = spec_str
+            if spec_str.startswith("CO2("):
+                self.co2_str = spec_str
+            if spec_str.startswith("H2("):
+                self.h2_str = spec_str
+            if spec_str.startswith("H2O("):
+                self.h2o_str = spec_str
+            if spec_str.startswith("CH3OH("):
+                self.ch3oh_str = spec_str
         
-        else: 
-            raise Exception("must specify parameters to use set_parameters")
+        # CO/CO2/H2/H2: 
+        self.concentrations_rmg = {
+            self.co_str: self.x_CO,
+            self.co2_str: self.x_CO2,
+            self.h2_str: self.x_H2,
+            self.h2o_str: self.x_H2O,
+        }
+        # initialize T and P
+        self.gas.TPX = self.temperature, self.pressure, self.concentrations_rmg
+        self.surf.TP = self.temperature, self.pressure
+
+        # if a mistake is made with the input moles,
+        # cantera will normalize the mole fractions.
+        # make sure that we are reporting
+        # the normalized values
+        self.x_CO = float(self.gas[self.co_str].X)
+        self.x_CO2 = float(self.gas[self.co2_str].X)
+        self.x_H2 = float(self.gas[self.h2_str].X)
+        self.x_H2O = float(self.gas[self.h2o_str].X)
+
+        # create gas inlet
+        self.inlet = ct.Reservoir(self.gas)
+
+        # create gas outlet
+        self.exhaust = ct.Reservoir(self.gas)
+
+        # Reactor volume
+        self.rvol = reac_config['volume'] 
+
+        # Catalyst Surface Area
+        self.cat_area = reac_config['catalyst_area']  # [m^3]
+        self.cat_area_str = "%s" % "%.3g" % self.cat_area
+        self.total_sites = (self.cat_area*self.surf.site_density)*1e3 #[mol sites]
+
+        # reactor initialization
+        # always use an IdealGasReactor
+        # TODO check about reactor type, see if you can get rid of this block
+        self.reactor_type = reactor_type
+        self.energy = energy
+        if self.reactor_type == 0:
+            if ct_full >= 3.0:
+                self.r = ct.MoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.Reactor(self.gas, energy=self.energy)
+            self.reactor_type_str = "Reactor"
+        elif reactor_type == 1:
+            if ct_full >= 3.0:
+                self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.IdealGasReactor(self.gas, energy=self.energy)
+            self.reactor_type_str = "IdealGasReactor"
+        elif reactor_type == 2:
+            if ct_full >= 3.0:
+                self.r = ct.ConstPressureMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.ConstPressureReactor(self.gas, energy=self.energy)
+            self.reactor_type_str = "ConstPressureReactor"
+        elif reactor_type == 3:
+            if ct_full >= 3.0:
+                self.r = ct.IdealGasConstPressureMoleReactor(self.gas, energy=self.energy)
+            else:
+                self.r = ct.IdealGasConstPressureReactor(self.gas, energy=self.energy)
+            self.reactor_type_str = "IdealGasConstPressureReactor"
+
+        # calculate the available catalyst area in a differential reactor
+        self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
+        self.rsurf = ct.ReactorSurface(self.surf, self.r, A=self.cat_area)
+        self.r.volume = self.rvol
+
+        self.surf.coverages = "X(1):1.0"
+
+        # flow controllers (Graaf measured flow at 293.15 and 1 atm)
+        FC_temp = 293.15
+        self.molar_flow = self.volume_flow * ct.one_atm / (8.3145 * FC_temp)  # [mol/s]
+        self.mass_flow = self.molar_flow * (
+            self.x_CO * MW_CO + self.x_CO2 * MW_CO2 + self.x_H2 * MW_H2 + self.x_H2O * MW_H2O
+        )  # [kg/s]
+        self.mfc = ct.MassFlowController(self.inlet, self.r, mdot=self.mass_flow)
+
+        # A PressureController has a baseline mass flow rate matching the 'master'
+        # MassFlowController, with an additional pressure-dependent term. By explicitly
+        # including the upstream mass flow rate, the pressure is kept constant without
+        # needing to use a large value for 'K', which can introduce undesired stiffness.
+        self.outlet_mfc = ct.PressureController(self.r, self.exhaust, master=self.mfc, K=0.01)
+
+        # create reactor network
+        self.sim = ct.ReactorNet([self.r])
+
+        # determine if we can use preconditioning
+        if ct_full >= 3.0:
+            self.use_precond = use_precond
+        else:
+            self.use_precond = False
+            print("Cantera version is too old for preconditioning, skipping...")
         
-        self.reset_reactor(
-            reac_config, 
-            rtol=rtol,
-            atol=atol,
-        )
+        if self.use_precond:
+            self.sim.derivative_settings = {"skip-coverage-dependence":True}
+            # load preconditioner
+            self.precon = ct.AdaptivePreconditioner()
+            self.precon.threshold = 0 # default 0.0
+            self.precon.ilut_drop_tol = 1e-10 # default 1e-10
+            self.precon.ilut_fill_factor = 30//4 # 30 == len of sim.get_state()
+            self.sim.preconditioner = self.precon
+
+        # initialize reactornet
+        self.sim.initialize()
+
+        # set relative and absolute tolerances on the simulation
+        self.sim.rtol = rtol
+        self.sim.atol = atol
+        
+        self.time = time
 
     def reset_reactor(        
         self,
@@ -313,9 +555,14 @@ class MinSBR:
         }
         # initialize T and P
         self.gas.TPX = self.temperature, self.pressure, self.concentrations_rmg
-        self.surf.TP = self.temperature, self.pressure
+        self.surf.TPX = self.temperature, self.pressure, "X(1):1.0"
         self.rsurf.kinetics.TP = self.surf.TP
+        self.rsurf.coverages = "X(1):1.0"
 
+        self.r.volume = self.rvol
+
+        # self.surf.coverages = "X(1):1.0"
+        # self.rsurf.kinetics.TP = self.surf.TP
 
         # Reactor volume
         self.rvol = reac_config['volume'] 
@@ -330,8 +577,8 @@ class MinSBR:
         self.rsurf.area = self.cat_area
         self.r.volume = self.rvol
 
-        self.surf.coverages = "X(1):1.0"
-        self.rsurf.coverages = self.surf.coverages
+        # self.surf.coverages = "X(1):1.0"
+        # self.rsurf.coverages = self.surf.coverages
 
         # flow controllers (Graaf measured flow at 293.15 and 1 atm)
         FC_temp = 293.15
@@ -342,17 +589,21 @@ class MinSBR:
         self.mfc.mass_flow_rate = self.mass_flow
 
         # reinitialize reactor network
-        self.sim.set_initial_time(0)
         self.r.syncState()
         self.inlet.syncState()
         self.exhaust.syncState()
 
         # initialize reactor network
+        # if self.use_precond: 
+        #     self.sim.preconditioner = self.precon
+        self.sim.set_initial_time(0)
         self.sim.reinitialize()
+        
 
         # set relative and absolute tolerances on the simulation
         self.sim.rtol = rtol
         self.sim.atol = atol
+
 
     def load_perts(self, pert_list):
         """ 
@@ -400,7 +651,7 @@ class MinSBR:
 
         return thermo_pert_dict
 
-    def change_be(self, thermo_pert_dict):
+    def change_be(self, thermo_pert_dict, save_old_thermo=False):
         """
         change the species BE by altering the enthalpy of formation
         """
@@ -408,7 +659,13 @@ class MinSBR:
         # dh is range of 0.3 eV, or 1e7 j/kmol
         kj_thermo_pert = {k: v/1e6 for k, v in thermo_pert_dict.items()}
 
+        # prior h298 values
         old_h298 = {}
+
+        # old thermo
+        if save_old_thermo:
+            old_thermo = {}
+
         for spec in self.surf.species():
             if spec.name == "X(1)":
                 # print(spec.name)
@@ -424,6 +681,9 @@ class MinSBR:
                     dh += thermo_pert_dict[atom] * value
 
                 st_orig = spec.thermo
+                if save_old_thermo:
+                    old_thermo[species] = st_orig.coeffs[[6, 13]]
+                
 
                 coeffs = st_orig.coeffs
                 coeffs[[6, 13]] += dh / ct.gas_constant
@@ -435,7 +695,9 @@ class MinSBR:
                     diff = spec.thermo.h(298.15)/1e6 - old_h298[species]
                     pert = dh/1e6
                     assert np.isclose(diff, pert, rtol=1e-3, atol=1e-3)
-        
+        if save_old_thermo: 
+            self.old_thermo = old_thermo
+
         return old_h298
 
     def scale_ea(self, E0, alpha, rxn, rxind):
@@ -478,12 +740,14 @@ class MinSBR:
             Ea = 0
         return Ea
 
-    def change_reactions_rmg(self, rule_dict = [], test = False):
+    def change_reactions_rmg(self, rule_dict = [], test = False, save_old_kinetics=False):
         """
         find the template for a given reaction
         for now, we don't really care about gas phase rxns
         """
-
+        if save_old_kinetics:
+            old_kinetics = {}
+        
         ck_matches = {}
         ck_no_match = []
         for ck_num, ck_items in enumerate(self.ck_rule_dict):
@@ -542,6 +806,9 @@ class MinSBR:
                     Ea_i = self.surf.reactions()[num].rate.activation_energy
                     b_i = self.surf.reactions()[num].rate.temperature_exponent
                     
+                    if save_old_kinetics:
+                        old_kinetics[num] = [A_i, Ea_i, b_i]
+
                     if ck_data["rtype"] == "arrhenius":
                         A_i = 10**float(A_src)
                         # for bimolecular reactions we have m^2/mol*s in chemkin, 
@@ -592,6 +859,10 @@ class MinSBR:
             else:
                 raise Exception("chemkin reaction does not match ct")
 
+        # need to specify so we don't overwrite each successive run
+        if save_old_kinetics: 
+            self.old_kinetics = old_kinetics
+
         return ck_matches
 
     def run_reactor_ss_memory(self, peuqse=False):
@@ -604,7 +875,12 @@ class MinSBR:
         # reactor volume is 1.35*10^-4 m^3
         # volume flowrate is always greater than 1e-6 m^3/s, meaning at most 
         # our residence time is 134s. so 134*4 = 536.  
-        self.sim.advance(self.time)
+
+        if self.use_precond: 
+            self.sim.advance_to_steady_state()
+        else: 
+            self.sim.advance(self.time)
+
         results = {}
 
         if not peuqse: 
@@ -676,6 +952,7 @@ class MinSBR:
                 for i in range(0, len(self.r.kinetics.net_rates_of_progress)):
                     results[gasrxn_ROP_str[i]] = self.r.kinetics.net_rates_of_progress[i]
 
+        # just return mole fractions if we're running peuqse
         else: 
             for i in range(0, len(self.gas.X)):
                 results[self.gas.species_names[i]] = self.gas.X[i]
