@@ -39,7 +39,7 @@ def setup_userinput(project_path):
     x_data = np.array(x_data)
     y_data = np.array(y_data)
     y_unc = np.array(y_data)
-    print(f"length is {len(x_data)} in main")
+    print(f"length is {len(x_data[0])} in main")
     
     # UserInput.directories['graphs'] = os.path.join(peuq_path, "graphs/")
     # UserInput.directories['logs_and_csvs'] = os.path.join(peuq_path, "logs_and_csvs/")
