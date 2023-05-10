@@ -210,7 +210,6 @@ class MinSBR:
             self.reactor_type_str = "IdealGasConstPressureReactor"
 
         # calculate the available catalyst area in a differential reactor
-        self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
         self.rsurf = ct.ReactorSurface(self.surf, self.r, A=self.cat_area)
         self.r.volume = self.rvol
 
@@ -464,7 +463,6 @@ class MinSBR:
             self.reactor_type_str = "IdealGasConstPressureReactor"
 
         # calculate the available catalyst area in a differential reactor
-        self.r = ct.IdealGasMoleReactor(self.gas, energy=self.energy)
         self.rsurf = ct.ReactorSurface(self.surf, self.r, A=self.cat_area)
         self.r.volume = self.rvol
 
