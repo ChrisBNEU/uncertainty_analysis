@@ -20,13 +20,15 @@ def make_bash_script(full_path, parallel=False, local_run=False):
         # define nodes and total number of tasks you want to run in parallel
         nodes = 2
         tot_tasks = 128
-        tpn = tot_tasks / nodes
+        tpn = int(tot_tasks / nodes)
 
         # mpi runs need one node extra to control, so # of sub tasks is n-1
-        mpi_tasks = (tot_tasks / nodes) - 1
+        mpi_tasks = tpn - 1
 
     else: 
         run_type = "ser"
+        tpn = 1
+        tot_tasks = 1
     
     if local_run: 
         run_loc = "loc"
@@ -53,6 +55,8 @@ def make_bash_script(full_path, parallel=False, local_run=False):
         output.append("source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuquse_env")
         output.append("module load gcc/10.1.0")
         output.append("module load openmpi/4.1.2-gcc10.1")
+        output.append("rm /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/cantera/chem_annotated.yaml")
+        output.append("cti2yaml /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/cantera/chem_annotated.cti")
     else: 
         output.append("source activate peuqse_env")
 
@@ -82,7 +86,7 @@ def make_run_file(full_path, parallel=False):
     output.append("import PEUQSE as PEUQSE")
     output.append("import PEUQSE.UserInput as UserInput")
     output.append("import sys")
-    output.append("repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))")
+    output.append("repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))")
     output.append("sys.path.insert(0, repo_dir)")
     output.append("import rmg_gua.gua_peuqse.ct_simulation as ct_simulation")
     output.append("from rmg_gua.gua_peuqse.setup_peuqse import setup_userinput")
@@ -157,8 +161,8 @@ def make_run_folder(full_path, parallel=False, local_run=False):
 if __name__ == "__main__":
 
     run_folder = str(sys.argv[1])
-    parallel = bool(sys.argv[2])
-    local_run = bool(sys.argv[3])
+    parallel = bool(int(sys.argv[2]))
+    local_run = bool(int(sys.argv[3]))
     file_path = os.path.dirname(__file__)
     full_path = os.path.join(file_path, "peuqse_runs", run_folder)
 
