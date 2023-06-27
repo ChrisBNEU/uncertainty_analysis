@@ -9,30 +9,40 @@ from rmgpy.data.kinetics.family import TemplateReaction
 from rmgpy.kinetics import StickingCoefficientBEP, StickingCoefficient, SurfaceArrheniusBEP, SurfaceArrhenius
 
 
-def make_new_rule(model_path, rmg_db_folder):
+def make_new_rule(model_path, rmg_db_folder, sens_rxn=None):
+    """
+    make a new rule for the most sensitive reaction.
+    model_path: path to the model folder
+    rmg_db_folder: path to the rmg database folder
+    sens_rxn: the most sensitive reaction, if known 
 
-    cmkn_pickle_path = os.path.join(model_path, "sens_cmkn_dict.pickle")
-    with open(cmkn_pickle_path, "rb") as f:
-        cmkn_dict = pickle.load(f)
-    
-    # for now, select the most sensitive reaction. sort dict.
-    not_found = True
-    while not_found:
-        # min_key = min(cmkn_dict, key=cmkn_dict.get)
-        min_key = min(cmkn_dict.items(), key=lambda k: k[0][0])[0]
-        most_sens_rxn = cmkn_dict[min_key][1]
-
-        # remove the most sensitive reaction from the dict
-        cmkn_dict.pop(min_key)
-
-        # verify that the reaction is an estimate
-        if most_sens_rxn.kinetics.comment.startswith("Estimated"):
-            print("found most sensitive reaction is an estimate")
-            not_found = False 
+    if sens_rxn is not specified, then it will search for a pickle file in the model folder. 
+    """
+    if not sens_rxn:
+        cmkn_pickle_path = os.path.join(model_path, "sens_cmkn_dict.pickle")
+        with open(cmkn_pickle_path, "rb") as f:
+            cmkn_dict = pickle.load(f)
         
-        if len(cmkn_dict) == 0:
-            print("all sens rxns are from library or training")
-            break
+        # for now, select the most sensitive reaction. sort dict.
+        not_found = True
+        while not_found:
+            # min_key = min(cmkn_dict, key=cmkn_dict.get)
+            min_key = min(cmkn_dict.items(), key=lambda k: k[0][0])[0]
+            most_sens_rxn = cmkn_dict[min_key][1]
+
+            # remove the most sensitive reaction from the dict
+            cmkn_dict.pop(min_key)
+
+            # verify that the reaction is an estimate
+            if most_sens_rxn.kinetics.comment.startswith("Estimated"):
+                print("found most sensitive reaction is an estimate")
+                not_found = False 
+            
+            if len(cmkn_dict) == 0:
+                print("all sens rxns are from library or training")
+                break
+    else: 
+        most_sens_rxn = sens_rxn
 
     # load the kinetics database
     # rmg_db_folder= "/Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-database/"

@@ -30,7 +30,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(""))))
 from rmg_gua.gua_peuqse.peuqse_utilities import get_highest_rms_file
 
 def get_rxn_sensitivities(rms_path, rxn_index):
-    rms_path = os.path.join(repo_dir, "rmg_gua", "baseline")
+    if not rms_path: 
+        rms_path = os.path.join(repo_dir, "rmg_gua", "baseline")
+    else:
+        rms_path = os.path.join(repo_dir, "rmg_gua", rms_path)
 
     file_dir = get_highest_rms_file(rms_path)
     phase_dict = rms.readinput(file_dir)
