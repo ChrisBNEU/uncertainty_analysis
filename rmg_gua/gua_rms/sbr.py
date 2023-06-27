@@ -2,8 +2,6 @@ from pyrms import rms
 from diffeqpy import de
 from julia import Main
 import yaml
-from julia import Sundials
-from diffeqpy import de
 import time 
 import matplotlib
 import pickle
@@ -251,10 +249,26 @@ class rms_sbr:
             [results["Error % " + spec] for spec in species_err])
          
         # get reaction for CH3OH, ethane, and CH4 at reactor outlet
+        rxn_strs = []
+        for rxn in self.ssys.reactions: 
+            rxn_strs.append(rms.getrxnstr(rxn))
+
         for spec in sens_spcs:
-            sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(self.ssys, spec, 600, tol=0)
-            for rxn, sens in zip(sens_rxns,rxn_sens):
-                results[rms.getrxnstr(rxn) + " sens to " + spec] = sens
+            # get the sensitivities. transitory sensitivities returns the full sensitivity matrix
+            # calculated from the jacobian. returns a (n_species, n_reactions) x (n_species, n_reactions) matrix, 
+            # so to just get the reaction sensitivities we single out a species for out row, then
+            # slice out the first n_species columns. adapted from plotrxntransitorysensitivities in rms
+
+            sens_items, _ = rms.transitorysensitivitiesfulltrapezoidal(self.ssys, 600)
+            try:
+                ind = self.ssys.names.index(spec)
+            except ValueError:
+                print(spec, " not found in species list")
+                continue
+            sens_items_rxn = sens_items[ind,len(self.ssys.names):]
+
+            for rxn, sens in zip(rxn_strs, sens_items_rxn):
+                results[rxn + " sens to " + spec] = sens
         
         if peuqse: 
             # get sensitivities
@@ -267,20 +281,22 @@ class rms_sbr:
             # second time value, then the tenth at the third time value then the score it gets is 
 
             for stime in sens_times:
-                # tol =0 will get all reactions
-                sens_rxns, rxn_sens = rms.getrxntransitorysensitivities(self.ssys, "CH3OH", stime, tol=0)
+                ind = self.ssys.names.index("CH3OH")
+                sens_items, _ = rms.transitorysensitivitiesfulltrapezoidal(self.ssys, stime)
+                sens_items_rxn = sens_items[ind,len(self.ssys.names):]
+
                 counter = 1
                 for (rxn, sens) in zip(sens_rxns, rxn_sens):
-                    if rms.getrxnstr(rxn) in sens_rxn_dict.keys():
-                        old_sens = sens_rxn_dict[rms.getrxnstr(rxn)][0]
-                        sens_rxn_dict[rms.getrxnstr(rxn)][0] = counter*old_sens
-                        sens_rxn_dict[rms.getrxnstr(rxn)][1].append(sens)
-                        sens_rxn_dict[rms.getrxnstr(rxn)][2].append(counter)
+                    if rxn in sens_rxn_dict.keys():
+                        old_sens = sens_rxn_dict[rxn][0]
+                        sens_rxn_dict[rxn][0] = counter*old_sens
+                        sens_rxn_dict[rxn][1].append(sens)
+                        sens_rxn_dict[rxn][2].append(counter)
                     else:
                         rxn_adj = rms.getrxnadjlist(rxn)
                         reac_spec = [make_spc(reac) for reac in rxn.reactants]
                         prod_spec = [make_spc(prod) for prod in rxn.products]
-                        sens_rxn_dict[rms.getrxnstr(rxn)] = [counter, [sens],[counter], reac_spec, prod_spec]
+                        sens_rxn_dict[rxn] = [counter, [sens],[counter], reac_spec, prod_spec]
 
                     counter +=1
                 if len(sens_rxns) > max_len:
