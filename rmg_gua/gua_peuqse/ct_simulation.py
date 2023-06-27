@@ -25,7 +25,7 @@ def sim_init(project_path):
     global peuq_path
     global data
     global lookup_dict
-    global test_sbr
+    global test_sbr_list
 
     results_path = os.path.join(project_path, "config")
     peuq_path = os.path.join(project_path, "peuqse")
@@ -49,17 +49,21 @@ def sim_init(project_path):
     # load the initial parameter set
     starting_params = get_all_param_lists(results_path)
 
-    # initialize sbr
-    test_sbr = MinSBR(
-        file_path,
-        reac_config=data[0],
-        rtol=1.0e-11,
-        atol=1.0e-22,
-        reaction_list=starting_params["value_list"], 
-        results_path=results_path,
-        use_precond=False, 
-        time=600,
-    )
+    test_sbr_list = []
+    for i, expt in enumerate(data): 
+        # initialize sbr object for each experiment
+        test_sbr_list.append(
+            MinSBR(
+                file_path,
+                reac_config=expt,
+                rtol=1.0e-11,
+                atol=1.0e-22,
+                reaction_list=starting_params["value_list"], 
+                results_path=results_path,
+                use_precond=False, 
+                time=600,
+                )
+        )
 
 
 # To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
@@ -82,28 +86,23 @@ def simulationFunction(parameters, debug=False):
     run_test = False
     n_expts = len(data)
             
-    file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.yaml")
-    test_sbr.reset_params(        
-        reac_config=data[0], 
-        rtol=1.0e-11,
-        atol=1.0e-22,
-        reaction_list=parameters,
-        )
 
-    for run in range(0,n_expts): 
+
+    for run, expt in enumerate(data): 
         conditions = data[run]
         # print(f"starting sim {run}")
         
         # print("resetting reactor")
-        test_sbr.reset_reactor(
-            reac_config=conditions,
+        test_sbr_list[run].reset_params(        
+            reac_config=data[run], 
             rtol=1.0e-11,
             atol=1.0e-22,
+            reaction_list=parameters,
             )
 
         # try except loop for this because cantera errors out for certain A and Ea values
         try:
-            results = test_sbr.run_reactor_ss_memory(peuqse=True)
+            results = test_sbr_list[run].run_reactor_ss_memory(peuqse=True)
             CH3OH_X.append(results[lookup_dict["CH3OH"]])
             CO_X.append(results[lookup_dict["CO"]])
             CO2_X.append(results[lookup_dict["CO2"]])
@@ -156,7 +155,7 @@ def simulationFunction(parameters, debug=False):
         print("H2: ", H2_X)
         print("H2O: ", H2O_X)
         print("sim done")
-        return test_sbr, y_data
+        return test_sbr_list, y_data
     else:
         return y_data 
     
