@@ -212,14 +212,17 @@ def trim_rule_file(results_path, rules_used):
     with open(rule_ub_config_file, 'w') as f:
         yaml.safe_dump(rule_ub_dict, f, sort_keys=False)    
 
-def make_ck_reac_config(results_path=False, trim_rules=False):
+def make_ck_reac_config(results_path=False, trim_rules=False, model_path=None):
     """
     make config file detailing the rule associated with each rmg reaction
     trim_rule_file: if true, remove rules from rule config files that are not in 
     the mechanism
     """
     # now load the sensitive reactions
-    path = os.path.join(prefix, "rmg_gua", "baseline")
+    if model_path:
+        path = model_path
+    else: 
+        path = os.path.join(prefix, "rmg_gua", "baseline")
 
     # load the chemkin file
     chemkin_file = os.path.join(path, "chemkin", "chem_annotated-gas.inp")
@@ -297,7 +300,7 @@ def make_ck_reac_config(results_path=False, trim_rules=False):
 
     return ck_rule_dict
  
-def make_be_config(results_path=False, return_test_spec=False):
+def make_be_config(results_path=False, return_test_spec=False, model_path=None):
     """
     makes a dict containing each species and it's corresponding bond order
 
@@ -307,7 +310,10 @@ def make_be_config(results_path=False, return_test_spec=False):
         carbon single bond, etc.)
     """
     # now load the sensitive reactions
-    path = os.path.join(prefix, "rmg_gua", "baseline")
+    if model_path:
+        path = model_path
+    else: 
+        path = os.path.join(prefix, "rmg_gua", "baseline")
 
     # load the chemkin file
     chemkin_file = os.path.join(path, "chemkin", "chem_annotated-gas.inp")

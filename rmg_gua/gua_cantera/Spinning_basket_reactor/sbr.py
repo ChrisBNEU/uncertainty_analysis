@@ -26,6 +26,7 @@ ct_major = int(ct.__version__.split(".")[0])
 ct_minor = int(ct.__version__.split(".")[1])
 
 ct_full = float(str(ct_major) + "." + str(ct_minor))
+print("cantera version: ", ct_full)
 
 # define molecular weights for mass flow calculations
 MW_CO = 28.01e-3  # [kg/mol]
@@ -50,6 +51,8 @@ class MinSBR:
         reaction_list = None, 
         results_path = None, 
         use_precond = False,
+        save_new_model = False,
+        verbose=False,
         ):
         """
         initialize sbr object
@@ -57,8 +60,9 @@ class MinSBR:
         reac_config = yaml file containing experimental configuration values
                       Temp, Pressure, concentrations, etc. 
         new_rate_dict = dict of new rates that we want to set
+        save_new_model = bool, whether or not to save the perturbed model in chemkin format
         """
-
+        self.verbose = verbose
         if results_path:
             self.results_path = results_path
         else:
@@ -122,8 +126,43 @@ class MinSBR:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
             rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
-            self.change_be(thermo_pert_dict, save_old_thermo=True)
-            self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=True)
+
+            # load in the original chemkin model in memory for modification.
+            if save_new_model: 
+                from rmgpy.chemkin import load_chemkin_file
+                from rmgpy.rmg.model import ReactionModel
+
+                # this assumes the typical directory structure in an rmg model
+                model_path = os.path.dirname(os.path.dirname(self.yaml_file))
+                chemkin_path = os.path.join(model_path, "chemkin")
+
+                # load the chemkin file
+                chemkin_file = os.path.join(chemkin_path, "chem_annotated-gas.inp")
+                chemkin_surf_file = os.path.join(chemkin_path, "chem_annotated-surface.inp")
+                chemkin_dict = os.path.join(chemkin_path, "species_dictionary.txt")
+
+                # load the chemkin file
+                self.model = ReactionModel()
+                self.model.species, self.model.reactions = load_chemkin_file(
+                    chemkin_file,
+                    dictionary_path=chemkin_dict,
+                    surface_path=chemkin_surf_file,
+                    use_chemkin_names=True,
+                )
+                # make a dictionary of reactions with the key as the eqtn
+                reaction_lists = [rxn.to_labeled_str(use_index=True) for rxn in self.model.reactions]
+                self.new_rxn_dict = dict(zip(reaction_lists, self.model.reactions))
+                # make a dictionary of reactions with the key as the eqtn
+                species_lists = [f"{spec.label}({spec.index})" for spec in self.model.species]
+                self.new_spec_dict = dict(zip(species_lists, self.model.species))
+
+
+            self.change_be(thermo_pert_dict, save_old_thermo=True, save_new_thermo=save_new_model)
+            self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=True, save_new_kinetics=save_new_model)
+
+            if save_new_model: 
+                self.save_new_model()
+
         
         # janky, but only do binding energies if len reactionlist ==5
         elif reaction_list is not None and len(reaction_list) == 5:
@@ -376,7 +415,7 @@ class MinSBR:
             self.surf.TP = 298.0, 101325.0
             rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
             self.change_be(thermo_pert_dict)
-            self.change_reactions_rmg(rule_dict=rxn_pert_dict)
+            self.change_reactions_rmg(rule_dict=rxn_pert_dict,)
         
         # janky, but only do binding energies if len reactionlist ==5
         elif reaction_list is not None and len(reaction_list) == 5:
@@ -631,7 +670,8 @@ class MinSBR:
             for num, (key, value) in enumerate(thermo_pert_dict.items()):
                 thermo_pert_dict[key] = pert_list[count]
                 count += 1
-
+            
+            print("thermo perturbations: ", thermo_pert_dict)
 
         return rule_dict, thermo_pert_dict
 
@@ -649,7 +689,7 @@ class MinSBR:
 
         return thermo_pert_dict
 
-    def change_be(self, thermo_pert_dict, save_old_thermo=False):
+    def change_be(self, thermo_pert_dict, save_old_thermo=False, save_new_thermo=False):
         """
         change the species BE by altering the enthalpy of formation
         """
@@ -673,6 +713,7 @@ class MinSBR:
                 species = spec.name
                 if self.test_spec and species in self.test_spec.values():
                     old_h298[species] = spec.thermo.h(298.15)/1e6
+
                 # calculate dh
                 bo_spec = self.thermo_bo_dict[species] 
                 for atom, value in bo_spec.items():
@@ -681,7 +722,6 @@ class MinSBR:
                 st_orig = spec.thermo
                 if save_old_thermo:
                     old_thermo[species] = st_orig.coeffs[[6, 13]]
-                
 
                 coeffs = st_orig.coeffs
                 coeffs[[6, 13]] += dh / ct.gas_constant
@@ -689,12 +729,27 @@ class MinSBR:
                 spec.thermo = s_new
                 self.surf.modify_species(self.surf.species_index(species), spec)
 
+                if save_new_thermo: 
+                    # cantera units J/kmol, convert to j/kmol
+                    if self.verbose: 
+                        polly = [poly.c5 for poly in self.new_spec_dict[species].thermo.polynomials]
+                        print(species, " original C5: ", polly)
+
+                    self.new_spec_dict[species].thermo = self.new_spec_dict[species].thermo.change_base_enthalpy(dh/1e3)
+                    if self.verbose: 
+                        polly = [poly.c5 for poly in self.new_spec_dict[species].thermo.polynomials]
+                        print(species, " altered C5: ", polly)
+
                 if self.test_spec and species in self.test_spec.values():
                     diff = spec.thermo.h(298.15)/1e6 - old_h298[species]
                     pert = dh/1e6
                     assert np.isclose(diff, pert, rtol=1e-3, atol=1e-3)
+
         if save_old_thermo: 
             self.old_thermo = old_thermo
+        
+        if save_new_thermo:
+            self.new_thermo = deepcopy(self.model.species)
 
         return old_h298
 
@@ -738,11 +793,37 @@ class MinSBR:
             Ea = 0
         return Ea
 
-    def change_reactions_rmg(self, rule_dict = [], test = False, save_old_kinetics=False):
+    def change_reactions_rmg(self, rule_dict = [], test = False, save_old_kinetics=False, save_new_kinetics=False):
         """
         find the template for a given reaction
         for now, we don't really care about gas phase rxns
+        if save new kinetics is true, we will save the chemkin files as well. 
         """
+        # if save_new_kinetics: 
+        #     from rmgpy.chemkin import load_chemkin_file
+        #     from rmgpy.rmg.model import ReactionModel
+
+        #     # this assumes the typical directory structure in an rmg model
+        #     model_path = os.path.dirname(os.path.dirname(self.yaml_file))
+        #     chemkin_path = os.path.join(model_path, "chemkin")
+
+        #     # load the chemkin file
+        #     chemkin_file = os.path.join(chemkin_path, "chem_annotated-gas.inp")
+        #     chemkin_surf_file = os.path.join(chemkin_path, "chem_annotated-surface.inp")
+        #     chemkin_dict = os.path.join(chemkin_path, "species_dictionary.txt")
+
+        #     # load the chemkin file
+        #     model = ReactionModel()
+        #     model.species, model.reactions = load_chemkin_file(
+        #         chemkin_file,
+        #         dictionary_path=chemkin_dict,
+        #         surface_path=chemkin_surf_file,
+        #         use_chemkin_names=True,
+        #     )
+        #     # make a dictionary of reactions with the key as the eqtn
+        #     reaction_lists = [rxn.to_labeled_str(use_index=True) for rxn in model.reactions]
+        #     new_rxn_dict = dict(zip(reaction_lists, model.reactions))
+    
         if save_old_kinetics:
             old_kinetics = {}
         
@@ -809,27 +890,42 @@ class MinSBR:
 
                     if ck_data["rtype"] == "arrhenius":
                         A_i = 10**float(A_src)
+
+                        # if saving new kinetics, keep value of a since units are 
+                        # the same 
+                        if save_new_kinetics:
+                            self.new_rxn_dict[ck_rxn].kinetics.A.value_si = A_i
+                        
                         # for bimolecular reactions we have m^2/mol*s in chemkin, 
                         # but m^2/kmol*s in cantera. all others are either sticking 
                         # (trimolecular dissociative rxns) or unimolecular (units 1/s)
                         if n_reactants == 2:
                             A_i = A_i*1e3
+
                     elif ck_data["rtype"] == "stick":
                         A_i = 10**float(A_src)
                         # I don't think we have bimolecular sticking rxns
+                        if save_new_kinetics:
+                            self.new_rxn_dict[ck_rxn].kinetics.A.value_si = A_i
                     else:
                         raise Exception("reaction type not recognized")
                     
                     # account for rxn path degeneracy
                     if ck_data["deg"] > 1.0:
                         A_i = A_i * ck_data["deg"]
+
+                        if save_new_kinetics: 
+                            self.new_rxn_dict[ck_rxn].kinetics.A.value_si = self.new_rxn_dict[ck_rxn].kinetics.A.value_si * ck_data["deg"]
                     
                     # units j/mol in chemkin, j/kmol in cantera
                     E0_src = E0_src*1e3
                     Ea_i = self.scale_ea(E0_src, alpha_src, rxn, num)
 
+                    if save_new_kinetics: 
+                        self.new_rxn_dict[ck_rxn].kinetics.Ea.value_si = Ea_i/1e3
+
                     # new surface reaction objects were made after 2.6
-                    if ct_full <=2.6:
+                    if ct_full < 2.6:
                         rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
                     else: 
                         if ck_data["rtype"] == "stick":
@@ -860,8 +956,69 @@ class MinSBR:
         # need to specify so we don't overwrite each successive run
         if save_old_kinetics: 
             self.old_kinetics = old_kinetics
+        
+        if save_new_kinetics:
+            self.new_kinetics = deepcopy(self.model.reactions)
+            # self.new_model = model
 
         return ck_matches
+
+    def save_new_model(self, file_path=None):
+        """
+        save the new thermo to chemkin files and an rms file. 
+        """
+        from rmgpy.rmg.model import ReactionModel
+        from rmgpy.chemkin import save_chemkin_file, save_chemkin_surface_file, save_chemkin, load_chemkin_file
+        from rmgpy.yml import write_yml
+        if file_path and isinstance(file_path, str): 
+            ck_path = file_path
+            rms_path = file_path
+        else: 
+            model_path = os.path.dirname(os.path.dirname(self.yaml_file))
+            ck_path = os.path.join(model_path, 'chemkin', 'chem_annotated_modified.inp')
+            ck_path_verbose = os.path.join(model_path, 'chemkin', 'chem_annotated_modified.inp')
+            rms_path = os.path.join(model_path, "rms")
+        
+        # self.new_species = self.new_model.species
+        # self.new_reactions = self.new_model.reactions
+        # save_chemkin_file(
+        #     os.path.join(ck_path, "chem_gas_modified.inp"), 
+        #     self.new_thermo, 
+        #     self.new_kinetics,
+        #     )
+        # save_chemkin(
+        #     self.new_model, 
+        #     path = ck_path, 
+        #     verbose_path = ck_path_verbose,  
+        #     # self.new_thermo, 
+        #     # self.new_kinetics,
+        #     )
+        
+         # load the chemkin file
+        # chemkin_file = os.path.join(ck_path, "chem_annotated_modified-gas.inp")
+        # chemkin_surf_file = os.path.join(ck_path, "chem_annotatedmodified-surface.inp")
+        # chemkin_dict = os.path.join(ck_path, "species_dictionary.txt")
+
+        # load the chemkin file. the write yaml method uses the index method of list with the species object
+        # i.e species_list.index(SpeciesObject). 
+        # which means that if species in the species list have different pointers, 
+        # write yaml will fail when doing the reactions. 
+        # model = ReactionModel()
+        # model.species = self.new_thermo
+        # model.reactions = self.new_kinetics
+        # = load_chemkin_file(
+        #     chemkin_file,
+        #     dictionary_path=chemkin_dict,
+        #     surface_path=chemkin_surf_file,
+        #     use_chemkin_names=True,
+        # )
+
+        write_yml(
+            self.model.species, 
+            self.model.reactions, 
+            path = os.path.join(rms_path, "chem_modified.yml")
+            )
+
 
     def run_reactor_ss_memory(self, peuqse=False):
         """
