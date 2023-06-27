@@ -218,6 +218,13 @@ def make_ck_reac_config(results_path=False, trim_rules=False, model_path=None):
     trim_rule_file: if true, remove rules from rule config files that are not in 
     the mechanism
     """
+    # load the rmg database
+    print("loading rmg database")
+    rmg_path = os.path.join(os.path.dirname(os.environ['RMGPY']))
+    kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
+    kdb = KineticsDatabase()
+    kdb.load(kdb_path, families='surface', depositories=False)
+
     # now load the sensitive reactions
     if model_path:
         path = model_path
@@ -241,25 +248,20 @@ def make_ck_reac_config(results_path=False, trim_rules=False, model_path=None):
     rules_used = {}
     for rxn in model.reactions:
         if rxn.is_surface_reaction():
+            family = rxn.get_source()
+            source_info = kdb.families[family].extract_source_from_comments(rxn)
             if isinstance(rxn, TemplateReaction):
-                comment = rxn.kinetics.comment
-                if "Estimated using template" in comment: 
-                    if "Average of" in comment:
-                        template_str = re.search(r'Average of \[(.+?)\]', comment).group(1)
-                    else:
-                        template_str = re.search(r'Estimated using template \[(.+?)\]', comment).group(1)
-                elif "Estimated using an average for rate rule" in comment:
-                    template_str = re.search(r'Estimated using an average for rate rule \[(.+?)\]', comment).group(1)
-                elif "Exact match found for rate rule" in comment:
-                    template_str = re.search(r'Exact match found for rate rule \[(.+?)\]', comment).group(1)
-                else:
-                    print(f"no template found for {rxn.to_labeled_str(use_index=True)}")
+                # write the rule our reaction came from to template_str
+                if len(source_info[1][1]['rules']) == 1:
+                    template_str = source_info[1][1]['rules'][0][0].label
+                else: 
+                    # I don't have a good way of dealing with averaged rules yet. 
+                    # current families only seem to match one node so far.
+                    # if this is ever not the case I want to know. 
+                    raise Exception("more than one rule found for rxn source")
 
                 # get rxn path degeneracy
-                if "Multiplied by reaction path degeneracy" in comment:
-                    deg = float(re.search(r'Multiplied by reaction path degeneracy (.+?)\.', comment).group(1))
-                else:
-                    deg = 1.0
+                deg = source_info[1][1]['degeneracy']
                 
                 if rxn.kinetics.A.value_si <=1.0:
                     A_val = rxn.kinetics.A.value_si
