@@ -20,8 +20,10 @@ database(
         ],
     reactionLibraries = [
         'BurkeH2O2inArHe',
-        'BurkeH2O2inN2', ],
-        # 'Surface/CPOX_Pt/Deutschmann2006_adjusted'],
+        'BurkeH2O2inN2', 
+        # 'Surface/Methanol/Johnson_pyntaCu111', 
+        # 'Surface/Methanol/Nakamura_Cu111',
+        ],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
     kineticsFamilies=[('surface', True), ('default', False)],
