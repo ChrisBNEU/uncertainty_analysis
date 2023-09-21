@@ -799,31 +799,6 @@ class MinSBR:
         for now, we don't really care about gas phase rxns
         if save new kinetics is true, we will save the chemkin files as well. 
         """
-        # if save_new_kinetics: 
-        #     from rmgpy.chemkin import load_chemkin_file
-        #     from rmgpy.rmg.model import ReactionModel
-
-        #     # this assumes the typical directory structure in an rmg model
-        #     model_path = os.path.dirname(os.path.dirname(self.yaml_file))
-        #     chemkin_path = os.path.join(model_path, "chemkin")
-
-        #     # load the chemkin file
-        #     chemkin_file = os.path.join(chemkin_path, "chem_annotated-gas.inp")
-        #     chemkin_surf_file = os.path.join(chemkin_path, "chem_annotated-surface.inp")
-        #     chemkin_dict = os.path.join(chemkin_path, "species_dictionary.txt")
-
-        #     # load the chemkin file
-        #     model = ReactionModel()
-        #     model.species, model.reactions = load_chemkin_file(
-        #         chemkin_file,
-        #         dictionary_path=chemkin_dict,
-        #         surface_path=chemkin_surf_file,
-        #         use_chemkin_names=True,
-        #     )
-        #     # make a dictionary of reactions with the key as the eqtn
-        #     reaction_lists = [rxn.to_labeled_str(use_index=True) for rxn in model.reactions]
-        #     new_rxn_dict = dict(zip(reaction_lists, model.reactions))
-    
         if save_old_kinetics:
             old_kinetics = {}
         
@@ -889,7 +864,11 @@ class MinSBR:
                         old_kinetics[num] = [A_i, Ea_i, b_i]
 
                     if ck_data["rtype"] == "arrhenius":
-                        A_i = 10**float(A_src)
+                        try:
+                            A_i = 10**float(A_src)
+                        except OverflowError as e:
+                            print(rxn, A_src)
+                            raise e
 
                         # if saving new kinetics, keep value of a since units are 
                         # the same 

@@ -258,8 +258,12 @@ class rms_sbr:
             # calculated from the jacobian. returns a (n_species, n_reactions) x (n_species, n_reactions) matrix, 
             # so to just get the reaction sensitivities we single out a species for out row, then
             # slice out the first n_species columns. adapted from plotrxntransitorysensitivities in rms
-
-            sens_items, _ = rms.transitorysensitivitiesfulltrapezoidal(self.ssys, 600)
+            try:
+                sens_items, _ = rms.transitorysensitivitiesfulltrapezoidal(self.ssys, 600)
+            except RuntimeError as e:
+                print("error getting sensitivities in julia")
+                continue
+            
             try:
                 ind = self.ssys.names.index(spec)
             except ValueError:
