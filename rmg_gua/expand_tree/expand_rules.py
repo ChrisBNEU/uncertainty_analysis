@@ -172,6 +172,8 @@ def make_new_rule(model_path, rmg_db_folder, sens_rxn=None, update_old=False):
         new_index = kinetics_database.families[family].rules.entries[";".join(template)][0].index
 
     data = rxn.kinetics
+    if len(rxn.comment) > 0:
+        desc = rxn.comment
 
     if isinstance(data, StickingCoefficient):
         data = StickingCoefficientBEP(
@@ -207,7 +209,7 @@ def make_new_rule(model_path, rmg_db_folder, sens_rxn=None, update_old=False):
         data=data,
         rank=rank,
         short_desc="Rate rule generated for uncertainty",
-        long_desc="Rate rule generated for uncertainty",
+        long_desc=f"{desc}",
     )
 
 
