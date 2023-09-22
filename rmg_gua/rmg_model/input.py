@@ -26,7 +26,7 @@ database(
         ],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
-    kineticsFamilies=[('surface', True), ('default', False)],
+    kineticsFamilies=[('surface_multisite', True), ('default', False)],
     kineticsEstimator = 'rate rules',
 )
 

@@ -915,6 +915,92 @@ Phases:
     type: Species
   name: surface
 Reactions:
+- comment: ''
+  kinetics:
+    A: 1.476629166908e+17
+    Ea: 88360.0
+    n: 0.335
+    type: Arrhenius
+  products:
+  - X
+  - OH*
+  radicalchange: 0
+  reactants:
+  - O*
+  - H*
+  type: ElementaryReaction
+- comment: ''
+  kinetics:
+    A: 8.50326420748e+19
+    Ea: 104210.0
+    n: -0.634
+    type: Arrhenius
+  products:
+  - X
+  - X
+  - H2O
+  radicalchange: 0
+  reactants:
+  - H*
+  - OH*
+  type: ElementaryReaction
+- comment: ''
+  kinetics:
+    A: 3.787324971731e+16
+    Ea: 42990.0
+    n: 0.027
+    type: Arrhenius
+  products:
+  - X
+  - X
+  - CO2
+  radicalchange: 0
+  reactants:
+  - O*
+  - CO*
+  type: ElementaryReaction
+- comment: ''
+  kinetics:
+    A: 2.142075834703e+18
+    Ea: 18260.0
+    n: -0.381
+    type: Arrhenius
+  products:
+  - H*
+  - CO*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  type: ElementaryReaction
+- comment: ''
+  kinetics:
+    A: 968360399832000.0
+    Ea: 50400.0
+    n: 0.678
+    type: Arrhenius
+  products:
+  - X
+  - H*
+  - CO2
+  radicalchange: 0
+  reactants:
+  - X
+  - HCOO*
+  type: ElementaryReaction
+- comment: ''
+  kinetics:
+    A: 0.5
+    Ea: 55600.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - H*
+  - CO2
+  type: ElementaryReaction
 - comment: 'Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
 
     This reaction matched rate rule [CO;H2]
@@ -1019,25 +1105,6 @@ Reactions:
   radicalchange: 0
   reactants:
   - X
-  - CO2
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 1.0e-05
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - HCOO*
-  radicalchange: 0
-  reactants:
-  - H*
   - CO2
   type: ElementaryReaction
 - comment: 'Exact match found for rate rule [Adsorbate1]
@@ -1196,49 +1263,6 @@ Reactions:
   - X
   - H2
   type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate
-    rule [CO2;VacantSite1;VacantSite2]
-
-    Euclidian distance = 2.0
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_Adsorption_Dissociative_Double'
-  kinetics:
-    A: 0.02
-    Ea: 41840.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - O*
-  - CO*
-  radicalchange: 0
-  reactants:
-  - X
-  - X
-  - CO2
-  type: ElementaryReaction
-- comment: 'Estimated using template [O-H;VacantSite1;VacantSite2] for rate rule [H2O;VacantSite1;VacantSite2]
-
-    Euclidian distance = 1.0
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_Adsorption_Dissociative'
-  kinetics:
-    A: 0.2
-    Ea: 146749.00825292527
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - H*
-  - OH*
-  radicalchange: 0
-  reactants:
-  - X
-  - X
-  - H2O
-  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [C-H;VacantSite1;VacantSite2]
 
     Euclidian distance = 0
@@ -1359,24 +1383,6 @@ Reactions:
   - X
   - HCOOCH3
   type: ElementaryReaction
-- comment: 'Exact match found for rate rule [O-H;VacantSite]
-
-    Euclidian distance = 0
-
-    family: Surface_Dissociation'
-  kinetics:
-    A: 4.18e+17
-    Ea: 69580.09429998645
-    n: 0.0
-    type: Arrhenius
-  products:
-  - O*
-  - H*
-  radicalchange: 0
-  reactants:
-  - X
-  - OH*
-  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [H2O;VacantSite]
 
     Euclidian distance = 0
@@ -1418,24 +1424,6 @@ Reactions:
   reactants:
   - X
   - CO2*
-  type: ElementaryReaction
-- comment: 'Exact match found for rate rule [C-H;VacantSite]
-
-    Euclidian distance = 0
-
-    family: Surface_Dissociation'
-  kinetics:
-    A: 4.18e+17
-    Ea: 65143.36068000439
-    n: 0.0
-    type: Arrhenius
-  products:
-  - H*
-  - CO*
-  radicalchange: 0
-  reactants:
-  - X
-  - HCO*
   type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O=C=O;H*]
 

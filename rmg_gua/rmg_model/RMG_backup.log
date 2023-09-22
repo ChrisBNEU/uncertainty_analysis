@@ -1,7 +1,7 @@
 Global RMG Settings:
    database.directory   = /Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-database/input (Default, relative to RMG-Py source code)
    test_data.directory  = /Users/blais.ch/Documents/_01_code/RMG_env_1/RMG-Py/rmgpy/test_data (Default, relative to RMG-Py source code)
-RMG execution initiated at Mon Jul 24 15:53:55 2023
+RMG execution initiated at Wed Aug  2 10:14:21 2023
 
 #########################################################
 # RMG-Py - Reaction Mechanism Generator in Python       #
@@ -17,8 +17,8 @@ The current git HEAD for RMG-Py is:
 	b'Mon Jul 24 15:37:42 2023 -0400'
 
 The current git HEAD for RMG-database is:
-	b'4448721bc84f9b580638596a8085a1d913297d3c'
-	b'Tue Jun 27 16:40:28 2023 -0400'
+	b'482f2d957639d13fcce66c18883835f581cf9d26'
+	b'Wed Aug 2 09:57:44 2023 -0400'
 
 Reading input file "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/rmg_gua/rmg_model/input.py"...
 # Running on current commits 29Aug2021 for 
@@ -1940,8 +1940,8 @@ Chemkin file contains 318 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:00:54
-    Memory used: 5895.34 MB
+    Execution time (DD:HH:MM:SS): 00:00:00:57
+    Memory used: 5105.58 MB
 
 Making seed mechanism...
 Beginning model generation stage 1...
@@ -2001,8 +2001,8 @@ Chemkin file contains 311 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:00:57
-    Memory used: 5910.85 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:00
+    Memory used: 5128.58 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -2056,14 +2056,14 @@ Chemkin file contains 306 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:00:58
-    Memory used: 5912.44 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:01
+    Memory used: 5132.69 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 3.4616e-09 s, species [Pt]OC#[Pt](62) at 0.10097329603966365 exceeded the minimum rate for simulation interruption of 0.1
+At time 3.4616e-09 s, species [Pt]OC#[Pt](62) at 0.100973296040107 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 3.4616e-09 s, species [Pt]OC#[Pt](62) at rate ratio 0.10097329603966365 exceeded the minimum rate for moving to model core of 0.1
+At time 3.4616e-09 s, species [Pt]OC#[Pt](62) at rate ratio 0.100973296040107 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2111,14 +2111,14 @@ Chemkin file contains 305 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:00
-    Memory used: 5914.47 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:03
+    Memory used: 5137.72 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 2.0257e-08 s, species OC([Pt])O[Pt](53) at 0.10084986315649196 exceeded the minimum rate for simulation interruption of 0.1
+At time 2.0229e-08 s, species OC([Pt])O[Pt](53) at 0.10055025407124826 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 2.0257e-08 s, species OC([Pt])O[Pt](53) at rate ratio 0.10084986315649196 exceeded the minimum rate for moving to model core of 0.1
+At time 2.0229e-08 s, species OC([Pt])O[Pt](53) at rate ratio 0.10055025407124826 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2166,14 +2166,14 @@ Chemkin file contains 302 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:01
-    Memory used: 5916.06 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:04
+    Memory used: 5142.82 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 2.4286e-08 s, species [Pt]CO[Pt](51) at 0.10123119135246017 exceeded the minimum rate for simulation interruption of 0.1
+At time 2.4156e-08 s, species [Pt]CO[Pt](51) at 0.10030177572777241 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 2.4286e-08 s, species [Pt]CO[Pt](51) at rate ratio 0.10123119135246017 exceeded the minimum rate for moving to model core of 0.1
+At time 2.4156e-08 s, species [Pt]CO[Pt](51) at rate ratio 0.10030177572777241 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2221,14 +2221,14 @@ Chemkin file contains 299 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:03
-    Memory used: 5918.43 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:05
+    Memory used: 5145.40 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 6.5003e-07 s, species [Pt]OC=[Pt](64) at 0.10047651668365337 exceeded the minimum rate for simulation interruption of 0.1
+At time 6.5021e-07 s, species [Pt]OC=[Pt](64) at 0.10050910484139942 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 6.5003e-07 s, species [Pt]OC=[Pt](64) at rate ratio 0.10047651668365337 exceeded the minimum rate for moving to model core of 0.1
+At time 6.5021e-07 s, species [Pt]OC=[Pt](64) at rate ratio 0.10050910484139942 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2276,15 +2276,15 @@ Chemkin file contains 298 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:04
-    Memory used: 5921.73 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:07
+    Memory used: 5148.91 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 7.1533e-05 s, species C.[Pt](80) at 0.10080099655610468 exceeded the minimum rate for simulation interruption of 0.1
+At time 7.1659e-05 s, species C.[Pt](80) at 0.10173078214745047 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 7.1533e-05 s, species C.[Pt](80) at rate ratio 0.10080099655610468 exceeded the minimum rate for moving to model core of 0.1
+At time 7.1659e-05 s, species C.[Pt](80) at rate ratio 0.10173078214745047 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2332,14 +2332,14 @@ Chemkin file contains 297 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:06
-    Memory used: 5924.08 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:09
+    Memory used: 5151.65 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 4.9955e-05 s, species OC[Pt](45) at 0.10068138806213812 exceeded the minimum rate for simulation interruption of 0.1
+At time 4.9986e-05 s, species OC[Pt](45) at 0.1011278289172809 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 4.9955e-05 s, species OC[Pt](45) at rate ratio 0.10068138806213812 exceeded the minimum rate for moving to model core of 0.1
+At time 4.9986e-05 s, species OC[Pt](45) at rate ratio 0.1011278289172809 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2484,14 +2484,14 @@ Chemkin file contains 357 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:09
-    Memory used: 5932.56 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:11
+    Memory used: 5160.96 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.1083e-05 s, species [H][H].[Pt](120) at 0.10175565559394116 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.1006e-05 s, species [H][H].[Pt](120) at 0.10063351057257856 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.1083e-05 s, species [H][H].[Pt](120) at rate ratio 0.10175565559394116 exceeded the minimum rate for moving to model core of 0.1
+At time 1.1006e-05 s, species [H][H].[Pt](120) at rate ratio 0.10063351057257856 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2539,14 +2539,14 @@ Chemkin file contains 355 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:10
-    Memory used: 5934.73 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:13
+    Memory used: 5162.94 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 3.0781e-05 s, species COC([Pt])O[Pt](56) at 0.10025808514046591 exceeded the minimum rate for simulation interruption of 0.1
+At time 3.0780e-05 s, species COC([Pt])O[Pt](56) at 0.10025416402627611 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 3.0781e-05 s, species COC([Pt])O[Pt](56) at rate ratio 0.10025808514046591 exceeded the minimum rate for moving to model core of 0.1
+At time 3.0780e-05 s, species COC([Pt])O[Pt](56) at rate ratio 0.10025416402627611 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2594,14 +2594,14 @@ Chemkin file contains 354 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:12
-    Memory used: 5936.22 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:15
+    Memory used: 5164.63 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3429e-04 s, species C[Pt](55) at 0.1002207532084257 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.3411e-04 s, species C[Pt](55) at 0.10000159279710884 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.3429e-04 s, species C[Pt](55) at rate ratio 0.1002207532084257 exceeded the minimum rate for moving to model core of 0.1
+At time 1.3411e-04 s, species C[Pt](55) at rate ratio 0.10000159279710884 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2750,14 +2750,14 @@ Chemkin file contains 424 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:15
-    Memory used: 5940.57 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:18
+    Memory used: 5177.55 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 2.5111e-07 s, species C(40) at 0.10045647819209326 exceeded the minimum rate for simulation interruption of 0.1
+At time 2.5200e-07 s, species C(40) at 0.10203006011433274 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 2.5111e-07 s, species C(40) at rate ratio 0.10045647819209326 exceeded the minimum rate for moving to model core of 0.1
+At time 2.5200e-07 s, species C(40) at rate ratio 0.10203006011433274 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2822,15 +2822,15 @@ Chemkin file contains 425 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:18
-    Memory used: 5944.98 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:20
+    Memory used: 5183.15 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.1246e-04 s, species C.[Pt](126) at 0.10228196420929853 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.1272e-04 s, species C.[Pt](126) at 0.10429553412513413 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.1246e-04 s, species C.[Pt](126) at rate ratio 0.10228196420929853 exceeded the minimum rate for moving to model core of 0.1
+At time 1.1272e-04 s, species C.[Pt](126) at rate ratio 0.10429553412513413 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -2878,14 +2878,14 @@ Chemkin file contains 408 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:20
-    Memory used: 5948.63 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:23
+    Memory used: 5193.36 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 2.5004e-03 s, species CC(=O)[Pt](96) at 0.10000110320043067 exceeded the minimum rate for simulation interruption of 0.1
+At time 2.5050e-03 s, species CC(=O)[Pt](96) at 0.1000266570854616 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 2.5004e-03 s, species CC(=O)[Pt](96) at rate ratio 0.10000110320043067 exceeded the minimum rate for moving to model core of 0.1
+At time 2.5050e-03 s, species CC(=O)[Pt](96) at rate ratio 0.1000266570854616 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3028,14 +3028,14 @@ Chemkin file contains 477 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:24
-    Memory used: 5961.11 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:26
+    Memory used: 5206.50 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.1518e-05 s, species C.[Pt](140) at 0.10132932816785567 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.1564e-05 s, species C.[Pt](140) at 0.10319756778066798 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.1518e-05 s, species C.[Pt](140) at rate ratio 0.10132932816785567 exceeded the minimum rate for moving to model core of 0.1
+At time 1.1564e-05 s, species C.[Pt](140) at rate ratio 0.10319756778066798 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3083,14 +3083,16 @@ Chemkin file contains 475 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:26
-    Memory used: 5965.14 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:28
+    Memory used: 5210.44 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.8590e-04 s, species C=C=O.[Pt](136) at 0.10097535575390508 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.8673e-04 s, species [H][H].[Pt](125) at 0.10063110350910667 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.8673e-04 s, species C=C=O.[Pt](136) at 0.10187255503676346 exceeded the minimum rate for simulation interruption of 0.1
+Exceeded max number of objects...removing excess objects
 Reached max number of objects...preparing to terminate
-At time 1.8590e-04 s, species C=C=O.[Pt](136) at rate ratio 0.10097535575390508 exceeded the minimum rate for moving to model core of 0.1
+At time 1.8673e-04 s, species C=C=O.[Pt](136) at rate ratio 0.10187255503676346 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3260,14 +3262,14 @@ Chemkin file contains 562 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:29
-    Memory used: 5980.63 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:32
+    Memory used: 5218.64 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 6.4938e-05 s, species C=C([Pt])O[Pt](145) at 0.10001400515436638 exceeded the minimum rate for simulation interruption of 0.1
+At time 6.4995e-05 s, species C=C([Pt])O[Pt](145) at 0.10041296758473175 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 6.4938e-05 s, species C=C([Pt])O[Pt](145) at rate ratio 0.10001400515436638 exceeded the minimum rate for moving to model core of 0.1
+At time 6.4995e-05 s, species C=C([Pt])O[Pt](145) at rate ratio 0.10041296758473175 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3315,14 +3317,14 @@ Chemkin file contains 561 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:31
-    Memory used: 5986.62 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:34
+    Memory used: 5223.28 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.2837e-04 s, species CC(=[Pt])O[Pt](139) at 0.10182793009227918 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.2765e-04 s, species CC(=[Pt])O[Pt](139) at 0.10073791291274672 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.2837e-04 s, species CC(=[Pt])O[Pt](139) at rate ratio 0.10182793009227918 exceeded the minimum rate for moving to model core of 0.1
+At time 1.2765e-04 s, species CC(=[Pt])O[Pt](139) at rate ratio 0.10073791291274672 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3370,15 +3372,15 @@ Chemkin file contains 560 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:34
-    Memory used: 5994.18 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:36
+    Memory used: 5230.24 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.1292e-03 s, species [H][H].[Pt](125) at 0.10058793285873459 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.1253e-03 s, species [H][H].[Pt](125) at 0.10002885475807002 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.1292e-03 s, species [H][H].[Pt](125) at rate ratio 0.10058793285873459 exceeded the minimum rate for moving to model core of 0.1
+At time 1.1253e-03 s, species [H][H].[Pt](125) at rate ratio 0.10002885475807002 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3426,14 +3428,14 @@ Chemkin file contains 558 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:36
-    Memory used: 5997.14 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:39
+    Memory used: 5235.00 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 4.6645e-04 s, species CC(=O)O.[Pt](109) at 0.10109678679022167 exceeded the minimum rate for simulation interruption of 0.1
+At time 4.6544e-04 s, species CC(=O)O.[Pt](109) at 0.100691923251477 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 4.6645e-04 s, species CC(=O)O.[Pt](109) at rate ratio 0.10109678679022167 exceeded the minimum rate for moving to model core of 0.1
+At time 4.6544e-04 s, species CC(=O)O.[Pt](109) at rate ratio 0.100691923251477 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3623,14 +3625,14 @@ Chemkin file contains 657 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:40
-    Memory used: 6017.70 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:43
+    Memory used: 5249.01 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 7.1961e-05 s, species CC(O)([Pt])O[Pt](153) at 0.10221133964317967 exceeded the minimum rate for simulation interruption of 0.1
+At time 7.1860e-05 s, species CC(O)([Pt])O[Pt](153) at 0.10162429261427612 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 7.1961e-05 s, species CC(O)([Pt])O[Pt](153) at rate ratio 0.10221133964317967 exceeded the minimum rate for moving to model core of 0.1
+At time 7.1860e-05 s, species CC(O)([Pt])O[Pt](153) at rate ratio 0.10162429261427612 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3678,14 +3680,14 @@ Chemkin file contains 656 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:43
-    Memory used: 6029.86 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:46
+    Memory used: 5258.23 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 2.3469e-04 s, species CC(=O)O(128) at 0.10139845587724577 exceeded the minimum rate for simulation interruption of 0.1
+At time 2.3368e-04 s, species CC(=O)O(128) at 0.10051696996435831 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 2.3469e-04 s, species CC(=O)O(128) at rate ratio 0.10139845587724577 exceeded the minimum rate for moving to model core of 0.1
+At time 2.3368e-04 s, species CC(=O)O(128) at rate ratio 0.10051696996435831 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3804,14 +3806,14 @@ Chemkin file contains 662 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:47
-    Memory used: 6061.53 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:50
+    Memory used: 5273.75 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 7.6547e-01 s, species OC(=[Pt])O[Pt](66) at 0.10005428595477373 exceeded the minimum rate for simulation interruption of 0.1
+At time 7.7108e-01 s, species OC(=[Pt])O[Pt](66) at 0.10022989757872837 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 7.6547e-01 s, species OC(=[Pt])O[Pt](66) at rate ratio 0.10005428595477373 exceeded the minimum rate for moving to model core of 0.1
+At time 7.7108e-01 s, species OC(=[Pt])O[Pt](66) at rate ratio 0.10022989757872837 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3859,13 +3861,13 @@ Chemkin file contains 661 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:50
-    Memory used: 6075.48 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:53
+    Memory used: 5277.89 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3604e+00 s, reached target termination conversion: 0.150000 of CO2(4)
-    CO2(4) conversion: 0.1501    
+At time 1.3615e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+    CO2(4) conversion: 0.1502    
 
 
 For reaction generation 1 process is used.
@@ -3897,15 +3899,15 @@ Chemkin file contains 661 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:53
-    Memory used: 6077.20 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:56
+    Memory used: 5284.41 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 7.2709e-04 s, species CC(O)([Pt])O[Pt](160) at 0.10069298762481839 exceeded the minimum rate for simulation interruption of 0.1
+At time 7.2569e-04 s, species CC(O)([Pt])O[Pt](160) at 0.10034584259521473 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 7.2709e-04 s, species CC(O)([Pt])O[Pt](160) at rate ratio 0.10069298762481839 exceeded the minimum rate for moving to model core of 0.1
+At time 7.2569e-04 s, species CC(O)([Pt])O[Pt](160) at rate ratio 0.10034584259521473 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -3953,14 +3955,14 @@ Chemkin file contains 660 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:01:55
-    Memory used: 6085.72 MB
+    Execution time (DD:HH:MM:SS): 00:00:01:59
+    Memory used: 5294.37 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 4.7101e-03 s, species CC=O.[Pt](104) at 0.10033849323475875 exceeded the minimum rate for simulation interruption of 0.1
+At time 4.7007e-03 s, species CC=O.[Pt](104) at 0.10011645019758261 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 4.7101e-03 s, species CC=O.[Pt](104) at rate ratio 0.10033849323475875 exceeded the minimum rate for moving to model core of 0.1
+At time 4.7007e-03 s, species CC=O.[Pt](104) at rate ratio 0.10011645019758261 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -4159,14 +4161,14 @@ Chemkin file contains 761 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:00
-    Memory used: 6102.41 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:04
+    Memory used: 5316.82 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.6162e-04 s, species CC([Pt])O[Pt](164) at 0.1005744183591935 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.6139e-04 s, species CC([Pt])O[Pt](164) at 0.1002687239608074 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.6162e-04 s, species CC([Pt])O[Pt](164) at rate ratio 0.1005744183591935 exceeded the minimum rate for moving to model core of 0.1
+At time 1.6139e-04 s, species CC([Pt])O[Pt](164) at rate ratio 0.1002687239608074 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -4214,14 +4216,14 @@ Chemkin file contains 760 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:03
-    Memory used: 6116.38 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:07
+    Memory used: 5321.52 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.1145e-03 s, species CC=O(127) at 0.10013369776046992 exceeded the minimum rate for simulation interruption of 0.1
+At time 1.1145e-03 s, species CC=O(127) at 0.10012754309932194 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 1.1145e-03 s, species CC=O(127) at rate ratio 0.10013369776046992 exceeded the minimum rate for moving to model core of 0.1
+At time 1.1145e-03 s, species CC=O(127) at rate ratio 0.10012754309932194 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -4345,13 +4347,13 @@ Chemkin file contains 767 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:07
-    Memory used: 6122.57 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:12
+    Memory used: 5350.35 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
 At time 1.0000e+01 s, reached target termination time.
-    CO2(4) conversion: 0.1179    
+    CO2(4) conversion: 0.1177    
 
 
 For reaction generation 1 process is used.
@@ -4383,12 +4385,12 @@ Chemkin file contains 767 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:10
-    Memory used: 6129.52 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:15
+    Memory used: 5354.22 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3566e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.3573e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.15      
 
 
@@ -4421,15 +4423,15 @@ Chemkin file contains 767 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:13
-    Memory used: 6136.25 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:18
+    Memory used: 5355.87 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 9.7972e-03 s, species C=C(O)O[Pt](149) at 0.10029203505638393 exceeded the minimum rate for simulation interruption of 0.1
+At time 9.7825e-03 s, species C=C(O)O[Pt](149) at 0.10015101201299112 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 9.7972e-03 s, species C=C(O)O[Pt](149) at rate ratio 0.10029203505638393 exceeded the minimum rate for moving to model core of 0.1
+At time 9.7825e-03 s, species C=C(O)O[Pt](149) at rate ratio 0.10015101201299112 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -4532,13 +4534,13 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:19
-    Memory used: 6149.68 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:24
+    Memory used: 5363.99 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
 At time 1.0000e+01 s, reached target termination time.
-    CO2(4) conversion: 0.07762   
+    CO2(4) conversion: 0.07742   
 
 
 For reaction generation 1 process is used.
@@ -4570,8 +4572,8 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:23
-    Memory used: 6161.61 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:28
+    Memory used: 5380.47 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -4608,12 +4610,12 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:26
-    Memory used: 6172.02 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:32
+    Memory used: 5393.29 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.2932e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.2916e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -4646,8 +4648,8 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:29
-    Memory used: 6180.32 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:35
+    Memory used: 5399.51 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -4684,12 +4686,12 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:33
-    Memory used: 6197.32 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:38
+    Memory used: 5414.47 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3587e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.3582e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -4722,15 +4724,15 @@ Chemkin file contains 800 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:36
-    Memory used: 6206.17 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:42
+    Memory used: 5427.75 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 4.5130e-02 s, species CC([Pt])O[Pt](170) at 0.10028922033388138 exceeded the minimum rate for simulation interruption of 0.1
+At time 4.5194e-02 s, species CC([Pt])O[Pt](170) at 0.10035550276631283 exceeded the minimum rate for simulation interruption of 0.1
 Reached max number of objects...preparing to terminate
-At time 4.5130e-02 s, species CC([Pt])O[Pt](170) at rate ratio 0.10028922033388138 exceeded the minimum rate for moving to model core of 0.1
+At time 4.5194e-02 s, species CC([Pt])O[Pt](170) at rate ratio 0.10035550276631283 exceeded the minimum rate for moving to model core of 0.1
 terminating simulation due to interrupt...
 
 
@@ -4778,13 +4780,13 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:39
-    Memory used: 6216.70 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:45
+    Memory used: 5435.39 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
 At time 1.0000e+01 s, reached target termination time.
-    CO2(4) conversion: 0.07762   
+    CO2(4) conversion: 0.07742   
 
 
 For reaction generation 1 process is used.
@@ -4816,8 +4818,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:43
-    Memory used: 6230.02 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:49
+    Memory used: 5444.35 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -4854,12 +4856,12 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:46
-    Memory used: 6241.64 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:53
+    Memory used: 5446.83 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.2932e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.2916e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -4892,8 +4894,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:50
-    Memory used: 6250.25 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:56
+    Memory used: 5457.48 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -4930,12 +4932,12 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:54
-    Memory used: 6250.25 MB
+    Execution time (DD:HH:MM:SS): 00:00:02:59
+    Memory used: 5467.23 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3587e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.3582e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -4968,8 +4970,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:02:57
-    Memory used: 6250.25 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:03
+    Memory used: 5476.80 MB
 
 Making seed mechanism...
 Conducting simulation of reaction system 1...
@@ -5007,13 +5009,13 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:01
-    Memory used: 6250.34 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:07
+    Memory used: 5478.83 MB
 
 Conducting simulation of reaction system 2...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
 At time 1.0000e+01 s, reached target termination time.
-    CO2(4) conversion: 0.07762   
+    CO2(4) conversion: 0.07742   
 
 
 For reaction generation 1 process is used.
@@ -5045,8 +5047,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:04
-    Memory used: 6250.52 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:11
+    Memory used: 5483.04 MB
 
 Conducting simulation of reaction system 3...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -5083,12 +5085,12 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:08
-    Memory used: 6250.60 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:14
+    Memory used: 5483.14 MB
 
 Conducting simulation of reaction system 4...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.2932e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.2916e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -5121,8 +5123,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:11
-    Memory used: 6250.60 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:18
+    Memory used: 5483.17 MB
 
 Conducting simulation of reaction system 5...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
@@ -5159,12 +5161,12 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:14
-    Memory used: 6258.90 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:21
+    Memory used: 5483.18 MB
 
 Conducting simulation of reaction system 6...
 Warning: Pressure may be varying, but using initial pressure to evaluate k(T,P) expressions!
-At time 1.3587e+00 s, reached target termination conversion: 0.150000 of CO2(4)
+At time 1.3582e+00 s, reached target termination conversion: 0.150000 of CO2(4)
     CO2(4) conversion: 0.1501    
 
 
@@ -5197,8 +5199,8 @@ Chemkin file contains 799 reactions.
 Saving current model core to HTML file...
 Saving current model edge to HTML file...
 Updating RMG execution statistics...
-    Execution time (DD:HH:MM:SS): 00:00:03:18
-    Memory used: 6267.42 MB
+    Execution time (DD:HH:MM:SS): 00:00:03:25
+    Memory used: 5492.72 MB
 
 Making seed mechanism...
 Performing final model checks...
@@ -5209,4 +5211,4 @@ MODEL GENERATION COMPLETED
 The final model core has 35 species and 205 reactions
 The final model edge has 122 species and 850 reactions
 
-RMG execution terminated at Mon Jul 24 15:57:16 2023
+RMG execution terminated at Wed Aug  2 10:17:48 2023

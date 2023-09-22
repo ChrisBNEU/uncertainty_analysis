@@ -25,13 +25,8 @@ HCOOCH3(9)          2     377.356     5.234     0.000     0.000     0.000    ! E
 ! CH3O*(21)           None
 ! CH3O2*(22)          None
 ! CH3OH*(23)          None
-! OC[Pt](45)          None
-! C[Pt](55)           None
-C(40)               2     141.400     3.746     0.000     2.600    13.000    ! GRI-Mech
-! C2H3OX(96)          None
-! C2H2OX(136)         None
-! C2H4O2X(109)        None
-C2H4O2(128)         2     452.392     5.643     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=587.52 K, Pc=47.5 bar (from Joback method)
-! C2H4OX(104)         None
-C2H4O(127)          2     436.001     3.970     0.000     0.000     2.000    ! GRI-Mech
-! C2H3O2X(149)        None
+! [Pt]OCO[Pt](33)     None
+! OC[Pt](32)          None
+! C[Pt](58)           None
+C(44)               2     141.400     3.746     0.000     2.600    13.000    ! GRI-Mech
+! OC(O)[Pt](51)       None

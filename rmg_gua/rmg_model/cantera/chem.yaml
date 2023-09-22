@@ -1,7 +1,7 @@
 generator: ck2yaml
 input-files: [chem-gas.inp, tran.dat, chem-surface.inp]
 cantera-version: 2.6.0
-date: Wed, 02 Aug 2023 10:17:48 -0400
+date: Tue, 15 Aug 2023 10:18:52 -0400
 
 units: {length: cm, time: s, quantity: mol, activation-energy: kcal/mol}
 
@@ -11,7 +11,7 @@ phases:
   elements: [H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I,
     X]
   species: [N2, Ne, H2(2), CO(3), CO2(4), H2O(5), CH2O(6), HCOOH(7), CH3OH(8),
-    HCOOCH3(9), C(40), C2H4O(127), C2H4O2(128)]
+    HCOOCH3(9), C(44)]
   kinetics: gas
   reactions:
   - gas-reactions
@@ -24,8 +24,7 @@ phases:
     X]
   species: [X(1), H*(10), O*(11), OH*(12), H2O*(13), CO*(14), CO2*(15),
     HCO*(16), HCOO*(17), COOH*(18), HCOOH*(19), CH2O*(20), CH3O*(21), CH3O2*(22),
-    CH3OH*(23), 'OC[Pt](45)', 'C[Pt](55)', C2H3OX(96), C2H4OX(104), C2H4O2X(109),
-    C2H2OX(136), C2H3O2X(149)]
+    CH3OH*(23), 'OC[Pt](32)', '[Pt]OCO[Pt](33)', 'OC(O)[Pt](51)', 'C[Pt](58)']
   site-density: 2.943e-09
   kinetics: surface
   reactions:
@@ -218,7 +217,7 @@ species:
     diameter: 5.234
     note: Epsilon & sigma estimated with Tc=490.07 K, Pc=49.66 bar (from
       Joback method)
-- name: C(40)
+- name: C(44)
   composition: {C: 1, H: 4}
   thermo:
     model: NASA7
@@ -236,40 +235,6 @@ species:
     polarizability: 2.6
     rotational-relaxation: 13.0
     note: GRI-Mech
-- name: C2H4O(127)
-  composition: {C: 2, H: 4, O: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 1028.8, 5000.0]
-    data:
-    - [3.579929, 5.18977534e-03, 2.26899566e-05, -2.73745298e-08, 9.28490793e-12,
-      -2.13697376e+04, 8.96969764]
-    - [4.08561584, 0.0139061584, -5.59372401e-06, 1.04609788e-09, -7.38742836e-14,
-      -2.20391246e+04, 3.76814526]
-  transport:
-    model: gas
-    geometry: nonlinear
-    well-depth: 436.001
-    diameter: 3.97
-    rotational-relaxation: 2.0
-    note: GRI-Mech
-- name: C2H4O2(128)
-  composition: {C: 2, H: 4, O: 2}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 1020.0, 5000.0]
-    data:
-    - [3.2175089, 0.0102433727, 2.71483671e-05, -3.76391196e-08, 1.35873407e-11,
-      -5.35456818e+04, 12.0524548]
-    - [6.3611019, 0.0155130809, -6.4799714e-06, 1.25445055e-09, -9.10589976e-14,
-      -5.5102396e+04, -7.66317943]
-  transport:
-    model: gas
-    geometry: nonlinear
-    well-depth: 452.392
-    diameter: 5.643
-    note: Epsilon & sigma estimated with Tc=587.52 K, Pc=47.5 bar (from
-      Joback method)
 - name: X(1)
   composition: {X: 1}
   thermo:
@@ -420,7 +385,7 @@ species:
       -3.05087369e+04, 13.8244594]
     - [1.01832439, 0.0182967065, -8.58981649e-06, 1.62232597e-09, -1.10733567e-13,
       -3.05921706e+04, 3.59780184]
-- name: OC[Pt](45)
+- name: OC[Pt](32)
   composition: {C: 1, H: 3, O: 1, X: 1}
   thermo:
     model: NASA7
@@ -430,7 +395,28 @@ species:
       -2.91607666e+04, 8.26687794]
     - [3.255792, 0.0130434807, -5.99158726e-06, 1.13138428e-09, -7.77149662e-14,
       -2.98846756e+04, -14.0488925]
-- name: C[Pt](55)
+- name: '[Pt]OCO[Pt](33)'
+  composition: {C: 1, H: 2, O: 2, X: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 801.39, 5000.0]
+    data:
+    - [-1.83628209, 0.0435797588, -6.29968489e-05, 4.82064809e-08, -1.47227112e-11,
+      -4.13014969e+04, 9.03027384]
+    - [4.19697338, 0.0134649623, -6.62796737e-06, 1.31257752e-09, -9.33750689e-14,
+      -4.2268468e+04, -18.7407191]
+  sites: 2.0
+- name: OC(O)[Pt](51)
+  composition: {C: 1, H: 3, O: 2, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 746.21, 5000.0]
+    data:
+    - [3.00755874, 0.0243555473, -3.26146873e-05, 3.02338968e-08, -1.19231598e-11,
+      -4.25941145e+04, -5.9703609]
+    - [3.93253273, 0.0157288498, -7.89951801e-06, 1.56520317e-09, -1.11218758e-13,
+      -4.26300243e+04, -9.47768252]
+- name: C[Pt](58)
   composition: {C: 1, H: 3, X: 1}
   thermo:
     model: NASA7
@@ -440,56 +426,6 @@ species:
       -129.920086, 6.80927929]
     - [1.62283871, 0.0112988527, -5.08324457e-06, 9.46851922e-10, -6.42901071e-14,
       -445.956217, -5.42462037]
-- name: C2H3OX(96)
-  composition: {C: 2, H: 3, O: 1, X: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 795.05, 5000.0]
-    data:
-    - [-1.77481554, 0.0425202842, -6.31738127e-05, 5.36571044e-08, -1.83587451e-11,
-      -2.97019426e+04, 13.1125804]
-    - [2.52722518, 0.01711585, -8.14936969e-06, 1.56889608e-09, -1.09168777e-13,
-      -3.02671662e+04, -5.90820163]
-- name: C2H4OX(104)
-  composition: {C: 2, H: 4, O: 1, X: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 831.54, 5000.0]
-    data:
-    - [-1.98719038, 0.0492539581, -7.82950982e-05, 7.1505865e-08, -2.56275457e-11,
-      -2.96428751e+04, 14.9827718]
-    - [1.38253992, 0.022443487, -1.08096597e-05, 2.07025984e-09, -1.42829446e-13,
-      -2.98367802e+04, 1.55118249]
-- name: C2H4O2X(109)
-  composition: {C: 2, H: 4, O: 2, X: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 1098.76, 5000.0]
-    data:
-    - [2.87744685, 0.0196117532, 4.68160165e-06, -1.54708435e-08, 5.92263805e-12,
-      -5.4909963e+04, 8.53289725]
-    - [6.8406241, 0.0167776671, -7.27673811e-06, 1.38791343e-09, -9.81918455e-14,
-      -5.64807243e+04, -14.1450965]
-- name: C2H2OX(136)
-  composition: {C: 2, H: 2, O: 1, X: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 849.47, 5000.0]
-    data:
-    - [-1.86110187, 0.0448476189, -7.4786545e-05, 6.42447043e-08, -2.13274078e-11,
-      -2.26207763e+04, 12.7948729]
-    - [3.63371095, 0.0124158801, -5.9387466e-06, 1.12499288e-09, -7.66593069e-14,
-      -2.33177126e+04, -11.4253525]
-- name: C2H3O2X(149)
-  composition: {C: 2, H: 3, O: 2, X: 1}
-  thermo:
-    model: NASA7
-    temperature-ranges: [100.0, 993.91, 5000.0]
-    data:
-    - [2.76190249, 0.0187312102, 1.39716696e-05, -3.20814267e-08, 1.34299978e-11,
-      -5.53945239e+04, -4.61641343]
-    - [9.93773024, 0.0103206778, -4.22638418e-06, 8.45266315e-10, -6.39416021e-14,
-      -5.78319529e+04, -44.2777957]
 
 gas-reactions:
 - equation: H2(2) + CO(3) <=> CH2O(6)  # Reaction 1
@@ -500,439 +436,337 @@ gas-reactions:
   rate-constant: {A: 1.51e+09, b: 1.23, Ea: 73.9}
 - equation: CO(3) + CH3OH(8) <=> HCOOCH3(9)  # Reaction 4
   rate-constant: {A: 0.127, b: 3.7, Ea: 53.36}
-- equation: CO2(4) + C(40) <=> HCOOCH3(9)  # Reaction 5
+- equation: CO2(4) + C(44) <=> HCOOCH3(9)  # Reaction 5
   rate-constant: {A: 0.3192624, b: 3.391, Ea: 85.307}
-- equation: CO2(4) + C(40) <=> C2H4O2(128)  # Reaction 6
-  rate-constant: {A: 3.624e+04, b: 2.83, Ea: 79.2}
-- equation: CO(3) + C(40) <=> C2H4O(127)  # Reaction 7
-  rate-constant: {A: 6.56e+04, b: 2.86, Ea: 86.9}
 
 surface1-reactions:
-- equation: X(1) + H2O(5) <=> H2O*(13)  # Reaction 1
+- equation: O*(11) + H*(10) <=> X(1) + OH*(12)  # Reaction 1
+  rate-constant: {A: 1.476629e+21, b: 0.335, Ea: 21.119}
+- equation: H*(10) + OH*(12) <=> X(1) + X(1) + H2O(5)  # Reaction 2
+  rate-constant: {A: 8.503264e+23, b: -0.634, Ea: 24.907}
+- equation: O*(11) + CO*(14) <=> X(1) + X(1) + CO2(4)  # Reaction 3
+  rate-constant: {A: 3.787325e+20, b: 0.027, Ea: 10.275}
+- equation: X(1) + HCO*(16) <=> H*(10) + CO*(14)  # Reaction 4
+  rate-constant: {A: 2.142076e+22, b: -0.381, Ea: 4.364}
+- equation: X(1) + HCOO*(17) <=> X(1) + H*(10) + CO2(4)  # Reaction 5
+  rate-constant: {A: 9.683604e+18, b: 0.678, Ea: 12.046}
+- equation: H*(10) + CO2(4) <=> HCOO*(17)  # Reaction 6
+  sticking-coefficient: {A: 0.5, b: 0.0, Ea: 13.289}
+- equation: X(1) + H2O(5) <=> H2O*(13)  # Reaction 7
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: X(1) + CO2(4) <=> CO2*(15)  # Reaction 2
+- equation: X(1) + CO2(4) <=> CO2*(15)  # Reaction 8
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: H*(10) + CO2(4) <=> HCOO*(17)  # Reaction 3
-  sticking-coefficient: {A: 1.0e-05, b: 0.0, Ea: 16.41}
-- equation: HCOO*(17) <=> COOH*(18)  # Reaction 4
+- equation: HCOO*(17) <=> COOH*(18)  # Reaction 9
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 11.95}
-- equation: H*(10) + CO2(4) <=> COOH*(18)  # Reaction 5
+- equation: H*(10) + CO2(4) <=> COOH*(18)  # Reaction 10
   sticking-coefficient: {A: 1.0e-05, b: 0.0, Ea: 16.41}
-- equation: X(1) + HCOOH(7) <=> HCOOH*(19)  # Reaction 6
+- equation: X(1) + HCOOH(7) <=> HCOOH*(19)  # Reaction 11
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: X(1) + CH2O(6) <=> CH2O*(20)  # Reaction 7
+- equation: X(1) + CH2O(6) <=> CH2O*(20)  # Reaction 12
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: H*(10) + CH2O(6) <=> CH3O*(21)  # Reaction 8
+- equation: H*(10) + CH2O(6) <=> CH3O*(21)  # Reaction 13
   sticking-coefficient: {A: 5.0e-06, b: 0.0, Ea: 16.41}
-- equation: OH*(12) + CH2O(6) <=> CH3O2*(22)  # Reaction 9
+- equation: OH*(12) + CH2O(6) <=> CH3O2*(22)  # Reaction 14
   sticking-coefficient: {A: 5.0e-06, b: 0.0, Ea: 16.41}
-- equation: H*(10) + HCOOH(7) <=> CH3O2*(22)  # Reaction 10
+- equation: H*(10) + HCOOH(7) <=> CH3O2*(22)  # Reaction 15
   sticking-coefficient: {A: 5.0e-06, b: 0.0, Ea: 16.41}
-- equation: X(1) + CH3OH(8) <=> CH3OH*(23)  # Reaction 11
+- equation: X(1) + CH3OH(8) <=> CH3OH*(23)  # Reaction 16
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: X(1) + X(1) + H2(2) <=> H*(10) + H*(10)  # Reaction 12
+- equation: X(1) + X(1) + H2(2) <=> H*(10) + H*(10)  # Reaction 17
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.908}
-- equation: X(1) + X(1) + CO2(4) <=> O*(11) + CO*(14)  # Reaction 13
-  sticking-coefficient: {A: 0.02, b: 0.0, Ea: 10.0}
-- equation: X(1) + X(1) + H2O(5) <=> H*(10) + OH*(12)  # Reaction 14
-  sticking-coefficient: {A: 0.2, b: 0.0, Ea: 35.074}
-- equation: X(1) + X(1) + CH2O(6) <=> H*(10) + HCO*(16)  # Reaction 15
+- equation: X(1) + X(1) + CH2O(6) <=> H*(10) + HCO*(16)  # Reaction 18
   sticking-coefficient: {A: 0.2, b: 0.0, Ea: 13.407}
-- equation: X(1) + X(1) + HCOOH(7) <=> OH*(12) + HCO*(16)  # Reaction 16
+- equation: X(1) + X(1) + HCOOH(7) <=> OH*(12) + HCO*(16)  # Reaction 19
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 6.912}
-- equation: X(1) + X(1) + HCOOH(7) <=> H*(10) + HCOO*(17)  # Reaction 17
+- equation: X(1) + X(1) + HCOOH(7) <=> H*(10) + HCOO*(17)  # Reaction 20
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 10.781}
-- equation: X(1) + X(1) + HCOOH(7) <=> H*(10) + COOH*(18)  # Reaction 18
+- equation: X(1) + X(1) + HCOOH(7) <=> H*(10) + COOH*(18)  # Reaction 21
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 16.82}
-- equation: X(1) + X(1) + CH3OH(8) <=> H*(10) + CH3O*(21)  # Reaction 19
+- equation: X(1) + X(1) + CH3OH(8) <=> H*(10) + CH3O*(21)  # Reaction 22
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 27.914}
-- equation: X(1) + X(1) + HCOOCH3(9) <=> HCO*(16) + CH3O*(21)  # Reaction 20
+- equation: X(1) + X(1) + HCOOCH3(9) <=> HCO*(16) + CH3O*(21)  # Reaction 23
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 1.248}
-- equation: X(1) + OH*(12) <=> O*(11) + H*(10)  # Reaction 21
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 16.63}
-- equation: X(1) + H2O*(13) <=> H*(10) + OH*(12)  # Reaction 22
+- equation: X(1) + H2O*(13) <=> H*(10) + OH*(12)  # Reaction 24
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 32.803}
-- equation: X(1) + CO2*(15) <=> O*(11) + CO*(14)  # Reaction 23
+- equation: X(1) + CO2*(15) <=> O*(11) + CO*(14)  # Reaction 25
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 15.955}
-- equation: X(1) + HCO*(16) <=> H*(10) + CO*(14)  # Reaction 24
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 15.57}
-- equation: H*(10) + CO2*(15) <=> X(1) + HCOO*(17)  # Reaction 25
+- equation: H*(10) + CO2*(15) <=> X(1) + HCOO*(17)  # Reaction 26
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 2.812}
-- equation: X(1) + HCOO*(17) <=> O*(11) + HCO*(16)  # Reaction 26
+- equation: X(1) + HCOO*(17) <=> O*(11) + HCO*(16)  # Reaction 27
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 65.453}
-- equation: H*(10) + CO2*(15) <=> X(1) + COOH*(18)  # Reaction 27
+- equation: H*(10) + CO2*(15) <=> X(1) + COOH*(18)  # Reaction 28
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 7.187}
-- equation: X(1) + COOH*(18) <=> OH*(12) + CO*(14)  # Reaction 28
+- equation: X(1) + COOH*(18) <=> OH*(12) + CO*(14)  # Reaction 29
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 37.209}
-- equation: X(1) + HCOOH*(19) <=> OH*(12) + HCO*(16)  # Reaction 29
+- equation: X(1) + HCOOH*(19) <=> OH*(12) + HCO*(16)  # Reaction 30
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 40.031}
-- equation: X(1) + HCOOH*(19) <=> H*(10) + HCOO*(17)  # Reaction 30
+- equation: X(1) + HCOOH*(19) <=> H*(10) + HCOO*(17)  # Reaction 31
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 37.4}
-- equation: X(1) + HCOOH*(19) <=> H*(10) + COOH*(18)  # Reaction 31
+- equation: X(1) + HCOOH*(19) <=> H*(10) + COOH*(18)  # Reaction 32
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.332}
-- equation: X(1) + CH2O*(20) <=> H*(10) + HCO*(16)  # Reaction 32
+- equation: X(1) + CH2O*(20) <=> H*(10) + HCO*(16)  # Reaction 33
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 14.875}
-- equation: H*(10) + CH2O*(20) <=> X(1) + CH3O*(21)  # Reaction 33
+- equation: H*(10) + CH2O*(20) <=> X(1) + CH3O*(21)  # Reaction 34
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 4.343}
-- equation: OH*(12) + CH2O*(20) <=> X(1) + CH3O2*(22)  # Reaction 34
+- equation: OH*(12) + CH2O*(20) <=> X(1) + CH3O2*(22)  # Reaction 35
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: H*(10) + HCOOH*(19) <=> X(1) + CH3O2*(22)  # Reaction 35
+- equation: H*(10) + HCOOH*(19) <=> X(1) + CH3O2*(22)  # Reaction 36
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 15.158}
-- equation: X(1) + CH3OH*(23) <=> H*(10) + CH3O*(21)  # Reaction 36
+- equation: X(1) + CH3OH*(23) <=> H*(10) + CH3O*(21)  # Reaction 37
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 55.814}
-- equation: O*(11) + CH2O*(20) <=> H*(10) + HCOO*(17)  # Reaction 37
+- equation: O*(11) + CH2O*(20) <=> H*(10) + HCOO*(17)  # Reaction 38
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: H2O*(13) + CO*(14) <=> H*(10) + COOH*(18)  # Reaction 38
+- equation: H2O*(13) + CO*(14) <=> H*(10) + COOH*(18)  # Reaction 39
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 4.195}
-- equation: O*(11) + CH3OH*(23) <=> H*(10) + CH3O2*(22)  # Reaction 39
+- equation: O*(11) + CH3OH*(23) <=> H*(10) + CH3O2*(22)  # Reaction 40
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 7.696}
-- equation: H2O*(13) + CH2O*(20) <=> H*(10) + CH3O2*(22)  # Reaction 40
+- equation: H2O*(13) + CH2O*(20) <=> H*(10) + CH3O2*(22)  # Reaction 41
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 7.524}
-- equation: O*(11) + H2O*(13) <=> OH*(12) + OH*(12)  # Reaction 41
+- equation: O*(11) + H2O*(13) <=> OH*(12) + OH*(12)  # Reaction 42
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 22.047}
-- equation: O*(11) + HCO*(16) <=> OH*(12) + CO*(14)  # Reaction 42
+- equation: O*(11) + HCO*(16) <=> OH*(12) + CO*(14)  # Reaction 43
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 30.115}
-- equation: O*(11) + HCOO*(17) <=> OH*(12) + CO2*(15)  # Reaction 43
+- equation: O*(11) + HCOO*(17) <=> OH*(12) + CO2*(15)  # Reaction 44
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 38.232}
-- equation: O*(11) + COOH*(18) <=> OH*(12) + CO2*(15)  # Reaction 44
+- equation: O*(11) + COOH*(18) <=> OH*(12) + CO2*(15)  # Reaction 45
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 3.06}
-- equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 45
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
 - equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 46
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
-- equation: O*(11) + HCOOH*(19) <=> OH*(12) + COOH*(18)  # Reaction 47
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 4.721}
-- equation: O*(11) + CH2O*(20) <=> OH*(12) + HCO*(16)  # Reaction 48
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 1.688}
-- equation: O*(11) + CH3O*(21) <=> OH*(12) + CH2O*(20)  # Reaction 49
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 35.353}
-- equation: O*(11) + CH3O2*(22) <=> OH*(12) + HCOOH*(19)  # Reaction 50
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 19.87}
-- equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 51
+- equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 47
   duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
+- equation: O*(11) + HCOOH*(19) <=> OH*(12) + COOH*(18)  # Reaction 48
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 4.721}
+- equation: O*(11) + CH2O*(20) <=> OH*(12) + HCO*(16)  # Reaction 49
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 1.688}
+- equation: O*(11) + CH3O*(21) <=> OH*(12) + CH2O*(20)  # Reaction 50
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 35.353}
+- equation: O*(11) + CH3O2*(22) <=> OH*(12) + HCOOH*(19)  # Reaction 51
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 19.87}
 - equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 52
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
-- equation: H2O*(13) + CO*(14) <=> OH*(12) + HCO*(16)  # Reaction 53
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 22.936}
-- equation: OH*(12) + HCOO*(17) <=> H2O*(13) + CO2*(15)  # Reaction 54
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 15.668}
-- equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 55
+- equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 53
   duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
+- equation: H2O*(13) + CO*(14) <=> OH*(12) + HCO*(16)  # Reaction 54
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 22.936}
+- equation: OH*(12) + HCOO*(17) <=> H2O*(13) + CO2*(15)  # Reaction 55
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 15.668}
 - equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 56
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
-- equation: OH*(12) + COOH*(18) <=> H2O*(13) + CO2*(15)  # Reaction 57
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + HCOOH*(19) <=> H2O*(13) + HCOO*(17)  # Reaction 58
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + HCOOH*(19) <=> H2O*(13) + COOH*(18)  # Reaction 59
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + CH2O*(20) <=> H2O*(13) + HCO*(16)  # Reaction 60
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + CH3O*(21) <=> H2O*(13) + CH2O*(20)  # Reaction 61
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 13.586}
-- equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 62
+- equation: O*(11) + HCOOH*(19) <=> OH*(12) + HCOO*(17)  # Reaction 57
   duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.345}
+- equation: OH*(12) + COOH*(18) <=> H2O*(13) + CO2*(15)  # Reaction 58
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 0.0}
+- equation: OH*(12) + HCOOH*(19) <=> H2O*(13) + HCOO*(17)  # Reaction 59
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: OH*(12) + HCOOH*(19) <=> H2O*(13) + COOH*(18)  # Reaction 60
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: OH*(12) + CH2O*(20) <=> H2O*(13) + HCO*(16)  # Reaction 61
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
+- equation: OH*(12) + CH3O*(21) <=> H2O*(13) + CH2O*(20)  # Reaction 62
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 13.586}
 - equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 63
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
-- equation: OH*(12) + CH3O2*(22) <=> H2O*(13) + HCOOH*(19)  # Reaction 64
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 2.385}
-- equation: OH*(12) + CH3OH*(23) <=> H2O*(13) + CH3O*(21)  # Reaction 65
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + HCOO*(17) <=> CO2*(15) + HCO*(16)  # Reaction 66
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 39.021}
-- equation: CO*(14) + COOH*(18) <=> CO2*(15) + HCO*(16)  # Reaction 67
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 30.795}
-- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + HCOO*(17)  # Reaction 68
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.765}
-- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 69
+- equation: O*(11) + CH3OH*(23) <=> OH*(12) + CH3O*(21)  # Reaction 64
   duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 17.199}
+- equation: OH*(12) + CH3O2*(22) <=> H2O*(13) + HCOOH*(19)  # Reaction 65
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 2.385}
+- equation: OH*(12) + CH3OH*(23) <=> H2O*(13) + CH3O*(21)  # Reaction 66
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: CO*(14) + HCOO*(17) <=> CO2*(15) + HCO*(16)  # Reaction 67
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 39.021}
+- equation: CO*(14) + COOH*(18) <=> CO2*(15) + HCO*(16)  # Reaction 68
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 30.795}
+- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + HCOO*(17)  # Reaction 69
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.765}
 - equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 70
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
-- equation: CO*(14) + CH2O*(20) <=> HCO*(16) + HCO*(16)  # Reaction 71
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 2.108}
-- equation: CO*(14) + CH3O*(21) <=> HCO*(16) + CH2O*(20)  # Reaction 72
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 36.142}
-- equation: CO*(14) + CH3O2*(22) <=> COOH*(18) + CH2O*(20)  # Reaction 73
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.359}
-- equation: CO*(14) + CH3O2*(22) <=> HCO*(16) + HCOOH*(19)  # Reaction 74
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 20.659}
-- equation: CO*(14) + CH3OH*(23) <=> HCO*(16) + CH3O*(21)  # Reaction 75
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 18.038}
-- equation: HCOO*(17) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 76
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 33.872}
-- equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 77
+- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 71
   duplicate: true
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
+- equation: CO*(14) + CH2O*(20) <=> HCO*(16) + HCO*(16)  # Reaction 72
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 2.108}
+- equation: CO*(14) + CH3O*(21) <=> HCO*(16) + CH2O*(20)  # Reaction 73
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 36.142}
+- equation: CO*(14) + CH3O2*(22) <=> COOH*(18) + CH2O*(20)  # Reaction 74
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.359}
+- equation: CO*(14) + CH3O2*(22) <=> HCO*(16) + HCOOH*(19)  # Reaction 75
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 20.659}
+- equation: CO*(14) + CH3OH*(23) <=> HCO*(16) + CH3O*(21)  # Reaction 76
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 18.038}
+- equation: HCOO*(17) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 77
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 33.872}
 - equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 78
   duplicate: true
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
-- equation: COOH*(18) + COOH*(18) <=> CO2*(15) + HCOOH*(19)  # Reaction 79
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 21.971}
-- equation: HCO*(16) + HCOO*(17) <=> CO2*(15) + CH2O*(20)  # Reaction 80
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 32.045}
-- equation: HCO*(16) + COOH*(18) <=> CO2*(15) + CH2O*(20)  # Reaction 81
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.094}
-- equation: HCOO*(17) + CH3O*(21) <=> CO2*(15) + CH3OH*(23)  # Reaction 82
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.965}
-- equation: COOH*(18) + CH3O*(21) <=> CO2*(15) + CH3OH*(23)  # Reaction 83
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 13.014}
-- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 84
+- equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 79
   duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
+- equation: COOH*(18) + COOH*(18) <=> CO2*(15) + HCOOH*(19)  # Reaction 80
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 21.971}
+- equation: HCO*(16) + HCOO*(17) <=> CO2*(15) + CH2O*(20)  # Reaction 81
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 32.045}
+- equation: HCO*(16) + COOH*(18) <=> CO2*(15) + CH2O*(20)  # Reaction 82
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.094}
+- equation: HCOO*(17) + CH3O*(21) <=> CO2*(15) + CH3OH*(23)  # Reaction 83
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.965}
+- equation: COOH*(18) + CH3O*(21) <=> CO2*(15) + CH3OH*(23)  # Reaction 84
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 13.014}
 - equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 85
   duplicate: true
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
-- equation: HCO*(16) + HCOOH*(19) <=> HCOO*(17) + CH2O*(20)  # Reaction 86
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: COOH*(18) + CH2O*(20) <=> HCO*(16) + HCOOH*(19)  # Reaction 87
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCO*(16) + CH3O*(21) <=> CH2O*(20) + CH2O*(20)  # Reaction 88
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 29.963}
-- equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 89
+- equation: CO*(14) + HCOOH*(19) <=> HCO*(16) + COOH*(18)  # Reaction 86
   duplicate: true
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.762}
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.14}
+- equation: HCO*(16) + HCOOH*(19) <=> HCOO*(17) + CH2O*(20)  # Reaction 87
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: COOH*(18) + CH2O*(20) <=> HCO*(16) + HCOOH*(19)  # Reaction 88
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
+- equation: HCO*(16) + CH3O*(21) <=> CH2O*(20) + CH2O*(20)  # Reaction 89
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 29.963}
 - equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 90
   duplicate: true
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 18.762}
-- equation: CH2O*(20) + CH3O*(21) <=> HCO*(16) + CH3OH*(23)  # Reaction 91
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 92
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.762}
+- equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 91
   duplicate: true
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 18.762}
+- equation: CH2O*(20) + CH3O*(21) <=> HCO*(16) + CH3OH*(23)  # Reaction 92
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
 - equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 93
   duplicate: true
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
-- equation: COOH*(18) + HCOOH*(19) <=> HCOO*(17) + HCOOH*(19)  # Reaction 94
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCOO*(17) + CH3O*(21) <=> CH2O*(20) + HCOOH*(19)  # Reaction 95
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 31.79}
-- equation: HCOO*(17) + CH3O2*(22) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 96
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 20.589}
-- equation: HCOOH*(19) + CH3O*(21) <=> HCOO*(17) + CH3OH*(23)  # Reaction 97
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: COOH*(18) + CH3O*(21) <=> CH2O*(20) + HCOOH*(19)  # Reaction 98
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 25.839}
-- equation: COOH*(18) + CH3O2*(22) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 99
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 14.638}
-- equation: HCOOH*(19) + CH3O*(21) <=> COOH*(18) + CH3OH*(23)  # Reaction 100
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 101
+- equation: COOH*(18) + HCOO*(17) <=> CO2*(15) + HCOOH*(19)  # Reaction 94
   duplicate: true
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 18.762}
+  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.921}
+- equation: COOH*(18) + HCOOH*(19) <=> HCOO*(17) + HCOOH*(19)  # Reaction 95
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: HCOO*(17) + CH3O*(21) <=> CH2O*(20) + HCOOH*(19)  # Reaction 96
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 31.79}
+- equation: HCOO*(17) + CH3O2*(22) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 97
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 20.589}
+- equation: HCOOH*(19) + CH3O*(21) <=> HCOO*(17) + CH3OH*(23)  # Reaction 98
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
+- equation: COOH*(18) + CH3O*(21) <=> CH2O*(20) + HCOOH*(19)  # Reaction 99
+  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 25.839}
+- equation: COOH*(18) + CH3O2*(22) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 100
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 14.638}
+- equation: HCOOH*(19) + CH3O*(21) <=> COOH*(18) + CH3OH*(23)  # Reaction 101
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
 - equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 102
   duplicate: true
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 18.762}
+- equation: HCO*(16) + CH3O2*(22) <=> CH2O*(20) + HCOOH*(19)  # Reaction 103
+  duplicate: true
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.762}
-- equation: CH3O*(21) + CH3O2*(22) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 103
+- equation: CH3O*(21) + CH3O2*(22) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 104
   rate-constant: {A: 8.36e+21, b: 0.0, Ea: 5.682}
-- equation: CH3O*(21) + CH3O*(21) <=> CH2O*(20) + CH3OH*(23)  # Reaction 104
+- equation: CH3O*(21) + CH3O*(21) <=> CH2O*(20) + CH3OH*(23)  # Reaction 105
   rate-constant: {A: 4.179e+21, b: 0.0, Ea: 16.882}
-- equation: CH3O*(21) <=> OC[Pt](45)  # Reaction 105
+- equation: H*(10) + [Pt]OCO[Pt](33) <=> X(1) + X(1) + CH3O2*(22)  # Reaction 106
+  rate-constant: {A: 4.769004e+48, b: 0.265, Ea: 17.622}
+- equation: X(1) + OC[Pt](32) <=> X(1) + CH3O*(21)  # Reaction 107
+  rate-constant: {A: 6.768887e+23, b: -0.322, Ea: 50.373}
+- equation: CH3O*(21) <=> OC[Pt](32)  # Reaction 108
   rate-constant: {A: 3.0e+13, b: 0.0, Ea: 11.95}
-- equation: X(1) + X(1) + CH3OH(8) <=> H*(10) + OC[Pt](45)  # Reaction 106
+- equation: X(1) + X(1) + CH3OH(8) <=> H*(10) + OC[Pt](32)  # Reaction 109
   sticking-coefficient: {A: 0.099, b: 0.0, Ea: 17.54}
-- equation: X(1) + CH3O2*(22) <=> O*(11) + OC[Pt](45)  # Reaction 107
+- equation: X(1) + CH3O2*(22) <=> O*(11) + OC[Pt](32)  # Reaction 110
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 37.867}
-- equation: X(1) + CH3OH*(23) <=> H*(10) + OC[Pt](45)  # Reaction 108
+- equation: X(1) + CH3OH*(23) <=> H*(10) + OC[Pt](32)  # Reaction 111
   rate-constant: {A: 4.17e+21, b: 0.0, Ea: 18.041}
-- equation: H*(10) + CH2O(6) <=> OC[Pt](45)  # Reaction 109
+- equation: H*(10) + CH2O(6) <=> OC[Pt](32)  # Reaction 112
   sticking-coefficient: {A: 5.0e-06, b: 0.0, Ea: 16.41}
-- equation: H*(10) + CH2O*(20) <=> X(1) + OC[Pt](45)  # Reaction 110
+- equation: H*(10) + CH2O*(20) <=> X(1) + OC[Pt](32)  # Reaction 113
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: O*(11) + CH3OH*(23) <=> OH*(12) + OC[Pt](45)  # Reaction 111
+- equation: O*(11) + CH3OH*(23) <=> OH*(12) + OC[Pt](32)  # Reaction 114
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 4.465}
-- equation: O*(11) + OC[Pt](45) <=> OH*(12) + CH2O*(20)  # Reaction 112
+- equation: O*(11) + OC[Pt](32) <=> OH*(12) + CH2O*(20)  # Reaction 115
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.416}
-- equation: OH*(12) + CH3OH*(23) <=> H2O*(13) + OC[Pt](45)  # Reaction 113
+- equation: OH*(12) + CH3OH*(23) <=> H2O*(13) + OC[Pt](32)  # Reaction 116
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + OC[Pt](45) <=> H2O*(13) + CH2O*(20)  # Reaction 114
+- equation: OH*(12) + OC[Pt](32) <=> H2O*(13) + CH2O*(20)  # Reaction 117
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 0.381}
-- equation: CO*(14) + CH3OH*(23) <=> HCO*(16) + OC[Pt](45)  # Reaction 115
+- equation: CO*(14) + CH3OH*(23) <=> HCO*(16) + OC[Pt](32)  # Reaction 118
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 4.885}
-- equation: HCOO*(17) + OC[Pt](45) <=> CO2*(15) + CH3OH*(23)  # Reaction 116
+- equation: HCOO*(17) + OC[Pt](32) <=> CO2*(15) + CH3OH*(23)  # Reaction 119
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 28.269}
-- equation: COOH*(18) + OC[Pt](45) <=> CO2*(15) + CH3OH*(23)  # Reaction 117
+- equation: COOH*(18) + OC[Pt](32) <=> CO2*(15) + CH3OH*(23)  # Reaction 120
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 22.318}
-- equation: CO*(14) + OC[Pt](45) <=> HCO*(16) + CH2O*(20)  # Reaction 118
+- equation: CO*(14) + OC[Pt](32) <=> HCO*(16) + CH2O*(20)  # Reaction 121
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 49.003}
-- equation: CH2O*(20) + OC[Pt](45) <=> HCO*(16) + CH3OH*(23)  # Reaction 119
+- equation: CH2O*(20) + OC[Pt](32) <=> HCO*(16) + CH3OH*(23)  # Reaction 122
   rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCOOH*(19) + OC[Pt](45) <=> HCOO*(17) + CH3OH*(23)  # Reaction 120
+- equation: HCOOH*(19) + OC[Pt](32) <=> HCOO*(17) + CH3OH*(23)  # Reaction 123
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: COOH*(18) + CH3OH*(23) <=> HCOOH*(19) + OC[Pt](45)  # Reaction 121
+- equation: COOH*(18) + CH3OH*(23) <=> HCOOH*(19) + OC[Pt](32)  # Reaction 124
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCOO*(17) + OC[Pt](45) <=> CH2O*(20) + HCOOH*(19)  # Reaction 122
+- equation: HCOO*(17) + OC[Pt](32) <=> CH2O*(20) + HCOOH*(19)  # Reaction 125
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 41.094}
-- equation: COOH*(18) + OC[Pt](45) <=> CH2O*(20) + HCOOH*(19)  # Reaction 123
+- equation: COOH*(18) + OC[Pt](32) <=> CH2O*(20) + HCOOH*(19)  # Reaction 126
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 35.143}
-- equation: OC[Pt](45) + CH3O2*(22) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 124
+- equation: OC[Pt](32) + CH3O2*(22) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 127
   rate-constant: {A: 8.36e+21, b: 0.0, Ea: 14.985}
-- equation: HCO*(16) + OC[Pt](45) <=> CH2O*(20) + CH2O*(20)  # Reaction 125
+- equation: HCO*(16) + OC[Pt](32) <=> CH2O*(20) + CH2O*(20)  # Reaction 128
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 39.267}
-- equation: CH3O*(21) + OC[Pt](45) <=> CH2O*(20) + CH3OH*(23)  # Reaction 126
+- equation: CH3O*(21) + OC[Pt](32) <=> CH2O*(20) + CH3OH*(23)  # Reaction 129
   duplicate: true
   rate-constant: {A: 4.179e+21, b: 0.0, Ea: 26.186}
-- equation: CH3O*(21) + OC[Pt](45) <=> CH2O*(20) + CH3OH*(23)  # Reaction 127
+- equation: CH3O*(21) + OC[Pt](32) <=> CH2O*(20) + CH3OH*(23)  # Reaction 130
   duplicate: true
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.186}
-- equation: OC[Pt](45) + OC[Pt](45) <=> CH2O*(20) + CH3OH*(23)  # Reaction 128
+- equation: OC[Pt](32) + OC[Pt](32) <=> CH2O*(20) + CH3OH*(23)  # Reaction 131
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 35.49}
-- equation: CH3O*(21) + CH3OH*(23) <=> OC[Pt](45) + CH3OH*(23)  # Reaction 129
+- equation: CH3O*(21) + CH3OH*(23) <=> OC[Pt](32) + CH3OH*(23)  # Reaction 132
   rate-constant: {A: 3.0e+17, b: 0.0, Ea: 0.0}
-- equation: CH3O*(21) + OC[Pt](45) <=> CH2O*(20) + CH3OH*(23)  # Reaction 130
+- equation: CH3O*(21) + OC[Pt](32) <=> CH2O*(20) + CH3OH*(23)  # Reaction 133
   duplicate: true
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.186}
-- equation: CH3O*(21) + OC[Pt](45) <=> CH2O*(20) + CH3OH*(23)  # Reaction 131
+- equation: CH3O*(21) + OC[Pt](32) <=> CH2O*(20) + CH3OH*(23)  # Reaction 134
   duplicate: true
   rate-constant: {A: 4.179e+21, b: 0.0, Ea: 26.186}
-- equation: X(1) + X(1) + CH3OH(8) <=> OH*(12) + C[Pt](55)  # Reaction 132
+- equation: X(1) + X(1) + CH3OH(8) <=> OH*(12) + C[Pt](58)  # Reaction 135
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 7.469}
-- equation: X(1) + X(1) + HCOOCH3(9) <=> HCOO*(17) + C[Pt](55)  # Reaction 133
+- equation: X(1) + X(1) + HCOOCH3(9) <=> HCOO*(17) + C[Pt](58)  # Reaction 136
   sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.908}
-- equation: X(1) + CH3O*(21) <=> O*(11) + C[Pt](55)  # Reaction 134
+- equation: X(1) + CH3O*(21) <=> O*(11) + C[Pt](58)  # Reaction 137
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 44.981}
-- equation: X(1) + CH3OH*(23) <=> OH*(12) + C[Pt](55)  # Reaction 135
+- equation: X(1) + CH3OH*(23) <=> OH*(12) + C[Pt](58)  # Reaction 138
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 38.611}
-- equation: CO*(14) + CH3OH*(23) <=> COOH*(18) + C[Pt](55)  # Reaction 136
+- equation: CO*(14) + CH3OH*(23) <=> COOH*(18) + C[Pt](58)  # Reaction 139
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 3.916}
-- equation: HCO*(16) + CH3OH*(23) <=> HCOOH*(19) + C[Pt](55)  # Reaction 137
+- equation: HCO*(16) + CH3OH*(23) <=> HCOOH*(19) + C[Pt](58)  # Reaction 140
   rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: C[Pt](55) + CH3O2*(22) <=> CH2O*(20) + CH3OH*(23)  # Reaction 138
+- equation: C[Pt](58) + CH3O2*(22) <=> CH2O*(20) + CH3OH*(23)  # Reaction 141
   rate-constant: {A: 4.18e+21, b: 0.0, Ea: 20.427}
-- equation: X(1) + X(1) + C(40) <=> H*(10) + C[Pt](55)  # Reaction 139
+- equation: X(1) + X(1) + C(44) <=> H*(10) + C[Pt](58)  # Reaction 142
   sticking-coefficient: {A: 3.02, b: 0.0, Ea: 17.017}
-- equation: CO*(14) + CH3O*(21) <=> O*(11) + C2H3OX(96)  # Reaction 140
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 18.603}
-- equation: CO*(14) + CH3OH*(23) <=> OH*(12) + C2H3OX(96)  # Reaction 141
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 4.373}
-- equation: X(1) + C2H3OX(96) <=> CO*(14) + C[Pt](55)  # Reaction 142
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 40.821}
-- equation: H*(10) + C2H2OX(136) <=> X(1) + C2H3OX(96)  # Reaction 143
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: O*(11) + C2H3OX(96) <=> OH*(12) + C2H2OX(136)  # Reaction 144
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 44.963}
-- equation: OH*(12) + C2H3OX(96) <=> H2O*(13) + C2H2OX(136)  # Reaction 145
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 20.538}
-- equation: CO*(14) + C2H3OX(96) <=> HCO*(16) + C2H2OX(136)  # Reaction 146
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 45.752}
-- equation: HCO*(16) + C2H3OX(96) <=> CH2O*(20) + C2H2OX(136)  # Reaction 147
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 36.915}
-- equation: HCOO*(17) + C2H3OX(96) <=> HCOOH*(19) + C2H2OX(136)  # Reaction 148
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 38.742}
-- equation: COOH*(18) + C2H3OX(96) <=> HCOOH*(19) + C2H2OX(136)  # Reaction 149
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 32.791}
-- equation: CH3O*(21) + C2H3OX(96) <=> CH3OH*(23) + C2H2OX(136)  # Reaction 150
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 23.834}
-- equation: OC[Pt](45) + C2H3OX(96) <=> CH3OH*(23) + C2H2OX(136)  # Reaction 151
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 33.138}
-- equation: O*(11) + C2H4O2X(109) <=> COOH*(18) + CH3O*(21)  # Reaction 152
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.637}
-- equation: OH*(12) + C2H4O2X(109) <=> COOH*(18) + CH3OH*(23)  # Reaction 153
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: X(1) + C2H4O2X(109) <=> COOH*(18) + C[Pt](55)  # Reaction 154
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 34.303}
-- equation: X(1) + C2H4O2X(109) <=> OH*(12) + C2H3OX(96)  # Reaction 155
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 31.96}
-- equation: CO*(14) + C2H4O2X(109) <=> COOH*(18) + C2H3OX(96)  # Reaction 156
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + C2H4O2X(109) <=> COOH*(18) + C2H3OX(96)  # Reaction 157
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCO*(16) + C2H4O2X(109) <=> HCOOH*(19) + C2H3OX(96)  # Reaction 158
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CH3O2*(22) + C2H3OX(96) <=> CH2O*(20) + C2H4O2X(109)  # Reaction 159
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 28.225}
-- equation: CH3OH*(23) + C2H3OX(96) <=> C[Pt](55) + C2H4O2X(109)  # Reaction 160
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 10.333}
-- equation: CO*(14) + C2H4O2X(109) <=> COOH*(18) + C2H3OX(96)  # Reaction 161
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + C2H4O2X(109) <=> COOH*(18) + C2H3OX(96)  # Reaction 162
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: X(1) + X(1) + C2H4O2(128) <=> COOH*(18) + C[Pt](55)  # Reaction 163
-  sticking-coefficient: {A: 0.1, b: 0.0, Ea: 3.577}
-- equation: X(1) + X(1) + C2H4O2(128) <=> OH*(12) + C2H3OX(96)  # Reaction 164
-  sticking-coefficient: {A: 0.05, b: 0.0, Ea: 4.235}
-- equation: X(1) + C2H4O2(128) <=> C2H4O2X(109)  # Reaction 165
-  sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: O*(11) + C2H4OX(104) <=> HCO*(16) + CH3O*(21)  # Reaction 166
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 15.218}
-- equation: OH*(12) + C2H4OX(104) <=> HCO*(16) + CH3OH*(23)  # Reaction 167
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: X(1) + C2H4OX(104) <=> HCO*(16) + C[Pt](55)  # Reaction 168
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 41.792}
-- equation: O*(11) + C2H4OX(104) <=> HCOO*(17) + C[Pt](55)  # Reaction 169
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + C2H4OX(104) <=> HCOOH*(19) + C[Pt](55)  # Reaction 170
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: X(1) + C2H4OX(104) <=> H*(10) + C2H3OX(96)  # Reaction 171
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 16.328}
-- equation: O*(11) + C2H4OX(104) <=> OH*(12) + C2H3OX(96)  # Reaction 172
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 2.963}
-- equation: OH*(12) + C2H4OX(104) <=> H2O*(13) + C2H3OX(96)  # Reaction 173
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + C2H4OX(104) <=> HCO*(16) + C2H3OX(96)  # Reaction 174
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 3.383}
-- equation: CO*(14) + C2H4OX(104) <=> HCO*(16) + C2H3OX(96)  # Reaction 175
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 3.383}
-- equation: HCOO*(17) + C2H3OX(96) <=> CO2*(15) + C2H4OX(104)  # Reaction 176
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 30.312}
-- equation: COOH*(18) + C2H3OX(96) <=> CO2*(15) + C2H4OX(104)  # Reaction 177
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 24.361}
-- equation: HCOO*(17) + C2H4OX(104) <=> HCOOH*(19) + C2H3OX(96)  # Reaction 178
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 5.373}
-- equation: COOH*(18) + C2H4OX(104) <=> HCOOH*(19) + C2H3OX(96)  # Reaction 179
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: HCO*(16) + C2H4OX(104) <=> CH2O*(20) + C2H3OX(96)  # Reaction 180
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 2.67}
-- equation: CH3O*(21) + C2H3OX(96) <=> CH2O*(20) + C2H4OX(104)  # Reaction 181
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 28.229}
-- equation: CH3O2*(22) + C2H3OX(96) <=> HCOOH*(19) + C2H4OX(104)  # Reaction 182
-  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 17.028}
-- equation: CH3O*(21) + C2H4OX(104) <=> CH3OH*(23) + C2H3OX(96)  # Reaction 183
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: OC[Pt](45) + C2H4OX(104) <=> CH3OH*(23) + C2H3OX(96)  # Reaction 184
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: OC[Pt](45) + C2H3OX(96) <=> CH2O*(20) + C2H4OX(104)  # Reaction 185
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 37.533}
-- equation: C2H3OX(96) + C2H3OX(96) <=> C2H2OX(136) + C2H4OX(104)  # Reaction 186
-  rate-constant: {A: 4.179e+21, b: 0.0, Ea: 35.181}
-- equation: HCO*(16) + C2H4O2X(109) <=> COOH*(18) + C2H4OX(104)  # Reaction 187
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + C2H4OX(104) <=> HCO*(16) + C2H3OX(96)  # Reaction 188
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 3.383}
-- equation: CO*(14) + C2H4OX(104) <=> HCO*(16) + C2H3OX(96)  # Reaction 189
-  duplicate: true
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 3.383}
-- equation: X(1) + X(1) + C2H4O(127) <=> HCO*(16) + C[Pt](55)  # Reaction 190
-  sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.908}
-- equation: X(1) + X(1) + C2H4O(127) <=> H*(10) + C2H3OX(96)  # Reaction 191
-  sticking-coefficient: {A: 0.05, b: 0.0, Ea: 11.87}
-- equation: X(1) + C2H4O(127) <=> C2H4OX(104)  # Reaction 192
-  sticking-coefficient: {A: 0.1, b: 0.0, Ea: 0.0}
-- equation: OH*(12) + C2H2OX(136) <=> X(1) + C2H3O2X(149)  # Reaction 193
-  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 0.0}
-- equation: H2O*(13) + C2H2OX(136) <=> H*(10) + C2H3O2X(149)  # Reaction 194
-  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
-- equation: CO*(14) + C2H3O2X(149) <=> COOH*(18) + C2H2OX(136)  # Reaction 195
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 36.558}
-- equation: HCO*(16) + C2H3O2X(149) <=> HCOOH*(19) + C2H2OX(136)  # Reaction 196
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 26.14}
-- equation: C[Pt](55) + C2H3O2X(149) <=> CH3OH*(23) + C2H2OX(136)  # Reaction 197
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 27.805}
-- equation: C2H3OX(96) + C2H3O2X(149) <=> C2H2OX(136) + C2H4O2X(109)  # Reaction 198
-  rate-constant: {A: 4.18e+21, b: 0.0, Ea: 35.603}
+- equation: CH3O2*(22) <=> OC(O)[Pt](51)  # Reaction 143
+  rate-constant: {A: 2.0e+13, b: 0.0, Ea: 11.95}
+- equation: H*(10) + HCOOH(7) <=> OC(O)[Pt](51)  # Reaction 144
+  sticking-coefficient: {A: 5.0e-06, b: 0.0, Ea: 16.41}
+- equation: H*(10) + HCOOH*(19) <=> X(1) + OC(O)[Pt](51)  # Reaction 145
+  rate-constant: {A: 1.0e+17, b: 0.0, Ea: 25.402}
+- equation: O*(11) + OC(O)[Pt](51) <=> OH*(12) + HCOOH*(19)  # Reaction 146
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 0.0}
+- equation: OH*(12) + OC(O)[Pt](51) <=> H2O*(13) + HCOOH*(19)  # Reaction 147
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 0.0}
+- equation: CO*(14) + OC(O)[Pt](51) <=> HCO*(16) + HCOOH*(19)  # Reaction 148
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 11.029}
+- equation: HCOO*(17) + OC(O)[Pt](51) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 149
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 13.623}
+- equation: COOH*(18) + OC(O)[Pt](51) <=> HCOOH*(19) + HCOOH*(19)  # Reaction 150
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 7.672}
+- equation: HCO*(16) + OC(O)[Pt](51) <=> CH2O*(20) + HCOOH*(19)  # Reaction 151
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 11.795}
+- equation: CH3O*(21) + OC(O)[Pt](51) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 152
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 0.0}
+- equation: OC[Pt](32) + OC(O)[Pt](51) <=> HCOOH*(19) + CH3OH*(23)  # Reaction 153
+  rate-constant: {A: 8.36e+21, b: 0.0, Ea: 8.019}

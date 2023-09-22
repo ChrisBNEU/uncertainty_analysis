@@ -16,13 +16,19 @@ from rmgpy.data.kinetics.database import KineticsDatabase
 prefix = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
 print("uncertainty repo path: ", prefix)
 
+# load one instance of the kinetics database
+global kdb 
+kdb = KineticsDatabase()
+kdb_path = os.path.join(os.path.dirname(os.environ['RMGPY']), "RMG-database", "input", "kinetics")
+kdb.load(kdb_path, families='surface_all', depositories=False)
+
 # use yaml safe load to preserve order (python 3.6+)
 def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
     # load rmg database
-    print("loading rmg database")
-    kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
-    kdb = KineticsDatabase()
-    kdb.load(kdb_path, families='surface', depositories=False)
+    # print("loading rmg database")
+    # kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
+    # kdb = KineticsDatabase()
+    # kdb.load(kdb_path, families='surface_all', depositories=False)
 
     # first get the values for A, E0, and Alpha from all of the surface families
     rule_dict = {}
@@ -219,11 +225,11 @@ def make_ck_reac_config(results_path=False, trim_rules=False, model_path=None):
     the mechanism
     """
     # load the rmg database
-    print("loading rmg database")
-    rmg_path = os.path.join(os.path.dirname(os.environ['RMGPY']))
-    kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
-    kdb = KineticsDatabase()
-    kdb.load(kdb_path, families='surface', depositories=False)
+    # print("loading rmg database")
+    # rmg_path = os.path.join(os.path.dirname(os.environ['RMGPY']))
+    # kdb_path = os.path.join(rmg_path, "RMG-database", "input", "kinetics")
+    # kdb = KineticsDatabase()
+    # kdb.load(kdb_path, families='surface_all', depositories=False)
 
     # now load the sensitive reactions
     if model_path:
