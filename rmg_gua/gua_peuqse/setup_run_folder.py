@@ -86,7 +86,7 @@ def make_run_file(full_path, parallel=False):
     output.append("import PEUQSE as PEUQSE")
     output.append("import PEUQSE.UserInput as UserInput")
     output.append("import sys")
-    output.append("repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))")
+    output.append(f"repo_dir = {repo_dir}")
     output.append("sys.path.insert(0, repo_dir)")
     output.append("import rmg_gua.gua_peuqse.ct_simulation as ct_simulation")
     output.append("from rmg_gua.gua_peuqse.setup_peuqse import setup_userinput")
@@ -163,10 +163,70 @@ if __name__ == "__main__":
     run_folder = str(sys.argv[1])
     parallel = bool(int(sys.argv[2]))
     local_run = bool(int(sys.argv[3]))
-    file_path = os.path.dirname(__file__)
+
+    if len(sys.argv) > 4:
+        file_path = str(sys.argv[4])
+    else: 
+        file_path = os.path.dirname(__file__)
+    
     full_path = os.path.join(file_path, "peuqse_runs", run_folder)
 
     make_run_folder(full_path, parallel=parallel, local_run=local_run)
+
+
+     # cmd line args
+    parser = argparse.ArgumentParser()
+
+    # current folder
+    curr_folder = os.path.dirname(os.path.abspath(__file__))
+
+    # -f run_folder -o opt_type -p param_type -d directory -n nersc
+    # e.g. -f 01_test_folder -o -p -d /pscratch/sd/c/chrisjb/cpox_peuqse_runs -n 1
+    parser.add_argument(
+        "-f", "--folder", type=str, help="Run folder name"
+        )
+
+    parser.add_argument(
+        "-o", "--opttype", help="Optimization type (true=ssr, false=map)", 
+        default=False, action='store_true'
+        )
+
+    parser.add_argument(
+        "-p", "--params", 
+        help="optimization parameters, either species or binding energies (true=species, false=be)",
+        default=False, action='store_true'
+        )
+
+    parser.add_argument(
+        "-d", "--directory", type=str, help="directory to make run folder in", 
+        default=curr_folder
+        )
+
+    parser.add_argument(
+        "-n", "--nersc", help="Run on nersc, y/n", default=False, action='store_true'
+        )
+
+    parser.add_argument(
+        "-us", "--uncertainty-source", help="if 0, lsr uncertainties. 1, ocp. 2, dft.",
+        default=0, type=int,
+        )
+
+    #cmd line args
+    args = parser.parse_args()
+    run_folder = args.folder
+    ssr = args.opttype
+    by_species = args.params
+    us = args.uncertainty_source
+
+    # optional arg for scratch path (used on nersc)
+    file_path = args.directory
+    full_path = os.path.join(file_path, "peuqse_runs", run_folder)
+    
+    # optional arg to use nersc scripts
+    nersc = args.nersc
+
+    # make the run folder 
+    make_run_folder(full_path, ssr=ssr, by_species=by_species, nersc=nersc, unc_src=us)
 
     
 
