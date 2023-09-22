@@ -915,92 +915,6 @@ Phases:
     type: Species
   name: surface
 Reactions:
-- comment: ''
-  kinetics:
-    A: 1.476629166908e+17
-    Ea: 88360.0
-    n: 0.335
-    type: Arrhenius
-  products:
-  - X
-  - OH*
-  radicalchange: 0
-  reactants:
-  - O*
-  - H*
-  type: ElementaryReaction
-- comment: ''
-  kinetics:
-    A: 8.50326420748e+19
-    Ea: 104210.0
-    n: -0.634
-    type: Arrhenius
-  products:
-  - X
-  - X
-  - H2O
-  radicalchange: 0
-  reactants:
-  - H*
-  - OH*
-  type: ElementaryReaction
-- comment: ''
-  kinetics:
-    A: 3.787324971731e+16
-    Ea: 42990.0
-    n: 0.027
-    type: Arrhenius
-  products:
-  - X
-  - X
-  - CO2
-  radicalchange: 0
-  reactants:
-  - O*
-  - CO*
-  type: ElementaryReaction
-- comment: ''
-  kinetics:
-    A: 2.142075834703e+18
-    Ea: 18260.0
-    n: -0.381
-    type: Arrhenius
-  products:
-  - H*
-  - CO*
-  radicalchange: 0
-  reactants:
-  - X
-  - HCO*
-  type: ElementaryReaction
-- comment: ''
-  kinetics:
-    A: 968360399832000.0
-    Ea: 50400.0
-    n: 0.678
-    type: Arrhenius
-  products:
-  - X
-  - H*
-  - CO2
-  radicalchange: 0
-  reactants:
-  - X
-  - HCOO*
-  type: ElementaryReaction
-- comment: ''
-  kinetics:
-    A: 0.5
-    Ea: 55600.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - HCOO*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CO2
-  type: ElementaryReaction
 - comment: 'Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
 
     This reaction matched rate rule [CO;H2]
@@ -1107,41 +1021,6 @@ Reactions:
   - X
   - CO2
   type: ElementaryReaction
-- comment: 'Exact match found for rate rule [Adsorbate1]
-
-    Euclidian distance = 0
-
-    family: Surface_Migration'
-  kinetics:
-    A: 10000000000000.0
-    Ea: 50000.0
-    n: 0.0
-    type: Arrhenius
-  products:
-  - COOH*
-  radicalchange: 0
-  reactants:
-  - HCOO*
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 1.0e-05
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - COOH*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CO2
-  type: ElementaryReaction
 - comment: 'Estimated using template [Adsorbate;VacantSite] for rate rule [O-H;VacantSite]
 
     Euclidian distance = 2.0
@@ -1175,57 +1054,6 @@ Reactions:
   reactants:
   - X
   - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [Adsorbate1;R=R]
-
-    Euclidian distance = 1.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O2*
-  radicalchange: 0
-  reactants:
-  - OH*
-  - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O2*
-  radicalchange: 0
-  reactants:
-  - H*
-  - HCOOH
   type: ElementaryReaction
 - comment: 'Estimated using template [Adsorbate;VacantSite] for rate rule [O-H;VacantSite]
 
@@ -1262,6 +1090,48 @@ Reactions:
   - X
   - X
   - H2
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [CO2;VacantSite1;VacantSite2]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_Adsorption_Dissociative_Double'
+  kinetics:
+    A: 3.453e-08
+    Ea: 155197.8927436074
+    n: 1.407
+    type: StickingCoefficient
+  products:
+  - O*
+  - CO*
+  radicalchange: 0
+  reactants:
+  - X
+  - X
+  - CO2
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [H2O;VacantSite1;VacantSite2]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_Adsorption_Dissociative'
+  kinetics:
+    A: 3.06608e-08
+    Ea: 99683.75525574296
+    n: 1.399
+    type: StickingCoefficient
+  products:
+  - H*
+  - OH*
+  radicalchange: 0
+  reactants:
+  - X
+  - X
+  - H2O
   type: ElementaryReaction
 - comment: 'Exact match found for rate rule [C-H;VacantSite1;VacantSite2]
 
@@ -1383,6 +1253,24 @@ Reactions:
   - X
   - HCOOCH3
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [O-H;VacantSite]
+
+    Euclidian distance = 0
+
+    family: Surface_Dissociation'
+  kinetics:
+    A: 2186590000000000.0
+    Ea: 159220.33519228167
+    n: 0.638
+    type: Arrhenius
+  products:
+  - O*
+  - H*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [H2O;VacantSite]
 
     Euclidian distance = 0
@@ -1425,6 +1313,24 @@ Reactions:
   - X
   - CO2*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [C-H;VacantSite]
+
+    Euclidian distance = 0
+
+    family: Surface_Dissociation'
+  kinetics:
+    A: 2.14202e+18
+    Ea: 18259.96726316174
+    n: -0.381
+    type: Arrhenius
+  products:
+  - H*
+  - CO*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O=C=O;H*]
 
     Euclidian distance = 3.1622776601683795
@@ -1458,6 +1364,52 @@ Reactions:
   products:
   - O*
   - HCO*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCOO*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [*H;O=C=O;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 6.16246e-05
+    Ea: 80117.96435527969
+    n: 0.253
+    type: StickingCoefficient
+  products:
+  - X
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CO2
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_Migration_Dual_Site
+
+    Kinetics were estimated in this direction instead of the reverse because:
+
+    This direction matched an entry in Surface_Migration_Dual_Site, the other was
+    just an estimate.
+
+    dGrxn(298 K) = 22.68 kJ/mol'
+  kinetics:
+    A: 6.76873e+19
+    Ea: 200444.1171308532
+    n: -0.322
+    type: Arrhenius
+  products:
+  - X
+  - COOH*
   radicalchange: 0
   reactants:
   - X
@@ -1500,6 +1452,27 @@ Reactions:
   reactants:
   - X
   - COOH*
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;R=R;VacantSite1]
+
+    Euclidian distance = 1.4142135623730951
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 1.0e-05
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CO2
   type: ElementaryReaction
 - comment: 'Exact match found for rate rule [C-OH;VacantSite]
 
@@ -1593,6 +1566,25 @@ Reactions:
   - H*
   - CH2O*
   type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;C=O;VacantSite1]
+
+    Euclidian distance = 2.23606797749979
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CH2O
+  type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O=C;HO*]
 
     Euclidian distance = 2.8284271247461903
@@ -1628,6 +1620,44 @@ Reactions:
   reactants:
   - H*
   - HCOOH*
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [Adsorbate1;C=O;VacantSite1]
+
+    Euclidian distance = 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;C=O;VacantSite1]
+
+    Euclidian distance = 2.23606797749979
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - HCOOH
   type: ElementaryReaction
 - comment: 'Estimated using template [Combined;VacantSite] for rate rule [O-H;VacantSite]
 
@@ -1829,6 +1859,27 @@ Reactions:
   - O*
   - HCOO*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 52974.49954756133
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CO2
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [O;R-O-H]
 
     Euclidian distance = 0
@@ -1846,6 +1897,27 @@ Reactions:
   reactants:
   - O*
   - COOH*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 71281.61667841453
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CO2
   type: ElementaryReaction
 - comment: 'Average of [Average of [Average of [Average of [Average of [Average of
     [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
@@ -1979,6 +2051,25 @@ Reactions:
   - O*
   - CH3O*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 51781.054641509094
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CH2O
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [O;R-C-H]
 
     Euclidian distance = 0
@@ -1998,6 +2089,25 @@ Reactions:
   reactants:
   - O*
   - CH3O2*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 83902.03801606943
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - HCOOH
   type: ElementaryReaction
 - comment: 'Average of [Average of [Average of [Average of [Average of [Average of
     [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
@@ -2425,6 +2535,27 @@ Reactions:
   - CO*
   - HCOO*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 51218.83161844143
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - CO2
+  - HCO*
+  type: ElementaryReaction
 - comment: 'Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-O-H]
 
     Euclidian distance = 1.0
@@ -2442,6 +2573,27 @@ Reactions:
   reactants:
   - CO*
   - COOH*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 69525.94874929464
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - CO2
+  - HCO*
   type: ElementaryReaction
 - comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
 
@@ -2543,6 +2695,25 @@ Reactions:
   - CO*
   - CH3O*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 50025.38671238921
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  - CH2O
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [Abstracting;Donating]
 
     Euclidian distance = 0
@@ -2580,6 +2751,44 @@ Reactions:
   reactants:
   - CO*
   - CH3O2*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 71798.31750401772
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - COOH*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 82146.37008694955
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  - HCOOH
   type: ElementaryReaction
 - comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
 

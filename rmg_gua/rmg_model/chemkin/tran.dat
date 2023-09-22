@@ -25,8 +25,6 @@ HCOOCH3(9)          2     377.356     5.234     0.000     0.000     0.000    ! E
 ! CH3O*(21)           None
 ! CH3O2*(22)          None
 ! CH3OH*(23)          None
-! [Pt]OCO[Pt](33)     None
-! OC[Pt](32)          None
-! C[Pt](58)           None
-C(44)               2     141.400     3.746     0.000     2.600    13.000    ! GRI-Mech
-! OC(O)[Pt](51)       None
+! OC[Pt](53)          None
+! C[Pt](52)           None
+C(40)               2     141.400     3.746     0.000     2.600    13.000    ! GRI-Mech

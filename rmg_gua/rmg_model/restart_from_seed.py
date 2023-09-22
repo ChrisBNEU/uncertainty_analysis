@@ -23,11 +23,12 @@ database(
     reactionLibraries = [
         'BurkeH2O2inArHe',
         'BurkeH2O2inN2', 
-        'Surface/Methanol/Johnson_pyntaCu111', 
-        'Surface/Methanol/Nakamura_Cu111',],
+        # 'Surface/Methanol/Johnson_pyntaCu111', 
+        # 'Surface/Methanol/Nakamura_Cu111',
+        ],
     seedMechanisms = [],
     kineticsDepositories = ['training'],
-    kineticsFamilies=[('surface', True), ('default', False)],
+    kineticsFamilies=[('surface_multisite', True), ('default', False)],
     kineticsEstimator = 'rate rules',
 )
 

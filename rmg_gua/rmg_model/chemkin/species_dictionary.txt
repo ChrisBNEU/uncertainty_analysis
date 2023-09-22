@@ -148,16 +148,7 @@ CH3OH*(23)
 6 H u0 p0 c0 {1,S}
 7 X u0 p0 c0
 
-[Pt]OCO[Pt](33)
-1 O u0 p2 c0 {3,S} {6,S}
-2 O u0 p2 c0 {3,S} {7,S}
-3 C u0 p0 c0 {1,S} {2,S} {4,S} {5,S}
-4 H u0 p0 c0 {3,S}
-5 H u0 p0 c0 {3,S}
-6 X u0 p0 c0 {1,S}
-7 X u0 p0 c0 {2,S}
-
-OC[Pt](32)
+OC[Pt](53)
 1 O u0 p2 c0 {2,S} {5,S}
 2 C u0 p0 c0 {1,S} {3,S} {4,S} {6,S}
 3 H u0 p0 c0 {2,S}
@@ -165,26 +156,17 @@ OC[Pt](32)
 5 H u0 p0 c0 {1,S}
 6 X u0 p0 c0 {2,S}
 
-C[Pt](58)
+C[Pt](52)
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
 5 X u0 p0 c0 {1,S}
 
-C(44)
+C(40)
 1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
 2 H u0 p0 c0 {1,S}
 3 H u0 p0 c0 {1,S}
 4 H u0 p0 c0 {1,S}
 5 H u0 p0 c0 {1,S}
-
-OC(O)[Pt](51)
-1 O u0 p2 c0 {3,S} {6,S}
-2 O u0 p2 c0 {3,S} {5,S}
-3 C u0 p0 c0 {1,S} {2,S} {4,S} {7,S}
-4 H u0 p0 c0 {3,S}
-5 H u0 p0 c0 {2,S}
-6 H u0 p0 c0 {1,S}
-7 X u0 p0 c0 {3,S}
 
