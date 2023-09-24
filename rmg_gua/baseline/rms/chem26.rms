@@ -1065,60 +1065,6 @@ Reactions:
   - X
   - CO2
   type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 1.0e-05
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - HCOO*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CO2
-  type: ElementaryReaction
-- comment: 'Exact match found for rate rule [Adsorbate1]
-
-    Euclidian distance = 0
-
-    family: Surface_Migration'
-  kinetics:
-    A: 10000000000000.0
-    Ea: 50000.0
-    n: 0.0
-    type: Arrhenius
-  products:
-  - COOH*
-  radicalchange: 0
-  reactants:
-  - HCOO*
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 1.0e-05
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - COOH*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CO2
-  type: ElementaryReaction
 - comment: 'Estimated using template [Adsorbate;VacantSite] for rate rule [O-H;VacantSite]
 
     Euclidian distance = 2.0
@@ -1152,57 +1098,6 @@ Reactions:
   reactants:
   - X
   - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O*
-  radicalchange: 0
-  reactants:
-  - H*
-  - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [Adsorbate1;R=R]
-
-    Euclidian distance = 1.0
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O2*
-  radicalchange: 0
-  reactants:
-  - OH*
-  - CH2O
-  type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - CH3O2*
-  radicalchange: 0
-  reactants:
-  - H*
-  - HCOOH
   type: ElementaryReaction
 - comment: 'Estimated using template [Adsorbate;VacantSite] for rate rule [O-H;VacantSite]
 
@@ -1240,18 +1135,17 @@ Reactions:
   - X
   - H2
   type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate
-    rule [CO2;VacantSite1;VacantSite2]
+- comment: 'Exact match found for rate rule [CO2;VacantSite1;VacantSite2]
 
-    Euclidian distance = 2.0
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 2.0
 
     family: Surface_Adsorption_Dissociative_Double'
   kinetics:
-    A: 0.02
-    Ea: 41840.0
-    n: 0.0
+    A: 3.453e-08
+    Ea: 155197.8927436074
+    n: 1.407
     type: StickingCoefficient
   products:
   - O*
@@ -1262,17 +1156,17 @@ Reactions:
   - X
   - CO2
   type: ElementaryReaction
-- comment: 'Estimated using template [O-H;VacantSite1;VacantSite2] for rate rule [H2O;VacantSite1;VacantSite2]
+- comment: 'Exact match found for rate rule [H2O;VacantSite1;VacantSite2]
 
-    Euclidian distance = 1.0
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 2.0
 
     family: Surface_Adsorption_Dissociative'
   kinetics:
-    A: 0.2
-    Ea: 146749.00825292527
-    n: 0.0
+    A: 3.06608e-08
+    Ea: 99683.75525574296
+    n: 1.399
     type: StickingCoefficient
   products:
   - H*
@@ -1409,9 +1303,9 @@ Reactions:
 
     family: Surface_Dissociation'
   kinetics:
-    A: 4.18e+17
-    Ea: 69580.09429998645
-    n: 0.0
+    A: 2186590000000000.0
+    Ea: 159220.33519228167
+    n: 0.638
     type: Arrhenius
   products:
   - O*
@@ -1469,9 +1363,9 @@ Reactions:
 
     family: Surface_Dissociation'
   kinetics:
-    A: 4.18e+17
-    Ea: 65143.36068000439
-    n: 0.0
+    A: 2.14202e+18
+    Ea: 18259.96726316174
+    n: -0.381
     type: Arrhenius
   products:
   - H*
@@ -1519,6 +1413,52 @@ Reactions:
   - X
   - HCOO*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [*H;O=C=O;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 6.16246e-05
+    Ea: 80117.96435527969
+    n: 0.253
+    type: StickingCoefficient
+  products:
+  - X
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CO2
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_Migration_Dual_Site
+
+    Kinetics were estimated in this direction instead of the reverse because:
+
+    This direction matched an entry in Surface_Migration_Dual_Site, the other was
+    just an estimate.
+
+    dGrxn(298 K) = 22.68 kJ/mol'
+  kinetics:
+    A: 6.76873e+19
+    Ea: 200444.1171308532
+    n: -0.322
+    type: Arrhenius
+  products:
+  - X
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCOO*
+  type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [CO2;H*]
 
     Euclidian distance = 4.123105625617661
@@ -1556,6 +1496,27 @@ Reactions:
   reactants:
   - X
   - COOH*
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;R=R;VacantSite1]
+
+    Euclidian distance = 1.4142135623730951
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 1.0e-05
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CO2
   type: ElementaryReaction
 - comment: 'Exact match found for rate rule [C-OH;VacantSite]
 
@@ -1649,6 +1610,25 @@ Reactions:
   - H*
   - CH2O*
   type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;C=O;VacantSite1]
+
+    Euclidian distance = 2.23606797749979
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CH2O
+  type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O=C;HO*]
 
     Euclidian distance = 2.8284271247461903
@@ -1685,6 +1665,44 @@ Reactions:
   - H*
   - HCOOH*
   type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [Adsorbate1;C=O;VacantSite1]
+
+    Euclidian distance = 2.0
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;C=O;VacantSite1]
+
+    Euclidian distance = 2.23606797749979
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - HCOOH
+  type: ElementaryReaction
 - comment: 'Estimated using template [Combined;VacantSite] for rate rule [O-H;VacantSite]
 
     Euclidian distance = 2.0
@@ -1703,15 +1721,25 @@ Reactions:
   - X
   - CH3OH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [AdsorbateVdW;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [AdsorbateVdW;*=O]
 
     Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 2.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -64.2 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 20000000000000.0
     Ea: 0.0
@@ -1725,18 +1753,18 @@ Reactions:
   - O*
   - CH2O*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [AdsorbateVdW;*=C=R]
+- comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
 
-    Euclidian distance = 3.0
+    Estimated using an average for rate rule [AdsorbateVdW;*=C=R]
+
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 2.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 6.2 to 16.1 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 20000000000000.0
-    Ea: 16119.92869030917
+    Ea: 17550.61185631608
     n: 0.0
     type: Arrhenius
   products:
@@ -1747,74 +1775,28 @@ Reactions:
   - H2O*
   - CO*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [Donating;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
 
-    Euclidian distance = 2.0
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_Abstraction_Single_vdW
-
-    Kinetics were estimated in this direction instead of the reverse because:
-
-    Both directions are estimates, but this direction is exergonic.
-
-    dGrxn(298 K) = -101.35 kJ/mol
-
-    Ea raised from -54.3 to 0.0 kJ/mol.'
-  kinetics:
-    A: 20000000000000.0
-    Ea: 0.0
-    n: 0.0
-    type: Arrhenius
-  products:
-  - H*
-  - HCOOH*
-  radicalchange: 0
-  reactants:
-  - OH*
-  - CH2O*
-  type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [Donating;*C=R]
-
-    Euclidian distance = 2.0
-
-    Multiplied by reaction path degeneracy 2.0
-
-    family: Surface_Abstraction_Single_vdW
-
-    Kinetics were estimated in this direction instead of the reverse because:
-
-    Both directions are estimates, but this direction is exergonic.
-
-    dGrxn(298 K) = -3.25 kJ/mol
-
-    Ea raised from -4.0 to 0.0 kJ/mol.'
-  kinetics:
-    A: 20000000000000.0
-    Ea: 0.0
-    n: 0.0
-    type: Arrhenius
-  products:
-  - H*
-  - HCOOH*
-  radicalchange: 0
-  reactants:
-  - H2O*
-  - HCO*
-  type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [AdsorbateVdW;*=O]
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [AdsorbateVdW;*=O]
 
     Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 3.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 16.1 to 28.9 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 30000000000000.0
-    Ea: 28891.384591756854
+    Ea: 32199.39474594465
     n: 0.0
     type: Arrhenius
   products:
@@ -1847,18 +1829,28 @@ Reactions:
   - H2O*
   - CH2O*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
 
     Euclidian distance = 1.4142135623730951
 
     Multiplied by reaction path degeneracy 2.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 46.1 to 90.4 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 20000000000000.0
-    Ea: 90437.37250398006
+    Ea: 92243.32945845462
     n: 0.0
     type: Arrhenius
   products:
@@ -1911,6 +1903,27 @@ Reactions:
   - O*
   - HCOO*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 52974.49954756133
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CO2
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [O;R-O-H]
 
     Euclidian distance = 0
@@ -1929,16 +1942,47 @@ Reactions:
   - O*
   - COOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C=R;*=O]
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 71281.61667841453
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CO2
+  type: ElementaryReaction
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C=R;*=O]
 
     Euclidian distance = 3.1622776601683795
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -9.9 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 0.0
+    Ea: 1443.7634035972987
     n: 0.0
     type: Arrhenius
   products:
@@ -1949,16 +1993,26 @@ Reactions:
   - O*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
 
     Euclidian distance = 1.4142135623730951
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -9.9 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 0.0
+    Ea: 1443.7634035972987
     n: 0.0
     type: Arrhenius
   products:
@@ -1969,16 +2023,21 @@ Reactions:
   - O*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]
+    + Average of [C-OH;*=C=R]]]] + Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] +
+    Average of [Average of [C-OH;*=C=R]]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Adsorbate1] for rate rule [C-R;*=O]
 
-    family: Surface_Abstraction_vdW
+    Euclidian distance = 1.0
 
-    Ea raised from 8.4 to 15.8 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 15817.188731856644
+    Ea: 19750.880534450505
     n: 0.0
     type: Arrhenius
   products:
@@ -1989,18 +2048,23 @@ Reactions:
   - O*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]
+    + Average of [C-OH;*=C=R]]]] + Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] +
+    Average of [Average of [C-OH;*=C=R]]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Adsorbate1] for rate rule [C-R;*=O]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 2.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -4.3 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 20000000000000.0
-    Ea: 0.0
+    Ea: 7064.508440329704
     n: 0.0
     type: Arrhenius
   products:
@@ -2031,6 +2095,25 @@ Reactions:
   - O*
   - CH3O*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 51781.054641509094
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CH2O
+  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [O;R-C-H]
 
     Euclidian distance = 0
@@ -2051,16 +2134,45 @@ Reactions:
   - O*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C-3R;*=O]
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 83902.03801606943
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - HCOOH
+  type: ElementaryReaction
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C-3R;*=O]
 
     Euclidian distance = 3.1622776601683795
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 36.0 to 69.6 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 69573.7884775931
+    Ea: 71959.1507667499
     n: 0.0
     type: Arrhenius
   products:
@@ -2071,16 +2183,26 @@ Reactions:
   - O*
   - CH3OH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
 
     Euclidian distance = 1.4142135623730951
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 36.0 to 69.6 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 69573.7884775931
+    Ea: 71959.1507667499
     n: 0.0
     type: Arrhenius
   products:
@@ -2091,15 +2213,17 @@ Reactions:
   - O*
   - CH3OH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=C=R]
+- comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
 
-    Euclidian distance = 3.1622776601683795
+    Estimated using template [AdsorbateVdW;*=C=R] for rate rule [O-R;*=C=R]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 2.0
 
     family: Surface_Abstraction_vdW
 
-    Ea raised from 47.9 to 96.0 kJ/mol to match endothermicity of reaction.'
+    Ea raised from 95.8 to 96.0 kJ/mol to match endothermicity of reaction.'
   kinetics:
     A: 20000000000000.0
     Ea: 95966.13599714637
@@ -2131,16 +2255,26 @@ Reactions:
   - OH*
   - HCOO*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C=R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C=R;*=O]
 
     Euclidian distance = 3.1622776601683795
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -9.9 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 0.0
+    Ea: 1443.7634035972987
     n: 0.0
     type: Arrhenius
   products:
@@ -2151,16 +2285,26 @@ Reactions:
   - O*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
 
     Euclidian distance = 1.4142135623730951
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -9.9 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 0.0
+    Ea: 1443.7634035972987
     n: 0.0
     type: Arrhenius
   products:
@@ -2189,7 +2333,14 @@ Reactions:
   - OH*
   - COOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*C=R]]
+    + Average of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of
+    [C-OH;*C=R]]]] + Average of [Average of [Average of [Average of [C-OH;*C=R] +
+    Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R]]]]]
+
+    Estimated using template [Donating;Abstracting] for rate rule [O-H;*O-H]
 
     Euclidian distance = 2.8284271247461903
 
@@ -2215,9 +2366,13 @@ Reactions:
   - OH*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O-H]
+
+    Euclidian distance = 2.0
 
     family: Surface_Abstraction_Single_vdW
 
@@ -2241,9 +2396,13 @@ Reactions:
   - OH*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O-H]
+
+    Euclidian distance = 2.0
 
     Multiplied by reaction path degeneracy 2.0
 
@@ -2289,16 +2448,26 @@ Reactions:
   - OH*
   - CH3O*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C-3R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-C-3R;*=O]
 
     Euclidian distance = 3.1622776601683795
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 36.0 to 69.6 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 69573.7884775931
+    Ea: 71959.1507667499
     n: 0.0
     type: Arrhenius
   products:
@@ -2309,16 +2478,26 @@ Reactions:
   - O*
   - CH3OH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]] + Average of
+    [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]] + Average of [Average of
+    [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R] +
+    Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]] + Average of
+    [Average of [Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]] + Average of [Average of [Average
+    of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]]]]
+    + Average of [Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]
+    + Average of [Average of [C-OH;*=C=R]]] + Average of [Average of [Average of [C-OH;*=C=R]]]]]]
+
+    Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=O]
 
     Euclidian distance = 1.4142135623730951
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 36.0 to 69.6 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 69573.7884775931
+    Ea: 71959.1507667499
     n: 0.0
     type: Arrhenius
   products:
@@ -2349,7 +2528,14 @@ Reactions:
   - OH*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*C=R]]
+    + Average of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of
+    [C-OH;*C=R]]]] + Average of [Average of [Average of [Average of [C-OH;*C=R] +
+    Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R]]]]]
+
+    Estimated using template [Donating;Abstracting] for rate rule [O-H;*O-H]
 
     Euclidian distance = 2.8284271247461903
 
@@ -2393,6 +2579,27 @@ Reactions:
   - CO*
   - HCOO*
   type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 51218.83161844143
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - HCOO*
+  radicalchange: 0
+  reactants:
+  - X
+  - CO2
+  - HCO*
+  type: ElementaryReaction
 - comment: 'Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-O-H]
 
     Euclidian distance = 1.0
@@ -2411,16 +2618,37 @@ Reactions:
   - CO*
   - COOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=C=R]
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
 
-    Euclidian distance = 3.1622776601683795
+    Euclidian distance = 0
 
-    family: Surface_Abstraction_vdW
+    Multiplied by reaction path degeneracy 2.0
 
-    Ea raised from -8.1 to 0.0 kJ/mol.'
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 1.211256e-10
+    Ea: 69525.94874929464
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - COOH*
+  radicalchange: 0
+  reactants:
+  - X
+  - CO2
+  - HCO*
+  type: ElementaryReaction
+- comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
+
+    Estimated using template [AdsorbateVdW;*=C=R] for rate rule [O-R;*=C=R]
+
+    Euclidian distance = 1.0
+
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 0.0
+    Ea: 3199.431332717195
     n: 0.0
     type: Arrhenius
   products:
@@ -2431,16 +2659,14 @@ Reactions:
   - CO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-OH;*=C=R]
+- comment: 'Exact match found for rate rule [C-OH;*=C=R]
 
-    Euclidian distance = 4.242640687119285
+    Euclidian distance = 0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 10.2 to 21.3 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 21345.95222502295
+    Ea: 21506.5484635704
     n: 0.0
     type: Arrhenius
   products:
@@ -2451,16 +2677,16 @@ Reactions:
   - CO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=C=R]
+- comment: 'Average of [Average of [C-OH;*=C=R]]
 
-    Euclidian distance = 3.1622776601683795
+    Estimated using an average for rate rule [C-R;*=C=R]
 
-    family: Surface_Abstraction_vdW
+    Euclidian distance = 0
 
-    Ea raised from 10.2 to 21.3 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 21345.95222502295
+    Ea: 21506.5484635704
     n: 0.0
     type: Arrhenius
   products:
@@ -2471,18 +2697,18 @@ Reactions:
   - CO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=C=R]
+- comment: 'Average of [Average of [C-OH;*=C=R]]
 
-    Euclidian distance = 3.1622776601683795
+    Estimated using an average for rate rule [C-R;*=C=R]
+
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 2.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from -2.5 to 0.0 kJ/mol.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 20000000000000.0
-    Ea: 0.0
+    Ea: 8820.1763694496
     n: 0.0
     type: Arrhenius
   products:
@@ -2512,6 +2738,25 @@ Reactions:
   reactants:
   - CO*
   - CH3O*
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 50025.38671238921
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  - CH2O
   type: ElementaryReaction
 - comment: 'Exact match found for rate rule [Abstracting;Donating]
 
@@ -2551,16 +2796,54 @@ Reactions:
   - CO*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [O-R;*=C=R]
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
 
-    Euclidian distance = 3.1622776601683795
+    Euclidian distance = 0
 
-    family: Surface_Abstraction_vdW
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 71798.31750401772
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - COOH*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
 
-    Ea raised from 37.7 to 75.1 kJ/mol to match endothermicity of reaction.'
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 82146.37008694955
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - CH3O2*
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  - HCOOH
+  type: ElementaryReaction
+- comment: 'Average of [Average of [Average of [C-OH;*=C=R]]]
+
+    Estimated using template [AdsorbateVdW;*=C=R] for rate rule [O-R;*=C=R]
+
+    Euclidian distance = 1.0
+
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 75102.5519707594
+    Ea: 75470.48662498969
     n: 0.0
     type: Arrhenius
   products:
@@ -2715,16 +2998,14 @@ Reactions:
   - COOH*
   - CH3O*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-OH;*=C=R]
+- comment: 'Exact match found for rate rule [C-OH;*=C=R]
 
-    Euclidian distance = 4.242640687119285
+    Euclidian distance = 0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 10.2 to 21.3 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 21345.95222502295
+    Ea: 21506.5484635704
     n: 0.0
     type: Arrhenius
   products:
@@ -2735,16 +3016,16 @@ Reactions:
   - CO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=C=R]
+- comment: 'Average of [Average of [C-OH;*=C=R]]
 
-    Euclidian distance = 3.1622776601683795
+    Estimated using an average for rate rule [C-R;*=C=R]
 
-    family: Surface_Abstraction_vdW
+    Euclidian distance = 0
 
-    Ea raised from 10.2 to 21.3 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 10000000000000.0
-    Ea: 21345.95222502295
+    Ea: 21506.5484635704
     n: 0.0
     type: Arrhenius
   products:
@@ -2755,9 +3036,11 @@ Reactions:
   - CO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*C=R]
+- comment: 'Average of [Average of [Average of [C-OH;*C=R]]]
 
-    Euclidian distance = 2.8284271247461903
+    Estimated using template [Donating;*C=R] for rate rule [O-H;*C=R]
+
+    Euclidian distance = 2.0
 
     family: Surface_Abstraction_Single_vdW
 
@@ -2781,9 +3064,11 @@ Reactions:
   - HCO*
   - HCOOH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*C=R]
+- comment: 'Average of [Average of [C-OH;*C=R]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using an average for rate rule [C-R;*C=R]
+
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 2.0
 
@@ -2867,9 +3152,13 @@ Reactions:
   - HCO*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 2.0
 
@@ -2931,9 +3220,11 @@ Reactions:
   - COOH*
   - HCOO*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*C=R]
+- comment: 'Average of [Average of [Average of [C-OH;*C=R]]]
 
-    Euclidian distance = 2.8284271247461903
+    Estimated using template [Donating;*C=R] for rate rule [O-H;*C=R]
+
+    Euclidian distance = 2.0
 
     family: Surface_Abstraction_Single_vdW
 
@@ -2997,7 +3288,14 @@ Reactions:
   - HCOO*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*C=R]]
+    + Average of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of
+    [C-OH;*C=R]]]] + Average of [Average of [Average of [Average of [C-OH;*C=R] +
+    Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]] + Average of [Average
+    of [Average of [C-OH;*C=R]]]]]
+
+    Estimated using template [Donating;Abstracting] for rate rule [O-H;*O]
 
     Euclidian distance = 2.23606797749979
 
@@ -3063,9 +3361,13 @@ Reactions:
   - COOH*
   - CH3O2*
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O]
+
+    Euclidian distance = 1.0
 
     family: Surface_Abstraction_Single_vdW
 
@@ -3167,24 +3469,6 @@ Reactions:
   - CH3O*
   - CH3O*
   type: ElementaryReaction
-- comment: 'Exact match found for rate rule [Adsorbate1]
-
-    Euclidian distance = 0
-
-    Multiplied by reaction path degeneracy 3.0
-
-    family: Surface_Migration'
-  kinetics:
-    A: 30000000000000.0
-    Ea: 50000.0
-    n: 0.0
-    type: Arrhenius
-  products:
-  - OC[Pt]
-  radicalchange: 0
-  reactants:
-  - CH3O*
-  type: ElementaryReaction
 - comment: 'Exact match found for rate rule [CH3OH;VacantSite1;VacantSite2]
 
     Euclidian distance = 0
@@ -3205,6 +3489,33 @@ Reactions:
   - X
   - X
   - CH3OH
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;VacantSite1]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 3.0
+
+    family: Surface_Migration_Dual_Site
+
+    Kinetics were estimated in this direction instead of the reverse because:
+
+    This direction matched an entry in Surface_Migration_Dual_Site, the other was
+    just an estimate.
+
+    dGrxn(298 K) = -57.52 kJ/mol'
+  kinetics:
+    A: 2.030619e+20
+    Ea: 153514.18521713512
+    n: -0.322
+    type: Arrhenius
+  products:
+  - X
+  - OC[Pt]
+  radicalchange: 0
+  reactants:
+  - X
+  - CH3O*
   type: ElementaryReaction
 - comment: 'Estimated using template [Combined;VacantSite] for rate rule [O-C;VacantSite]
 
@@ -3244,23 +3555,6 @@ Reactions:
   - X
   - CH3OH*
   type: ElementaryReaction
-- comment: 'Estimated using template [Adsorbate1;Gas] for rate rule [*H;R=R]
-
-    Euclidian distance = 1.4142135623730951
-
-    family: Surface_EleyRideal_Addition_Multiple_Bond'
-  kinetics:
-    A: 5.0e-06
-    Ea: 68660.0
-    n: 0.0
-    type: StickingCoefficient
-  products:
-  - OC[Pt]
-  radicalchange: 0
-  reactants:
-  - H*
-  - CH2O
-  type: ElementaryReaction
 - comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [2R-C=O;H*]
 
     Euclidian distance = 3.1622776601683795
@@ -3279,18 +3573,23 @@ Reactions:
   - H*
   - CH2O*
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=O]
+- comment: 'Average of [Average of [Average of [Average of [Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R]
+    + Average of [C-OH;*=C=R]]]] + Average of [Average of [Average of [Average of
+    [C-OH;*=C=R]] + Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]]]
+    + Average of [Average of [Average of [C-OH;*=C=R] + Average of [C-OH;*=C=R]] +
+    Average of [Average of [C-OH;*=C=R]]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Adsorbate1] for rate rule [C-R;*=O]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 3.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 7.4 to 12.6 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 30000000000000.0
-    Ea: 12620.327389657497
+    Ea: 18682.848600510053
     n: 0.0
     type: Arrhenius
   products:
@@ -3319,9 +3618,13 @@ Reactions:
   - O*
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O-H]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O-H]
+
+    Euclidian distance = 2.0
 
     Multiplied by reaction path degeneracy 3.0
 
@@ -3365,18 +3668,18 @@ Reactions:
   - OH*
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [AdsorbateVdW;Adsorbate1] for rate rule [C-R;*=C=R]
+- comment: 'Average of [Average of [C-OH;*=C=R]]
 
-    Euclidian distance = 3.1622776601683795
+    Estimated using an average for rate rule [C-R;*=C=R]
+
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 3.0
 
-    family: Surface_Abstraction_vdW
-
-    Ea raised from 9.1 to 18.1 kJ/mol to match endothermicity of reaction.'
+    family: Surface_Abstraction_vdW'
   kinetics:
     A: 30000000000000.0
-    Ea: 18149.090882823803
+    Ea: 20438.51652962995
     n: 0.0
     type: Arrhenius
   products:
@@ -3441,9 +3744,12 @@ Reactions:
   - CO*
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*C-3R]
+- comment: 'Average of [Average of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]
+    + Average of [Average of [C-OH;*C=R]]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using template [C-R;*C] for rate rule [C-R;*C-3R]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 2.0
 
@@ -3469,9 +3775,13 @@ Reactions:
   - CH2O*
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [O-H;*C-3R]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R] + Average of
+    [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]] + Average of [Average of [Average
+    of [C-OH;*C=R]]]]
 
-    Euclidian distance = 2.8284271247461903
+    Estimated using template [Donating;*C] for rate rule [O-H;*C-3R]
+
+    Euclidian distance = 2.23606797749979
 
     family: Surface_Abstraction_Single_vdW
 
@@ -3495,9 +3805,11 @@ Reactions:
   - HCOOH*
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*C=R]
+- comment: 'Average of [Average of [C-OH;*C=R]]
 
-    Euclidian distance = 2.23606797749979
+    Estimated using an average for rate rule [C-R;*C=R]
+
+    Euclidian distance = 0
 
     Multiplied by reaction path degeneracy 3.0
 
@@ -3653,9 +3965,13 @@ Reactions:
   - OC[Pt]
   - OC[Pt]
   type: ElementaryReaction
-- comment: 'Estimated using template [Donating;Abstracting] for rate rule [C-R;*O]
+- comment: 'Average of [Average of [Average of [Average of [C-OH;*C=R]] + Average
+    of [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]]] + Average of [Average of
+    [Average of [C-OH;*C=R] + Average of [C-OH;*C=R]] + Average of [Average of [C-OH;*C=R]]]]
 
-    Euclidian distance = 1.4142135623730951
+    Estimated using template [C-R;Abstracting] for rate rule [C-R;*O]
+
+    Euclidian distance = 1.0
 
     Multiplied by reaction path degeneracy 3.0
 
@@ -3680,6 +3996,63 @@ Reactions:
   reactants:
   - CH3O*
   - CH3OH*
+  type: ElementaryReaction
+- comment: 'Estimated using template [Adsorbate1;Gas;VacantSite1] for rate rule [*H;R=R;VacantSite1]
+
+    Euclidian distance = 1.4142135623730951
+
+    family: Surface_EleyRideal_Addition_Dual_Site'
+  kinetics:
+    A: 5.0e-06
+    Ea: 68660.0
+    n: 0.0
+    type: StickingCoefficient
+  products:
+  - X
+  - OC[Pt]
+  radicalchange: 0
+  reactants:
+  - X
+  - H*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 23158.2398586442
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - O*
+  - OC[Pt]
+  radicalchange: 0
+  reactants:
+  - X
+  - OH*
+  - CH2O
+  type: ElementaryReaction
+- comment: 'Exact match found for rate rule [Adsorbate1;Gas;VacantSite1]
+
+    Euclidian distance = 0
+
+    family: Surface_EleyRideal_Abstraction'
+  kinetics:
+    A: 6.05628e-11
+    Ea: 21402.571929524318
+    n: 1.826
+    type: StickingCoefficient
+  products:
+  - CO*
+  - OC[Pt]
+  radicalchange: 0
+  reactants:
+  - X
+  - HCO*
+  - CH2O
   type: ElementaryReaction
 - comment: 'Estimated using template [Abstracting;Donating] for rate rule [Abstracting;R-O-H]
 
