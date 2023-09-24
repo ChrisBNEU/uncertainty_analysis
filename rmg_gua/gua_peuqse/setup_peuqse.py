@@ -16,7 +16,7 @@ from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_d
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def setup_userinput(project_path):
+def setup_userinput(project_path, use_ranges=False):
 
     """
     sets up the common user inputs for a peuqse run.
@@ -67,8 +67,9 @@ def setup_userinput(project_path):
     
     
     #Can optionally change the initial guess to be different from prior means.
-    UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
-    UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
+    if use_ranges:
+        UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
+        UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
     UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 

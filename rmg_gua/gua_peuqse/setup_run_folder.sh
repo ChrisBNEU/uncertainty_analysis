@@ -12,8 +12,8 @@
 #SBATCH --mail-type=FAIL,END
 
 cd /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/
-source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda/
+source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda/bin/activate
 
 source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/set_path_rmg.sh
 
-python-jl setup_run_folder.py 04_logp_opt_linear_checkpoint 0 0
+python-jl setup_run_folder.py -p -f 02_mcmc_methanol -d /scratch/blais.ch/methanol_unc_data/

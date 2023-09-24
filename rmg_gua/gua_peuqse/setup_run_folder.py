@@ -1,6 +1,7 @@
 import shutil
 import os
 import sys
+import argparse
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 print("repo_dir: ", repo_dir)
 sys.path.append(repo_dir)
@@ -52,7 +53,8 @@ def make_bash_script(full_path, parallel=False, local_run=False):
         output.append("#SBATCH --mail-user=blais.ch@northeastern.edu")
         output.append("#SBATCH --mail-type=FAIL,END")
 
-        output.append("source activate /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuquse_env")
+        output.append("module purge")
+        output.append("source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuquse_env/bin/activate")
         output.append("module load gcc/10.1.0")
         output.append("module load openmpi/4.1.2-gcc10.1")
         output.append("rm /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/cantera/chem_annotated.yaml")
@@ -62,7 +64,7 @@ def make_bash_script(full_path, parallel=False, local_run=False):
 
     
     if parallel: 
-        output.append(f"mpiexec -n {tot_tasks} python run_peuqse.py")
+        output.append(f"mpiexec -n {tot_tasks}  -v python run_peuqse.py")
     else:
         output.append("python run_peuqse.py")
 
@@ -86,7 +88,7 @@ def make_run_file(full_path, parallel=False):
     output.append("import PEUQSE as PEUQSE")
     output.append("import PEUQSE.UserInput as UserInput")
     output.append("import sys")
-    output.append(f"repo_dir = {repo_dir}")
+    output.append(f"repo_dir = '{repo_dir}'")
     output.append("sys.path.insert(0, repo_dir)")
     output.append("import rmg_gua.gua_peuqse.ct_simulation as ct_simulation")
     output.append("from rmg_gua.gua_peuqse.setup_peuqse import setup_userinput")
@@ -120,7 +122,7 @@ def make_run_folder(full_path, parallel=False, local_run=False):
     makes a folder for peuqse to run in, with all required inputs
     """
     if not os.path.exists(full_path):
-        os.mkdir(full_path)
+        os.makedirs(full_path)
     else: 
         print("folder already exists, updating files")
 
@@ -160,18 +162,18 @@ def make_run_folder(full_path, parallel=False, local_run=False):
 
 if __name__ == "__main__":
 
-    run_folder = str(sys.argv[1])
-    parallel = bool(int(sys.argv[2]))
-    local_run = bool(int(sys.argv[3]))
+    # run_folder = str(sys.argv[1])
+    # parallel = bool(int(sys.argv[2]))
+    # local_run = bool(int(sys.argv[3]))
 
-    if len(sys.argv) > 4:
-        file_path = str(sys.argv[4])
-    else: 
-        file_path = os.path.dirname(__file__)
+    # if len(sys.argv) > 4:
+    #     file_path = str(sys.argv[4])
+    # else: 
+    #     file_path = os.path.dirname(__file__)
     
-    full_path = os.path.join(file_path, "peuqse_runs", run_folder)
+    # full_path = os.path.join(file_path, "peuqse_runs", run_folder)
 
-    make_run_folder(full_path, parallel=parallel, local_run=local_run)
+    # make_run_folder(full_path, parallel=parallel, local_run=local_run)
 
 
      # cmd line args
@@ -181,52 +183,53 @@ if __name__ == "__main__":
     curr_folder = os.path.dirname(os.path.abspath(__file__))
 
     # -f run_folder -o opt_type -p param_type -d directory -n nersc
-    # e.g. -f 01_test_folder -o -p -d /pscratch/sd/c/chrisjb/cpox_peuqse_runs -n 1
+    # e.g. -f 01_test_folder -p -d /pscratch/sd/c/chrisjb/cpox_peuqse_runs
     parser.add_argument(
         "-f", "--folder", type=str, help="Run folder name"
         )
 
+    # parser.add_argument(
+    #     "-o", "--opttype", help="Optimization type (true=ssr, false=map)", 
+    #     default=False, action='store_true'
+    #     )
+
     parser.add_argument(
-        "-o", "--opttype", help="Optimization type (true=ssr, false=map)", 
+        "-p", "--parallel", 
+        help="run in parallel or serial. default is serial",
         default=False, action='store_true'
         )
 
     parser.add_argument(
-        "-p", "--params", 
-        help="optimization parameters, either species or binding energies (true=species, false=be)",
+        "-l", "--local", 
+        help="run locally or on hpc. default is hpc run",
         default=False, action='store_true'
         )
+    
 
     parser.add_argument(
         "-d", "--directory", type=str, help="directory to make run folder in", 
         default=curr_folder
         )
 
-    parser.add_argument(
-        "-n", "--nersc", help="Run on nersc, y/n", default=False, action='store_true'
-        )
-
-    parser.add_argument(
-        "-us", "--uncertainty-source", help="if 0, lsr uncertainties. 1, ocp. 2, dft.",
-        default=0, type=int,
-        )
+    # parser.add_argument(
+    #     "-n", "--nersc", help="Run on nersc, y/n", default=False, action='store_true'
+    #     )
 
     #cmd line args
     args = parser.parse_args()
     run_folder = args.folder
-    ssr = args.opttype
-    by_species = args.params
-    us = args.uncertainty_source
+    parallel = args.parallel
+    local_run = args.local
 
     # optional arg for scratch path (used on nersc)
     file_path = args.directory
     full_path = os.path.join(file_path, "peuqse_runs", run_folder)
     
     # optional arg to use nersc scripts
-    nersc = args.nersc
+    # nersc = args.nersc
 
     # make the run folder 
-    make_run_folder(full_path, ssr=ssr, by_species=by_species, nersc=nersc, unc_src=us)
+    make_run_folder(full_path, parallel=parallel, local_run=local_run)
 
     
 
