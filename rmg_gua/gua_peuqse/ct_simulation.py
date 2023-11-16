@@ -34,7 +34,8 @@ def sim_init(project_path):
     lookup_dict_file = os.path.join(results_path, "rmg_2_ck_dict.yaml")
 
     # cti support deprecated in 2.6
-    if ct_full > 2.6:
+    if ct_full >= 2.6:
+        print("loading cantera yaml")
         file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.yaml")
     else: 
         file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
@@ -111,7 +112,7 @@ def simulationFunction(parameters, debug=False):
         except Exception as e: #CanteraError: making bare exception just to see if there is something catchable 
             with open("./mpiproblem.txt", "w") as f:
                 f.write(f"error on cantera run {run}, encountered exception {e}")
-            print("could not solve system of equations with parameters [parameters], so setting outlet moles to nan")
+            print(f"could not solve system of equations with parameters {parameters}, so setting outlet moles to nan")
             CH3OH_X.append(float('nan'))
             CO_X.append(float('nan'))
             CO2_X.append(float('nan'))
@@ -170,7 +171,7 @@ def simulation_function_wrapper(parametersArray):#this has a and b in it.
     t2 = time.asctime()
     t2s = time.time()
 
-    print(f"start time: {t1}")
-    print(f"end time: {t2}")
+    # print(f"start time: {t1}")
+    # print(f"end time: {t2}")
     print(f"elapsed: {t2s-t1s} seconds")
     return y

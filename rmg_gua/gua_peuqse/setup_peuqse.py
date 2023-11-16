@@ -63,7 +63,7 @@ def setup_userinput(project_path, use_ranges=False):
     UserInput.model['InputParameterPriorValues'] = param_dict["value_list"]
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
     UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
-    UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
+    # UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
     
     
     #Can optionally change the initial guess to be different from prior means.

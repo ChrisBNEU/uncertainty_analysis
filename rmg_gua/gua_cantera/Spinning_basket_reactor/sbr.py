@@ -315,7 +315,7 @@ class MinSBR:
                 b_i = self.old_kinetics[num][2]
 
                 # new surface reaction objects were made after 2.6
-                if ct_full <=2.6:
+                if ct_full < 2.6:
                     rate = ct.Arrhenius(A = A_i, E = Ea_i, b = b_i)
                 else: 
                     if isinstance(reaction.rate, ct.StickingArrheniusRate):
@@ -671,7 +671,7 @@ class MinSBR:
                 thermo_pert_dict[key] = pert_list[count]
                 count += 1
             
-            print("thermo perturbations: ", thermo_pert_dict)
+            # print("thermo perturbations: ", thermo_pert_dict)
 
         return rule_dict, thermo_pert_dict
 
