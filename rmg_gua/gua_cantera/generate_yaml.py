@@ -9,6 +9,7 @@ import sys
 import os
 from pathlib import Path
 
+repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # manually give addresses for data.
 # graaf_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/Graaf_data/'
 # yang_data_dir = '/work/westgroup/ChrisB/_01_MeOH_repos/meOH-analysis/cantera_simulations/yang_2010_data/'
@@ -19,8 +20,8 @@ from pathlib import Path
 # # yang_data_dir = sys.argv[2]
 # grabow_conditions_dir = sys.argv[2]
 
-graaf_data_dir = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/experimental_data/graaf"
-grabow_conditions_dir = "/Users/blais.ch/Documents/_01_code/05_Project_repos_Github/meOH_repos/uncertainty_analysis/experimental_data/grabow"
+graaf_data_dir = os.path.join(repo_dir, "experimental_data/graaf")
+grabow_conditions_dir = os.path.join(repo_dir, "experimental_data/grabow")
 
 def zip_dict(**kwargs):
     '''
