@@ -653,29 +653,60 @@ forbidden(
     )
 )
 # check that we really are having an issue with methane formation
-# forbidden(
-#     label='ch3x',
-#     structure=adjacencyList(
-#         """
-#         1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-#         2 H u0 p0 c0 {1,S}
-#         3 H u0 p0 c0 {1,S}
-#         4 H u0 p0 c0 {1,S}
-#         5 X u0 p0 c0 {1,S}
-#         """
-#     )
-# )
-# forbidden(
-#     label='ch4',
-#     structure=adjacencyList(
-#         """
-#         1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
-#         2 H u0 p0 c0 {1,S}
-#         3 H u0 p0 c0 {1,S}
-#         4 H u0 p0 c0 {1,S}
-#         5 H u0 p0 c0 {1,S}
-#         """
-#     )
-# )
+forbidden(
+    label='ch3x',
+    structure=adjacencyList(
+        """
+        1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+        2 H u0 p0 c0 {1,S}
+        3 H u0 p0 c0 {1,S}
+        4 H u0 p0 c0 {1,S}
+        5 X u0 p0 c0 {1,S}
+        """
+    )
+)
+forbidden(
+    label='ch4',
+    structure=adjacencyList(
+        """
+        1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+        2 H u0 p0 c0 {1,S}
+        3 H u0 p0 c0 {1,S}
+        4 H u0 p0 c0 {1,S}
+        5 H u0 p0 c0 {1,S}
+        """
+    )
+)
+forbidden(
+    label='c2h6X',
+    structure=adjacencyList(
+        """
+        1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+        2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
+        3 H u0 p0 c0 {1,S}
+        4 H u0 p0 c0 {1,S}
+        5 H u0 p0 c0 {1,S}
+        6 H u0 p0 c0 {2,S}
+        7 H u0 p0 c0 {2,S}
+        8 H u0 p0 c0 {2,S}
+        9 X u0 p0 c0
+        """
+    )
+)
+forbidden(
+    label='c2h6',
+    structure=adjacencyList(
+        """
+        1 C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+        2 C u0 p0 c0 {1,S} {6,S} {7,S} {8,S}
+        3 H u0 p0 c0 {1,S}
+        4 H u0 p0 c0 {1,S}
+        5 H u0 p0 c0 {1,S}
+        6 H u0 p0 c0 {2,S}
+        7 H u0 p0 c0 {2,S}
+        8 H u0 p0 c0 {2,S}
+        """
+    )
+)
 
 
