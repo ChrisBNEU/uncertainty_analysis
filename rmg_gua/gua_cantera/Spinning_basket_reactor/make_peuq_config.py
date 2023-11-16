@@ -59,8 +59,8 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
             else:
                 A_val = math.log10(entry.A.value_si)
                 A_unc = 1
-                A_lb = -6
-                A_ub = 1
+                A_lb = -15
+                A_ub = 3
                 A_guess = A_val
                 
             E0_val = entry.E0.value_si
@@ -75,14 +75,14 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
                 E0_guess = E0_unc + E0_lb
                 E0_ub = E0_unc*2 + E0_lb
                 # then change out uncertainty so it uses range
-                E0_unc = -1
+                # E0_unc = -1
 
             else: 
                 E0_guess = E0_val
             
             # we will treat all alphas the same, with allowable values spanning 0 to 1
             alpha_val = entry.alpha.value_si
-            alpha_unc = -1
+            alpha_unc = 0.5
             alpha_lb = 0
             alpha_ub = 1
             alpha_guess = 0.5

@@ -11,9 +11,16 @@
 #SBATCH --mail-user=blais.ch@northeastern.edu 
 #SBATCH --mail-type=FAIL,END
 
+DEST="/scratch/blais.ch/methanol_unc_data/"
+FOLDER="peuqse_methanol_runs"
+
 cd /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/gua_peuqse/
 source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda/bin/activate
 
 source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/set_path_rmg.sh
 
-python-jl setup_run_folder.py -p -f 02_mcmc_methanol -d /scratch/blais.ch/methanol_unc_data/
+# first, run rmg model using current db and py
+python-jl create_and_run_model.py -p -f $FOLDER -d $DEST
+
+# then, fill with the prerequisite files
+python-jl setup_run_folder.py -p -f $FOLDER -d $DEST

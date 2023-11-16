@@ -58,8 +58,8 @@ def make_bash_script(full_path, parallel=False, local_run=False):
         output.append("source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/peuquse_env/bin/activate")
         output.append("module load gcc/10.1.0")
         output.append("module load openmpi/4.1.2-gcc10.1")
-        output.append("rm /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/cantera/chem_annotated.yaml")
-        output.append("cti2yaml /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/baseline/cantera/chem_annotated.cti")
+        # output.append(f"rm {os.path.join(full_path,'cantera/chem_annotated.yaml')}")
+        # output.append("cti2yaml /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/s/cantera/chem_annotated.cti")
     else: 
         output.append("source activate peuqse_env")
 
@@ -131,7 +131,8 @@ def make_run_folder(full_path, parallel=False, local_run=False):
     rmg_path = os.path.dirname(os.environ["RMGPY"])
 
     # base_path
-    base_path = os.path.join(repo_dir, "rmg_gua", "baseline")
+    # base_path = os.path.join(repo_dir, "rmg_gua", "baseline")
+    base_path = os.path.join(full_path, "rmg_model")
 
     # make the input files into a "config" folder
     config_path = os.path.join(full_path, "config")
