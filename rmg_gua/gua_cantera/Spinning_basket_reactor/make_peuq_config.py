@@ -89,13 +89,13 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
 
             # if A, alpha, or E0 vals +/- unc goes out of bounds, then we will reset to 
             if check_ranges:
-                if A_val + A_unc > A_ub or A_val - A_unc < A_lb:
+                if (A_ub is not None and A_val + A_unc > A_ub) or (A_lb is not None and A_val - A_unc < A_lb):
                     print("A out of bounds for ", fname, " : ", rule_name, " : ", A_val, " +/- ", A_unc)
                     # A_val = A_guess
-                if E0_val + E0_unc > E0_ub or E0_val - E0_unc < E0_lb:
+                if (E0_ub is not None and E0_val + E0_unc > E0_ub) or (E0_lb is not None and E0_val - E0_unc < E0_lb):
                     print("E0 out of bounds for ", fname, " : ", rule_name, " : ", E0_val, " +/- ", E0_unc)
                     # E0_val = E0_guess
-                if alpha_val + alpha_unc > alpha_ub or alpha_val - alpha_unc < alpha_lb:
+                if (alpha_ub is not None and alpha_val + alpha_unc > alpha_ub) or (alpha_lb is not None and alpha_val - alpha_unc < alpha_lb):
                     print("alpha out of bounds for ", fname, " : ", rule_name, " : ", alpha_val, " +/- ", alpha_unc)
                     # alpha_val = alpha_guess
 
