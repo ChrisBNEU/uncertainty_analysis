@@ -16,7 +16,7 @@ from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_d
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def setup_userinput(project_path, use_ranges=False):
+def setup_userinput(project_path, use_ranges=False, reduce_space=None):
 
     """
     sets up the common user inputs for a peuqse run.
@@ -30,7 +30,7 @@ def setup_userinput(project_path, use_ranges=False):
         os.mkdir(peuq_path)
     
     # get the peuqse parameters
-    param_dict = get_all_param_lists(results_path=results_path)     
+    param_dict = get_all_param_lists(results_path=results_path, reduce_space=reduce_space)     
 
     
     data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
@@ -63,8 +63,10 @@ def setup_userinput(project_path, use_ranges=False):
     UserInput.model['InputParameterPriorValues'] = param_dict["value_list"]
     # required. #If user wants to use a prior with covariance, then this must be a 2D array/ list. To assume no covariance, a 1D
     UserInput.model['InputParametersPriorValuesUncertainties'] = param_dict["unc_list"]
-    # UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
-    
+    UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
+
+    if reduce_space is not None: 
+        UserInput.model['reducedParameterSpace'] = param_dict["reduced_list"]
     
     #Can optionally change the initial guess to be different from prior means.
     if use_ranges:

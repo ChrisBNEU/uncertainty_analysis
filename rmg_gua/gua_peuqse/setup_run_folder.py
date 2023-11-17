@@ -73,52 +73,39 @@ def make_bash_script(full_path, parallel=False, local_run=False):
         for line in output: 
             f.write(line+"\n")
 
-def make_run_file(full_path, parallel=False):
+def make_run_file(full_path, parallel=False, run_type="opt"):
     """
     make the python file for running peuqse
     """
+    if run_type == "ssr":
+        filename = "run_peuqse_optlogp.py"
+    elif run_type == "mcmc":
+        filename = "run_peuqse_mcmc.py"
+    else:
+        raise ValueError("run_type must be opt or mcmc")
+    
+    template_path = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "peuqse_templates", filename)
     run_path = os.path.join(full_path, "run_peuqse.py")
-    output = []
-    output.append("import copy")
-    output.append("import pickle")
-    output.append("import shutil")
-    output.append("import os")
-    output.append("import math")
-    output.append("import yaml")
-    output.append("import numpy as np")
-    output.append("import PEUQSE as PEUQSE")
-    output.append("import PEUQSE.UserInput as UserInput")
-    output.append("import sys")
-    output.append(f"repo_dir = '{repo_dir}'")
-    output.append("sys.path.insert(0, repo_dir)")
-    output.append("import rmg_gua.gua_peuqse.ct_simulation as ct_simulation")
-    output.append("from rmg_gua.gua_peuqse.setup_peuqse import setup_userinput")
-    output.append("project_path = os.path.dirname(os.path.abspath(__file__))")
-    output.append("")
-    output.append("if __name__ == \"__main__\":")
-    output.append("    print(\"running job\")")
-    output.append("    # setup our ct_simulation function")
-    output.append("    ct_simulation.sim_init(project_path)")
-    output.append("    UserInput = setup_userinput(project_path)")
-    output.append("    UserInput.model['exportResponses'] = True")
-    output.append("    UserInput.parameter_estimation_settings['mcmc_threshold_filter_samples'] = True")
-    output.append(f"    UserInput.parameter_estimation_settings['mcmc_parallel_sampling'] = {parallel}")
-    output.append("    UserInput.parameter_estimation_settings['mcmc_random_seed'] = 0")
-    output.append("    UserInput.parameter_estimation_settings['multistart_searchType'] = 'doOptimizeLogP'")
-    output.append("    UserInput.parameter_estimation_settings['multistart_passThroughArgs'] = {'method':'Nelder-Mead'}")
-    output.append("    UserInput.parameter_estimation_settings['multistart_initialPointsDistributionType'] = 'sobol'")
-    output.append("    UserInput.parameter_estimation_settings['multistart_exportLog'] = True")
-    output.append("    UserInput.parameter_estimation_settings['multistart_checkPointFrequency'] = 100")
-    output.append("    UserInput.parameter_estimation_settings['verbose'] = True")
-    output.append("    PE_object = PEUQSE.parameter_estimation(UserInput)")
-    output.append("    PE_object.doMultiStart()")
-    output.append("    PE_object.createAllPlots()")
 
-    with open(run_path, "w") as f:
-        for line in output: 
-            f.write(line+"\n")
+    template_path_slurm = os.path.join(repo_dir, "rmg_gua", "gua_peuqse", "peuqse_templates", "run_peuqse.sh")
+    run_path_slurm = os.path.join(full_path, "run_peuqse.sh")
 
-def make_run_folder(full_path, parallel=False, local_run=False):
+    # copy slurm script
+    shutil.copy(template_path_slurm, run_path_slurm)
+
+    # copy peuqse script
+    with open(template_path, "r") as f:
+        lines = f.readlines()
+        with open(run_path, "w") as f2:
+            for line in lines: 
+                if "__REPO_DIR__" in line:
+                    line = line.replace("__REPO_DIR__", f"'{repo_dir}'")
+                if "__PARALLEL__" in line: 
+                    line = line.replace("__PARALLEL__", str(parallel))
+
+                f2.write(line)
+
+def make_run_folder(full_path, parallel=False, local_run=False, run_type="opt"):
     """
     makes a folder for peuqse to run in, with all required inputs
     """
@@ -157,7 +144,7 @@ def make_run_folder(full_path, parallel=False, local_run=False):
 
     # make the scripts for running the ct simulation
     make_bash_script(full_path, parallel=parallel, local_run=local_run)
-    make_run_file(full_path, parallel=parallel)
+    make_run_file(full_path, parallel=parallel, run_type=run_type)
 
     # make the lookup dict
     make_lookup_dict(base_path, results_path=results_path)
@@ -190,10 +177,10 @@ if __name__ == "__main__":
         "-f", "--folder", type=str, help="Run folder name"
         )
 
-    # parser.add_argument(
-    #     "-o", "--opttype", help="Optimization type (true=ssr, false=map)", 
-    #     default=False, action='store_true'
-    #     )
+    parser.add_argument(
+        "-r", "--runtype", type=str, help="Optimization type (opt or mcmc)", 
+        default='ssr'
+        )
 
     parser.add_argument(
         "-p", "--parallel", 
@@ -222,6 +209,7 @@ if __name__ == "__main__":
     run_folder = args.folder
     parallel = args.parallel
     local_run = args.local
+    run_type = args.runtype
 
     # optional arg for scratch path (used on nersc)
     file_path = args.directory
@@ -231,7 +219,7 @@ if __name__ == "__main__":
     # nersc = args.nersc
 
     # make the run folder 
-    make_run_folder(full_path, parallel=parallel, local_run=local_run)
+    make_run_folder(full_path, parallel=parallel, local_run=local_run, run_type=run_type)
 
     
 

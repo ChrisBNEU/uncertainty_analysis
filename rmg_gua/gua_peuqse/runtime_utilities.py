@@ -7,12 +7,16 @@ import sys
 import os
 import yaml
 
-def get_all_param_lists(results_path, kinetic=True, thermo=True):
+def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=None):
     """
     returns lists for all the parameters used in the peuqse model
     kinetic - get all kinetic parameters (A, E0, alpha from rmg rules)
     thermo - get all thermo parameters (CHON and vdw be)
     if kinetic and thermo are true, append thermo parameters to kinetic parameters
+
+    reduce_space - (optional) remove parameters from peuqse run, by specifying
+    the indices of the parameters that we explicitly want to keep, or by specifying 
+    a string we want to match. 
 
     returns:
     value list - list of all parameter values
@@ -20,6 +24,7 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
     unc_list - list of all parameter uncertainties
     upper list - list of all parameter upper bounds
     lower list - list of all parameter lower bounds
+    reduce_list - (optional) list of the indices for the parameters you want to run
     """
     # open all of the config files
     with open(os.path.join(results_path, "rule_config.yaml"), 'r') as f:
@@ -88,6 +93,39 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True):
         "lower_list": lower_list,
         "guess_list": guess_list, 
     }
+
+    reduce_dict = {}
+    if reduce_space is not None: 
+        # remove parameters from peuqse run, by specifying the indices of the 
+        # parameters that we explicitly want to keep.
+        if isinstance(reduce_space, list):
+            # simply supply the exact indices you want to exclude
+            reduce_list = reduce_space
+
+            for idx, label in enumerate(label_list): 
+                if idx not in reduce_space: 
+                    reduce_dict[label] = idx
+                else:
+                    reduce_dict[label] = "removed"
+
+        elif isinstance(reduce_space, str):
+            # supply a string match for the parameters we want to exclude. 
+            reduce_list = []
+
+            for label in label_list: 
+                if reduce_space not in label: 
+                    reduce_list.append(label_list.index(label))
+                    reduce_dict[label] = label_list.index(label)
+                else: 
+                    reduce_dict[label] = "removed"
+
+        peuqse_params["reduce_list"] = reduce_list
+
+        # save a yaml for the reduced list as well
+        with open(os.path.join(results_path, "reduce_list.yaml"), 'w') as f:
+            yaml.dump(reduce_dict, f, sort_keys=False)
+    
+
     return peuqse_params
 
 
