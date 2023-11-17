@@ -38,7 +38,7 @@ def sim_init(project_path):
         print("loading cantera yaml")
         file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.yaml")
     else: 
-        file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.cti")
+        file_path = os.path.join(project_path, "rmg_model", "cantera", "chem_annotated.cti")
 
 
     # load the exp data and lookup dict
