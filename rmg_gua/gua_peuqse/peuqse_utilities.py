@@ -1,23 +1,10 @@
-import collections
 import itertools
-import sys
 import numpy as np 
-from rmg_gua.gua_rms.sbr import rms_sbr
 import os
-from pyrms import rms
-from julia import Main
+# from julia import Main
 import time
 import yaml
 import pandas as pd
-import math
-import cantera as ct
-from copy import deepcopy
-from rmgpy.chemkin import load_chemkin_file
-from rmgpy.rmg.model import ReactionModel
-from rmgpy.species import Species
-from rmgpy.kinetics import StickingCoefficientBEP, StickingCoefficient, SurfaceArrheniusBEP, SurfaceArrhenius
-from rmgpy.data.kinetics.database import KineticsDatabase
-from matplotlib import pyplot as plt
 
 ###############################################################################
 # various utilities for working with our awful rms->cantera->rms conversions
@@ -57,6 +44,7 @@ def make_spc(spc):
     """
     make an RMG object from the rms object
     """
+    from rmgpy.species import Species
     if len(spc.adjlist) > 0:
         rmg_spc = Species().from_adjacency_list(spc.adjlist)
     else:
@@ -67,7 +55,10 @@ def make_spc(spc):
 def make_lookup_dict(base_path, results_path=None):
     """
     make a dictionary to look up the chemkin name from the rms name
-    """
+    """ 
+    from rmgpy.chemkin import load_chemkin_file
+    from rmgpy.rmg.model import ReactionModel
+    from pyrms import rms
 
     # load rms model
     rms_path = get_highest_rms_file(base_path)
