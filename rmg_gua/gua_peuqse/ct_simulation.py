@@ -35,7 +35,8 @@ def sim_init(project_path):
 
     # cti support deprecated in 2.6
     # path 
-    if ct_full > 2.6:
+    
+    if ct_full >= 2.6:
         file_path = os.path.join(project_path, "rmg_model", "cantera", "chem_annotated.yaml")
     else: 
         file_path = os.path.join(project_path, "rmg_model", "cantera", "chem_annotated.cti")
