@@ -34,9 +34,10 @@ def sim_init(project_path):
     lookup_dict_file = os.path.join(results_path, "rmg_2_ck_dict.yaml")
 
     # cti support deprecated in 2.6
+    # path 
+    
     if ct_full >= 2.6:
-        print("loading cantera yaml")
-        file_path = os.path.join(repo_dir, "rmg_gua", "baseline", "cantera", "chem_annotated.yaml")
+        file_path = os.path.join(project_path, "rmg_model", "cantera", "chem_annotated.yaml")
     else: 
         file_path = os.path.join(project_path, "rmg_model", "cantera", "chem_annotated.cti")
 
