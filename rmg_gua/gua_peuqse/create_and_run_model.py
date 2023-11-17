@@ -42,9 +42,8 @@ def run_rmg_model(model_path):
     # run the model
     os.chdir(model_path)
     subprocess.run(["bash", "run_rmg.sh"])
-    os.chdir(os.path.abspath(__file__))
+    # os.chdir(os.path.abspath(__file__))
     
-
 
 if __name__ == "__main__":
 
