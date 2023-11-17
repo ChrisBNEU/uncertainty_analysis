@@ -46,7 +46,7 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
                 A_val = math.log10(entry.A.value_si)
                 A_unc = 1
                 A_lb = 0
-                A_ub = 25
+                A_ub = None
                 A_guess = A_val
 
             # changing to be the same as the surface arrhenius
@@ -59,21 +59,21 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
             else:
                 A_val = math.log10(entry.A.value_si)
                 A_unc = 1
-                A_lb = -15
+                A_lb = None
                 A_ub = 3
                 A_guess = A_val
                 
             E0_val = entry.E0.value_si
             E0_unc = 30000  # J/mol, convert in cantera to j/kmol
             E0_lb = 0
-            E0_ub = 400000  # J/mol
+            E0_ub = None # J/mol
             
             # peuqse will take a "-1" input and just use range if it falls outside of uncertainty
             if E0_val - E0_unc <= E0_lb:
                 
                 # bump up our guess to the uncertainty 
                 E0_guess = E0_unc + E0_lb
-                E0_ub = E0_unc*2 + E0_lb
+                # E0_ub = E0_unc*2 + E0_lb
                 # then change out uncertainty so it uses range
                 # E0_unc = -1
 
@@ -82,7 +82,7 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
             
             # we will treat all alphas the same, with allowable values spanning 0 to 1
             alpha_val = entry.alpha.value_si
-            alpha_unc = 0.5
+            alpha_unc = -1
             alpha_lb = 0
             alpha_ub = 1
             alpha_guess = 0.5
