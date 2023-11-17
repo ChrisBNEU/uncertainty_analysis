@@ -19,8 +19,10 @@ source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/conda/bin/acti
 
 source /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/rmg_gua/set_path_rmg.sh
 
+# create experimental yamls
+
 # first, run rmg model using current db and py
-python-jl create_and_run_model.py -p -f $FOLDER -d $DEST
+# python-jl create_and_run_model.py -p -f $FOLDER -d $DEST
 
 # then, fill with the prerequisite files
 python-jl setup_run_folder.py -p -f $FOLDER -d $DEST

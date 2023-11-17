@@ -149,11 +149,11 @@ def make_run_folder(full_path, parallel=False, local_run=False):
 
     # make all input files for reactions
     make_rmg_reac_config(rmg_path=rmg_path, results_path=results_path)
-    make_ck_reac_config(results_path=results_path, trim_rules=True)
+    make_ck_reac_config(results_path=results_path, trim_rules=True, model_path=base_path)
 
     # make the value, uncertainty, upper bound, and lower bound files for our parameters
     make_be_peuq_input(results_path = results_path)
-    make_be_config(results_path=results_path, return_test_spec=True)
+    make_be_config(results_path=results_path, return_test_spec=True, model_path=base_path)
 
     # make the scripts for running the ct simulation
     make_bash_script(full_path, parallel=parallel, local_run=local_run)
