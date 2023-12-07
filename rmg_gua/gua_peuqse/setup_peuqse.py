@@ -17,7 +17,6 @@ project_path = os.path.dirname(os.path.abspath(__file__))
 
 
 def setup_userinput(project_path, use_ranges=False, reduce_space=None):
-
     """
     sets up the common user inputs for a peuqse run.
     """
@@ -66,7 +65,7 @@ def setup_userinput(project_path, use_ranges=False, reduce_space=None):
     UserInput.model['InputParameterInitialGuess'] = param_dict["guess_list"]
 
     if reduce_space is not None: 
-        UserInput.model['reducedParameterSpace'] = param_dict["reduced_list"]
+        UserInput.model['reducedParameterSpace'] = param_dict["reduce_list"]
     
     #Can optionally change the initial guess to be different from prior means.
     if use_ranges:
