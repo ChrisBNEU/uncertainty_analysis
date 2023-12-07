@@ -98,15 +98,30 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=No
     if reduce_space is not None: 
         # remove parameters from peuqse run, by specifying the indices of the 
         # parameters that we explicitly want to keep.
+        print("reducing space")
         if isinstance(reduce_space, list):
             # simply supply the exact indices you want to exclude
-            reduce_list = reduce_space
+            if all(isinstance(entry, int) for entry in reduce_space):
+                reduce_list = reduce_space
 
-            for idx, label in enumerate(label_list): 
-                if idx not in reduce_space: 
-                    reduce_dict[label] = idx
-                else:
-                    reduce_dict[label] = "removed"
+                for idx, label in enumerate(label_list): 
+                    if idx not in reduce_space: 
+                        reduce_dict[label] = idx
+                    else:
+                        reduce_dict[label] = "removed"
+            
+            # if it is a list of strings, remove the strings that end with our parameter
+            elif all(isinstance(entry, str) for entry in reduce_space): 
+                print("reducing list of strings")
+                reduce_list = []
+                for label in label_list: 
+                    if all(not label.endswith(entry) for entry in reduce_space): 
+                        reduce_list.append(label_list.index(label))
+                        reduce_dict[label] = label_list.index(label)
+                    else:
+                        reduce_dict[label] = "removed"
+            else: 
+                raise Exception("please specify either a list of strings or integers for reducing params")
 
         elif isinstance(reduce_space, str):
             # supply a string match for the parameters we want to exclude. 
