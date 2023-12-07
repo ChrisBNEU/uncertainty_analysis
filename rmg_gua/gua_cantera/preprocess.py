@@ -65,7 +65,7 @@ with open("./all_experiments_reorg_sbr.yaml", "r") as f:
 opt_expt_file = "./experiments_reorg_onlyopt.yaml"
 expt_copy = []
 for expt in expt_all:
-    if "use_for_opt" in expt.keys(): 
+    if "use_for_opt" in expt.keys() and expt["use_for_opt"]: 
         expt_copy.append(expt)
 
 with open(opt_expt_file, "w") as f:
