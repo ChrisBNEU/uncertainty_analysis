@@ -53,6 +53,7 @@ class MinSBR:
         use_precond = False,
         save_new_model = False,
         verbose=False,
+        by_species=False,
         ):
         """
         initialize sbr object
@@ -125,7 +126,7 @@ class MinSBR:
         if reaction_list is not None and len(reaction_list) > 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
-            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
+            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list, by_species=by_species)
 
             # load in the original chemkin model in memory for modification.
             if save_new_model: 
@@ -157,7 +158,7 @@ class MinSBR:
                 self.new_spec_dict = dict(zip(species_lists, self.model.species))
 
 
-            self.change_be(thermo_pert_dict, save_old_thermo=True, save_new_thermo=save_new_model)
+            self.change_be(thermo_pert_dict, save_old_thermo=True, save_new_thermo=save_new_model, by_species=by_species)
             self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=True, save_new_kinetics=save_new_model)
 
             if save_new_model: 
@@ -168,8 +169,8 @@ class MinSBR:
         elif reaction_list is not None and len(reaction_list) == 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
-            thermo_pert_dict = self.load_perts_beonly(reaction_list)
-            self.change_be(thermo_pert_dict, save_old_thermo=True)
+            thermo_pert_dict = self.load_perts_beonly(reaction_list, by_species=by_species)
+            self.change_be(thermo_pert_dict, save_old_thermo=True, by_species=by_species)
 
         # pull out species names
         for spec_str in self.gas.species_names:
@@ -302,6 +303,7 @@ class MinSBR:
         rtol=1.0e-11,
         atol=1.0e-22,
         reaction_list=None,
+        by_species=False,
         ): 
         # [A_i, Ea_i, b_i]
 
@@ -348,8 +350,8 @@ class MinSBR:
         # reset reactor
         self.gas.TP = 298.0, 101325.0
         self.surf.TP = 298.0, 101325.0
-        rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
-        self.change_be(thermo_pert_dict, save_old_thermo=False)
+        rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list, by_species=by_species)
+        self.change_be(thermo_pert_dict, save_old_thermo=False, by_species=by_species)
         self.change_reactions_rmg(rule_dict=rxn_pert_dict, save_old_kinetics=False)
 
         # now reset all of the phase objects
@@ -372,6 +374,7 @@ class MinSBR:
         reaction_list = None, 
         results_path = None, 
         use_precond = False,
+        by_species = False, 
         ):
 
         """
@@ -413,16 +416,16 @@ class MinSBR:
         if reaction_list is not None and len(reaction_list) > 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
-            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list)
-            self.change_be(thermo_pert_dict)
+            rxn_pert_dict, thermo_pert_dict = self.load_perts(reaction_list, by_species=by_species)
+            self.change_be(thermo_pert_dict, by_species=by_species)
             self.change_reactions_rmg(rule_dict=rxn_pert_dict,)
         
         # janky, but only do binding energies if len reactionlist ==5
         elif reaction_list is not None and len(reaction_list) == 5:
             self.gas.TP = 298.0, 101325.0
             self.surf.TP = 298.0, 101325.0
-            thermo_pert_dict = self.load_perts_beonly(reaction_list)
-            self.change_be(thermo_pert_dict)
+            thermo_pert_dict = self.load_perts_beonly(reaction_list, by_species=by_species)
+            self.change_be(thermo_pert_dict, by_species=by_species)
 
         # pull out species names
         for spec_str in self.gas.species_names:
@@ -642,7 +645,7 @@ class MinSBR:
         self.sim.atol = atol
 
 
-    def load_perts(self, pert_list):
+    def load_perts(self, pert_list, by_species=False):
         """ 
         load the perturbations to a dictionary
         """
@@ -656,7 +659,6 @@ class MinSBR:
         count = 0
 
         if len(pert_list) > 0:
-            assert len(pert_list) == len(self.rule_dict_orig)*3 + 5, "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
             # print("changing reactions")
             for rule, vals in self.rule_dict_orig.items():
                 rule_dict[rule]["A"] = pert_list[count]
@@ -666,10 +668,25 @@ class MinSBR:
                 rule_dict[rule]["alpha"] = pert_list[count]
                 count += 1
             # load the binding energy perturbations last values in dict
-            thermo_pert_dict = {'C': 0., 'O': 0., 'N': 0., 'H': 0., 'vdw': 0.}
-            for num, (key, value) in enumerate(thermo_pert_dict.items()):
-                thermo_pert_dict[key] = pert_list[count]
-                count += 1
+            if by_species: 
+                # load the binding energy perturbations last values in dict
+                thermo_pert_dict_path = os.path.join(self.results_path, "be_values.yaml")
+                with open(thermo_pert_dict_path, 'r') as f:
+                    thermo_pert_dict = yaml.safe_load(f)
+                    
+                assert len(pert_list) == len(self.rule_dict_orig)*3 + len(thermo_pert_dict), "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
+
+                for num, (key, value) in enumerate(thermo_pert_dict.items()):
+                    thermo_pert_dict[key] = pert_list[count]
+                    count += 1
+                
+                
+            else: 
+                assert len(pert_list) == len(self.rule_dict_orig)*3 + 5, "number of reactions in rxn_list does not match number of reactions in rule_dict_orig"
+                thermo_pert_dict = {'C': 0., 'O': 0., 'N': 0., 'H': 0., 'vdw': 0.}
+                for num, (key, value) in enumerate(thermo_pert_dict.items()):
+                    thermo_pert_dict[key] = pert_list[count]
+                    count += 1
             
             # print("thermo perturbations: ", thermo_pert_dict)
 
@@ -689,7 +706,7 @@ class MinSBR:
 
         return thermo_pert_dict
 
-    def change_be(self, thermo_pert_dict, save_old_thermo=False, save_new_thermo=False):
+    def change_be(self, thermo_pert_dict, save_old_thermo=False, save_new_thermo=False, by_species=False):
         """
         change the species BE by altering the enthalpy of formation
         """
@@ -715,9 +732,14 @@ class MinSBR:
                     old_h298[species] = spec.thermo.h(298.15)/1e6
 
                 # calculate dh
+                # for atom, value in bo_spec.items():
+                #     dh += thermo_pert_dict[atom] * value
                 bo_spec = self.thermo_bo_dict[species] 
-                for atom, value in bo_spec.items():
-                    dh += thermo_pert_dict[atom] * value
+                if by_species:
+                    dh = thermo_pert_dict[species]
+                else:
+                    for atom, value in bo_spec.items():
+                        dh += thermo_pert_dict[atom] * value
 
                 st_orig = spec.thermo
                 if save_old_thermo:

@@ -20,13 +20,25 @@ ct_full = float(str(ct_major) + "." + str(ct_minor))
 
 from PEUQSE import parallel_processing
 
-def sim_init(project_path):
+def sim_init(project_path, output_species = [], thermo_by_species=False, reset_reac=False):
+    global by_species
+    global reset_reac_too
     global results_path
     global peuq_path
     global data
     global lookup_dict
     global test_sbr_list
-
+    global species
+    
+    by_species = thermo_by_species
+    reset_reac_too = reset_reac
+    # get the output species we want to optimize to
+    if len(output_species) == 0:
+        species = ["CH3OH", "CO", "CO2", "H2", "H2O"]
+    else: 
+        species = output_species
+    
+    # get model and config paths
     results_path = os.path.join(project_path, "config")
     peuq_path = os.path.join(project_path, "peuqse")
 
@@ -64,6 +76,7 @@ def sim_init(project_path):
                 results_path=results_path,
                 use_precond=False, 
                 time=600,
+                by_species=by_species
                 )
         )
 
@@ -71,16 +84,19 @@ def sim_init(project_path):
 # To use PEUQSE, you can have a function, but you also need to make a function wrapper that takes *only* the parameters as a single vector.
 def simulationFunction(parameters, debug=False):
 
-    #here x is a scalar or an array and "a" and "b" are constants for the equation.
+    # there x is a scalar or an array and "a" and "b" are constants for the equation.
     """
-    run rms reactor. 
+    run cantera reactor. 
     """
+    outputs = {}
     
-    CH3OH_X = []
-    CO_X = []
-    CO2_X = []
-    H2_X = []
-    H2O_X = []
+    for spec in species:
+        outputs[spec] = []
+    # CH3OH_X = []
+    # CO_X = []
+    # CO2_X = []
+    # H2_X = []
+    # H2O_X = []
 
     # pick just one experiment for example. can in the future use multiprocessing to solve faster, 
     # for now just do in series. 
@@ -100,27 +116,46 @@ def simulationFunction(parameters, debug=False):
             rtol=1.0e-11,
             atol=1.0e-22,
             reaction_list=parameters,
+            by_species = by_species
             )
+        # if reset_reac_too: 
+        #     test_sbr_list[run].reset_reactor(       
+        #         reac_config=data[run], 
+        #         rtol=1.0e-11,
+        #         atol=1.0e-22,
+        #         # reaction_list=parameters,
+        #         by_species = by_species
+        #         )
+        
 
         # try except loop for this because cantera errors out for certain A and Ea values
         try:
             results = test_sbr_list[run].run_reactor_ss_memory(peuqse=True)
-            CH3OH_X.append(results[lookup_dict["CH3OH"]])
-            CO_X.append(results[lookup_dict["CO"]])
-            CO2_X.append(results[lookup_dict["CO2"]])
-            H2_X.append(results[lookup_dict["H2"]])
-            H2O_X.append(results[lookup_dict["H2O"]])
+            
+            for spec in species:
+                outputs[spec].append(results[lookup_dict[spec]])
+                
+            # CH3OH_X.append(results[lookup_dict["CH3OH"]])
+            # CO_X.append(results[lookup_dict["CO"]])
+            # CO2_X.append(results[lookup_dict["CO2"]])
+            # H2_X.append(results[lookup_dict["H2"]])
+            # H2O_X.append(results[lookup_dict["H2O"]])
         except Exception as e: #CanteraError: making bare exception just to see if there is something catchable 
             with open("./mpiproblem.txt", "w") as f:
                 f.write(f"error on cantera run {run}, encountered exception {e}")
-            print("could not solve system of equations with parameters [parameters], so setting outlet moles to nan")
-            CH3OH_X.append(float('nan'))
-            CO_X.append(float('nan'))
-            CO2_X.append(float('nan'))
-            H2_X.append(float('nan'))
-            H2O_X.append(float('nan'))
-
-    y_data = np.vstack([CH3OH_X, CO_X, CO2_X, H2_X, H2O_X])
+            print(f"could not solve system of equations with parameters {parameters}, so setting outlet moles to nan")
+            for spec in species:
+                outputs[spec].append(float('nan'))
+                
+            # CH3OH_X.append(float('nan'))
+            # CO_X.append(float('nan'))
+            # CO2_X.append(float('nan'))
+            # H2_X.append(float('nan'))
+            # H2O_X.append(float('nan'))
+    
+    
+    
+    y_data = np.vstack([val for key,val in outputs.items()])
 
     if debug: 
         # save processor number if we are using mpi

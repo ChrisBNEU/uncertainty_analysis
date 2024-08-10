@@ -144,7 +144,7 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=No
     return peuqse_params
 
 
-def make_exp_data_lists(results_path, use_count=False):
+def make_exp_data_lists(results_path, species = [], use_count=False, output_species=[]):
     """ 
     make a list of lists for the experimental data from graaf. 
     each sublist is an experiment. 
@@ -173,8 +173,10 @@ def make_exp_data_lists(results_path, use_count=False):
     exp_ct_input = []
     exp_list_in = []
     exp_list_in_alt = [[],[],[],[],[],[],[],]
-    exp_list_y = [[],[],[],[],[],]
-    exp_unc_list_y = [[],[],[],[],[],]
+    # exp_list_y = [[],[],[],[],[],]
+    # exp_unc_list_y = [[],[],[],[],[],]
+    exp_list_y = []
+    exp_unc_list_y = []
     count = 0
 
 
@@ -188,23 +190,26 @@ def make_exp_data_lists(results_path, use_count=False):
         expt_yaml["volume_flowrate"]
         ]
 
-
-    exp_list_y = [
-        expt_yaml['species_out_CH3OH'],
-        expt_yaml['species_out_CO'],
-        expt_yaml['species_out_CO2'],
-        expt_yaml['species_out_H2'],
-        expt_yaml['species_out_H2O'],
-    ]
+    # if no output species specified, use all
+    if len(output_species) == 0: 
+        output_species = ["CH3OH", "CO", "CO2", "H2", "H2O"]
     
-    
-    exp_unc_list_y = [
-        expt_unc_yaml['species_out_CH3OH'],
-        expt_unc_yaml['species_out_CO'],
-        expt_unc_yaml['species_out_CO2'],
-        expt_unc_yaml['species_out_H2'],
-        expt_unc_yaml['species_out_H2O'],
-    ]
+    if "CH3OH" in output_species: 
+        exp_list_y.append(expt_yaml['species_out_CH3OH'])
+        exp_unc_list_y.append(expt_unc_yaml['species_out_CH3OH'])
+    if "CO" in output_species: 
+        exp_list_y.append(expt_yaml['species_out_CO'])
+        exp_unc_list_y.append(expt_unc_yaml['species_out_CO'])
+    if "CO2" in output_species: 
+        exp_list_y.append(expt_yaml['species_out_CO2'])
+        exp_unc_list_y.append(expt_unc_yaml['species_out_CO2'])
+    if "H2" in output_species: 
+        exp_list_y.append(expt_yaml['species_out_H2'])
+        exp_unc_list_y.append(expt_unc_yaml['species_out_H2'])
+    if "H2O" in output_species: 
+        exp_list_y.append(expt_yaml['species_out_H2O'])
+        exp_unc_list_y.append(expt_unc_yaml['species_out_H2O'])
+        
     
     return exp_list_in, exp_list_y, exp_unc_list_y
         

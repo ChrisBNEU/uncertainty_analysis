@@ -20,7 +20,7 @@ print("uncertainty repo path: ", prefix)
 global kdb 
 kdb = KineticsDatabase()
 kdb_path = os.path.join(os.path.dirname(os.environ['RMGPY']), "RMG-database", "input", "kinetics")
-kdb.load(kdb_path, families='surface_all', depositories=False)
+kdb.load(kdb_path, families='surface', depositories=False)
 
 # use yaml safe load to preserve order (python 3.6+)
 def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
@@ -45,8 +45,8 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
             if entry.A.value_si > 1.0: 
                 A_val = math.log10(entry.A.value_si)
                 A_unc = 1
-                A_lb = 0
-                A_ub = None
+                A_lb = -3
+                A_ub = 3
                 A_guess = A_val
 
             # changing to be the same as the surface arrhenius
@@ -59,7 +59,7 @@ def make_rmg_reac_config(rmg_path, results_path=False, check_ranges=True):
             else:
                 A_val = math.log10(entry.A.value_si)
                 A_unc = 1
-                A_lb = None
+                A_lb = -3
                 A_ub = 3
                 A_guess = A_val
                 

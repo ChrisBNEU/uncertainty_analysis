@@ -16,12 +16,12 @@ from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_d
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def setup_userinput(project_path, use_ranges=False, reduce_space=None):
+def setup_userinput(project_path, use_ranges=False, reduce_space=None, output_species=[], by_species=False, reset_reac=False):
     """
     sets up the common user inputs for a peuqse run.
     """
     
-    ct_simulation.sim_init(project_path)
+    ct_simulation.sim_init(project_path, output_species, thermo_by_species=by_species, reset_reac=reset_reac)
     results_path = os.path.join(project_path, "config")
     peuq_path = os.path.join(project_path, "peuqse")
 
@@ -33,16 +33,16 @@ def setup_userinput(project_path, use_ranges=False, reduce_space=None):
 
     
     data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
-    x_data, y_data, y_unc = make_exp_data_lists(results_path)
+    x_data, y_data, y_unc = make_exp_data_lists(results_path, output_species=output_species)
     
     x_data = np.array(x_data)
     y_data = np.array(y_data)
     y_unc = np.array(y_data)
     print(f"length is {len(x_data[0])} in main")
     
-    UserInput.directories['graphs'] = os.path.join(peuq_path, "graphs/")
-    UserInput.directories['logs_and_csvs'] = os.path.join(peuq_path, "logs_and_csvs/")
-    UserInput.directories['pickles'] = os.path.join(peuq_path, "pickles/")
+    # UserInput.directories['graphs'] = os.path.join(peuq_path, "graphs/")
+    # UserInput.directories['logs_and_csvs'] = os.path.join(peuq_path, "logs_and_csvs/")
+    # UserInput.directories['pickles'] = os.path.join(peuq_path, "pickles/")
     
     UserInput.responses['responses_abscissa'] = x_data
     UserInput.responses['responses_observed'] = y_data

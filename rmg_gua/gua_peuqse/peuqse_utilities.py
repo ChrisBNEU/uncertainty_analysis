@@ -299,7 +299,13 @@ def make_ct_expt_file(results_path, use_peuq_expts=False):
     unc_yaml["species_CO"] = (np.array(expt_data["species_CO"])*0.01).tolist()
     unc_yaml["species_CO2"] = (np.array(expt_data["species_CO2"])*0.01).tolist()
     unc_yaml["species_H2"] = (np.array(expt_data["species_H2"])*0.01).tolist()
-    unc_yaml["species_H2O"] = (np.array(expt_data["species_H2O"])*0.01).tolist()
+
+    # some experiments don't have h20 defined, just give it a 0
+    if "species_H2O" in expt_data.keys():
+        unc_yaml["species_H2O"] = (np.array(expt_data["species_H2O"])*0.01).tolist()
+    else:
+        unc_yaml["species_H2O"] = len(expt_data["species_CO"])*[0]
+    
     unc_yaml["species_out_CH3OH"] = (np.array(expt_data["species_out_CH3OH"])*0.01).tolist()
     unc_yaml["species_out_H2O"] = (np.array(expt_data["species_out_H2O"])*0.01).tolist()
     unc_yaml["species_out_H2"] = (np.array(expt_data["species_out_H2"])*0.01).tolist()
