@@ -6,10 +6,10 @@
 *uncertainty_output_folder/*
 error*.log
 output*.log
-*RMG-Py/*
-*RMG-database/*
+*RMG-Py/
+*RMG-database/
 *.out*
-*ReactionMechanismSimulator.jl/*
+*ReactionMechanismSimulator.jl/
 */baseline/*
 */global_unc/*.log
 */global_unc/*.dat
@@ -29,7 +29,7 @@ output*.log
 *[~][$]*
 *.svg
 *peuquse_env*
-*PEUQSE/*
+*PEUQSE/
 *flux_diagram*
 *\rmg_gua/gua_cantera/Spinning_basket_reactor/testing/
 *\config/
