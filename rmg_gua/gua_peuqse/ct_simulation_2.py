@@ -9,7 +9,7 @@ import cProfile
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(repo_dir)
 
-from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr import MinSBR
+from rmg_gua.gua_cantera.Spinning_basket_reactor.sbr_updated import MinSBR
 from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists
 
 import cantera as ct
@@ -20,7 +20,7 @@ ct_full = float(str(ct_major) + "." + str(ct_minor))
 
 from PEUQSE import parallel_processing
 
-def sim_init(project_path, output_species = [], thermo_by_species=False, reset_reac=False):
+def sim_init(project_path, output_species = [], thermo_by_species=False, reset_reac=False, include_expt_unc=False):
     global by_species
     global reset_reac_too
     global results_path
@@ -29,7 +29,9 @@ def sim_init(project_path, output_species = [], thermo_by_species=False, reset_r
     global lookup_dict
     global test_sbr_list
     global species
+    global proj_path
     
+    proj_path = project_path
     by_species = thermo_by_species
     reset_reac_too = reset_reac
     # get the output species we want to optimize to
@@ -61,7 +63,7 @@ def sim_init(project_path, output_species = [], thermo_by_species=False, reset_r
         lookup_dict = yaml.load(f, Loader = yaml.FullLoader)
     
     # load the initial parameter set
-    starting_params = get_all_param_lists(results_path)
+    starting_params = get_all_param_lists(results_path, include_expt_unc=include_expt_unc)
 
     test_sbr_list = []
     for i, expt in enumerate(data): 
@@ -76,7 +78,8 @@ def sim_init(project_path, output_species = [], thermo_by_species=False, reset_r
                 results_path=results_path,
                 use_precond=False, 
                 time=600,
-                by_species=by_species
+                by_species=by_species, 
+                include_expt_unc=include_expt_unc
                 )
         )
 
@@ -91,7 +94,7 @@ def simulationFunction(parameters, debug=False):
 
     # goint to try re-initializing reactor each time.
     # if reset_reac_too: 
-    #     sim_init(project_path, output_species=species, thermo_by_species=by_species, reset_reac=True)
+    #     sim_init(proj_path, output_species=species, thermo_by_species=by_species, reset_reac=True)
     
     outputs = {}
     

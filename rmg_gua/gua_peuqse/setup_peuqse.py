@@ -12,16 +12,31 @@ import sys
 repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, repo_dir)
 import rmg_gua.gua_peuqse.ct_simulation as ct_simulation
+import rmg_gua.gua_peuqse.ct_simulation_2 as ct_simulation_2
 from rmg_gua.gua_peuqse.runtime_utilities import get_all_param_lists, make_exp_data_lists
+
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def setup_userinput(project_path, use_ranges=False, reduce_space=None, output_species=[], by_species=False, reset_reac=False):
+def setup_userinput(
+    project_path, 
+    use_ranges=False, 
+    reduce_space=None, 
+    output_species=[], 
+    by_species=False, 
+    reset_reac=False,
+    include_expt_unc=False,
+    ):
     """
     sets up the common user inputs for a peuqse run.
     """
-    
-    ct_simulation.sim_init(project_path, output_species, thermo_by_species=by_species, reset_reac=reset_reac)
+    if include_expt_unc:
+        ct_simulation_2.sim_init(
+            project_path, output_species, thermo_by_species=by_species, 
+            reset_reac=reset_reac, include_expt_unc=include_expt_unc
+            )
+    else:
+        ct_simulation.sim_init(project_path, output_species, thermo_by_species=by_species, reset_reac=reset_reac)
     results_path = os.path.join(project_path, "config")
     peuq_path = os.path.join(project_path, "peuqse")
 
@@ -29,7 +44,7 @@ def setup_userinput(project_path, use_ranges=False, reduce_space=None, output_sp
         os.mkdir(peuq_path)
     
     # get the peuqse parameters
-    param_dict = get_all_param_lists(results_path=results_path, reduce_space=reduce_space)     
+    param_dict = get_all_param_lists(results_path=results_path, reduce_space=reduce_space, include_expt_unc=include_expt_unc)     
 
     
     data_path = os.path.join(repo_dir, "rmg_gua", "gua_cantera")
@@ -38,7 +53,7 @@ def setup_userinput(project_path, use_ranges=False, reduce_space=None, output_sp
     x_data = np.array(x_data)
     y_data = np.array(y_data)
     y_unc = np.array(y_data)
-    print(f"length is {len(x_data[0])} in main")
+    print(f"{len(x_data[0])} x data points, {len(y_data)} y data points")
     
     # UserInput.directories['graphs'] = os.path.join(peuq_path, "graphs/")
     # UserInput.directories['logs_and_csvs'] = os.path.join(peuq_path, "logs_and_csvs/")
@@ -72,6 +87,9 @@ def setup_userinput(project_path, use_ranges=False, reduce_space=None, output_sp
         UserInput.model['InputParameterPriorValues_lowerBounds'] = param_dict["lower_list"]
         UserInput.model['InputParameterPriorValues_upperBounds'] = param_dict["upper_list"]
     
-    UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
+    if include_expt_unc:
+        UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation_2.simulation_function_wrapper
+    else:
+        UserInput.model['simulateByInputParametersOnlyFunction'] = ct_simulation.simulation_function_wrapper
 
     return UserInput

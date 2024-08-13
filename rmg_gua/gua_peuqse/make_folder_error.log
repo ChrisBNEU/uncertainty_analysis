@@ -1,0 +1,97 @@
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+WARNING:root:Only Arrhenius and PDepArrhenius kinetics supported for duplicate reactions.
+┌ Warning: failed to generate StokesDiffusivity model for species X
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species H*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species O*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species OH*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species H2O*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CO*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CO2*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species HCO*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species HCOO*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species COOH*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species HCOOH*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CH2O*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CH3O*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CH3O2*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species CH3OH*
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species OC[Pt]
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species OC=[Pt]
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species C=[Pt]
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346
+┌ Warning: failed to generate StokesDiffusivity model for species C#[Pt]
+└ @ ReactionMechanismSimulator /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis/ReactionMechanismSimulator.jl/src/Parse.jl:346

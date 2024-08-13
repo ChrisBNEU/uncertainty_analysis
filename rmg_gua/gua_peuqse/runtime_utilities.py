@@ -7,7 +7,7 @@ import sys
 import os
 import yaml
 
-def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=None):
+def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=None, include_expt_unc=False):
     """
     returns lists for all the parameters used in the peuqse model
     kinetic - get all kinetic parameters (A, E0, alpha from rmg rules)
@@ -83,6 +83,15 @@ def get_all_param_lists(results_path, kinetic=True, thermo=True, reduce_space=No
             upper_list.append(thermo_ub_config[label])
             lower_list.append(thermo_lb_config[label])
             guess_list.append(thermo_guess_config[label])
+
+    # hardcoding for now, just using surface area uncertainty
+    if include_expt_unc:
+        value_list.append(0.0)
+        label_list.append("catalyst_area")
+        unc_list.append(7.0)
+        upper_list.append(7.0)
+        lower_list.append(-7.0)
+        guess_list.append(0.0)
         
     # return as a dictionary so we don't confuse what's what
     peuqse_params = {

@@ -1,0 +1,81 @@
+repo_dir:  /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis
+uncertainty repo path:  /work/westgroup/ChrisB/_01_MeOH_repos/uncertainty_analysis
+folder already exists, updating files
+config folder already exists, updating files
+No experiments found for (1470000.0, 516.7, 1.6666666666666667, 0.0)
+No experiments found for (1470000.0, 516.7, 9.0, 0.0)
+No experiments found for (5030000.0, 516.7, 1.6666666666666667, 0.0)
+No experiments found for (5030000.0, 516.7, 9.0, 0.0)
+E0 out of bounds for  Surface_Abstraction  :  O;*OH  :  15400.0  +/-  30000
+E0 out of bounds for  Surface_Abstraction_Beta  :  O;R-O-H  :  15400.0  +/-  30000
+E0 out of bounds for  Surface_Abstraction_Beta_double_vdW  :  OH;R-O-H  :  1900.0  +/-  30000
+E0 out of bounds for  Surface_Abstraction_Beta_vdW  :  O;R-O-H  :  15400.0  +/-  30000
+E0 out of bounds for  Surface_Adsorption_Bidentate  :  Adsorbate;VacantSite1;VacantSite2  :  0.0  +/-  30000
+E0 out of bounds for  Surface_Adsorption_Dissociative  :  H2;VacantSite1;VacantSite2  :  3800.0  +/-  30000
+A out of bounds for  Surface_Adsorption_Dissociative  :  CH4;VacantSite1;VacantSite2  :  0.17897694729316943  +/-  1
+E0 out of bounds for  Surface_Adsorption_Single  :  Adsorbate;VacantSite  :  0.0  +/-  30000
+E0 out of bounds for  Surface_Adsorption_vdW  :  Adsorbate;VacantSite  :  0.0  +/-  30000
+E0 out of bounds for  Surface_Dissociation_Double_vdW  :  AdsorbateVdW;VacantSite  :  0.0  +/-  30000
+E0 out of bounds for  Surface_Monodentate_to_Bidentate  :  Monodentate;VacantSite  :  3000.0  +/-  30000
+E0 out of bounds for  Surface_vdW_to_Bidentate  :  Combined;VacantSite  :  12000.0  +/-  30000
+removing rule:  Surface_Abstraction : Abstracting;*R-H  from config files
+removing rule:  Surface_Abstraction : O;*OH  from config files
+removing rule:  Surface_Abstraction : C;*-CH-H  from config files
+removing rule:  Surface_Abstraction : C;*-CH2-H  from config files
+removing rule:  Surface_Abstraction : O;*-CH2-H  from config files
+removing rule:  Surface_Abstraction_Beta : O;R-C-H  from config files
+removing rule:  Surface_Abstraction_Beta : O;R-CH3  from config files
+removing rule:  Surface_Abstraction_Beta : Abstracting;R-CH3  from config files
+removing rule:  Surface_Adsorption_Bidentate : Adsorbate;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Adsorption_Dissociative : CH4;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Adsorption_Dissociative : C2H6;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Adsorption_Dissociative : C3H8;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Adsorption_Dissociative : C2H4;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Adsorption_Single : Adsorbate;VacantSite  from config files
+removing rule:  Surface_Bidentate_Dissociation : Combined  from config files
+removing rule:  Surface_Dissociation : C-H_Bidentate;VacantSite  from config files
+removing rule:  Surface_Dissociation : C-C;VacantSite  from config files
+removing rule:  Surface_Dissociation : CH3;VacantSite  from config files
+removing rule:  Surface_Dissociation : CHR;VacantSite  from config files
+removing rule:  Surface_Dissociation_Beta : Combined;VacantSite  from config files
+removing rule:  Surface_Dissociation_Beta : C-H;VacantSite  from config files
+removing rule:  Surface_Dissociation_Beta : CH3;VacantSite  from config files
+removing rule:  Surface_Dissociation_Double : Combined;VacantSite  from config files
+removing rule:  Surface_Dissociation_Double : C=C;VacantSite  from config files
+removing rule:  Surface_Dissociation_to_Bidentate : Combined;VacantSite1;VacantSite2  from config files
+removing rule:  Surface_Dissociation_vdW : CH4;VacantSite  from config files
+removing rule:  Surface_Dissociation_vdW : C-C;VacantSite  from config files
+removing rule:  Surface_Dissociation_vdW : C2H6;VacantSite  from config files
+removing rule:  Surface_Dissociation_vdW : C2H4;VacantSite  from config files
+removing rule:  Surface_Monodentate_to_Bidentate : Monodentate;VacantSite  from config files
+removing rule:  Surface_vdW_to_Bidentate : Combined;VacantSite  from config files
+N2(-1) is a gas phase species
+Ne(-1) is a gas phase species
+H2(2) is a gas phase species
+CO(3) is a gas phase species
+CO2(4) is a gas phase species
+H2O(5) is a gas phase species
+CH2O(6) is a gas phase species
+HCOOH(7) is a gas phase species
+CH3OH(8) is a gas phase species
+HCOOCH3(9) is a gas phase species
+empty surface site, skipping
+X(1) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+H*(10) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 1.0, 'vdw': 0.0}
+O*(11) bond orders:{'C': 0.0, 'O': 1.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+OH*(12) bond orders:{'C': 0.0, 'O': 0.5, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+H2O*(13) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 1.0}
+CO*(14) bond orders:{'C': 0.5, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+CO2*(15) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 1.0}
+HCO*(16) bond orders:{'C': 0.25, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+HCOO*(17) bond orders:{'C': 0.0, 'O': 0.5, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+COOH*(18) bond orders:{'C': 0.25, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+HCOOH*(19) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 1.0}
+CH2O*(20) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 1.0}
+CH3O*(21) bond orders:{'C': 0.0, 'O': 0.5, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+CH3O2*(22) bond orders:{'C': 0.0, 'O': 0.5, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+CH3OH*(23) bond orders:{'C': 0.0, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 1.0}
+CH2X(43) bond orders:{'C': 0.5, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+CH2OX(44) bond orders:{'C': 0.5, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+OC[Pt](46) bond orders:{'C': 0.25, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
+C#[Pt](48) bond orders:{'C': 0.75, 'O': 0.0, 'N': 0.0, 'H': 0.0, 'vdw': 0.0}
